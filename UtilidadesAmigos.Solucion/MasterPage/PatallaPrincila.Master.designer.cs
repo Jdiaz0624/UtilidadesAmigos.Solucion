@@ -105,6 +105,24 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkSolicitud;
 
         /// <summary>
+        /// DIVModuloCumpplimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVModuloCumpplimiento;
+
+        /// <summary>
+        /// LinkMatrizRiesgo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkMatrizRiesgo;
+
+        /// <summary>
         /// DivModuloConsulta control.
         /// </summary>
         /// <remarks>

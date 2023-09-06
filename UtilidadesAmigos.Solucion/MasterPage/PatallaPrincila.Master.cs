@@ -61,7 +61,8 @@ namespace UtilidadesAmigos.Solucion.MasterPage
             COBROS = 10,
             CUMPLIMIENTO=11,
             COBROSESPECIAL=12,
-            TECNICOESPECIAL=13
+            TECNICOESPECIAL=13,
+            LEGAL=14
         }
 
         #region APLCIAR PERMISOS A PERFILES
@@ -86,6 +87,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloCorrecciones.Visible = true;
                     DIVModuloHoja.Visible = true;
                     DIvBloqueTransito.Visible = true;
+                    DIVModuloCumpplimiento.Visible = true;
                     break;
 
                 case (int)PefilesUsuarios.CONTABILIDAD:
@@ -98,6 +100,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = true;
                     DIvBloqueTransito.Visible = false;
+                    DIVModuloCumpplimiento.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.AUDITORIA:
@@ -110,6 +113,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = false;
                     DIvBloqueTransito.Visible = false;
+                    DIVModuloCumpplimiento.Visible = true;
                     break;
 
                 case (int)PefilesUsuarios.NEGOCIOS:
@@ -122,6 +126,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloCorrecciones.Visible = true;
                     DIVModuloHoja.Visible = true;
                     DIvBloqueTransito.Visible = true;
+                    DIVModuloCumpplimiento.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.TECNICO:
@@ -134,6 +139,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloCorrecciones.Visible = true;
                     DIVModuloHoja.Visible = true;
                     DIvBloqueTransito.Visible = true;
+                    DIVModuloCumpplimiento.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.RECLAMACIONES:
@@ -146,6 +152,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = true;
                     DIvBloqueTransito.Visible = true;
+                    DIVModuloCumpplimiento.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.ADMINISTRACION:
@@ -158,6 +165,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = false;
                     DIvBloqueTransito.Visible = false;
+                    DIVModuloCumpplimiento.Visible = true;
                     break;
 
                 case (int)PefilesUsuarios.ARCHIVO:
@@ -170,6 +178,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = false;
                     DIvBloqueTransito.Visible = false;
+                    DIVModuloCumpplimiento.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.RECEPCION:
@@ -182,6 +191,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = false;
                     DIvBloqueTransito.Visible = false;
+                    DIVModuloCumpplimiento.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.COBROS:
@@ -194,6 +204,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = false;
                     DIvBloqueTransito.Visible = true;
+                    DIVModuloCumpplimiento.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.CUMPLIMIENTO:
@@ -206,6 +217,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = false;
                     DIvBloqueTransito.Visible = false;
+                    DIVModuloCumpplimiento.Visible = true;
                     break;
 
                 case (int)PefilesUsuarios.COBROSESPECIAL:
@@ -218,6 +230,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = false;
                     DIvBloqueTransito.Visible = true;
+                    DIVModuloCumpplimiento.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.TECNICOESPECIAL:
@@ -230,6 +243,20 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloCorrecciones.Visible = true;
                     DIVModuloHoja.Visible = false;
                     DIvBloqueTransito.Visible = true;
+                    DIVModuloCumpplimiento.Visible = false;
+                    break;
+
+                case (int)PefilesUsuarios.LEGAL:
+                    DivModuloSuministro.Visible = false;
+                    DivModuloConsulta.Visible = false;
+                    DivModuloReportes.Visible = false;
+                    DivModuloProcesos.Visible = false;
+                    DivModuloMantenimiento.Visible = false;
+                    DivModuloSeguridad.Visible = false;
+                    DivModuloCorrecciones.Visible = false;
+                    DIVModuloHoja.Visible = false;
+                    DIvBloqueTransito.Visible = false;
+                    DIVModuloCumpplimiento.Visible = true;
                     break;
 
                 default:
@@ -242,6 +269,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = false;
                     DIvBloqueTransito.Visible = false;
+                    DIVModuloCumpplimiento.Visible = false;
                     break;
             }
 
@@ -264,6 +292,9 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkAdministracion.Visible = true;
                     LinkSolicitud.Visible = true;
 
+                    //CUMPLIMIENTO
+                    LinkMatrizRiesgo.Visible = true;
+
                     //CONSULTAS
                     LinkCartera.Visible = true;
                     LinkConsultaPersonas.Visible = true;
@@ -276,7 +307,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkInformacionAsegurado.Visible = true;
                     LinkRegistrosInconpletos.Visible = true;
 
-                    //HIJA
+                    //HOJA
                     LinkCertificadoMaritimo.Visible = true;
 
                     //TRANSITO
@@ -356,6 +387,9 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //SUMINISTRO
                     LinkAdministracion.Visible = false;
                     LinkSolicitud.Visible = true;
+
+                    //CUMPLIMIENTO
+                    LinkMatrizRiesgo.Visible = false;
 
                     //CONSULTAS
                     LinkCartera.Visible = false;
@@ -447,6 +481,9 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //SUMINISTRO
                     LinkAdministracion.Visible = true;
                     LinkSolicitud.Visible = true;
+
+                    //CUMPLIMIENTO
+                    LinkMatrizRiesgo.Visible = true;
 
                     //CONSULTAS
                     LinkCartera.Visible = true;
@@ -540,6 +577,9 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkAdministracion.Visible = false;
                     LinkSolicitud.Visible = true;
 
+                    //CUMPLIMIENTO
+                    LinkMatrizRiesgo.Visible = false;
+
                     //CONSULTAS
                     LinkCartera.Visible = true;
                     LinkConsultaPersonas.Visible = true;
@@ -631,6 +671,9 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //SUMINISTRO
                     LinkAdministracion.Visible = false;
                     LinkSolicitud.Visible = true;
+
+                    //CUMPLIMIENTO
+                    LinkMatrizRiesgo.Visible = false;
 
                     //CONSULTAS
                     LinkCartera.Visible = true;
@@ -725,6 +768,9 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkAdministracion.Visible = false;
                     LinkSolicitud.Visible = true;
 
+                    //CUMPLIMIENTO
+                    LinkMatrizRiesgo.Visible = false;
+
                     //CONSULTAS
                     LinkCartera.Visible = false;
                     LinkConsultaPersonas.Visible = true;
@@ -818,6 +864,9 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkAdministracion.Visible = false;
                     LinkSolicitud.Visible = true;
 
+                    //CUMPLIMIENTO
+                    LinkMatrizRiesgo.Visible = true;
+
                     //CONSULTAS
                     LinkCartera.Visible = false;
                     LinkConsultaPersonas.Visible = false;
@@ -909,6 +958,9 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //SUMINISTRO
                     LinkAdministracion.Visible = true;
                     LinkSolicitud.Visible = true;
+
+                    //CUMPLIMIENTO
+                    LinkMatrizRiesgo.Visible = false;
 
                     //CONSULTAS
                     LinkCartera.Visible = false;
@@ -1003,6 +1055,9 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkAdministracion.Visible = false;
                     LinkSolicitud.Visible = true;
 
+                    //CUMPLIMIENTO
+                    LinkMatrizRiesgo.Visible = false;
+
                     //CONSULTAS
                     LinkCartera.Visible = false;
                     LinkConsultaPersonas.Visible = true;
@@ -1095,6 +1150,9 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //SUMINISTRO
                     LinkAdministracion.Visible = false;
                     LinkSolicitud.Visible = true;
+
+                    //CUMPLIMIENTO
+                    LinkMatrizRiesgo.Visible = false;
 
                     //CONSULTAS
                     LinkCartera.Visible = true;
@@ -1189,6 +1247,9 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkAdministracion.Visible = false;
                     LinkSolicitud.Visible = true;
 
+                    //CUMPLIMIENTO
+                    LinkMatrizRiesgo.Visible = true;
+
                     //CONSULTAS
                     LinkCartera.Visible = true;
                     LinkConsultaPersonas.Visible = true;
@@ -1281,6 +1342,9 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //SUMINISTRO
                     LinkAdministracion.Visible = false;
                     LinkSolicitud.Visible = true;
+
+                    //CUMPLIMIENTO
+                    LinkMatrizRiesgo.Visible = false;
 
                     //CONSULTAS
                     LinkCartera.Visible = true;
@@ -1375,6 +1439,9 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkAdministracion.Visible = false;
                     LinkSolicitud.Visible = true;
 
+                    //CUMPLIMIENTO
+                    LinkMatrizRiesgo.Visible = false;
+
                     //CONSULTAS
                     LinkCartera.Visible = true;
                     LinkConsultaPersonas.Visible = true;
@@ -1446,6 +1513,102 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkEmpleados.Visible = false;
                     LinkInventario.Visible = false;
                     LinkDependientes.Visible = true;
+                    LinkPorcientoComision.Visible = false;
+                    LinkMonedas.Visible = false;
+
+                    //SEGURIDAD
+                    LinkUsuarios.Visible = false;
+                    LinkPerfilesUsuarios.Visible = false;
+                    LinkClaveSeguridad.Visible = false;
+                    LinkConfiguracionCorreos.Visible = false;
+                    LinkMovimientoUsuarios.Visible = false;
+                    LinkTarjetaAcceso.Visible = false;
+                    LinkModulos.Visible = false;
+                    LinkPantallas.Visible = false;
+                    LinkOpciones.Visible = false;
+                    LinkPermisoUsuarios.Visible = false;
+                    LinkCredencialesBD.Visible = false;
+                    break;
+
+                case (int)PefilesUsuarios.LEGAL:
+                    //SUMINISTRO
+                    LinkAdministracion.Visible = false;
+                    LinkSolicitud.Visible = true;
+
+                    //CUMPLIMIENTO
+                    LinkMatrizRiesgo.Visible = true;
+
+                    //CONSULTAS
+                    LinkCartera.Visible = true;
+                    LinkConsultaPersonas.Visible = true;
+                    LinkListadoRenovacion.Visible = false;
+                    LinkGestionCobros.Visible = false;
+                    LinkEstadisticaRenovacion.Visible = false;
+                    LinkSacarDataCoberturas.Visible = false;
+                    LinkGenerarReporteUAF.Visible = true;
+                    LinkControlVisitas.Visible = true;
+                    LinkInformacionAsegurado.Visible = false;
+                    LinkRegistrosInconpletos.Visible = false;
+
+                    //HIJA
+                    LinkCertificadoMaritimo.Visible = false;
+
+                    //TRANSITO
+                    LinkGenerarMarbete.Visible = false;
+                    LinkEndososTransito.Visible = false;
+                    LinkReportePolizasTransito.Visible = false;
+                    LinkPolizasPendientesPagos.Visible = false;
+
+                    //REPORTES
+                    LinkReporteProduccion.Visible = true;
+                    LinkReporteCobros.Visible = true;
+                    LinkReporteProduccionIntermediarioAlfredo.Visible = false;
+                    LinkComisionesIntermediario.Visible = false;
+                    LinkComisionesSupervisores.Visible = false;
+                    LinkSobreComision.Visible = false;
+                    LinkProduccionDiaria.Visible = false;
+                    LinkAntiguedadSaldoCXP.Visible = false;
+                    LinkReporteCuentaProveedores.Visible = false;
+                    LinkDepositosPrima.Visible = false;
+                    LinkAntiguedadSaldo.Visible = true;
+                    LinkReporteREclmaciones.Visible = false;
+                    LinkReclamacionesPagadas.Visible = false;
+                    LinkImpresionMarbetes.Visible = false;
+                    LinkFichatecnica.Visible = false;
+                    LinkReportePolizasBalance.Visible = false;
+
+
+                    //PROCESOS
+                    LinkGenerarBAckupBD.Visible = false;
+                    LinkSolicitudesCheques.Visible = false;
+                    LinkImpresionCheques.Visible = false;
+                    LinkProcesarDataAsegurado.Visible = true;
+                    LinkDatoPoliza.Visible = true;
+                    LinkEndosos.Visible = true;
+                    LinkProcesoEmision.Visible = true;
+                    LinkVolantePagos.Visible = false;
+                    LinkUtilidadesCobros.Visible = false;
+                    LinkAgregarItemsReclamos.Visible = false;
+                    LinkReciboIngreso.Visible = false;
+                    LinkCartaCancelacion.Visible = false;
+
+                    //CORRECCIONES
+                    LinkEliminarEndosos.Visible = false;
+                    LinkPolizaTransito.Visible = false;
+                    LinkSumaAseguradaFianzas.Visible = false;
+                    LinkCambioIntermediario.Visible = false;
+                    LinkCambioCliente.Visible = false;
+                    LinkModificarDatosCliente.Visible = false;
+                    LinkDatoPoliza.Visible = false;
+
+                    //MANTENIMIENTO
+                    LinkClientes.Visible = false;
+                    LinkIntermediariosSupervisores.Visible = false;
+                    LinkOficinas.Visible = false;
+                    LinkDepartamentos.Visible = false;
+                    LinkEmpleados.Visible = false;
+                    LinkInventario.Visible = false;
+                    LinkDependientes.Visible = false;
                     LinkPorcientoComision.Visible = false;
                     LinkMonedas.Visible = false;
 
@@ -2539,6 +2702,19 @@ namespace UtilidadesAmigos.Solucion.MasterPage
             if (Session["IdUsuario"] != null)
             {
                 Response.Redirect("~/Paginas/Transito/PolizasConPagosPendientes.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
+
+        protected void LinkMatrizRiesgo_Click(object sender, EventArgs e)
+        {
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("~/Paginas/CumplimientoLegal/MatrizRiesgo.aspx");
             }
             else
             {

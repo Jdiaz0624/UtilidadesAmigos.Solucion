@@ -287,6 +287,7 @@
     <Content Include="Paginas\Correcciones\ModificarDatosCliente.aspx" />
     <Content Include="Paginas\Correcciones\MontoAfianzadoFianzas.aspx" />
     <Content Include="Paginas\Correcciones\PolizaTransito.aspx" />
+    <Content Include="Paginas\CumplimientoLegal\MatrizRiesgo.aspx" />
     <Content Include="Paginas\EliminarBalancePoliza.aspx" />
     <Content Include="Paginas\GenerarFacturasPDF.aspx" />
     <Content Include="Paginas\Hojas\CerrtificadoMaritimo.aspx" />
@@ -659,6 +660,13 @@
     </Compile>
     <Compile Include="Paginas\CotizadorAmigos.aspx.designer.cs">
       <DependentUpon>CotizadorAmigos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\CumplimientoLegal\MatrizRiesgo.aspx.cs">
+      <DependentUpon>MatrizRiesgo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\CumplimientoLegal\MatrizRiesgo.aspx.designer.cs">
+      <DependentUpon>MatrizRiesgo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\EliminarBalancePoliza.aspx.cs">
       <DependentUpon>EliminarBalancePoliza.aspx</DependentUpon>

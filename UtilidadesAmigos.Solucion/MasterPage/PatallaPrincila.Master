@@ -117,6 +117,13 @@
         </ul>
         </li>
 
+        <!--CUMPLIMIENTO / LEGAL-->
+        <li id="DIVModuloCumpplimiento" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-cart-arrow-down"></i>Cumplimiento / Legal<i class="icono derecha fa fa-chevron-down"></i></a>
+        <ul>
+            <li> <asp:LinkButton ID="LinkMatrizRiesgo" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
+        </ul>
+        </li>
+
          <!--MODULO DE CONSULTAS-->
         <li id="DivModuloConsulta" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-search-plus"></i>Consultas<i class="icono derecha fa fa-chevron-down"></i></a>
         <ul>
