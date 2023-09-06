@@ -143,6 +143,7 @@
         <div id="DIVBloqueMatriz" runat="server">
             <br />
             <asp:HiddenField ID="hfIdRegistroSeleccionado" runat="server" />
+            <asp:HiddenField ID="hfAccionTomar" runat="server" />
 
             <div class="row">
                 <div class="col-md-2">

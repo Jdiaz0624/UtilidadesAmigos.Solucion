@@ -154,6 +154,48 @@ namespace UtilidadesAmigos.Solucion.Paginas.CumplimientoLegal
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlNivelRiesgo_PrimaAnual_Matriz, ObjDataGeneral.Value.BuscaListas("NIVEL_RIESGO_MATRIZ", null, null));
         }
         #endregion
+        #region PROCESAR LA INFORMACION DE LA MATRIZ DE RIESGO
+        private void GuardarInformacionMatriz(decimal IdRegistro, string Accion) {
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.Cumplimiento.ProcesarInformacionMatrizRiezgo Procesar = new Logica.Comunes.ProcesarMantenimientos.Cumplimiento.ProcesarInformacionMatrizRiezgo(
+                IdRegistro,
+                DateTime.Now,
+                (decimal)Session["IdUsuario"],
+                txtNombre_Matriz.Text,
+                Convert.ToInt32(ddlTipoIdentificacion_Matriz.SelectedValue),
+                txtNumeroidentificacion.Text,
+                Convert.ToInt32(ddlTipoTercero_Matriz.SelectedValue),
+                Convert.ToInt32(ddlNivelRIesgo_TipoRiesgo_MAtriz.SelectedValue),
+                Convert.ToInt32(ddlArea_Matriz.SelectedValue),
+                Convert.ToInt32(ddlNivelRiesgo_Area_Matriz.SelectedValue),
+                Convert.ToInt32(ddlPocision_Matriz.SelectedValue),
+                Convert.ToInt32(ddlNivelRiesgo_Posicion_Matriz.SelectedValue),
+                Convert.ToInt32(ddlNivelAcademico_Matriz.SelectedValue),
+                Convert.ToInt32(ddlNivelRiesgo_NivelAcademico_Matriz.SelectedValue),
+                Convert.ToInt32(ddlPaisProcedencia_Matriz.SelectedValue),
+                Convert.ToInt32(ddlNivelRiesgo_PaisProcedencia_Matriz.SelectedValue),
+                Convert.ToInt32(ddlPaisResidencia_Matriz.SelectedValue),
+                Convert.ToInt32(ddlNivelRiesgo_PaisResidencia_Matriz.SelectedValue),
+                Convert.ToInt32(ddlProvincia_Matriz.SelectedValue),
+                Convert.ToInt32(ddlNivelRiesgo_PaisProcedencia_Matriz.SelectedValue),
+                Convert.ToInt32(ddlSalarioDevengado_Matriz.SelectedValue),
+                Convert.ToInt32(ddlNivelRiesgoSalarioDevengado.SelectedValue),
+                txtActividadSegundaria_Matriz.Text,
+                Convert.ToInt32(ddlNivelRiesgo_ActividaSegundaria.SelectedValue),
+                Convert.ToDecimal(txtIngresosAdicionales.Text),
+                Convert.ToInt32(ddlNivelRiesgo_IngresosAdicionales_Matriz.SelectedValue),
+                Convert.ToInt32(ddlPEP_Matriz.SelectedValue),
+                Convert.ToInt32(ddlNivelRiesgo_PEP_Matriz.SelectedValue),
+                Convert.ToDecimal(txtPrimaAnual.Text),
+                Convert.ToInt32(ddlNivelRiesgo_PrimaAnual_Matriz.SelectedValue),
+                Convert.ToInt32(ddlTipoMonitoreo_Matriz.SelectedValue),
+                Convert.ToInt32(ddlTipoDebidaDiligencia.SelectedValue),
+                Convert.ToInt32(ddlNivelRiesgo_Consolidado_Matriz.SelectedValue),
+                txtObservaciones.Text,
+                Accion);
+            Procesar.ProcesarInformacion();
+        }
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -182,6 +224,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.CumplimientoLegal
             txtIngresosAdicionales.Text = string.Empty;
             txtPrimaAnual.Text = "0";
             txtObservaciones.Text = string.Empty;
+            hfIdRegistroSeleccionado.Value = "0";
+            hfAccionTomar.Value = "INSERT";
         }
 
         protected void btnEditar_Click(object sender, ImageClickEventArgs e)
@@ -221,7 +265,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.CumplimientoLegal
 
         protected void btnGuardar_Click(object sender, ImageClickEventArgs e)
         {
-
+            GuardarInformacionMatriz(Convert.ToDecimal(hfIdRegistroSeleccionado.Value), hfAccionTomar.Value);
         }
 
         protected void btnVolver_Click(object sender, ImageClickEventArgs e)
