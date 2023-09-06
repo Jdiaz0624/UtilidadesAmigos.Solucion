@@ -4,6 +4,49 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link rel="stylesheet" href="../../Content/EstilosComunes.css" />
 
+    <script type="text/javascript">
+        
+        var MensajeComun = " vacio para completar este registro, favor de verificar.";
+       
+        $(function () {
+
+            $("#<%=btnGuardar.ClientID%>").click(function () {
+
+                var Nombre = $("#<%=txtNombre_Matriz.ClientID%>").val().length;
+                if (Nombre < 1) {
+                    alert("El campo Nombre" + MensajeComun);
+                    $("#<%=txtNombre_Matriz.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+                else {
+
+                    var TipoIdentificacion = $("#<%=ddlTipoIdentificacion_Matriz.ClientID%>").val();
+                    if (TipoIdentificacion < 1) {
+                        alert("El campo Tipo de Identificación" + MensajeComun);
+                        $("#<%=ddlTipoIdentificacion_Matriz.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
+                    else {
+                        var NumeroIdentificacion = $("#<%=txtNumeroidentificacion.ClientID%>").val().length;
+                        if (NumeroIdentificacion < 1) {
+                            alert("El Campo Numero de identificación" + MensajeComun);
+                            $("#<%=txtNumeroidentificacion.ClientID%>").css("border-color", "red");
+                            return false;
+                        }
+                        else {
+                            var PrimaAnual = $("#<%=txtPrimaAnual.ClientID%>").val().length;
+                            if (PrimaAnual < 1) {
+                                alert("El campo Prima Anual" + MensajeComun);
+                                $("#<%=txtPrimaAnual.ClientID%>").css("border-color", "red");
+                                return false;
+                            }
+                        }
+                    }
+                }
+            });
+        })
+    </script>
+
     <div class="container-fluid">
         <div id="DivBloqueConsulta" runat="server">
             <br />
@@ -38,9 +81,10 @@
                             <th scope="col"> Nombre </th>
                             <th scope="col"> Tipo </th>
                             <th scope="col"> Identificacion </th>
-                            <th scope="col"> Area </th>
-                            <th scope="col"> Posición </th>
+                            <th scope="col"> Fecha </th>
+                            <th scope="col"> Hora </th>
                             <th scope="col"> Riesgo </th>
+                            <th scope="col" class="ContenidoDerecha"> Matriz </th>
                             <th scope="col" class="ContenidoDerecha"> Editar </th>
                         </tr>
                     </thead>
@@ -48,14 +92,15 @@
                         <asp:Repeater ID="rpListado" runat="server">
                             <ItemTemplate>
                                 <tr>
-                                     <asp:HiddenField ID="hfIdRegistro" runat="server" Value='<%# Eval("") %>' />
+                                     <asp:HiddenField ID="hfIdRegistro" runat="server" Value='<%# Eval("IdRegistro") %>' />
 
-                                    <td> <%# Eval("") %> </td>
-                                    <td> <%# Eval("") %> </td>
-                                    <td> <%# Eval("") %> </td>
-                                    <td> <%# Eval("") %> </td>
-                                    <td> <%# Eval("") %> </td>
-                                    <td> <%# Eval("") %> </td>
+                                    <td> <%# Eval("Nombre") %> </td>
+                                    <td> <%# Eval("TipoIdentificacion") %> </td>
+                                    <td> <%# Eval("NumeroIdentificacion") %> </td>
+                                    <td> <%# Eval("FechaCreado") %> </td>
+                                    <td> <%# Eval("HoraCreado") %> </td>
+                                    <td> <%# Eval("NivelRiesgoConsolidado") %> </td>
+                                     <td class="ContenidoDerecha">  <asp:ImageButton ID="btnReporte" runat="server" ToolTip="Mostrar Hoja de Matriz de Riezgo" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Reporte_Nuevo.png" OnClick="btnReporte_Click" /> </td>
                                     <td class="ContenidoDerecha">  <asp:ImageButton ID="btnEditar" runat="server" ToolTip="Editar Registro" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Editar_Nuevo.png" OnClick="btnEditar_Click" /> </td>
                                 </tr>
                             </ItemTemplate>
@@ -102,6 +147,7 @@
             <div class="row">
                 <div class="col-md-2">
                     <label class="Letranegrita">Nombre</label>
+                    <label class="Letranegrita Rojo">*</label>
                 </div>
                  <div class="col-md-3">
                      <asp:TextBox ID="txtNombre_Matriz" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
@@ -110,6 +156,7 @@
 
                 <div class="col-md-2">
                     <label class="Letranegrita">Tipo de Identificación</label>
+                    <label class="Letranegrita Rojo">*</label>
                 </div>
                  <div class="col-md-3">
                     <asp:DropDownList ID="ddlTipoIdentificacion_Matriz" runat="server" ToolTip="Seleccionar Tipo de Identificación" CssClass="form-control"></asp:DropDownList>
@@ -118,6 +165,7 @@
 
                 <div class="col-md-2">
                     <label class="Letranegrita">Numero de Identificación</label>
+                    <label class="Letranegrita Rojo">*</label>
                 </div>
                  <div class="col-md-3">
                      <asp:TextBox ID="txtNumeroidentificacion" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
@@ -158,9 +206,184 @@
                            <asp:DropDownList ID="ddlNivelRiesgo_Area_Matriz" runat="server" ToolTip="Nivel de Riesgo del Area" CssClass="form-control"></asp:DropDownList>
                         </td>
                     </tr>
+
+                    <tr>
+                        <td class="ContenidoCentro">
+                            <label class="Letranegrita">POSICION </label>
+                        </td>
+                        <td class="ContenidoCentro">
+                           <asp:DropDownList ID="ddlPocision_Matriz" runat="server" ToolTip="Seleccionar Pocisión" CssClass="form-control"></asp:DropDownList>
+                        </td>
+                        <td class="ContenidoCentro">
+                           <asp:DropDownList ID="ddlNivelRiesgo_Posicion_Matriz" runat="server" ToolTip="Nivel de Riesgo Pocisión" CssClass="form-control"></asp:DropDownList>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="ContenidoCentro">
+                            <label class="Letranegrita">NIVEL ACADEMICO </label>
+                        </td>
+                        <td class="ContenidoCentro">
+                           <asp:DropDownList ID="ddlNivelAcademico_Matriz" runat="server" ToolTip="Seleccionar Nivel Academico" CssClass="form-control"></asp:DropDownList>
+                        </td>
+                        <td class="ContenidoCentro">
+                           <asp:DropDownList ID="ddlNivelRiesgo_NivelAcademico_Matriz" runat="server" ToolTip="Nivel de Nivel Academico" CssClass="form-control"></asp:DropDownList>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="ContenidoCentro">
+                            <label class="Letranegrita">PAIS DE PROCEDENCIA </label>
+                        </td>
+                        <td class="ContenidoCentro">
+                           <asp:DropDownList ID="ddlPaisProcedencia_Matriz" runat="server" ToolTip="Seleccionar Pais de Procedencia" CssClass="form-control"></asp:DropDownList>
+                        </td>
+                        <td class="ContenidoCentro">
+                           <asp:DropDownList ID="ddlNivelRiesgo_PaisProcedencia_Matriz" runat="server" ToolTip="Nivel de Riesgo del Pais de Procedencia" CssClass="form-control"></asp:DropDownList>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="ContenidoCentro">
+                            <label class="Letranegrita">PAIS DE RESIDENCIA </label>
+                        </td>
+                        <td class="ContenidoCentro">
+                           <asp:DropDownList ID="ddlPaisResidencia_Matriz" runat="server" ToolTip="Seleccionar Pais de Residencia" CssClass="form-control"></asp:DropDownList>
+                        </td>
+                        <td class="ContenidoCentro">
+                           <asp:DropDownList ID="ddlNivelRiesgo_PaisResidencia_Matriz" runat="server" ToolTip="Nivel de Riesgo del Pais de Residencia" CssClass="form-control"></asp:DropDownList>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="ContenidoCentro">
+                            <label class="Letranegrita">PROVINCIA </label>
+                        </td>
+                        <td class="ContenidoCentro">
+                           <asp:DropDownList ID="ddlProvincia_Matriz" runat="server" ToolTip="Seleccionar Provincia" CssClass="form-control"></asp:DropDownList>
+                        </td>
+                        <td class="ContenidoCentro">
+                           <asp:DropDownList ID="ddlNivelRiesgo_Provincia_Matriz" runat="server" ToolTip="Nivel de Riesgo de la Provincia" CssClass="form-control"></asp:DropDownList>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="ContenidoCentro">
+                            <label class="Letranegrita">SALARIO DEVENGADO </label>
+                        </td>
+                        <td class="ContenidoCentro">
+                           <asp:DropDownList ID="ddlSalarioDevengado_Matriz" runat="server" ToolTip="Seleccionar Salario Devengado" CssClass="form-control"></asp:DropDownList>
+                        </td>
+                        <td class="ContenidoCentro">
+                           <asp:DropDownList ID="ddlNivelRiesgoSalarioDevengado" runat="server" ToolTip="Nivel de Riesgo del Salario Devengado" CssClass="form-control"></asp:DropDownList>
+                        </td>
+                    </tr>
+
+                     <tr>
+                        <td class="ContenidoCentro">
+                            <label class="Letranegrita">ACTIVIDAD SEGUNDARIA </label>
+                        </td>
+                        <td class="ContenidoCentro">
+                           <asp:TextBox ID="txtActividadSegundaria_Matriz" runat="server" AutoCompleteType="Disabled" CssClass="form-control" MaxLength="100" PlaceHolder="Opcional"></asp:TextBox>
+                        </td>
+                        <td class="ContenidoCentro">
+                           <asp:DropDownList ID="ddlNivelRiesgo_ActividaSegundaria" runat="server" ToolTip="Nivel de Riesgo de la actividad segundaria" CssClass="form-control"></asp:DropDownList>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="ContenidoCentro">
+                            <label class="Letranegrita">INGRESOS ADICIONALES </label>
+                        </td>
+                        <td class="ContenidoCentro">
+                           <asp:TextBox ID="txtIngresosAdicionales" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Number" PlaceHolder="Llenar en caso de tener actividad segundaria"></asp:TextBox>
+                        </td>
+                        <td class="ContenidoCentro">
+                           <asp:DropDownList ID="ddlNivelRiesgo_IngresosAdicionales_Matriz" runat="server" ToolTip="Nivel de Riesgo de la actividad segundaria" CssClass="form-control"></asp:DropDownList>
+                        </td>
+                    </tr>
+
+                     <tr>
+                        <td class="ContenidoCentro">
+                            <label class="Letranegrita">PERSONA EXPUESTA (PEP) </label>
+                        </td>
+                        <td class="ContenidoCentro">
+                           <asp:DropDownList ID="ddlPEP_Matriz" runat="server" ToolTip="Seleccionar PEP" CssClass="form-control"></asp:DropDownList>
+                        </td>
+                        <td class="ContenidoCentro">
+                           <asp:DropDownList ID="ddlNivelRiesgo_PEP_Matriz" runat="server" ToolTip="Nivel de Riesgo del Salario Devengado" CssClass="form-control"></asp:DropDownList>
+                        </td>
+                    </tr>
+
+                     <tr>
+                        <td class="ContenidoCentro">
+                            <label class="Letranegrita">PRIMA ANUAL </label>
+                            <label class="Letranegrita Rojo">*</label>
+                        </td>
+                        <td class="ContenidoCentro">
+                           <asp:TextBox ID="txtPrimaAnual" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                        </td>
+                        <td class="ContenidoCentro">
+                           <asp:DropDownList ID="ddlNivelRiesgo_PrimaAnual_Matriz" runat="server" ToolTip="Nivel de riesgo Prima anual" CssClass="form-control"></asp:DropDownList>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="ContenidoCentro">
+                            <label class="Letranegrita">TIPO DE MONITOREO </label>
+                        </td>
+                        <td class="ContenidoCentro">
+                           <asp:DropDownList ID="ddlTipoMonitoreo_Matriz" runat="server" ToolTip="Seleccionar Tipo de Monitoreo" CssClass="form-control"></asp:DropDownList>
+                        </td>
+                        <td class="ContenidoCentro">
+       
+                        </td>
+                    </tr>
+
+                     <tr>
+                        <td class="ContenidoCentro">
+                            <label class="Letranegrita">TIPO DEBIDA DILIGENCIA </label>
+                        </td>
+                        <td class="ContenidoCentro">
+                           <asp:DropDownList ID="ddlTipoDebidaDiligencia" runat="server" ToolTip="Seleccionar Tipo de Monitoreo" CssClass="form-control"></asp:DropDownList>
+                        </td>
+                        <td class="ContenidoCentro">
+       
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="ContenidoCentro">
+                            <label class="Letranegrita">NIVEL DE RIESGO CONSOLIDADO </label>
+                        </td>
+                        
+                        <td class="ContenidoCentro">
+       
+                        </td>
+
+                        <td class="ContenidoCentro">
+                           <asp:DropDownList ID="ddlNivelRiesgo_Consolidado_Matriz" runat="server" ToolTip="Seleccionar Nivel de riesgo consolidado" CssClass="form-control"></asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ContenidoCentro">
+                            <label class="Letranegrita">OBSERVACIONES </label>
+                        </td>
+                        
+                        <td class="ContenidoCentro">
+                           <asp:TextBox ID="txtObservaciones" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="MultiLine" PlaceHolder="Opcional"></asp:TextBox>
+                        </td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
            </div>
+            <br />
+            <div class="ContenidoCentro">
+                <asp:ImageButton ID="btnGuardar" runat="server" ToolTip="Guardar Información" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Nuevo_Nuevo.png" OnClick="btnGuardar_Click" />
+                <asp:ImageButton ID="btnVolver" runat="server" ToolTip="Volver Atras" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Volver_Nuevo.png" OnClick="btnVolver_Click" />
+            </div>
+            <br />
         </div>
     </div>
 </asp:Content>

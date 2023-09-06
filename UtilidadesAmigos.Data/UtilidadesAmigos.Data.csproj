@@ -62,6 +62,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BDConexionCorrecciones.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Conexiones\LINQ\BDConexionCumplimiento.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BDConexionCumplimiento.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Conexiones\LINQ\BDConexionHojas.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -141,6 +146,11 @@
     </None>
     <None Include="Conexiones\LINQ\BDConexionCorrecciones.dbml.layout">
       <DependentUpon>BDConexionCorrecciones.dbml</DependentUpon>
+    </None>
+    <None Include="Conexiones\LINQ\BDConexionCumplimiento.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>BDConexionCumplimiento.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Conexiones\LINQ\BDConexionHojas.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
@@ -247,6 +257,11 @@
   <ItemGroup>
     <None Include="Conexiones\LINQ\BDConexionSeguridad.dbml.layout">
       <DependentUpon>BDConexionSeguridad.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Conexiones\LINQ\BDConexionCumplimiento.dbml.layout">
+      <DependentUpon>BDConexionCumplimiento.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
