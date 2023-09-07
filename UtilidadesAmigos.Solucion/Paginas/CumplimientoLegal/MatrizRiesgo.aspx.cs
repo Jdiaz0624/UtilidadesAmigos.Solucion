@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Data;
 using System.Web.UI.WebControls;
 
 namespace UtilidadesAmigos.Solucion.Paginas.CumplimientoLegal
@@ -11,7 +12,165 @@ namespace UtilidadesAmigos.Solucion.Paginas.CumplimientoLegal
     {
 
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjDataGeneral = new Lazy<Logica.Logica.LogicaSistema>();
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaCumplimiento.LogicaCumplimiento> ObjDataCumplimiento = new Lazy<Logica.Logica.LogicaCumplimiento.LogicaCumplimiento>();
 
+
+        #region CONTROL PARA MOSTRAR LA PAGINACION
+        readonly PagedDataSource pagedDataSource = new PagedDataSource();
+        int _PrimeraPagina, _UltimaPagina;
+        private int _TamanioPagina = 10;
+        private int CurrentPage
+        {
+            get
+            {
+                if (ViewState["CurrentPage"] == null)
+                {
+                    return 0;
+                }
+                return ((int)ViewState["CurrentPage"]);
+            }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
+
+        }
+        private void HandlePaging(ref DataList NombreDataList, ref Label LbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina = CurrentPage - 5;
+            if (CurrentPage > 5)
+                _UltimaPagina = CurrentPage + 5;
+            else
+                _UltimaPagina = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina = _UltimaPagina - 10;
+            }
+
+            if (_PrimeraPagina < 0)
+                _PrimeraPagina = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina; i < _UltimaPagina; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+        private void Paginar(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource.DataSource = Listado;
+            pagedDataSource.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina : _NumeroRegistros);
+            pagedDataSource.CurrentPageIndex = CurrentPage;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource;
+            RptGrid.DataBind();
+
+
+            //divPaginacionComisionSupervisor.Visible = true;
+        }
+        enum OpcionesPaginacionValores
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
+        #region MOSTRAR LISTADO DE MATRIZ
+        private void MostrarListadoMatriz() {
+
+            string _Nombre = string.IsNullOrEmpty(txtNombreConsulta.Text.Trim()) ? null : txtNombreConsulta.Text.Trim();
+            string _NumeroIdentificacion = string.IsNullOrEmpty(txtNumeroIdentificacionConsulta.Text.Trim()) ? null : txtNumeroIdentificacionConsulta.Text.Trim();
+            int? _Area = ddlAreaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlAreaConsulta.SelectedValue) : new Nullable<int>();
+            int? _Posicion = ddlPosicionConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlPosicionConsulta.SelectedValue) : new Nullable<int>();
+
+            var Listado = ObjDataCumplimiento.Value.BuscaMatrisRiezgo(
+                new Nullable<decimal>(),
+                null, null, null,
+                _Nombre,
+                null,
+                _NumeroIdentificacion,
+                _Area,
+                _Posicion);
+            if (Listado.Count() < 1) {
+                rpListado.DataSource = null;
+                rpListado.DataBind();
+            }
+            else {
+                Paginar(ref rpListado, Listado, 10, ref lbCantidadPAgina, ref btnPrimeraPagina, ref btnPaginaAnterior, ref btnSiguientePagina, ref btnUltimaPagina);
+                HandlePaging(ref dtPaginacion, ref lbPaginaActual);
+            }
+        }
+        #endregion
         #region LISTAS GENERALES
         private void CargarListas() {
             ListaTipoIdentificaciion();
@@ -56,6 +215,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.CumplimientoLegal
         {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlArea_Matriz, ObjDataGeneral.Value.BuscaListas("AREA_MATRIZ", null, null));
         }
+        private void ListaAreaConsulta()
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlAreaConsulta, ObjDataGeneral.Value.BuscaListas("AREA_MATRIZ", null, null),true);
+        }
         private void ListaNivelRiesto_Area()
         {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlNivelRiesgo_Area_Matriz, ObjDataGeneral.Value.BuscaListas("NIVEL_RIESGO_MATRIZ", null, null));
@@ -64,6 +227,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.CumplimientoLegal
         private void ListaPosiciion()
         {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlPocision_Matriz, ObjDataGeneral.Value.BuscaListas("POCISION_MATRIZ", null, null));
+        }
+        private void ListaPosiciion_Consulta()
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlPosicionConsulta, ObjDataGeneral.Value.BuscaListas("POCISION_MATRIZ", null, null),true);
         }
         private void ListaNivelRiesto_Posicion()
         {
@@ -196,6 +363,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.CumplimientoLegal
             Procesar.ProcesarInformacion();
         }
         #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -203,14 +371,16 @@ namespace UtilidadesAmigos.Solucion.Paginas.CumplimientoLegal
 
                 DivBloqueConsulta.Visible = true;
                 DIVBloqueMatriz.Visible = false;
-
+                ListaAreaConsulta();
+                ListaPosiciion_Consulta();
                 
             }
         }
 
         protected void btnConsultar_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage = 0;
+            MostrarListadoMatriz();
         }
 
         protected void btnNuevo_Click(object sender, ImageClickEventArgs e)
