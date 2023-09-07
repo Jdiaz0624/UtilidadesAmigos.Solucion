@@ -146,4 +146,10 @@
       <Column Name="Observaciones" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_SACAR_NUMERO_REGISTRO_MATRIZ_RIEZGO" Method="SP_SACAR_NUMERO_REGISTRO_MATRIZ_RIEZGO">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(31,0)" />
+    <ElementType Name="SP_SACAR_NUMERO_REGISTRO_MATRIZ_RIEZGOResult">
+      <Column Name="IdRegistro" Type="System.Decimal" DbType="Decimal(31,0) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

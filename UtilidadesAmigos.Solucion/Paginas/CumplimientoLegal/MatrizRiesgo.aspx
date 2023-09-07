@@ -5,7 +5,10 @@
     <link rel="stylesheet" href="../../Content/EstilosComunes.css" />
 
     <script type="text/javascript">
-        
+
+        function ProcesoCompletado() {
+            alert("Registro Guardado con Exito.");
+        }
         var MensajeComun = " vacio para completar este registro, favor de verificar.";
        
         $(function () {
@@ -40,6 +43,14 @@
                                 $("#<%=txtPrimaAnual.ClientID%>").css("border-color", "red");
                                 return false;
                             }
+                            else {
+                                var IngresosAdicionales = $("#<%=txtIngresosAdicionales.ClientID%>").val().length;
+                                if (IngresosAdicionales < 1) {
+                                    alert("El campo de Ingresos Adicionales" + MensajeComun);
+                                    $("#<%=txtIngresosAdicionales.ClientID%>").css("border-color", "red");
+                                    return false;
+                                }
+                            }
                         }
                     }
                 }
@@ -53,7 +64,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <label class="Letranegrita"> Nombre </label>
-                    <asp:TextBox ID="txtNombreConsulta" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtNombreConsulta" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                 </div>
                  <div class="col-md-3">
                     <label class="Letranegrita"> No. Identificación </label>
@@ -93,6 +104,7 @@
                             <ItemTemplate>
                                 <tr>
                                      <asp:HiddenField ID="hfIdRegistro" runat="server" Value='<%# Eval("IdRegistro") %>' />
+                                    <asp:HiddenField ID="hfNombre" runat="server" Value='<%# Eval("Nombre") %>' />
 
                                     <td> <%# Eval("Nombre") %> </td>
                                     <td> <%# Eval("TipoIdentificacion") %> </td>
@@ -151,7 +163,7 @@
                     <label class="Letranegrita Rojo">*</label>
                 </div>
                  <div class="col-md-3">
-                     <asp:TextBox ID="txtNombre_Matriz" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
+                     <asp:TextBox ID="txtNombre_Matriz" runat="server" AutoCompleteType="Disabled" CssClass="form-control" MaxLength="100"></asp:TextBox>
                  </div>
                 <div class="col-md-7"></div>
 
@@ -169,7 +181,7 @@
                     <label class="Letranegrita Rojo">*</label>
                 </div>
                  <div class="col-md-3">
-                     <asp:TextBox ID="txtNumeroidentificacion" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
+                     <asp:TextBox ID="txtNumeroidentificacion" runat="server" AutoCompleteType="Disabled" CssClass="form-control" MaxLength="20"></asp:TextBox>
                  </div>
                 <div class="col-md-7"></div>
             </div>
@@ -295,6 +307,7 @@
                     <tr>
                         <td class="ContenidoCentro">
                             <label class="Letranegrita">INGRESOS ADICIONALES </label>
+                            <label class="Letranegrita Rojo">*</label>
                         </td>
                         <td class="ContenidoCentro">
                            <asp:TextBox ID="txtIngresosAdicionales" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Number" PlaceHolder="Llenar en caso de tener actividad segundaria"></asp:TextBox>

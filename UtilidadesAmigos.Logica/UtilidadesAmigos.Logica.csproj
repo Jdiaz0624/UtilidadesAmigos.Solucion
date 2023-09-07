@@ -253,6 +253,7 @@
     <Compile Include="Entidades\Cotizador\EVerificarServicios.cs" />
     <Compile Include="Entidades\Cotizador\EVerificarTipoServicioCotiador.cs" />
     <Compile Include="Entidades\Cumplimiento\EMatrizRiezgo.cs" />
+    <Compile Include="Entidades\Cumplimiento\ESacarNumeroMatrizRiezgo.cs" />
     <Compile Include="Entidades\EAccion.cs" />
     <Compile Include="Entidades\EBuscaClienteIntermediario.cs" />
     <Compile Include="Entidades\EBuscaCoberturasMantenimiento.cs" />

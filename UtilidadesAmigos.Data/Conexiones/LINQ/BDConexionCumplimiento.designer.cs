@@ -109,6 +109,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idRegistro, fechaDesde, fechaHasta, idUsuarui, nombre, idTipoIdentificacion, numeroIdentificacion, idArea, idPosicion);
 			return ((ISingleResult<SP_BUSCA_MATRIZ_RIESGOResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_NUMERO_REGISTRO_MATRIZ_RIEZGO")]
+		public ISingleResult<SP_SACAR_NUMERO_REGISTRO_MATRIZ_RIEZGOResult> SP_SACAR_NUMERO_REGISTRO_MATRIZ_RIEZGO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(31,0)")] System.Nullable<decimal> idUsuario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario);
+			return ((ISingleResult<SP_SACAR_NUMERO_REGISTRO_MATRIZ_RIEZGOResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_PROCESAR_INFORMACION_MATRIZ_RIESGOResult
@@ -1832,6 +1839,32 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Observaciones != value))
 				{
 					this._Observaciones = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SACAR_NUMERO_REGISTRO_MATRIZ_RIEZGOResult
+	{
+		
+		private decimal _IdRegistro;
+		
+		public SP_SACAR_NUMERO_REGISTRO_MATRIZ_RIEZGOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRegistro", DbType="Decimal(31,0) NOT NULL")]
+		public decimal IdRegistro
+		{
+			get
+			{
+				return this._IdRegistro;
+			}
+			set
+			{
+				if ((this._IdRegistro != value))
+				{
+					this._IdRegistro = value;
 				}
 			}
 		}

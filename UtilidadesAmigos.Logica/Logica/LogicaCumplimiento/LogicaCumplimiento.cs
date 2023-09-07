@@ -189,6 +189,23 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaCumplimiento
             }
             return Procesar;
         }
+
+        /// <summary>
+        /// Saca el Ultimo Numero Generado de la Matriz de Riezgo
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Cumplimiento.ESacarNumeroMatrizRiezgo> SacaNumeroMatrizGenerado(decimal? IdUsuario = null) {
+
+            ObjData.CommandTimeout = 99999999;
+
+            var Informacion = (from n in ObjData.SP_SACAR_NUMERO_REGISTRO_MATRIZ_RIEZGO(IdUsuario)
+                               select new UtilidadesAmigos.Logica.Entidades.Cumplimiento.ESacarNumeroMatrizRiezgo
+                               {
+                                   IdRegistro=n.IdRegistro
+                               }).ToList();
+            return Informacion;
+        }
         #endregion
     }
 }

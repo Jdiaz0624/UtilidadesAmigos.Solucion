@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Data;
 using System.Web.UI.WebControls;
+using CrystalDecisions.Shared;
+using CrystalDecisions.CrystalReports.Engine;
 
 namespace UtilidadesAmigos.Solucion.Paginas.CumplimientoLegal
 {
@@ -363,6 +365,39 @@ namespace UtilidadesAmigos.Solucion.Paginas.CumplimientoLegal
             Procesar.ProcesarInformacion();
         }
         #endregion
+        #region GENERAR MATRIZ DE RIESGO
+        private void GenerarMatrizRiesgo(string Nombre, decimal IdRegistro) {
+
+            string RutaReporte = Server.MapPath("MatrizRiezgo.rpt");
+            string NombreReporte = "Registro de " + Nombre;
+            string UsuarioBD = "", ClaveBD = "";
+
+            UtilidadesAmigos.Logica.Comunes.SacarCredencialesBD Credenciales = new Logica.Comunes.SacarCredencialesBD(1);
+            UsuarioBD = Credenciales.SacarUsuario();
+            ClaveBD = Credenciales.SacarClaveBD();
+
+            ReportDocument Matriz = new ReportDocument();
+
+            Matriz.Load(RutaReporte);
+            Matriz.Refresh();
+
+            Matriz.SetParameterValue("@IdRegistro", IdRegistro);
+            Matriz.SetParameterValue("@FechaDesde", new Nullable<DateTime>());
+            Matriz.SetParameterValue("@FechaHasta", new Nullable<DateTime>());
+            Matriz.SetParameterValue("@IdUsuarui", new Nullable<decimal>());
+            Matriz.SetParameterValue("@Nombre", null);
+            Matriz.SetParameterValue("@IdTipoIdentificacion", new Nullable<int>());
+            Matriz.SetParameterValue("@NumeroIdentificacion", null);
+            Matriz.SetParameterValue("@IdArea", new Nullable<int>());
+            Matriz.SetParameterValue("@IdPosicion", new Nullable<int>());
+
+            Matriz.SetDatabaseLogon(UsuarioBD, ClaveBD);
+
+            Matriz.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+
+            Matriz.Dispose();
+        }
+        #endregion
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -393,14 +428,82 @@ namespace UtilidadesAmigos.Solucion.Paginas.CumplimientoLegal
             txtActividadSegundaria_Matriz.Text = string.Empty;
             txtIngresosAdicionales.Text = string.Empty;
             txtPrimaAnual.Text = "0";
+            txtIngresosAdicionales.Text = "0";
             txtObservaciones.Text = string.Empty;
             hfIdRegistroSeleccionado.Value = "0";
             hfAccionTomar.Value = "INSERT";
+            txtNombre_Matriz.Focus();
         }
 
         protected void btnEditar_Click(object sender, ImageClickEventArgs e)
         {
+            var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var IdRegsitro = ((HiddenField)ItemSeleccionado.FindControl("hfIdRegistro")).Value.ToString();
+            hfIdRegistroSeleccionado.Value = IdRegsitro;
+            hfAccionTomar.Value = "UPDATE";
 
+            var SacarInformacion = ObjDataCumplimiento.Value.BuscaMatrisRiezgo(Convert.ToDecimal(IdRegsitro));
+            foreach (var n in SacarInformacion) {
+                txtNombre_Matriz.Text = n.Nombre;
+                ListaTipoIdentificaciion();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlTipoIdentificacion_Matriz, n.IdTipoIdentificacion.ToString());
+                txtNumeroidentificacion.Text = n.NumeroIdentificacion;
+                ListaTipoTercero();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlTipoTercero_Matriz, n.IdTipoTercero.ToString());
+                ListaNivelRiesto_TipoTercero();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlNivelRIesgo_TipoRiesgo_MAtriz, n.IdNivel_Riesgo_TipoTercero.ToString());
+                ListaArea();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlArea_Matriz, n.IdArea.ToString());
+                ListaNivelRiesto_Area();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlNivelRiesgo_Area_Matriz, n.IdNivel_Riesgo_Area.ToString());
+                ListaPosiciion();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlPocision_Matriz, n.IdPosicion.ToString());
+                ListaNivelRiesto_Posicion();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlNivelRiesgo_Posicion_Matriz, n.IdNivel_Riesgo_Posicion.ToString());
+                ListanivelAcademico();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlNivelAcademico_Matriz, n.IdNivelAcademico.ToString());
+                ListaNivelRiesto_NivelAcademico();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlNivelRiesgo_NivelAcademico_Matriz, n.IdNivel_Riesgo_NivelAcademico.ToString());
+                ListaPaisProcedencia();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlPaisProcedencia_Matriz, n.IdPaisProcedencia.ToString());
+                ListaNivelRiesto_PaisProcedencia();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlNivelRiesgo_PaisProcedencia_Matriz, n.IdNivel_Riesgo_PaisProcedencia.ToString());
+                ListaPaisResidencia();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlPaisResidencia_Matriz, n.IdPaisResidencia.ToString());
+                ListaNivelRiesto_PaisResidencia();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlNivelRiesgo_PaisResidencia_Matriz, n.IdNivel_Riesgo_PaisResidencia.ToString());
+                ListaProvincia();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlProvincia_Matriz, n.Provincia.ToString());
+                ListaNivelRiesto_Provincia();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlNivelRiesgo_Provincia_Matriz, n.IdNivel_Riesgo_Provincia.ToString());
+                ListaSalarioDevengado();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSalarioDevengado_Matriz, n.IdSalarioDevengado.ToString());
+                ListaNivelRiesto_SalarioDevengado();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlNivelRiesgoSalarioDevengado, n.IdNivel_Riesgo_SalarioDevengado.ToString());
+                txtActividadSegundaria_Matriz.Text = n.ActividadSegundaria;
+                ListaNivelRiesto_ActividadSegundaria();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlNivelRiesgo_ActividaSegundaria, n.IdNivel_Riesgo_ActividadSegundaria.ToString());
+                txtIngresosAdicionales.Text = n.IngresosAdicionales.ToString();
+                ListaNivelRiesto_IngresosAdicionales();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlNivelRiesgo_IngresosAdicionales_Matriz, n.IdNivel_Riesgo_IngresosAdicionales.ToString());
+                ListaPEP();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlPEP_Matriz, n.IdPEP.ToString());
+                ListaNivelRiesto_PEP();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlNivelRiesgo_PEP_Matriz, n.IdNivel_Riesgo_PEP.ToString());
+                txtPrimaAnual.Text = n.PrimaAnual.ToString();
+                ListaNivelRiesto_PrimaAnual();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlNivelRiesgo_PrimaAnual_Matriz, n.IdNivel_Riesgo_PrimaAnual.ToString());
+                ListaTipoMonitoreo();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlTipoMonitoreo_Matriz, n.IdTipoMonitoreo.ToString());
+                TipoDebidaDiligencia();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlTipoDebidaDiligencia, n.IdTipoDebidaDiligencia.ToString());
+                ListaNivelRiesto_NIVELRIESGOCONSOLIDADO();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlNivelRiesgo_Consolidado_Matriz, n.IdNivel_Riesgo_Consolidado.ToString());
+                txtObservaciones.Text = n.Observaciones;
+
+                DivBloqueConsulta.Visible = false;
+                DIVBloqueMatriz.Visible = true;
+            }
         }
 
         protected void btnPrimeraPagina_Click(object sender, ImageClickEventArgs e)
@@ -435,7 +538,26 @@ namespace UtilidadesAmigos.Solucion.Paginas.CumplimientoLegal
 
         protected void btnGuardar_Click(object sender, ImageClickEventArgs e)
         {
+            
             GuardarInformacionMatriz(Convert.ToDecimal(hfIdRegistroSeleccionado.Value), hfAccionTomar.Value);
+            ClientScript.RegisterStartupScript(GetType(), "ProcesoCompletado()", "ProcesoCompletado();", true);
+            if (hfAccionTomar.Value == "INSERT") {
+                var SacarRegistroSeleccionado = ObjDataCumplimiento.Value.SacaNumeroMatrizGenerado((decimal)Session["IdUsuario"]);
+                foreach (var n in SacarRegistroSeleccionado)
+                {
+
+                    hfIdRegistroSeleccionado.Value = n.IdRegistro.ToString();
+                }
+            }
+
+            //MOSTRAMOS LA INFORMACION
+            CurrentPage = 0;
+            var MostrarRegistro = ObjDataCumplimiento.Value.BuscaMatrisRiezgo(Convert.ToDecimal(hfIdRegistroSeleccionado.Value));
+            Paginar(ref rpListado, MostrarRegistro, 10, ref lbCantidadPAgina, ref btnPrimeraPagina, ref btnPaginaAnterior, ref btnSiguientePagina, ref btnUltimaPagina);
+            HandlePaging(ref dtPaginacion, ref lbPaginaActual);
+
+            DivBloqueConsulta.Visible = true;
+            DIVBloqueMatriz.Visible = false;
         }
 
         protected void btnVolver_Click(object sender, ImageClickEventArgs e)
@@ -446,7 +568,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.CumplimientoLegal
 
         protected void btnReporte_Click(object sender, ImageClickEventArgs e)
         {
+            var RegistroSelccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var IdRegistroSeleccionado = ((HiddenField)RegistroSelccionado.FindControl("hfIdRegistro")).Value.ToString();
+            var NombreSeleccionado = ((HiddenField)RegistroSelccionado.FindControl("hfNombre")).Value.ToString();
 
+            GenerarMatrizRiesgo(NombreSeleccionado, Convert.ToDecimal(IdRegistroSeleccionado));
         }
     }
 }
