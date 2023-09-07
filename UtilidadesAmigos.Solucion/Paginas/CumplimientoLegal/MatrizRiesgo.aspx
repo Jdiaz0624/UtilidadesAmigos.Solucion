@@ -9,6 +9,16 @@
         function ProcesoCompletado() {
             alert("Registro Guardado con Exito.");
         }
+        function NumeroIdentificacionNoValido() {
+
+            alert("Este numero de Cedula ya esta registrado favor de validar.");
+            $("#<%=txtNumeroidentificacion.ClientID%>").css("border-color", "blue");
+        }
+        function NumeroRNCEncontrado() {
+
+            alert("Este numero de RNC ya esta registrado favor de validar.");
+            $("#<%=txtNumeroidentificacion.ClientID%>").css("border-color", "blue");
+         }
         var MensajeComun = " vacio para completar este registro, favor de verificar.";
        
         $(function () {

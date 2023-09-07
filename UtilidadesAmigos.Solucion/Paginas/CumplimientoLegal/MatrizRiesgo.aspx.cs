@@ -538,6 +538,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.CumplimientoLegal
 
         protected void btnGuardar_Click(object sender, ImageClickEventArgs e)
         {
+            int IdTipoIdentificacion = Convert.ToInt32(ddlTipoIdentificacion_Matriz.SelectedValue);
+            string Numeroidentificacion = txtNumeroidentificacion.Text.Trim();
+
+            
             
             GuardarInformacionMatriz(Convert.ToDecimal(hfIdRegistroSeleccionado.Value), hfAccionTomar.Value);
             ClientScript.RegisterStartupScript(GetType(), "ProcesoCompletado()", "ProcesoCompletado();", true);
