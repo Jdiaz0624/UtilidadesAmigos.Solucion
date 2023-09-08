@@ -37,43 +37,43 @@
             <br />
             <div class="row">
                 <div class="col-md-2">
-                    <asp:Label ID="lbCodigoIntermediarioConsulta" runat="server" Text="Intermediario" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbCodigoIntermediarioConsulta" runat="server" Text="Intermediario" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtCodigoIntermedirioConsulta" runat="server" CssClass="form-control" TextMode="Number" AutoPostBack="true" OnTextChanged="txtCodigoIntermedirioConsulta_TextChanged"></asp:TextBox>
                 </div>
                   <div class="col-md-4">
-                    <asp:Label ID="lbNombreIntermediarioCOnsulta" runat="server" Text="Nombre" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbNombreIntermediarioCOnsulta" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtNombreIntermediarioConsulta" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
                  <div class="col-md-3">
-                    <asp:Label ID="lbFechaDesdeConsulta" runat="server" Text="Desde" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbFechaDesdeConsulta" runat="server" Text="Desde" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtFechaDesdeCosulta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
                 </div>
 
                  <div class="col-md-3">
-                    <asp:Label ID="lbFechaHAstaCOnsulta" runat="server" Text="Hasta" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbFechaHAstaCOnsulta" runat="server" Text="Hasta" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtFechaHastaConsulta" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
                 </div>
                   <div class="col-md-2">
-                    <asp:Label ID="lbSupervisorConsulta" runat="server" Text="Supervisor" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbSupervisorConsulta" runat="server" Text="Supervisor" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtSupervisorConsulta"  runat="server"  AutoCompleteType="Disabled" CssClass="form-control" TextMode="Number" AutoPostBack="true" OnTextChanged="txtSupervisorConsulta_TextChanged" ></asp:TextBox>
                 </div>
 
                   <div class="col-md-4">
-                    <asp:Label ID="lbNombreSupervisorConsulta" runat="server" Text="Nombre" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbNombreSupervisorConsulta" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtNombreSupervisorConsulta" runat="server"  CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
                   <div class="col-md-3">
-                    <asp:Label ID="lbTipoPagoConsulta" runat="server" Text="Tipo de Pago" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbTipoPagoConsulta" runat="server" Text="Tipo de Pago" CssClass="Letranegrita"></asp:Label>
                     <asp:DropDownList ID="ddlTipoPagoConsulta" runat="server" ToolTip="Seleccionar el Tipo de Pago" CssClass="form-control"></asp:DropDownList>
                 </div>
                  <div class="col-md-3">
-                    <asp:Label ID="lbOficinaConsulta" runat="server" Text="Oficina" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbOficinaConsulta" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label>
                     <asp:DropDownList ID="ddlSeleccionaroficina" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
                 </div>
             </div>
             <br />
             <div class="form-check-inline">
-                <asp:Label ID="lbTipoReporte" runat="server" Text="Formato de Reporte: " CssClass="LetrasNegrita"></asp:Label>
+                <asp:Label ID="lbTipoReporte" runat="server" Text="Formato de Reporte: " CssClass="Letranegrita"></asp:Label>
                 <asp:RadioButton ID="rbPDF" runat="server" Text="PDF" GroupName="FormatoReporte" ToolTip="Generar Reporte en PDF" />
                 <asp:RadioButton ID="rbExcel" runat="server" Text="Excel" GroupName="FormatoReporte" ToolTip="Generar Reporte en Excel" />
                 <asp:RadioButton ID="rbExcelPlano" runat="server" Text="Excel Plano" GroupName="FormatoReporte" ToolTip="Generar Reporte en Excel Plano" />
@@ -100,7 +100,7 @@
                         <th scope="col"> Intermediario </th>
                         <th scope="col"> Valor </th>
                         <th scope="col"> Tipo </th>
-                        <th scope="col">  </th>
+                        <th class="ContenidoDerecha" scope="col"> Recibo </th>
                       <%--  <th scope="col">  </th>--%>
                     </tr>
                 </thead>
