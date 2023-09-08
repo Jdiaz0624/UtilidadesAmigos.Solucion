@@ -240,6 +240,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.ImageButton btnReporte;
 
         /// <summary>
+        /// btnRecibosLote control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnRecibosLote;
+
+        /// <summary>
         /// btnRestablecer control.
         /// </summary>
         /// <remarks>

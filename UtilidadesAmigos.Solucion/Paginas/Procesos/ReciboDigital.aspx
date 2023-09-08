@@ -2,25 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <style type="text/css">
-
-        .btn-sm{
-            width:90px;
-        }
-
-        .LetrasNegrita {
-        font-weight:bold;
-        }
-        table {
-            border-collapse: collapse;
-        }
-        
-       .BotonImagen {
-         width:40px;
-         height:40px;
-       
-       }
-    </style>
+     <link rel="stylesheet" href="../../Content/EstilosComunes.css" />
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -100,13 +82,15 @@
       
             <br />
             <div align="center">
-                <asp:ImageButton ID="btnConsultar" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" ImageUrl="~/Imagenes/Buscar.png" OnClick="btnConsultar_Click" />
-                <asp:ImageButton ID="btnNuevoRegistro" runat="server" ToolTip="Crear Nuevo registro" CssClass="BotonImagen" ImageUrl="~/Imagenes/Agregar (2).png" OnClick="btnNuevoRegistro_Click" />
-                <asp:ImageButton ID="btnReporte" runat="server" ToolTip="Generar Reporte" CssClass="BotonImagen" ImageUrl="~/Imagenes/Reporte.png" OnClick="btnReporte_Click" />
-                <asp:ImageButton ID="btnRestablecer" runat="server" ToolTip="Restablecer Pantalla" CssClass="BotonImagen" ImageUrl="~/Imagenes/auto.png" OnClick="btnRestablecer_Click" />
+                <asp:ImageButton ID="btnConsultar" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Lupa_Nuevo.png" OnClick="btnConsultar_Click" />
+                <asp:ImageButton ID="btnNuevoRegistro" runat="server" ToolTip="Crear Nuevo registro" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Agregar_Nuevo.png" OnClick="btnNuevoRegistro_Click" />
+                <asp:ImageButton ID="btnReporte" runat="server" ToolTip="Generar Reporte" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Reporte_Nuevo.png" OnClick="btnReporte_Click" />
+                <asp:ImageButton ID="btnRecibosLote" runat="server" ToolTip="Generar Reporte" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/HojaVenta.png" OnClick="btnRecibosLote_Click" />
+                <asp:ImageButton ID="btnRestablecer" runat="server" ToolTip="Restablecer Pantalla" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Restablecer_Nuevo.png" OnClick="btnRestablecer_Click" />
             </div>
             <br />
-            <table class="table table-striped">
+           <div class="table-responsive">
+                <table class="table table-striped">
                 <thead class="table table-dark">
                     <tr>
                         <th scope="col"> No. </th>
@@ -134,7 +118,7 @@
                                 <td> <%# Eval("Intermediario") %> </td>
                                 <td> <%#string.Format("{0:N2}", Eval("ValorRecibo")) %> </td>
                                 <td> <%# Eval("TipoPago") %> </td>
-                                <td align="right">  <asp:ImageButton ID="btnRecibo" runat="server" ToolTip="Generar Recibo" CssClass="BotonImagen" ImageUrl="~/Imagenes/pdf.png" OnClick="btnRecibo_Click" /> </td>
+                                <td class="ContenidoDerecha">  <asp:ImageButton ID="btnRecibo" runat="server" ToolTip="Generar Recibo" CssClass="BotonImagen" ImageUrl="~/Imagenes/pdf.png" OnClick="btnRecibo_Click" /> </td>
                                 <%--<td align="right">  <asp:ImageButton ID="DirectoImpresora" runat="server" ToolTip="Imprimir Directo a la Impresora" CssClass="BotonImagen" ImageUrl="~/Imagenes/impresora.png" OnClick="DirectoImpresora_Click" /> </td>--%>
                             </tr>
                         </ItemTemplate>
@@ -145,31 +129,32 @@
             <table class="table">
                 <tfoot class="table-light">
                     <tr>
-                        <td align="right"><b>Pagina </b> <asp:Label ID="lbPaginaActual" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label> <b>De </b>   <asp:Label ID="lbCantidadPagina" runat="server" Text="0" CssClass="Letranegrita"></asp:Label> </td>
+                        <td class="ContenidoDerecha"> <label class="Letranegrita">Pagina</label> <asp:Label ID="lbPaginaActual" runat="server" Text=" 0 "></asp:Label> <label class="Letranegrita">De</label>  <asp:Label ID="lbCantidadPagina" runat="server" Text="0"></asp:Label> </td>
                     </tr>
                     <tr>
-                        <td><b>Total Efectivo:  </b><asp:Label ID="lbTotalEfectivo" runat="server" Text="0"></asp:Label></td>
+                        <td><label class="Letranegrita">Total En Efectivo:</label> <asp:Label ID="lbTotalEfectivo" runat="server" Text="0"></asp:Label></td>
                     </tr>
                     <tr>
-                        <td><b>Total Transferencia: </b><asp:Label ID="lbTotalTransferencia" runat="server" Text="0"></asp:Label></td>
+                        <td><label class="Letranegrita">Total En Transferencia:</label> <asp:Label ID="lbTotalTransferencia" runat="server" Text="0"></asp:Label></td>
                     </tr>
                     <tr>
-                        <td><b>Total Deposito: </b><asp:Label ID="lbTotalDeposito" runat="server" Text="0"></asp:Label></td>
+                        <td><label class="Letranegrita">Total En Deposito:</label> <asp:Label ID="lbTotalDeposito" runat="server" Text="0"></asp:Label></td>
                     </tr>
                     <tr>
-                        <td><b>Total Cheque: </b><asp:Label ID="lbTotalCheque" runat="server" Text="0"></asp:Label></td>
+                        <td><label class="Letranegrita">Total En Cheque: </label> <asp:Label ID="lbTotalCheque" runat="server" Text="0"></asp:Label></td>
                     </tr>
                     <tr>
-                        <td><b>Total Otros: </b><asp:Label ID="lbTotalOtros" runat="server" Text="0"></asp:Label></td>
+                        <td> <label class="Letranegrita">Total En Otros: </label> <asp:Label ID="lbTotalOtros" runat="server" Text="0"></asp:Label></td>
                     </tr>
                 </tfoot>
             </table>
-              <div id="DivPaginacionListadoPrincipal" runat="server" align="center" >
+           </div>
+              <div id="DivPaginacionListadoPrincipal" runat="server" class="table-responsive" align="center" >
                 <div style="margin-top=20px;">
                     <table style="width:600px;">
                         <tr>
-                            <td> <asp:ImageButton ID="btnPrimeraPagina" runat="server" ImageUrl="~/Imagenes/Primera Pagina.png" OnClick="btnPrimeraPagina_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
-                            <td> <asp:ImageButton ID="btnPaginaAnterior" runat="server" ImageUrl="~/Imagenes/Anterior.png" OnClick="btnPaginaAnterior_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td> <asp:ImageButton ID="btnPrimeraPagina" runat="server" ImageUrl="~/ImagenesBotones/PrimeraPagina_Nuevo.png" OnClick="btnPrimeraPagina_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td> <asp:ImageButton ID="btnPaginaAnterior" runat="server" ImageUrl="~/ImagenesBotones/Anterior_Nuevo.png" OnClick="btnPaginaAnterior_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
                             <td align="center">
                                 <asp:DataList ID="dtPaginacionListadoPrincipal" runat="server" OnCancelCommand="dtPaginacionListadoPrincipal_CancelCommand1" OnItemDataBound="dtPaginacionListadoPrincipal_ItemDataBound" RepeatDirection="Horizontal" >
                                     <ItemTemplate>
@@ -178,8 +163,8 @@
                                 </asp:DataList>
 
                             </td>
-                            <td> <asp:ImageButton ID="btnSiguientePagina" runat="server" ImageUrl="~/Imagenes/Siguiente.png" OnClick="btnSiguientePagina_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
-                            <td> <asp:ImageButton ID="btnUltimaPagina" runat="server" ImageUrl="~/Imagenes/Ultima Pagina.png" OnClick="btnUltimaPagina_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td> <asp:ImageButton ID="btnSiguientePagina" runat="server" ImageUrl="~/ImagenesBotones/Siguiente_Nuevo.png" OnClick="btnSiguientePagina_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td> <asp:ImageButton ID="btnUltimaPagina" runat="server" ImageUrl="~/ImagenesBotones/UltimaPagina_Nuevo.png" OnClick="btnUltimaPagina_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
                            
                         </tr>
                     </table>
@@ -219,8 +204,8 @@
             </div>
             <br />
              <div align="center">
-                <asp:ImageButton ID="btnGuardar" runat="server" ToolTip="Guardar Información" CssClass="BotonImagen" ImageUrl="~/Imagenes/salvar.png" OnClick="btnGuardar_Click" />
-                <asp:ImageButton ID="btnVolver" runat="server" ToolTip="Volver Atras" CssClass="BotonImagen" ImageUrl="~/Imagenes/volver-flecha.png" OnClick="btnVolver_Click" />
+                <asp:ImageButton ID="btnGuardar" runat="server" ToolTip="Guardar Información" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Nuevo_Nuevo.png" OnClick="btnGuardar_Click" />
+                <asp:ImageButton ID="btnVolver" runat="server" ToolTip="Volver Atras" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Volver_Nuevo.png" OnClick="btnVolver_Click" />
 
             </div>
             <br />

@@ -498,6 +498,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             var NumeroRecibo = ((HiddenField)ItemSeleccionado.FindControl("hfNumeroRecibo")).Value.ToString();
             var Oficina = ((HiddenField)ItemSeleccionado.FindControl("hfIdOficina")).Value.ToString();
 
+            string UsuarioBD = "", ClavdBD = "";
+            UtilidadesAmigos.Logica.Comunes.SacarCredencialesBD Credenciales = new Logica.Comunes.SacarCredencialesBD(1);
+            UsuarioBD = Credenciales.SacarUsuario();
+            ClavdBD = Credenciales.SacarClaveBD();
+
             ReportDocument Reporte = new ReportDocument();
 
             Reporte.Load(Server.MapPath("Recibos.rpt"));
@@ -512,7 +517,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             Reporte.SetParameterValue("@Oficina", Convert.ToInt32(Oficina));
             Reporte.SetParameterValue("@GeneradoPor", (decimal)Session["IdUsuario"]);
 
-            Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+            Reporte.SetDatabaseLogon(UsuarioBD, ClavdBD);
             //Reporte.PrintOptions.PrinterName = Reporte.PrintOptions.PrinterName;
             Reporte.PrintToPrinter(2, true, 0, 2);
 
@@ -525,6 +530,42 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             if (!e.CommandName.Equals("newPage")) return;
             CurrentPage_ReciboDigital = Convert.ToInt32(e.CommandArgument.ToString());
             MostrarListado();
+        }
+
+        protected void btnRecibosLote_Click(object sender, ImageClickEventArgs e)
+        {
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermedirioConsulta.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermedirioConsulta.Text);
+            int? _Supervisor = string.IsNullOrEmpty(txtSupervisorConsulta.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtSupervisorConsulta.Text);
+            DateTime _FechaDesde = Convert.ToDateTime(txtFechaDesdeCosulta.Text);
+            DateTime _FechaHasta = Convert.ToDateTime(txtFechaHastaConsulta.Text);
+            int? _IdTipoPago = ddlTipoPagoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlTipoPagoConsulta.SelectedValue) : new Nullable<int>();
+            int? _oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+            string UsuarioBD = "", ClavdBD = "";
+
+            UtilidadesAmigos.Logica.Comunes.SacarCredencialesBD Credenciales = new Logica.Comunes.SacarCredencialesBD(1);
+            UsuarioBD = Credenciales.SacarUsuario();
+            ClavdBD = Credenciales.SacarClaveBD();
+
+            ReportDocument Reporte = new ReportDocument();
+
+            Reporte.Load(Server.MapPath("RecibosLote.rpt"));
+            Reporte.Refresh();
+
+            Reporte.SetParameterValue("@NumeroRecibo", new Nullable<decimal>());
+            Reporte.SetParameterValue("@CodigoIntermediario", _Intermediario);
+            Reporte.SetParameterValue("@CodigoSupervisor", _Supervisor);
+            Reporte.SetParameterValue("@FechaDesde", _FechaDesde.ToString("yyyy-MM-dd"));
+            Reporte.SetParameterValue("@FechaHasta", _FechaHasta.ToString("yyyy-MM-dd"));
+            Reporte.SetParameterValue("@IdTipoPago", new Nullable<int>());
+            Reporte.SetParameterValue("@Oficina", _oficina);
+            Reporte.SetParameterValue("@GeneradoPor", (decimal)Session["IdUsuario"]);
+
+            Reporte.SetDatabaseLogon(UsuarioBD, ClavdBD);
+            //Reporte.PrintOptions.PrinterName = Reporte.PrintOptions.PrinterName;
+            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Recibos en lote");
+
+            Reporte.Close();
+            Reporte.Dispose();
         }
 
         protected void btnVolver_Click(object sender, ImageClickEventArgs e)
