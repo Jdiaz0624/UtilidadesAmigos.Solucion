@@ -100,7 +100,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = true;
                     DIvBloqueTransito.Visible = false;
-                    DIVModuloCumpplimiento.Visible = false;
+                    DIVModuloCumpplimiento.Visible = true;
                     break;
 
                 case (int)PefilesUsuarios.AUDITORIA:
@@ -389,7 +389,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkSolicitud.Visible = true;
 
                     //CUMPLIMIENTO
-                    LinkMatrizRiesgo.Visible = false;
+                    LinkMatrizRiesgo.Visible = true;
 
                     //CONSULTAS
                     LinkCartera.Visible = false;

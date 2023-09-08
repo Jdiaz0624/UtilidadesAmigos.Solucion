@@ -93,6 +93,7 @@
             <div class="ContenidoCentro">
                 <asp:ImageButton ID="btnConsultar" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Lupa_Nuevo.png" OnClick="btnConsultar_Click" />
                  <asp:ImageButton ID="btnNuevo" runat="server" ToolTip="Crear Nuevo Registro" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Agregar_Nuevo.png" OnClick="btnNuevo_Click" />
+                <asp:ImageButton ID="btnPlantilla" runat="server" ToolTip="Generar una Plantilla de la matiz de Riezgo" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Reporte_Nuevo.png" OnClick="btnPlantilla_Click" />
             </div>
             <br />
             <div class="table-responsive">

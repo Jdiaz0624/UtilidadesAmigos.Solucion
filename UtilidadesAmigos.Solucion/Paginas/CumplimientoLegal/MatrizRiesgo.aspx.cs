@@ -366,9 +366,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.CumplimientoLegal
         }
         #endregion
         #region GENERAR MATRIZ DE RIESGO
-        private void GenerarMatrizRiesgo(string Nombre, decimal IdRegistro) {
+        private void GenerarMatrizRiesgo(string Nombre, decimal IdRegistro,bool Plantila) {
 
-            string RutaReporte = Server.MapPath("MatrizRiezgo.rpt");
+            //string RutaReporte = Server.MapPath("MatrizRiezgo.rpt");
+            string RutaReporte = Plantila == true ? Server.MapPath("MatrizRiezgoPlantilla.rpt") : Server.MapPath("MatrizRiezgo.rpt");
             string NombreReporte = "Registro de " + Nombre;
             string UsuarioBD = "", ClaveBD = "";
 
@@ -508,12 +509,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.CumplimientoLegal
 
         protected void btnPrimeraPagina_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage = 0;
+            MostrarListadoMatriz();
         }
 
         protected void btnPaginaAnterior_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage += -1;
+            MostrarListadoMatriz();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActual, ref lbCantidadPAgina);
         }
 
         protected void dtPaginacion_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -524,16 +528,23 @@ namespace UtilidadesAmigos.Solucion.Paginas.CumplimientoLegal
         protected void dtPaginacion_ItemCommand(object source, DataListCommandEventArgs e)
         {
 
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarListadoMatriz();
         }
 
         protected void btnSiguientePagina_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage += 1;
+            MostrarListadoMatriz();
         }
 
         protected void btnUltimaPagina_Click(object sender, ImageClickEventArgs e)
         {
 
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarListadoMatriz();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActual, ref lbCantidadPAgina);
         }
 
         protected void btnGuardar_Click(object sender, ImageClickEventArgs e)
@@ -570,13 +581,18 @@ namespace UtilidadesAmigos.Solucion.Paginas.CumplimientoLegal
             DIVBloqueMatriz.Visible = false;
         }
 
+        protected void btnPlantilla_Click(object sender, ImageClickEventArgs e)
+        {
+            GenerarMatrizRiesgo("Plantilla de Matriz",0, true);
+        }
+
         protected void btnReporte_Click(object sender, ImageClickEventArgs e)
         {
             var RegistroSelccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
             var IdRegistroSeleccionado = ((HiddenField)RegistroSelccionado.FindControl("hfIdRegistro")).Value.ToString();
             var NombreSeleccionado = ((HiddenField)RegistroSelccionado.FindControl("hfNombre")).Value.ToString();
 
-            GenerarMatrizRiesgo(NombreSeleccionado, Convert.ToDecimal(IdRegistroSeleccionado));
+            GenerarMatrizRiesgo(NombreSeleccionado, Convert.ToDecimal(IdRegistroSeleccionado),false);
         }
     }
 }
