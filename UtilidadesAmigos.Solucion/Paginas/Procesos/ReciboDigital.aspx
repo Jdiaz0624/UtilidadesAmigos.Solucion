@@ -79,7 +79,9 @@
                 <asp:RadioButton ID="rbExcelPlano" runat="server" Text="Excel Plano" GroupName="FormatoReporte" ToolTip="Generar Reporte en Excel Plano" />
             </div>
             <br />
-      
+      <div class="form-check form-switch">
+
+      </div>
             <br />
             <div align="center">
                 <asp:ImageButton ID="btnConsultar" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Lupa_Nuevo.png" OnClick="btnConsultar_Click" />
