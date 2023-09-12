@@ -5,306 +5,157 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Utilidades Futuro Seguros</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
     <link rel="icon" type="image/png" href="Recursos/Facturación-Electrónica-Icono-1024x1024.ico" />
-    
 
-    <style>
-body {
-  background-color:#465268;
-  padding: 0;
-  margin: 0;
-}
-body { background-color: #465268; }
+    <link type="text/css" rel="stylesheet" href="../Content/bootstrap.min.css" />
+    <script type="text/javascript" src="../scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../scripts/jquery-3.6.0.slim.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-#CentralizarLogin {
-       position:absolute;
-       top: 40%;
-       left: 50%;
-       width:30em;
-       height:18em;
-       margin-top: -9em; /*set to a negative number 1/2 of your height*/
-       margin-left: -15em; /*set to a negative number 1/2 of your width*/
-       /*border: 0px solid #ccc;
-       background-color: #f3f3f3;*/
-}
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet" />
 
-.page-lock {
-  margin: 90px auto 30px auto;
-  width: 450px;
-}
-
-.page-lock .page-logo {
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-.page-lock .page-body {
-  width: 100%;
-  margin-top: 50px;
-  background-color: #3a4554;
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  -ms-border-radius: 7px;
-  -o-border-radius: 7px;
-  border-radius: 7px;
-}
-
-.lock-head {
-  display: block;
-  background-color: #323d4b;
-  text-align: center;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  font-size: 22px;
-  font-weight: 400;
-  color: #4db3a5;
-}
-
-.lock-body {
-  display: block;
-  margin: 35px;
-  overflow: hidden;
-}
-
-.lock-avatar {
-  margin-top: 15px;
-  height: 110px;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-}
-
-.lock-form {
-  padding-left: 40px;
-}
-
-.lock-form h4 {
-  margin-top: 0px;
-  color: #dbe2ea;
-  font-size: 18px;
-  font-weight: 400;
-}
-
-.lock-form .form-group {
-  margin-top: 20px;
-}
-
-.lock-form .form-group .form-control {
-  background-color: #303a48;
-  border: none;
-  width: 220px;
-  height: 40px;
-  color: #697687;
-  border-radius: 0;
-}
-
-.lock-form .form-group .form-control::-moz-placeholder {
-  color: #556376;
-  opacity: 1;
-}
-
-.lock-form .form-group .form-control:-ms-input-placeholder {
-  color: #556376;
-}
-
-.lock-form .form-group .form-control::-webkit-input-placeholder {
-  color: #556376;
-}
-
-.lock-form .form-group .form-control:focus {
-  background-color: #2b3542;
-}
-
-.lock-form .form-actions {
-  margin-top: 20px;
-}
-
-.lock-form .form-actions .btn-success {
-  background-color: #e76070 !important;
-  width: 220px;
-  font-weight: 600;
-  padding: 10px;
-  border: none;
-  border-radius: 0;
-}
-
-.lock-form .form-actions .btn-success:hover {
-  background-color: #d75464 !important;
-}
-
-.lock-bottom {
-  display: block;
-  background-color: #323d4b;
-  text-align: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-.lock-bottom a {
-  font-size: 14px;
-  font-weight: 400;
-  color: #638cac;
-}
-
-.lock-bottom a:hover {
-  color: #7ba2c0;
-}
-
-@media (max-width: 768px) {
-  .page-lock {
-    margin: 100px auto;
-  }
-}
-@media (max-width: 560px) {
-  .page-lock {
-    margin: 50px auto;
-    width: 400px;
-  }
-
-  .lock-body {
-    margin: 30px;
-  }
-
-  .lock-avatar {
-    width: 120px;
-    height: 120px;
-    margin-top: 20px;
-  }
-
-  .lock-form h4 {
-    font-size: 16px;
-  }
-
-  .lock-form .form-group .form-control {
-    padding: 20px 20px;
-    width: 170px;
-  }
-
-  .lock-form .form-actions .btn-success {
-    width: 170px;
-    margin-bottom: 10px;
-  }
-}
-@media (max-width: 420px) {
-  .page-lock {
-    margin: 30px auto;
-    width: 280px;
-  }
-
-  .lock-body {
-    margin: 0px;
-  }
-
-  .page-lock .page-body {
-    margin-top: 30px;
-  }
-
-  .lock-avatar {
-    margin-top: 20px;
-  }
-
-  .lock-avatar-block {
-    display: block;
-    width: 100%;
-    text-align: center;
-    margin-bottom: 10px;
-  }
-
-  .lock-form {
-    padding-left: 20px;
-  }
-
-  .lock-form h4 {
-    font-size: 16px;
-    text-align: center;
-  }
-
-  .lock-form .form-group .form-control {
-    padding: 20px 20px;
-    width: 240px;
-  }
-
-  .lock-form .form-actions .btn-success {
-    width: 240px;
-    margin-bottom: 20px;
-  }
-}
- .btn-sm{
-            width:300px;
-            height:40px;
-        }
-</style>
-
-        
-    <script type="text/javascript">
-        function CamposVacios() {
-            alert("No puedes dejar campos vacios para ingresar al sistema, favor de verificar.");
-        }
-
-        function UsuarioNovalido() {
-            alert("El nombre de usuario o la clave ingresada no es valida, favor de verificar.");
-        }
-        function CambiarClavevacio() {
-            alert("No puedes dejar campos vacios para cambiar la clave.");
-        }
-
-        function UsuarioBloqueado() {
-            alert("Este usuario se ha sido bloqueado por exeso de intentos fallidos, favor de contactar con el departamento de tecnologia para desbloquear la cuenta.");
-        }
-        function ClavesNoConcuerdan() {
-            alert("Las claves ingresadas no concuerdan, favor de verificar");
-        }
+    <link rel="stylesheet" href="../Content/EstilosLogin.css" />
 
 
+     <script type="text/javascript">
 
-    </script>
+
+         //MENSAJES
+         function UsuarioNoValido() {
+             alert("El nombre de Usuario o la clave ingresada no es valida, favor de verificar.");
+         }
+
+         function UsuarioDeshabilitado() {
+             alert("El usuario actual esta deshabilitado, favor de contactar un administrador del sistema para activar la cuenta.");
+         }
+
+         $(function () {
+
+             //VALIDAR EL BOTON INGRESAR AL SISTEMA
+             $("#<%=btnIngresarSistema.ClientID%>").click(function () {
+                var USuario = $("#<%=txtUsuario.ClientID%>").val().length;
+                if (USuario < 1) {
+                    alert("El campo usuario no puede estar vacio para ingresar al sistema, favor de verificar.");
+                    $("#<%=txtUsuario.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+                else {
+                    var Clave = $("#<%=txtPassword.ClientID%>").val().length;
+                    if (Clave < 1) {
+                        alert("El campo clave no puede estar vacio para ingresar al sistema, favor de verificar.");
+                        $("#<%=txtPassword.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
+                }
+
+            });
+
+            $("#<%=btnCambioClave.ClientID%>").click(function () {
+
+                var NuevaClave = $("#<%=txtNuevaClave.ClientID%>").val().length;
+                if (NuevaClave < 1) {
+                    alert("El campo para la nueva clave no puede estar vacio, favor de verificar.");
+                    $("#<%=txtNuevaClave.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+                else {
+                    var ConfirmacionClave = $("#<%=txtConformacionClave.ClientID%>").val().length;
+                    if (ConfirmacionClave < 1) {
+                        alert("El campo Confirmación de clave no puede estar vacio, favor de verificar.");
+                        $("#<%=txtConformacionClave.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
+                    else {
+                        if (NuevaClave != ConfirmacionClave) {
+                            alert("las claves ingresadas no concuerdan, favor de verificar.");
+                            $("#<%=txtNuevaClave.ClientID%>").css("border-color", "blue");
+                            $("#<%=txtConformacionClave.ClientID%>").css("border-color", "blue");
+                            document.getElementById("<%=txtNuevaClave.ClientID%>").value = "";
+                            document.getElementById("<%=txtConformacionClave.ClientID%>").value = "";
+                            return false;
+                        }
+                    }
+                }
+            });
+        })
+
+     </script>
+
 
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div class="container">
-	<div class="page-lock" id="CentralizarLogin">
-    	<div class="page-body">
-    		<div class="lock-head">
-    			<asp:Label ID="NombreEmpresa" runat="server" Text="Ingresar Datos de Acceso"></asp:Label>
-                <asp:Label ID="lbContador" Visible="false" runat="server" Text="0"></asp:Label>
-                
-    		</div>
-    		<div class="lock-body" >
-    			
+   <asp:Label ID="lbCodigoUsuario" runat="server" Text="0" Visible="false"></asp:Label>
+      <!-- Section: Design Block -->
+<section class="text-center">
+    <!-- Background image -->
+    <div class="p-5 bg-image" style="
+          background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
+          height: 300px;
+          "></div>
+    <!-- Background image -->
+  
+    <div class="card mx-4 mx-md-5 shadow-5-strong" style="
+          margin-top: -100px;
+          background: hsla(0, 0%, 100%, 0.8);
+          backdrop-filter: blur(30px);
+          ">
+      <div class="card-body py-5 px-md-5">
+  
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="fw-bold mb-5"><asp:Label ID="lbIdTitulo" runat="server" Text="Ingresar Datos"></asp:Label></h2>
+            <form id="form1" runat="server">
+              <!-- 2 column grid layout with text inputs for the first and last names -->
+             <div id="DivBloqueLogin" runat="server">
+                  <div class="row">
+                <div class="col-md-12 mb-4 ContenidoCentro">
 
-    				<div class="form-group">
-                         <!--TEXBOX-->
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <asp:TextBox ID="txtUsuarioLogin"  runat="server" AutoCompleteType="Disabled" Placeholder="Usuario" CssClass="form-control" MaxLength="20"></asp:TextBox>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <asp:TextBox ID="txtClaveLogin" runat="server" Placeholder="Clave" TextMode="Password" AutoCompleteType="Disabled" CssClass="form-control" MaxLength="40"></asp:TextBox>
-                            </div>
-                             <div class="form-group col-md-12">
-                                <asp:TextBox ID="txtNuevaClave" Visible="false" runat="server" AutoCompleteType="Disabled" Placeholder="Nueva Clave" TextMode="Password" CssClass="form-control" MaxLength="40"></asp:TextBox>
-                            </div>
-                             <div class="form-group col-md-12">
-                                <asp:TextBox ID="txtConfirmarClave" Visible="false" runat="server"  Placeholder="Confirmar Clave" TextMode="Password" AutoCompleteType="Disabled" CssClass="form-control" MaxLength="40"></asp:TextBox>
-                            </div>
-                        </div>
-    				</div>
-    				<div class="form-actions">
-    					<div align="center">
-                            <asp:Button ID="btnIngresarSistema" runat="server" Text="Entrar" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnIngresarSistema_Click" ToolTip="Ingrsar al Sistema" />
-                            <asp:Button ID="btnCambiarClave" runat="server" Text="Cambiar Clave" CssClass="btn btn-outline-secondary btn-sm" Visible="false" OnClick="btnCambiarClave_Click" ToolTip="Cambiar Clave de usuario" />
-    					</div>
-    				</div>
-    			
-    		</div>
-    		<div class="lock-bottom">
-    			
-    		</div>
-    	</div>
+                    <asp:TextBox ID="txtUsuario" runat="server"  AutoCompleteType="Disabled" CssClass="form-control TextoCentrado"></asp:TextBox>
+                    <label class="form-label" for="form3Example1"><b>Nombre de Usuario</b></label>
+         
+                </div>
+                
+              
+              <!-- Password input -->
+              <div class="form-outline mb-4 ContenidoCentro">
+                  <asp:Label ID="lbContador" runat="server" Text="0" Visible="false"></asp:Label>
+
+                  <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control TextoCentrado" TextMode="Password"></asp:TextBox>
+                <label class="form-label" for="form3Example4"><b>Clave</b></label>
+              </div>
+            </div>
+             </div>
+                <div id="DivBloqueCambiaClave" runat="server">
+                     <div class="row">
+                <div class="col-md-12 mb-4 ContenidoCentro">
+
+                    <asp:TextBox ID="txtNuevaClave" runat="server"  CssClass="form-control TextoCentrado" TextMode="Password"></asp:TextBox>
+                    <label class="form-label" for="form3Example1"><b>Nueva Clave</b></label>
+         
+                </div>
+                
+              
+              <!-- Password input -->
+              <div class="form-outline mb-4 ContenidoCentro">
+
+                  <asp:TextBox ID="txtConformacionClave" runat="server" CssClass="form-control TextoCentrado" TextMode="Password"></asp:TextBox>
+                <label class="form-label" for="form3Example4"><b>Confirmacón de Clave</b></label>
+              </div>
+            </div>
+                </div>
+
+                <asp:ImageButton ID="btnIngresarSistema" runat="server" ToolTip="Ingresar al Sistema" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Entrar.png" OnClick="btnIngresarSistema_Click" />
+                <asp:ImageButton ID="btnCambioClave" runat="server" ToolTip="Cambiar Clave" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Editar_Nuevo.png" OnClick="btnCambioClave_Click" />
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-    </form>
+  </section>
+  <!-- Section: Design Block -->
 </body>
 </html>

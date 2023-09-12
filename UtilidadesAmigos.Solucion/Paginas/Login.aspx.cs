@@ -23,14 +23,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
             try
             {
                 //validamos los campos vacios
-                if (string.IsNullOrEmpty(txtUsuarioLogin.Text.Trim()) || string.IsNullOrEmpty(txtClaveLogin.Text.Trim()))
+                if (string.IsNullOrEmpty(txtUsuario.Text.Trim()) || string.IsNullOrEmpty(txtUsuario.Text.Trim()))
                 {
                     ClientScript.RegisterStartupScript(GetType(), "CamposVacios()", "CamposVacios()", true);
                 }
                 else
                 {
-                    string _usuario = string.IsNullOrEmpty(txtUsuarioLogin.Text.Trim()) ? null : txtUsuarioLogin.Text.Trim();
-                    string _Clave = string.IsNullOrEmpty(txtClaveLogin.Text.Trim()) ? null : txtClaveLogin.Text.Trim();
+                    string _usuario = string.IsNullOrEmpty(txtUsuario.Text.Trim()) ? null : txtUsuario.Text.Trim();
+                    string _Clave = string.IsNullOrEmpty(txtPassword.Text.Trim()) ? null : txtPassword.Text.Trim();
 
                     var ValidarUsuario = ObjData.Value.BuscaUsuarios(
                         new Nullable<decimal>(),
@@ -57,15 +57,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         }
                         else
                         {
-                            ClientScript.RegisterStartupScript(GetType(), "UsuarioNovalido()", "UsuarioNovalido();", true);
-                            txtUsuarioLogin.Text = string.Empty;
-                            txtClaveLogin.Text = string.Empty;
-                            txtUsuarioLogin.Focus();
+                            ClientScript.RegisterStartupScript(GetType(), "UsuarioNoValido()", "UsuarioNoValido();", true);
+                            txtUsuario.Text = string.Empty;
+                            txtPassword.Text = string.Empty;
+                            txtUsuario.Focus();
 
                             ContadorBloqueo++;
                             lbContador.Text = ContadorBloqueo.ToString();
-
-
                         }
                     }
                     else
@@ -83,7 +81,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         //verificamos si el usuario esta bloqueado
                         if (Estatus == false)
                         {
-                            ClientScript.RegisterStartupScript(GetType(), "UsuarioBloqueado()", "UsuarioBloqueado();", true);
+                            ClientScript.RegisterStartupScript(GetType(), "UsuarioDeshabilitado()", "UsuarioDeshabilitado();", true);
                         }
                         else
                         {
@@ -91,19 +89,19 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             //verificamos si el usuario va a cambiar clave
                             if (CambiaClave == false)
                             {
-                                
+
                                 Session["Veronica"] = 1;
                                 FormsAuthentication.RedirectFromLoginPage(_usuario, true);
 
 
                             }
-                            else {
-                                txtUsuarioLogin.Visible = false;
-                                txtClaveLogin.Visible = false;
-                                txtNuevaClave.Visible = true;
-                                txtConfirmarClave.Visible = true;
+                            else
+                            {
+                                DivBloqueLogin.Visible = false;
+                                DivBloqueCambiaClave.Visible = true;
+
                                 btnIngresarSistema.Visible = false;
-                                btnCambiarClave.Visible = true;
+                                btnCambioClave.Visible = true;
                             }
 
                         }
@@ -123,39 +121,34 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (!IsPostBack)
             {
-              //  UtilidadesAmigos.Logica.Comunes.VozVeronica.Hablar("Hola Como Estas");
+                MaintainScrollPositionOnPostBack = true;
+                if (!IsPostBack) {
 
+                    DivBloqueLogin.Visible = true;
+                    btnIngresarSistema.Visible = true;
+
+                    DivBloqueCambiaClave.Visible = false;
+                    btnCambioClave.Visible = false;
+                }
             }
         }
 
-        protected void btnIngresarSistema_Click(object sender, EventArgs e)
+     
+
+ 
+
+        protected void btnIngresarSistema_Click(object sender, ImageClickEventArgs e)
         {
             IngresarSistema();
         }
 
-        protected void btnCambiarClave_Click(object sender, EventArgs e)
+        protected void btnCambioClave_Click(object sender, ImageClickEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtNuevaClave.Text.Trim()) || string.IsNullOrEmpty(txtConfirmarClave.Text.Trim())) {
-                ClientScript.RegisterStartupScript(GetType(), "CambiarClavevacio()", "CambiarClavevacio();", true);
-            }
-            else {
-                string _NuevaClave = string.IsNullOrEmpty(txtNuevaClave.Text.Trim()) ? null : txtNuevaClave.Text.Trim();
-                string _ConfirmacionClave = string.IsNullOrEmpty(txtConfirmarClave.Text.Trim()) ? null : txtConfirmarClave.Text.Trim();
-
-                if (_NuevaClave != _ConfirmacionClave) {
-                    ClientScript.RegisterStartupScript(GetType(), "ClavesNoConcuerdan()", "ClavesNoConcuerdan();", true);
-                    txtNuevaClave.Text = string.Empty;
-                    txtConfirmarClave.Text = string.Empty;
-                    txtNuevaClave.Focus();
-                }
-                else {
-                    UtilidadesAmigos.Logica.Entidades.EMantenimientoUsuarios ActualizaClave = new Logica.Entidades.EMantenimientoUsuarios();
-                    ActualizaClave.IdUsuario = Convert.ToDecimal(Session["IdUsuario"]);
-                    ActualizaClave.Clave = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(_NuevaClave);
-                    var MAN = ObjData.Value.MantenimientoUsuarios(ActualizaClave, "CHANGEPASSWORD");
-                    FormsAuthentication.RedirectFromLoginPage(txtUsuarioLogin.Text, true);
-                }
-            }
+            UtilidadesAmigos.Logica.Entidades.EMantenimientoUsuarios ActualizaClave = new Logica.Entidades.EMantenimientoUsuarios();
+            ActualizaClave.IdUsuario = Convert.ToDecimal(Session["IdUsuario"]);
+            ActualizaClave.Clave = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(txtNuevaClave.Text);
+            var MAN = ObjData.Value.MantenimientoUsuarios(ActualizaClave, "CHANGEPASSWORD");
+            FormsAuthentication.RedirectFromLoginPage(txtUsuario.Text, true);
         }
     }
 }

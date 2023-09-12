@@ -163,6 +163,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\DisenoMasterPage.css" />
     <Content Include="Content\EstilosComunes.css" />
+    <Content Include="Content\EstilosLogin.css" />
     <Content Include="Estilos\EstiloMenuPrincipal.css" />
     <Content Include="Estilos\EstilosPaginas.css" />
     <Content Include="ImagenesBotones\Agregar2_Nuevo.png" />
@@ -173,6 +174,7 @@
     <Content Include="ImagenesBotones\Comisiones.png" />
     <Content Include="ImagenesBotones\Completado.png" />
     <Content Include="ImagenesBotones\Editar_Nuevo.png" />
+    <Content Include="ImagenesBotones\Entrar.png" />
     <Content Include="ImagenesBotones\Enviar.png" />
     <Content Include="ImagenesBotones\Estadistica.png" />
     <Content Include="ImagenesBotones\Excel.png" />

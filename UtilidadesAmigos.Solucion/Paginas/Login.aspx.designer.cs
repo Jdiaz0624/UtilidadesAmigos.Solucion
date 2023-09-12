@@ -15,6 +15,24 @@ namespace UtilidadesAmigos.Solucion.Paginas
     {
 
         /// <summary>
+        /// lbCodigoUsuario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoUsuario;
+
+        /// <summary>
+        /// lbIdTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbIdTitulo;
+
+        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>
@@ -24,13 +42,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// NombreEmpresa control.
+        /// DivBloqueLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label NombreEmpresa;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBloqueLogin;
+
+        /// <summary>
+        /// txtUsuario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtUsuario;
 
         /// <summary>
         /// lbContador control.
@@ -42,22 +69,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Label lbContador;
 
         /// <summary>
-        /// txtUsuarioLogin control.
+        /// txtPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUsuarioLogin;
+        protected global::System.Web.UI.WebControls.TextBox txtPassword;
 
         /// <summary>
-        /// txtClaveLogin control.
+        /// DivBloqueCambiaClave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtClaveLogin;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBloqueCambiaClave;
 
         /// <summary>
         /// txtNuevaClave control.
@@ -69,13 +96,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.TextBox txtNuevaClave;
 
         /// <summary>
-        /// txtConfirmarClave control.
+        /// txtConformacionClave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtConfirmarClave;
+        protected global::System.Web.UI.WebControls.TextBox txtConformacionClave;
 
         /// <summary>
         /// btnIngresarSistema control.
@@ -84,15 +111,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnIngresarSistema;
+        protected global::System.Web.UI.WebControls.ImageButton btnIngresarSistema;
 
         /// <summary>
-        /// btnCambiarClave control.
+        /// btnCambioClave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCambiarClave;
+        protected global::System.Web.UI.WebControls.ImageButton btnCambioClave;
     }
 }
