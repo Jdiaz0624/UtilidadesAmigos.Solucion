@@ -254,6 +254,49 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         }
         #endregion
 
+        #region GENERAR REPORTE EN LOTE
+        private void GenerarReporteEnLote() {
+
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermedirioConsulta.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermedirioConsulta.Text);
+            int? _Supervisor = string.IsNullOrEmpty(txtSupervisorConsulta.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtSupervisorConsulta.Text);
+            DateTime _FechaDesde = Convert.ToDateTime(txtFechaDesdeCosulta.Text);
+            DateTime _FechaHasta = Convert.ToDateTime(txtFechaHastaConsulta.Text);
+            int? _IdTipoPago = ddlTipoPagoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlTipoPagoConsulta.SelectedValue) : new Nullable<int>();
+            int? _oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+            string UsuarioBD = "", ClavdBD = "";
+
+            UtilidadesAmigos.Logica.Comunes.SacarCredencialesBD Credenciales = new Logica.Comunes.SacarCredencialesBD(1);
+            UsuarioBD = Credenciales.SacarUsuario();
+            ClavdBD = Credenciales.SacarClaveBD();
+
+            ReportDocument Reporte = new ReportDocument();
+
+            if (cbGenerarReciboConCopia.Checked == true) {
+                Reporte.Load(Server.MapPath("RecibosLote.rpt"));
+            }
+            else {
+                Reporte.Load(Server.MapPath("RecibosLoteSinCopia.rpt"));
+            }
+            Reporte.Refresh();
+
+            Reporte.SetParameterValue("@NumeroRecibo", new Nullable<decimal>());
+            Reporte.SetParameterValue("@CodigoIntermediario", _Intermediario);
+            Reporte.SetParameterValue("@CodigoSupervisor", _Supervisor);
+            Reporte.SetParameterValue("@FechaDesde", _FechaDesde.ToString("yyyy-MM-dd"));
+            Reporte.SetParameterValue("@FechaHasta", _FechaHasta.ToString("yyyy-MM-dd"));
+            Reporte.SetParameterValue("@IdTipoPago", new Nullable<int>());
+            Reporte.SetParameterValue("@Oficina", _oficina);
+            Reporte.SetParameterValue("@GeneradoPor", (decimal)Session["IdUsuario"]);
+
+            Reporte.SetDatabaseLogon(UsuarioBD, ClavdBD);
+            //Reporte.PrintOptions.PrinterName = Reporte.PrintOptions.PrinterName;
+            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Recibos en lote");
+
+            Reporte.Close();
+            Reporte.Dispose();
+        }
+        #endregion
+
         private void ConfigurarcionInicial()
         {
             txtCodigoIntermedirioConsulta.Text = string.Empty;
@@ -421,7 +464,12 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             ReportDocument Reporte = new ReportDocument();
 
-            Reporte.Load(Server.MapPath("Recibos.rpt"));
+            if (cbGenerarReciboConCopia.Checked == true) {
+                Reporte.Load(Server.MapPath("Recibos.rpt"));
+            }
+            else {
+                Reporte.Load(Server.MapPath("RecibosSinCopia.rpt"));
+            }
             Reporte.Refresh();
 
             Reporte.SetParameterValue("@NumeroRecibo", Convert.ToDecimal(NumeroRecibo));
@@ -534,38 +582,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
         protected void btnRecibosLote_Click(object sender, ImageClickEventArgs e)
         {
-            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermedirioConsulta.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermedirioConsulta.Text);
-            int? _Supervisor = string.IsNullOrEmpty(txtSupervisorConsulta.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtSupervisorConsulta.Text);
-            DateTime _FechaDesde = Convert.ToDateTime(txtFechaDesdeCosulta.Text);
-            DateTime _FechaHasta = Convert.ToDateTime(txtFechaHastaConsulta.Text);
-            int? _IdTipoPago = ddlTipoPagoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlTipoPagoConsulta.SelectedValue) : new Nullable<int>();
-            int? _oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
-            string UsuarioBD = "", ClavdBD = "";
-
-            UtilidadesAmigos.Logica.Comunes.SacarCredencialesBD Credenciales = new Logica.Comunes.SacarCredencialesBD(1);
-            UsuarioBD = Credenciales.SacarUsuario();
-            ClavdBD = Credenciales.SacarClaveBD();
-
-            ReportDocument Reporte = new ReportDocument();
-
-            Reporte.Load(Server.MapPath("RecibosLote.rpt"));
-            Reporte.Refresh();
-
-            Reporte.SetParameterValue("@NumeroRecibo", new Nullable<decimal>());
-            Reporte.SetParameterValue("@CodigoIntermediario", _Intermediario);
-            Reporte.SetParameterValue("@CodigoSupervisor", _Supervisor);
-            Reporte.SetParameterValue("@FechaDesde", _FechaDesde.ToString("yyyy-MM-dd"));
-            Reporte.SetParameterValue("@FechaHasta", _FechaHasta.ToString("yyyy-MM-dd"));
-            Reporte.SetParameterValue("@IdTipoPago", new Nullable<int>());
-            Reporte.SetParameterValue("@Oficina", _oficina);
-            Reporte.SetParameterValue("@GeneradoPor", (decimal)Session["IdUsuario"]);
-
-            Reporte.SetDatabaseLogon(UsuarioBD, ClavdBD);
-            //Reporte.PrintOptions.PrinterName = Reporte.PrintOptions.PrinterName;
-            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Recibos en lote");
-
-            Reporte.Close();
-            Reporte.Dispose();
+            GenerarReporteEnLote();
         }
 
         protected void btnVolver_Click(object sender, ImageClickEventArgs e)

@@ -78,9 +78,10 @@
                 <asp:RadioButton ID="rbExcel" runat="server" Text="Excel" GroupName="FormatoReporte" ToolTip="Generar Reporte en Excel" />
                 <asp:RadioButton ID="rbExcelPlano" runat="server" Text="Excel Plano" GroupName="FormatoReporte" ToolTip="Generar Reporte en Excel Plano" />
             </div>
-            <br />
+            <br /><br />
       <div class="form-check form-switch">
-
+          <input type="checkbox" id="cbGenerarReciboConCopia" runat="server" class="form-check-input" />
+          <label class="form-check-label">Generar Recibos con Copia</label>
       </div>
             <br />
             <div align="center">
