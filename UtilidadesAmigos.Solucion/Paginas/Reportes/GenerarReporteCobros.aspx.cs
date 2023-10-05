@@ -1182,6 +1182,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbPantalla.Text = "GENERAR REPORTE DE COBRO";
 
+                UtilidadesAmigos.Logica.Comunes.Rangofecha Rango = new Logica.Comunes.Rangofecha();
+                Rango.FechaMes(ref txtFechaDesdeConsulta, ref txtFechaHastaConsulta);
+
                 //divPaginacionrepeater.Visible = false;
                 rbNoAgruparDatos.Checked = true;
                 rbReporteDetallado.Checked = true;

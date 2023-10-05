@@ -2,35 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-          <style type="text/css">
-        .jumbotron{
-            color:#000000; 
-            background:#7BC5FF;
-            font-size:30px;
-            font-weight:bold;
-            font-family:'Gill Sans';
-            padding:25px;
-        }
-
-        .btn-sm{
-            width:90px;
-        }
-
-        .Letranegrita {
-        font-weight:bold;
-        }
-          table {
-            border-collapse: collapse;
-        }
-        
-
-        
-                 .BotonImagen {
-                   width:40px;
-                   height:40px;
-                 
-                 }
-    </style>
+          <link rel="stylesheet" href="../../Content/EstilosComunes.css" />
 
     <script type="text/javascript">
         function CampoFechaDesdevacio() {
@@ -185,8 +157,8 @@
        </div><br />
         <div align="center">
 
-            <asp:ImageButton ID="btnConsultarRegistrosNuevo" runat="server" ToolTip="Consultar Información por Pantalla" CssClass="BotonImagen" ImageUrl="~/Imagenes/Buscar.png" OnClick="btnConsultarRegistrosNuevo_Click" />
-            <asp:ImageButton ID="btnReporteCobros" runat="server" ToolTip="Generar Reporte de Cobros" CssClass="BotonImagen" ImageUrl="~/Imagenes/Reporte.png" OnClick="btnReporteCobros_Click" />
+            <asp:ImageButton ID="btnConsultarRegistrosNuevo" runat="server" ToolTip="Consultar Información por Pantalla" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Lupa_Nuevo.png" OnClick="btnConsultarRegistrosNuevo_Click" />
+            <asp:ImageButton ID="btnReporteCobros" runat="server" ToolTip="Generar Reporte de Cobros" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Reporte_Nuevo.png" OnClick="btnReporteCobros_Click" />
      
         <hr />
         <asp:Label ID="lbCantidadRegistrosTitulo" Visible="false" runat="server" Text="Cantidad de Registros ( " CssClass="Letranegrita"></asp:Label>
@@ -207,7 +179,7 @@
              </div>
         <br />
         <!--INICIO DEL REPEATER-->
-        <div>
+        <div class="table-responsive">
                 <table class="table table-striped">
                     <thead class="table table-dark">
                         <tr>
@@ -238,22 +210,26 @@
                         </asp:Repeater>
                     </tbody>
                 </table>
-
+            <table class="table">
+                <tfoot class="table-light">
+                    <tr>
+                        <td class="ContenidoDerecha">
+                            <label class="Letranegrita">Pagina</label> <asp:Label ID="lbPaginaActualVariableCobros" runat="server" Text="0"></asp:Label>
+                            <label class="Letranegrita">De</label> <asp:Label ID="lbCantidadPaginaVAriableCobros" runat="server" Text="0"></asp:Label>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
         <!--FIN DEL REPEATER-->
 
-         <div align="center">
-                <asp:Label ID="lbPaginaActualTituloCobros" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbPaginaActualVariableCobros" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaTituloCobros" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaVAriableCobros" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-            </div>
-             <div id="divPaginacionPolizasProduccion" runat="server" align="center">
+       
+             <div id="divPaginacionPolizasProduccion" runat="server" class="table-responsive" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
-                    <td> <asp:ImageButton ID="btnPrimeraPaginaPaginacionCobros" runat="server" ToolTip="Ir a la Primera Pagina del Listado" CssClass="BotonImagen" OnClick="btnPrimeraPaginaPaginacionCobros_Click" ImageUrl="~/Imagenes/Primera Pagina.png" /> </td>
-                    <td> <asp:ImageButton ID="btnPaginaAnteriorPaginacionCobros" runat="server" ToolTip="Ir a la Pagina Anterior del Listado" CssClass="BotonImagen" OnClick="btnPaginaAnteriorPaginacionCobros_Click" ImageUrl="~/Imagenes/Anterior.png" /> </td>
+                    <td> <asp:ImageButton ID="btnPrimeraPaginaPaginacionCobros" runat="server" ToolTip="Ir a la Primera Pagina del Listado" CssClass="BotonImagen" OnClick="btnPrimeraPaginaPaginacionCobros_Click" ImageUrl="~/ImagenesBotones/PrimeraPagina_Nuevo.png" /> </td>
+                    <td> <asp:ImageButton ID="btnPaginaAnteriorPaginacionCobros" runat="server" ToolTip="Ir a la Pagina Anterior del Listado" CssClass="BotonImagen" OnClick="btnPaginaAnteriorPaginacionCobros_Click" ImageUrl="~/ImagenesBotones/Anterior_Nuevo.png" /> </td>
 
                     <td>
                         <asp:DataList ID="dtPaginacionPolizasCobros" runat="server" OnItemCommand="dtPaginacionPolizasCobros_ItemCommand" OnItemDataBound="dtPaginacionPolizasCobros_ItemDataBound" RepeatDirection="Horizontal">
@@ -263,8 +239,8 @@
                         </asp:DataList>
 
                     </td>
-                    <td> <asp:ImageButton ID="btnPaginaSiguientePaginacionCobros" runat="server" ToolTip="Ir a la Siguiente Pagina del Listado" CssClass="BotonImagen" OnClick="btnPaginaSiguientePaginacionCobros_Click" ImageUrl="~/Imagenes/Siguiente.png" /> </td>
-                    <td> <asp:ImageButton ID="btnUltimaPaginaPaginacionCobros" runat="server" ToolTip="Ir a la Ultima Pagina del Listado" CssClass="BotonImagen" OnClick="btnUltimaPaginaPaginacionCobros_Click" ImageUrl="~/Imagenes/Ultima Pagina.png" /> </td>
+                    <td> <asp:ImageButton ID="btnPaginaSiguientePaginacionCobros" runat="server" ToolTip="Ir a la Siguiente Pagina del Listado" CssClass="BotonImagen" OnClick="btnPaginaSiguientePaginacionCobros_Click" ImageUrl="~/ImagenesBotones/Siguiente_Nuevo.png" /> </td>
+                    <td> <asp:ImageButton ID="btnUltimaPaginaPaginacionCobros" runat="server" ToolTip="Ir a la Ultima Pagina del Listado" CssClass="BotonImagen" OnClick="btnUltimaPaginaPaginacionCobros_Click" ImageUrl="~/ImagenesBotones/UltimaPagina_Nuevo.png" /> </td>
                 </tr>
             </table>
         </div>
@@ -276,7 +252,8 @@
 
 
         <!--GRAFICO DE SUPERVISORES-->
-        <div id="divGraficarSupervisores" runat="server" align="center" >
+        <div class="table-responsive">
+            <div id="divGraficarSupervisores" runat="server" align="center" >
 
              <asp:Label ID="lbGraficosSupervisoresCobro" runat="server"  Text="Top 10 Cobrado Supervisores" CssClass="Letranegrita"></asp:Label>
              <br />
@@ -289,9 +266,11 @@
            </ChartAreas>
        </asp:Chart>
         </div>
+        </div>
 
         <!--GRAFICO DE INTERMEDIARIOS-->
-        <div id="divGraficarIntermediarios" runat="server" align="center">
+        <div class="table-responsive">
+            <div id="divGraficarIntermediarios" runat="server" align="center">
             <asp:Label ID="lbGraficarIntermediarios" runat="server"  Text="Top 10 Cobrado Intermediarios" CssClass="Letranegrita"></asp:Label>
              <br />
             <asp:Chart ID="GraIntermediarios" Width="1100px" runat="server" Palette="SeaGreen">
@@ -303,9 +282,11 @@
            </ChartAreas>
        </asp:Chart>
         </div>
+        </div>
 
         <!--GRAFICO DE LOS TIPOS DE PAGOS-->
-        <div id="divGraficarTipoPago" runat="server" align="center">
+        <div class="table-responsive">
+            <div id="divGraficarTipoPago" runat="server" align="center">
             <asp:Label ID="lbGraficarTiposPagos" runat="server"  Text="Top 10 Cobrado Tipos de Pagos" CssClass="Letranegrita"></asp:Label>
              <br />
             <asp:Chart ID="GraTipoPago" Width="1100px" runat="server" Palette="SeaGreen">
@@ -317,9 +298,11 @@
            </ChartAreas>
        </asp:Chart>
         </div>
+        </div>
 
         <!--GRAFICO DE LOS CONCEPTOS-->
-        <div id="divGraficarConcepto" runat="server" align="center">
+       <div class="table-responsive">
+            <div id="divGraficarConcepto" runat="server" align="center">
             <asp:Label ID="lbGraficarConcepto" runat="server"  Text="Top 10 Cobrado Por Concepto" CssClass="Letranegrita"></asp:Label>
              <br />
             <asp:Chart ID="GraConcepto" Width="1100px" runat="server" Palette="SeaGreen">
@@ -331,9 +314,11 @@
            </ChartAreas>
        </asp:Chart>
         </div>
+       </div>
 
         <!--GRAFICO DE LOS RAMOS-->
-        <div id="divGraficarRamo" runat="server" align="center">
+        <div class="table-responsive">
+            <div id="divGraficarRamo" runat="server" align="center">
             <asp:Label ID="lbGraficarRamo" runat="server"  Text="Top 10 Cobrado Por Ramo" CssClass="Letranegrita"></asp:Label>
              <br />
             <asp:Chart ID="GraRamo" Width="1100px" runat="server" Palette="SeaGreen">
@@ -345,9 +330,11 @@
            </ChartAreas>
        </asp:Chart>
         </div>
+        </div>
 
         <!--GRAFICO DE LAS OFICINAS-->
-        <div id="divGraficaroficina" runat="server" align="center">
+       <div class="table-responsive">
+            <div id="divGraficaroficina" runat="server" align="center">
             <asp:Label ID="lbGraficaroficina" runat="server"  Text="Top 10 Cobrado Por Oficina" CssClass="Letranegrita"></asp:Label>
              <br />
             <asp:Chart ID="GraOficina" Width="1100px" runat="server" Palette="SeaGreen">
@@ -359,9 +346,11 @@
            </ChartAreas>
        </asp:Chart>
         </div>
+       </div>
 
         <!--GRAFICO DE LOS USUARIOS-->
-        <div id="divGraficarusuario" runat="server" align="center">
+       <div class="table-responsive">
+            <div id="divGraficarusuario" runat="server" align="center">
             <asp:Label ID="lbGraficarUsuarios" runat="server"  Text="Top 10 Cobrado Por Usuarios" CssClass="Letranegrita"></asp:Label>
              <br />
             <asp:Chart ID="GraUsuario" Width="1100px" runat="server" Palette="SeaGreen">
@@ -373,6 +362,7 @@
            </ChartAreas>
        </asp:Chart>
         </div>
+       </div>
 
            
 
