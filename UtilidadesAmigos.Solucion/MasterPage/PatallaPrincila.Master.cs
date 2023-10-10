@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Security;
 using UtilidadesAmigos.Solucion.Paginas.Transito;
+using UtilidadesAmigos.Solucion.Paginas.Correcciones;
 
 namespace UtilidadesAmigos.Solucion.MasterPage
 {
@@ -353,6 +354,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkEliminarEndosos.Visible = true;
                     LinkPolizaTransito.Visible = true;
                     LinkSumaAseguradaFianzas.Visible = true;
+                    LinkEquiposElectronicos.Visible= true;
                     LinkCambioIntermediario.Visible = true;
                     LinkCambioCliente.Visible = true;
                     LinkModificarDatosCliente.Visible = true;
@@ -447,6 +449,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkEliminarEndosos.Visible = false;
                     LinkPolizaTransito.Visible = false;
                     LinkSumaAseguradaFianzas.Visible = false;
+                    LinkEquiposElectronicos.Visible = false;
                     LinkCambioIntermediario.Visible = false;
                     LinkCambioCliente.Visible = false;
                     LinkModificarDatosCliente.Visible = false;
@@ -542,6 +545,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkEliminarEndosos.Visible = false;
                     LinkPolizaTransito.Visible = false;
                     LinkSumaAseguradaFianzas.Visible = false;
+                    LinkEquiposElectronicos.Visible = false;
                     LinkCambioIntermediario.Visible = false;
                     LinkCambioCliente.Visible = false;
                     LinkModificarDatosCliente.Visible = false;
@@ -637,6 +641,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkEliminarEndosos.Visible = false;
                     LinkPolizaTransito.Visible = false;
                     LinkSumaAseguradaFianzas.Visible = false;
+                    LinkEquiposElectronicos.Visible = true;
                     LinkCambioIntermediario.Visible = true;
                     LinkCambioCliente.Visible = true;
                     LinkModificarDatosCliente.Visible = true;
@@ -733,6 +738,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkEliminarEndosos.Visible = true;
                     LinkPolizaTransito.Visible = true;
                     LinkSumaAseguradaFianzas.Visible = true;
+                    LinkEquiposElectronicos.Visible = true;
                     LinkCambioIntermediario.Visible = true;
                     LinkCambioCliente.Visible = true;
                     LinkModificarDatosCliente.Visible = true;
@@ -829,6 +835,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkEliminarEndosos.Visible = false;
                     LinkPolizaTransito.Visible = false;
                     LinkSumaAseguradaFianzas.Visible = false;
+                    LinkEquiposElectronicos.Visible = false;
                     LinkCambioIntermediario.Visible = false;
                     LinkCambioCliente.Visible = false;
                     LinkModificarDatosCliente.Visible = false;
@@ -924,6 +931,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkEliminarEndosos.Visible = false;
                     LinkPolizaTransito.Visible = false;
                     LinkSumaAseguradaFianzas.Visible = false;
+                    LinkEquiposElectronicos.Visible = false;
                     LinkCambioIntermediario.Visible = false;
                     LinkCambioCliente.Visible = false;
                     LinkModificarDatosCliente.Visible = false;
@@ -1020,6 +1028,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkEliminarEndosos.Visible = false;
                     LinkPolizaTransito.Visible = false;
                     LinkSumaAseguradaFianzas.Visible = false;
+                    LinkEquiposElectronicos.Visible = false;
                     LinkCambioIntermediario.Visible = false;
                     LinkCambioCliente.Visible = false;
                     LinkModificarDatosCliente.Visible = false;
@@ -1116,6 +1125,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkEliminarEndosos.Visible = false;
                     LinkPolizaTransito.Visible = false;
                     LinkSumaAseguradaFianzas.Visible = false;
+                    LinkEquiposElectronicos.Visible = false;
                     LinkCambioIntermediario.Visible = false;
                     LinkCambioCliente.Visible = false;
                     LinkModificarDatosCliente.Visible = false;
@@ -1179,7 +1189,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkReporteProduccion.Visible = true;
                     LinkReporteCobros.Visible = true;
                     LinkReporteProduccionIntermediarioAlfredo.Visible = false;
-                    LinkComisionesIntermediario.Visible = false;
+                    LinkComisionesIntermediario.Visible = true;
                     LinkComisionesSupervisores.Visible = false;
                     LinkSobreComision.Visible = false;
                     LinkProduccionDiaria.Visible = false;
@@ -1212,6 +1222,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkEliminarEndosos.Visible = false;
                     LinkPolizaTransito.Visible = false;
                     LinkSumaAseguradaFianzas.Visible = false;
+                    LinkEquiposElectronicos.Visible = false;
                     LinkCambioIntermediario.Visible = false;
                     LinkCambioCliente.Visible = false;
                     LinkModificarDatosCliente.Visible = true;
@@ -1308,6 +1319,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkEliminarEndosos.Visible = false;
                     LinkPolizaTransito.Visible = false;
                     LinkSumaAseguradaFianzas.Visible = false;
+                    LinkEquiposElectronicos.Visible = false;
                     LinkCambioIntermediario.Visible = false;
                     LinkCambioCliente.Visible = false;
                     LinkModificarDatosCliente.Visible = false;
@@ -1404,6 +1416,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkEliminarEndosos.Visible = false;
                     LinkPolizaTransito.Visible = false;
                     LinkSumaAseguradaFianzas.Visible = false;
+                    LinkEquiposElectronicos.Visible = false;
                     LinkCambioIntermediario.Visible = false;
                     LinkCambioCliente.Visible = false;
                     LinkModificarDatosCliente.Visible = true;
@@ -1500,6 +1513,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkEliminarEndosos.Visible = true;
                     LinkPolizaTransito.Visible = true;
                     LinkSumaAseguradaFianzas.Visible = true;
+                    LinkEquiposElectronicos.Visible = true;
                     LinkCambioIntermediario.Visible = true;
                     LinkCambioCliente.Visible = true;
                     LinkModificarDatosCliente.Visible = false;
@@ -1596,6 +1610,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkEliminarEndosos.Visible = false;
                     LinkPolizaTransito.Visible = false;
                     LinkSumaAseguradaFianzas.Visible = false;
+                    LinkEquiposElectronicos.Visible = false;
                     LinkCambioIntermediario.Visible = false;
                     LinkCambioCliente.Visible = false;
                     LinkModificarDatosCliente.Visible = false;
@@ -2715,6 +2730,20 @@ namespace UtilidadesAmigos.Solucion.MasterPage
             if (Session["IdUsuario"] != null)
             {
                 Response.Redirect("~/Paginas/CumplimientoLegal/MatrizRiesgo.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
+
+        protected void LinkEquiposElectronicos_Click(object sender, EventArgs e)
+        {
+  
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("~/Paginas/Correcciones/EquiposElectronicos.aspx");
             }
             else
             {

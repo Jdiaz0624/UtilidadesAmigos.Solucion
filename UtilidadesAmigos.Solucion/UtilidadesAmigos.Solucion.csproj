@@ -286,6 +286,7 @@
     <Content Include="Paginas\Correcciones\CambioCliente.aspx" />
     <Content Include="Paginas\Correcciones\CambioIntermediario.aspx" />
     <Content Include="Paginas\Correcciones\EliminarEntodoso.aspx" />
+    <Content Include="Paginas\Correcciones\EquiposElectronicos.aspx" />
     <Content Include="Paginas\Correcciones\ModificarDatosCliente.aspx" />
     <Content Include="Paginas\Correcciones\MontoAfianzadoFianzas.aspx" />
     <Content Include="Paginas\Correcciones\PolizaTransito.aspx" />
@@ -634,6 +635,13 @@
     </Compile>
     <Compile Include="Paginas\Correcciones\EliminarEntodoso.aspx.designer.cs">
       <DependentUpon>EliminarEntodoso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\EquiposElectronicos.aspx.cs">
+      <DependentUpon>EquiposElectronicos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\EquiposElectronicos.aspx.designer.cs">
+      <DependentUpon>EquiposElectronicos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Correcciones\ModificarDatosCliente.aspx.cs">
       <DependentUpon>ModificarDatosCliente.aspx</DependentUpon>

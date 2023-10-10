@@ -203,6 +203,7 @@
             <li> <asp:LinkButton ID="LinkDatoPoliza" runat="server" Text="Dato Poliza" ToolTip="Dato Poliza"  OnClick="LinkCorregirValorDeclarativa_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkEliminarEndosos" runat="server" Text="Eliminar Endoso" ToolTip="Eliminar Endoso a Poliza" OnClick="LinkEliminarEndosos_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkSumaAseguradaFianzas" runat="server" Text="Monto Afianzar Fianzas" ToolTip="Modificar el Monto Afianzada de las Fianzas"  OnClick="LinkSumaAseguradaFianzas_Click"></asp:LinkButton> </li>
+            <li> <asp:LinkButton ID="LinkEquiposElectronicos" runat="server" Text="Equipos Electronicos" ToolTip="Procesar Informacion De Equipos Electronicos"  OnClick="LinkEquiposElectronicos_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkPolizaTransito" runat="server" Text="Poliza en Transito" ForeColor="Red" ToolTip="Corregor valor de Poliza colgada en Transito" OnClick="LinkPolizaTransito_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkCambioIntermediario" runat="server" Text="Cambio de Intermediario" ForeColor="Red" ToolTip="Cambiar Intermediario a Poliza" OnClick="LinkCambioIntermediario_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkCambioCliente" runat="server" Text="Cambio de Cliente" ForeColor="Red" ToolTip="Cambiar Cliente a Poliza" OnClick="LinkCambioCliente_Click"></asp:LinkButton> </li>

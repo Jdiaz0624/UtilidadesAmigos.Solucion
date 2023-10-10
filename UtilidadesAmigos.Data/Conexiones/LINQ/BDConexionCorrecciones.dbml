@@ -168,4 +168,21 @@
       <Column Name="MontoAfianzado" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_BUSCA_INFORMACION_POLIZA_EQUIPOS_ELECTRONICOS" Method="SP_BUSCA_INFORMACION_POLIZA_EQUIPOS_ELECTRONICOS">
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Item" Parameter="item" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_BUSCA_INFORMACION_POLIZA_EQUIPOS_ELECTRONICOSResult">
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cotizacion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Item" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cliente" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="NombreCliente" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Intermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreIntermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CantidadEquipos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadEquiposTotal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

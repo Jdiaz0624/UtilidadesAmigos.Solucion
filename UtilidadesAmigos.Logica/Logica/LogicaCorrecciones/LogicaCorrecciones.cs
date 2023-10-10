@@ -309,6 +309,34 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaCorrecciones
         }
         #endregion
 
-       
+        #region EQUIPOS ELECTRINCOS
+        /// <summary>
+        /// Muestra el listado de items de las polizas de equipos electrincios
+        /// </summary>
+        /// <param name="Poliza"></param>
+        /// <param name="Item"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Correcciones.EBuscaInformacionPolizaEquiposElectronicos> BuscaInformacionEquiposElectronicos(string Poliza = null, int? Item = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_INFORMACION_POLIZA_EQUIPOS_ELECTRONICOS(Poliza, Item)
+                           select new UtilidadesAmigos.Logica.Entidades.Correcciones.EBuscaInformacionPolizaEquiposElectronicos
+                           {
+                               Poliza=n.Poliza,
+                               Cotizacion=n.Cotizacion,
+                               Item=n.Item,
+                               Cliente=n.Cliente,
+                               NombreCliente=n.NombreCliente,
+                               Intermediario=n.Intermediario,
+                               NombreIntermediario=n.NombreIntermediario,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Supervisor=n.Supervisor,
+                               CantidadEquipos=n.CantidadEquipos,
+                               CantidadEquiposTotal=n.CantidadEquiposTotal
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }

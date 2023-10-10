@@ -117,6 +117,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, montoAfianzado, accion);
 			return ((ISingleResult<SP_MODIFICAR_MONTO_AFIANZADOResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_INFORMACION_POLIZA_EQUIPOS_ELECTRONICOS")]
+		public ISingleResult<SP_BUSCA_INFORMACION_POLIZA_EQUIPOS_ELECTRONICOSResult> SP_BUSCA_INFORMACION_POLIZA_EQUIPOS_ELECTRONICOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Item", DbType="Int")] System.Nullable<int> item)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, item);
+			return ((ISingleResult<SP_BUSCA_INFORMACION_POLIZA_EQUIPOS_ELECTRONICOSResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_BUSCA_ENDOSO_SESIONResult
@@ -1852,6 +1859,212 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._MontoAfianzado != value))
 				{
 					this._MontoAfianzado = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_INFORMACION_POLIZA_EQUIPOS_ELECTRONICOSResult
+	{
+		
+		private string _Poliza;
+		
+		private decimal _Cotizacion;
+		
+		private int _Item;
+		
+		private System.Nullable<decimal> _Cliente;
+		
+		private string _NombreCliente;
+		
+		private System.Nullable<int> _Intermediario;
+		
+		private string _NombreIntermediario;
+		
+		private int _CodigoSupervisor;
+		
+		private string _Supervisor;
+		
+		private System.Nullable<int> _CantidadEquipos;
+		
+		private System.Nullable<int> _CantidadEquiposTotal;
+		
+		public SP_BUSCA_INFORMACION_POLIZA_EQUIPOS_ELECTRONICOSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Poliza", DbType="VarChar(50)")]
+		public string Poliza
+		{
+			get
+			{
+				return this._Poliza;
+			}
+			set
+			{
+				if ((this._Poliza != value))
+				{
+					this._Poliza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cotizacion", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Cotizacion
+		{
+			get
+			{
+				return this._Cotizacion;
+			}
+			set
+			{
+				if ((this._Cotizacion != value))
+				{
+					this._Cotizacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Item", DbType="Int NOT NULL")]
+		public int Item
+		{
+			get
+			{
+				return this._Item;
+			}
+			set
+			{
+				if ((this._Item != value))
+				{
+					this._Item = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cliente", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Cliente
+		{
+			get
+			{
+				return this._Cliente;
+			}
+			set
+			{
+				if ((this._Cliente != value))
+				{
+					this._Cliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreCliente", DbType="VarChar(255)")]
+		public string NombreCliente
+		{
+			get
+			{
+				return this._NombreCliente;
+			}
+			set
+			{
+				if ((this._NombreCliente != value))
+				{
+					this._NombreCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Intermediario", DbType="Int")]
+		public System.Nullable<int> Intermediario
+		{
+			get
+			{
+				return this._Intermediario;
+			}
+			set
+			{
+				if ((this._Intermediario != value))
+				{
+					this._Intermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreIntermediario", DbType="VarChar(200)")]
+		public string NombreIntermediario
+		{
+			get
+			{
+				return this._NombreIntermediario;
+			}
+			set
+			{
+				if ((this._NombreIntermediario != value))
+				{
+					this._NombreIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoSupervisor", DbType="Int NOT NULL")]
+		public int CodigoSupervisor
+		{
+			get
+			{
+				return this._CodigoSupervisor;
+			}
+			set
+			{
+				if ((this._CodigoSupervisor != value))
+				{
+					this._CodigoSupervisor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Supervisor", DbType="VarChar(200)")]
+		public string Supervisor
+		{
+			get
+			{
+				return this._Supervisor;
+			}
+			set
+			{
+				if ((this._Supervisor != value))
+				{
+					this._Supervisor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadEquipos", DbType="Int")]
+		public System.Nullable<int> CantidadEquipos
+		{
+			get
+			{
+				return this._CantidadEquipos;
+			}
+			set
+			{
+				if ((this._CantidadEquipos != value))
+				{
+					this._CantidadEquipos = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadEquiposTotal", DbType="Int")]
+		public System.Nullable<int> CantidadEquiposTotal
+		{
+			get
+			{
+				return this._CantidadEquiposTotal;
+			}
+			set
+			{
+				if ((this._CantidadEquiposTotal != value))
+				{
+					this._CantidadEquiposTotal = value;
 				}
 			}
 		}

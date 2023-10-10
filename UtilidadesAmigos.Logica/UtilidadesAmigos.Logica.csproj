@@ -241,6 +241,7 @@
     <Compile Include="Entidades\Consulta\EProcesarInformacionValidacionArchivo.cs" />
     <Compile Include="Entidades\Consulta\EProcesarInformacionValidacionCoberturaSistema.cs" />
     <Compile Include="Entidades\Correcciones\EBitacoraMontoAfianzado.cs" />
+    <Compile Include="Entidades\Correcciones\EBuscaInformacionPolizaEquiposElectronicos.cs" />
     <Compile Include="Entidades\Correcciones\EBuscaInformacionPolizasFianzas.cs" />
     <Compile Include="Entidades\Correcciones\EEliminarEndoso.cs" />
     <Compile Include="Entidades\Correcciones\EEndososEliminados.cs" />
