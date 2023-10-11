@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionCorreccionesDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString6, mappingSource)
 		{
 			OnCreated();
 		}
@@ -123,6 +123,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, item);
 			return ((ISingleResult<SP_BUSCA_INFORMACION_POLIZA_EQUIPOS_ELECTRONICOSResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_INFORMACION_POLIZAS_EQUIPOS_ELECTRINICOS")]
+		public ISingleResult<SP_PROCESAR_INFORMACION_POLIZAS_EQUIPOS_ELECTRINICOSResult> SP_PROCESAR_INFORMACION_POLIZAS_EQUIPOS_ELECTRINICOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Compania", DbType="Int")] System.Nullable<int> compania, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cotizacion", DbType="Decimal(18,0)")] System.Nullable<decimal> cotizacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Secuencia", DbType="Int")] System.Nullable<int> secuencia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEquipo", DbType="Int")] System.Nullable<int> idEquipo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="VarChar(150)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Marca", DbType="VarChar(150)")] string marca, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Modelo", DbType="VarChar(150)")] string modelo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Serie", DbType="VarChar(150)")] string serie, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorAsegurado", DbType="Decimal(18,2)")] System.Nullable<decimal> valorAsegurado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorReposicion", DbType="Decimal(18,2)")] System.Nullable<decimal> valorReposicion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PorcDeducible", DbType="Decimal(18,2)")] System.Nullable<decimal> porcDeducible, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BaseDeducible", DbType="VarChar(50)")] string baseDeducible, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MinimoDeducible", DbType="Decimal(18,2)")] System.Nullable<decimal> minimoDeducible, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PorcPrima", DbType="Decimal(18,2)")] System.Nullable<decimal> porcPrima, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(50)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), compania, cotizacion, secuencia, idEquipo, descripcion, marca, modelo, serie, valorAsegurado, valorReposicion, porcDeducible, baseDeducible, minimoDeducible, porcPrima, accion);
+			return ((ISingleResult<SP_PROCESAR_INFORMACION_POLIZAS_EQUIPOS_ELECTRINICOSResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MOSTRAR_INVENTARIO_POLIZAS_EQUIPOS_ELECTRINICOS")]
+		public ISingleResult<SP_MOSTRAR_INVENTARIO_POLIZAS_EQUIPOS_ELECTRINICOSResult> SP_MOSTRAR_INVENTARIO_POLIZAS_EQUIPOS_ELECTRINICOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cotizacion", DbType="Decimal(18,0)")] System.Nullable<decimal> cotizacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Secuencia", DbType="Int")] System.Nullable<int> secuencia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEquipo", DbType="Int")] System.Nullable<int> idEquipo)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cotizacion, secuencia, idEquipo);
+			return ((ISingleResult<SP_MOSTRAR_INVENTARIO_POLIZAS_EQUIPOS_ELECTRINICOSResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2065,6 +2079,598 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._CantidadEquiposTotal != value))
 				{
 					this._CantidadEquiposTotal = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_PROCESAR_INFORMACION_POLIZAS_EQUIPOS_ELECTRINICOSResult
+	{
+		
+		private System.Nullable<int> _Compania;
+		
+		private System.Nullable<decimal> _Cotizacion;
+		
+		private System.Nullable<int> _Secuencia;
+		
+		private System.Nullable<int> _IdEquipo;
+		
+		private string _Descripcion;
+		
+		private string _Marca;
+		
+		private string _Modelo;
+		
+		private string _Serie;
+		
+		private System.Nullable<decimal> _ValorAsegurado;
+		
+		private System.Nullable<decimal> _ValorReposicion;
+		
+		private System.Nullable<decimal> _PorcDeducible;
+		
+		private string _BaseDeducible;
+		
+		private System.Nullable<decimal> _MinimoDeducible;
+		
+		private System.Nullable<decimal> _PorcPrima;
+		
+		private System.Nullable<System.DateTime> _FechaAdiciona;
+		
+		public SP_PROCESAR_INFORMACION_POLIZAS_EQUIPOS_ELECTRINICOSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Compania", DbType="Int")]
+		public System.Nullable<int> Compania
+		{
+			get
+			{
+				return this._Compania;
+			}
+			set
+			{
+				if ((this._Compania != value))
+				{
+					this._Compania = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cotizacion", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Cotizacion
+		{
+			get
+			{
+				return this._Cotizacion;
+			}
+			set
+			{
+				if ((this._Cotizacion != value))
+				{
+					this._Cotizacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Secuencia", DbType="Int")]
+		public System.Nullable<int> Secuencia
+		{
+			get
+			{
+				return this._Secuencia;
+			}
+			set
+			{
+				if ((this._Secuencia != value))
+				{
+					this._Secuencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdEquipo", DbType="Int")]
+		public System.Nullable<int> IdEquipo
+		{
+			get
+			{
+				return this._IdEquipo;
+			}
+			set
+			{
+				if ((this._IdEquipo != value))
+				{
+					this._IdEquipo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(150)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Marca", DbType="VarChar(150)")]
+		public string Marca
+		{
+			get
+			{
+				return this._Marca;
+			}
+			set
+			{
+				if ((this._Marca != value))
+				{
+					this._Marca = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Modelo", DbType="VarChar(150)")]
+		public string Modelo
+		{
+			get
+			{
+				return this._Modelo;
+			}
+			set
+			{
+				if ((this._Modelo != value))
+				{
+					this._Modelo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Serie", DbType="VarChar(150)")]
+		public string Serie
+		{
+			get
+			{
+				return this._Serie;
+			}
+			set
+			{
+				if ((this._Serie != value))
+				{
+					this._Serie = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorAsegurado", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> ValorAsegurado
+		{
+			get
+			{
+				return this._ValorAsegurado;
+			}
+			set
+			{
+				if ((this._ValorAsegurado != value))
+				{
+					this._ValorAsegurado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorReposicion", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> ValorReposicion
+		{
+			get
+			{
+				return this._ValorReposicion;
+			}
+			set
+			{
+				if ((this._ValorReposicion != value))
+				{
+					this._ValorReposicion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PorcDeducible", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> PorcDeducible
+		{
+			get
+			{
+				return this._PorcDeducible;
+			}
+			set
+			{
+				if ((this._PorcDeducible != value))
+				{
+					this._PorcDeducible = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BaseDeducible", DbType="VarChar(50)")]
+		public string BaseDeducible
+		{
+			get
+			{
+				return this._BaseDeducible;
+			}
+			set
+			{
+				if ((this._BaseDeducible != value))
+				{
+					this._BaseDeducible = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MinimoDeducible", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> MinimoDeducible
+		{
+			get
+			{
+				return this._MinimoDeducible;
+			}
+			set
+			{
+				if ((this._MinimoDeducible != value))
+				{
+					this._MinimoDeducible = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PorcPrima", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> PorcPrima
+		{
+			get
+			{
+				return this._PorcPrima;
+			}
+			set
+			{
+				if ((this._PorcPrima != value))
+				{
+					this._PorcPrima = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaAdiciona", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaAdiciona
+		{
+			get
+			{
+				return this._FechaAdiciona;
+			}
+			set
+			{
+				if ((this._FechaAdiciona != value))
+				{
+					this._FechaAdiciona = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_MOSTRAR_INVENTARIO_POLIZAS_EQUIPOS_ELECTRINICOSResult
+	{
+		
+		private int _Compania;
+		
+		private decimal _Cotizacion;
+		
+		private int _Secuencia;
+		
+		private int _IdEquipo;
+		
+		private string _Descripcion;
+		
+		private string _Marca;
+		
+		private string _Modelo;
+		
+		private string _Serie;
+		
+		private System.Nullable<decimal> _ValorAsegurado;
+		
+		private System.Nullable<decimal> _ValorReposicion;
+		
+		private System.Nullable<decimal> _PorcDeducible;
+		
+		private string _BaseDeducible;
+		
+		private System.Nullable<decimal> _MinimoDeducible;
+		
+		private System.Nullable<decimal> _PorcPrima;
+		
+		private System.Nullable<System.DateTime> _FechaAdiciona0;
+		
+		private string _FechaAdiciona;
+		
+		private System.Nullable<int> _TotalItems;
+		
+		public SP_MOSTRAR_INVENTARIO_POLIZAS_EQUIPOS_ELECTRINICOSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Compania", DbType="Int NOT NULL")]
+		public int Compania
+		{
+			get
+			{
+				return this._Compania;
+			}
+			set
+			{
+				if ((this._Compania != value))
+				{
+					this._Compania = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cotizacion", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Cotizacion
+		{
+			get
+			{
+				return this._Cotizacion;
+			}
+			set
+			{
+				if ((this._Cotizacion != value))
+				{
+					this._Cotizacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Secuencia", DbType="Int NOT NULL")]
+		public int Secuencia
+		{
+			get
+			{
+				return this._Secuencia;
+			}
+			set
+			{
+				if ((this._Secuencia != value))
+				{
+					this._Secuencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdEquipo", DbType="Int NOT NULL")]
+		public int IdEquipo
+		{
+			get
+			{
+				return this._IdEquipo;
+			}
+			set
+			{
+				if ((this._IdEquipo != value))
+				{
+					this._IdEquipo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(150)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Marca", DbType="VarChar(150)")]
+		public string Marca
+		{
+			get
+			{
+				return this._Marca;
+			}
+			set
+			{
+				if ((this._Marca != value))
+				{
+					this._Marca = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Modelo", DbType="VarChar(150)")]
+		public string Modelo
+		{
+			get
+			{
+				return this._Modelo;
+			}
+			set
+			{
+				if ((this._Modelo != value))
+				{
+					this._Modelo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Serie", DbType="VarChar(150)")]
+		public string Serie
+		{
+			get
+			{
+				return this._Serie;
+			}
+			set
+			{
+				if ((this._Serie != value))
+				{
+					this._Serie = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorAsegurado", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> ValorAsegurado
+		{
+			get
+			{
+				return this._ValorAsegurado;
+			}
+			set
+			{
+				if ((this._ValorAsegurado != value))
+				{
+					this._ValorAsegurado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorReposicion", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> ValorReposicion
+		{
+			get
+			{
+				return this._ValorReposicion;
+			}
+			set
+			{
+				if ((this._ValorReposicion != value))
+				{
+					this._ValorReposicion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PorcDeducible", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> PorcDeducible
+		{
+			get
+			{
+				return this._PorcDeducible;
+			}
+			set
+			{
+				if ((this._PorcDeducible != value))
+				{
+					this._PorcDeducible = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BaseDeducible", DbType="VarChar(50)")]
+		public string BaseDeducible
+		{
+			get
+			{
+				return this._BaseDeducible;
+			}
+			set
+			{
+				if ((this._BaseDeducible != value))
+				{
+					this._BaseDeducible = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MinimoDeducible", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> MinimoDeducible
+		{
+			get
+			{
+				return this._MinimoDeducible;
+			}
+			set
+			{
+				if ((this._MinimoDeducible != value))
+				{
+					this._MinimoDeducible = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PorcPrima", DbType="Decimal(18,6)")]
+		public System.Nullable<decimal> PorcPrima
+		{
+			get
+			{
+				return this._PorcPrima;
+			}
+			set
+			{
+				if ((this._PorcPrima != value))
+				{
+					this._PorcPrima = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaAdiciona0", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaAdiciona0
+		{
+			get
+			{
+				return this._FechaAdiciona0;
+			}
+			set
+			{
+				if ((this._FechaAdiciona0 != value))
+				{
+					this._FechaAdiciona0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaAdiciona", DbType="NVarChar(4000)")]
+		public string FechaAdiciona
+		{
+			get
+			{
+				return this._FechaAdiciona;
+			}
+			set
+			{
+				if ((this._FechaAdiciona != value))
+				{
+					this._FechaAdiciona = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalItems", DbType="Int")]
+		public System.Nullable<int> TotalItems
+		{
+			get
+			{
+				return this._TotalItems;
+			}
+			set
+			{
+				if ((this._TotalItems != value))
+				{
+					this._TotalItems = value;
 				}
 			}
 		}

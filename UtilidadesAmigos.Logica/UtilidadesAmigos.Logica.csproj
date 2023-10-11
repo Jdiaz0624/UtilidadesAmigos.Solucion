@@ -127,6 +127,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionCorrecciones\ProcesarInformacionBitacoraMontoAfianzado.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionCorrecciones\ProcesarInformacionEliminarEndosos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionCorrecciones\ProcesarInformacionEndososEliminados.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionCorrecciones\ProcesarInformacionPolizasEquiposElectronicos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionMantenimientos\ProcesarInformacionAntiguedadSaldo.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionMantenimientos\ProcesarInformacionTasaMoneda.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionModulos.cs" />
@@ -245,6 +246,7 @@
     <Compile Include="Entidades\Correcciones\EBuscaInformacionPolizasFianzas.cs" />
     <Compile Include="Entidades\Correcciones\EEliminarEndoso.cs" />
     <Compile Include="Entidades\Correcciones\EEndososEliminados.cs" />
+    <Compile Include="Entidades\Correcciones\EInformacionPolizasEquiposElectrinicos.cs" />
     <Compile Include="Entidades\Correcciones\EModificarMontoAfianzado.cs" />
     <Compile Include="Entidades\Cotizador\EAnoVehiculo.cs" />
     <Compile Include="Entidades\Cotizador\EComprensivoIncendioRobo.cs" />

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionCorreccionesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;User ID=SA" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString6" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_BUSCA_ENDOSO_SESION" Method="SP_BUSCA_ENDOSO_SESION">
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="Item" Parameter="item" Type="System.Int32" DbType="Int" />
@@ -183,6 +183,64 @@
       <Column Name="Supervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="CantidadEquipos" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CantidadEquiposTotal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_PROCESAR_INFORMACION_POLIZAS_EQUIPOS_ELECTRINICOS" Method="SP_PROCESAR_INFORMACION_POLIZAS_EQUIPOS_ELECTRINICOS">
+    <Parameter Name="Compania" Parameter="compania" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Cotizacion" Parameter="cotizacion" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="Secuencia" Parameter="secuencia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEquipo" Parameter="idEquipo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="Marca" Parameter="marca" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="Modelo" Parameter="modelo" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="Serie" Parameter="serie" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="ValorAsegurado" Parameter="valorAsegurado" Type="System.Decimal" DbType="Decimal(18,2)" />
+    <Parameter Name="ValorReposicion" Parameter="valorReposicion" Type="System.Decimal" DbType="Decimal(18,2)" />
+    <Parameter Name="PorcDeducible" Parameter="porcDeducible" Type="System.Decimal" DbType="Decimal(18,2)" />
+    <Parameter Name="BaseDeducible" Parameter="baseDeducible" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="MinimoDeducible" Parameter="minimoDeducible" Type="System.Decimal" DbType="Decimal(18,2)" />
+    <Parameter Name="PorcPrima" Parameter="porcPrima" Type="System.Decimal" DbType="Decimal(18,2)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="SP_PROCESAR_INFORMACION_POLIZAS_EQUIPOS_ELECTRINICOSResult">
+      <Column Name="Compania" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cotizacion" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Secuencia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdEquipo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Marca" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Modelo" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Serie" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ValorAsegurado" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="ValorReposicion" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="PorcDeducible" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="BaseDeducible" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MinimoDeducible" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="PorcPrima" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="FechaAdiciona" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_MOSTRAR_INVENTARIO_POLIZAS_EQUIPOS_ELECTRINICOS" Method="SP_MOSTRAR_INVENTARIO_POLIZAS_EQUIPOS_ELECTRINICOS">
+    <Parameter Name="Cotizacion" Parameter="cotizacion" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="Secuencia" Parameter="secuencia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEquipo" Parameter="idEquipo" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_MOSTRAR_INVENTARIO_POLIZAS_EQUIPOS_ELECTRINICOSResult">
+      <Column Name="Compania" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cotizacion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Secuencia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdEquipo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Marca" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Modelo" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Serie" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ValorAsegurado" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="ValorReposicion" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="PorcDeducible" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="BaseDeducible" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MinimoDeducible" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="PorcPrima" Type="System.Decimal" DbType="Decimal(18,6)" CanBeNull="true" />
+      <Column Name="FechaAdiciona0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaAdiciona" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="TotalItems" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

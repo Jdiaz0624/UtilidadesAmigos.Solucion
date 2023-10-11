@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -336,6 +337,94 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaCorrecciones
                                CantidadEquiposTotal=n.CantidadEquiposTotal
                            }).ToList();
             return Listado;
+        }
+
+        /// <summary>
+        /// Muestra el Inventario de los equipos electrinicos
+        /// </summary>
+        /// <param name="Cotizacion"></param>
+        /// <param name="Secuencia"></param>
+        /// <param name="IdEquipo"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Correcciones.EInformacionPolizasEquiposElectrinicos> MostrarInventarioEquiposElectrinicos(decimal? Cotizacion = null, int? Secuencia = null, int? IdEquipo = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Inventario = (from n in ObjData.SP_MOSTRAR_INVENTARIO_POLIZAS_EQUIPOS_ELECTRINICOS(Cotizacion, Secuencia, IdEquipo)
+                              select new UtilidadesAmigos.Logica.Entidades.Correcciones.EInformacionPolizasEquiposElectrinicos
+                              {
+                                  Compania=n.Compania,
+                                  Cotizacion=n.Cotizacion,
+                                  Secuencia=n.Secuencia,
+                                  IdEquipo=n.IdEquipo,
+                                  Descripcion=n.Descripcion,
+                                  Marca=n.Marca,
+                                  Modelo=n.Modelo,
+                                  Serie=n.Serie,
+                                  ValorAsegurado=n.ValorAsegurado,
+                                  ValorReposicion=n.ValorReposicion,
+                                  PorcDeducible=n.PorcDeducible,
+                                  BaseDeducible=n.BaseDeducible,
+                                  MinimoDeducible=n.MinimoDeducible,
+                                  PorcPrima=n.PorcPrima,
+                                  FechaAdiciona0=n.FechaAdiciona0,
+                                  FechaAdiciona=n.FechaAdiciona,
+                                  TotalItems=n.TotalItems
+                              }).ToList();
+            return Inventario;
+        }
+
+        /// <summary>
+        /// Procesa la Información del Inventario
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Correcciones.EInformacionPolizasEquiposElectrinicos ProcesarEquiposElectrionicos(UtilidadesAmigos.Logica.Entidades.Correcciones.EInformacionPolizasEquiposElectrinicos Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Correcciones.EInformacionPolizasEquiposElectrinicos Procesar = null;
+
+            var Equipos = ObjData.SP_PROCESAR_INFORMACION_POLIZAS_EQUIPOS_ELECTRINICOS(
+                Item.Compania,
+                Item.Cotizacion,
+                Item.Secuencia,
+                Item.IdEquipo,
+                Item.Descripcion,
+                Item.Marca,
+                Item.Modelo,
+                Item.Serie,
+                Item.ValorAsegurado,
+                Item.ValorReposicion,
+                Item.PorcDeducible,
+                Item.BaseDeducible,
+                Item.MinimoDeducible,
+                Item.PorcPrima,
+                Accion);
+            if (Equipos != null)
+            {
+                Procesar = (from n in Equipos
+                            select new UtilidadesAmigos.Logica.Entidades.Correcciones.EInformacionPolizasEquiposElectrinicos
+                            {
+                                Compania = n.Compania,
+                                Cotizacion = n.Cotizacion,
+                                Secuencia = n.Secuencia,
+                                IdEquipo = n.IdEquipo,
+                                Descripcion = n.Descripcion,
+                                Marca = n.Marca,
+                                Modelo = n.Modelo,
+                                Serie = n.Serie,
+                                ValorAsegurado = n.ValorAsegurado,
+                                ValorReposicion = n.ValorReposicion,
+                                PorcDeducible = n.PorcDeducible,
+                                BaseDeducible = n.BaseDeducible,
+                                MinimoDeducible = n.MinimoDeducible,
+                                PorcPrima = n.PorcPrima,
+                                FechaAdiciona0 = n.FechaAdiciona,
+                            }).FirstOrDefault();
+            }
+            return Procesar;
         }
         #endregion
     }
