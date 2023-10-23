@@ -70,5 +70,8 @@ namespace UtilidadesAmigos.Logica.Entidades.Reportes
 		public string ValidadoDesde { get; set; }
 
 		public string ValidadoHasta { get; set; }
-	}
+        public System.Nullable<decimal> ValorPoliza { get; set; }
+
+        public System.Nullable<decimal> BalancePendiente { get; set; }
+    }
 }

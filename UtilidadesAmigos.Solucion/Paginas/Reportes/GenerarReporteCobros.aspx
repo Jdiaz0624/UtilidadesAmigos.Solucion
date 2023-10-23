@@ -184,13 +184,15 @@
                     <thead class="table table-dark">
                         <tr>
                             <th scope="col" > Poliza </th>
-                            <th scope="col" > Ramo </th>
                             <th scope="col" > Recibo </th>
-                            <th scope="col" > Concepto </th>
                             <th scope="col" > Valor </th>
                             <th scope="col" > Moneda </th>
                             <th scope="col" > Fecha </th>
+                            <th scope="col" > Ramo </th>
+                            <th scope="col" > Concepto </th>
                             <th scope="col" > Tipo Pago </th>
+                            <th scope="col" > Valor Poliza </th>
+                            <th scope="col" > Balance </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -198,13 +200,15 @@
                             <ItemTemplate>
                                 <tr>
                                     <td> <%#Eval("Poliza") %> </td>
-                                    <td> <%# Eval("Ramo") %> </td>
                                     <td> <%#Eval("NumeroFormateado") %> </td>
-                                    <td> <%#Eval("Concepto") %> </td>
                                     <td> <%# string.Format("{0:n2}", Eval("Bruto")) %> </td>
                                     <td> <%#Eval("Moneda") %> </td>
                                     <td> <%#Eval("FechaFormateada") %>  </td>
+                                    <td> <%# Eval("Ramo") %> </td>
+                                    <td> <%#Eval("Concepto") %> </td>
                                     <td> <%#Eval("TipoPago") %> </td>
+                                    <td> <%# string.Format("{0:n2}", Eval("ValorPoliza")) %> </td>
+                                    <td> <%# string.Format("{0:n2}", Eval("BalancePendiente")) %> </td>
                                 </tr>
                             </ItemTemplate>
                         </asp:Repeater>

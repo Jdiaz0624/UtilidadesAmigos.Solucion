@@ -783,7 +783,9 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                                TotalCobradoDolar=n.TotalCobradoDolar,
                                UsuarioGenera=n.UsuarioGenera,
                                ValidadoDesde=n.ValidadoDesde,
-                               ValidadoHasta=n.ValidadoHasta
+                               ValidadoHasta=n.ValidadoHasta,
+                               ValorPoliza=n.ValorPoliza,
+                               BalancePendiente=n.BalancePendiente
                                
                            }).ToList();
             return Listado;
