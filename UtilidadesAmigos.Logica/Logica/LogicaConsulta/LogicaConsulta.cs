@@ -57,7 +57,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                TotalRecibos=n.TotalRecibos,
                                TotalReclamaciones=n.TotalReclamaciones,
                                FechaUltimoPago=n.FechaUltimoPago,
-                               MontoUltimoPago=n.MontoUltimoPago
+                               MontoUltimoPago=n.MontoUltimoPago,
+                               BalancePendiente=n.BalancePendiente
                            }).ToList();
             return Listado;
         }

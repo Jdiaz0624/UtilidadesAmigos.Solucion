@@ -1216,7 +1216,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 txtTotalFacturado.Text = TotalFActurado.ToString("N2");
                 decimal TotalCobrado = (decimal)n.Cobrado;
                 txtTotalCobradoGestionCobros.Text = TotalCobrado.ToString("N2");
-                decimal Balance = (decimal)n.Balance;
+                decimal Balance = (decimal)n.BalancePendiente;
                 txtBalanceGestionCobros.Text = Balance.ToString("N2");
                 int TotalFacturas = (int)n.TotalFacturas;
                 txtTotalFacturasGestionCobros.Text = TotalFacturas.ToString("N0");
@@ -2318,7 +2318,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                             Oficina = n.Oficina,
                                             Facturado = n.Facturado,
                                             Cobrado = n.Cobrado,
-                                            Balance = n.Balance
+                                            ValorPoliza=n.Prima,
+                                            MontoUltimoPago=n.MontoUltimoPago,
+                                            Balance = n.BalancePendiente
                                         }).ToList();
                         UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Renovacion", Exportar);
                     }

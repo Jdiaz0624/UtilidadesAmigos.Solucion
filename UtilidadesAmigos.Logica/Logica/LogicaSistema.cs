@@ -2331,6 +2331,8 @@ namespace UtilidadesAmigos.Logica.Logica
                                Cotizacion=n.Cotizacion,
                                Estatus=n.Estatus,
                                Prima=n.Prima,
+                               MontoUltimoPago=n.MontoUltimoPago,
+                               BalancePendiente=n.BalancePendiente,
                                SumaAsegurada=n.SumaAsegurada,
                                CodRamo=n.CodRamo,
                                CodSubramo=n.CodSubramo,

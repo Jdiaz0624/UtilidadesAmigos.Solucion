@@ -72,5 +72,6 @@ namespace UtilidadesAmigos.Logica.Entidades.Consulta
 		public string FechaUltimoPago { get; set; }
 
 		public System.Nullable<decimal> MontoUltimoPago { get; set; }
-	}
+        public System.Nullable<decimal> BalancePendiente { get; set; }
+    }
 }

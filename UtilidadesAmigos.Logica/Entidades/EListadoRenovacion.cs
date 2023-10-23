@@ -15,8 +15,10 @@ namespace UtilidadesAmigos.Logica.Entidades
 		public string Estatus { get; set; }
 
 		public System.Nullable<decimal> Prima { get; set; }
+        public System.Nullable<decimal> MontoUltimoPago { get; set; }
+        public System.Nullable<decimal> BalancePendiente { get; set; }
 
-		public System.Nullable<decimal> SumaAsegurada { get; set; }
+        public System.Nullable<decimal> SumaAsegurada { get; set; }
 
 		public int? CodRamo { get; set; }
 
