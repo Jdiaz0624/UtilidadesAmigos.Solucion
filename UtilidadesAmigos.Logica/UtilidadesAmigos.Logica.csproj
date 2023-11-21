@@ -170,6 +170,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionSolicitudCheques.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionSolicitudCuentas.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarMontosSolicitudCheques.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\Reporte\ProcesarInformacionAntiguedadSaldoCruzado.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\Reporte\ProcesarInformacionComisionesIntermediariosAlfredo.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\Reporte\ProcesarInformacionConBalanceAgrupada.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\Reporte\ProcesarInformacionDatosReporteNuevo.cs" />
@@ -436,6 +437,8 @@
     <Compile Include="Entidades\Procesos\ESacarRutaArchivoGaurdado.cs" />
     <Compile Include="Entidades\ProduccionPorUsuario.cs" />
     <Compile Include="Entidades\Reportes\EAntiguedadSaldoCXP.cs" />
+    <Compile Include="Entidades\Reportes\EAntiguedadSaldoPolizasEmitidas.cs" />
+    <Compile Include="Entidades\Reportes\EAntiguedadSaldoPolizasEmitidasTransito.cs" />
     <Compile Include="Entidades\Reportes\EBuscaBeneficiariosSobreComisiones.cs" />
     <Compile Include="Entidades\Reportes\EBuscaDataCobradoDetalle.cs" />
     <Compile Include="Entidades\Reportes\EBuscaDatosProduccionNoAgrupadoResumen.cs" />
@@ -467,6 +470,7 @@
     <Compile Include="Entidades\Reportes\EPrimaDepositoPendiente.cs" />
     <Compile Include="Entidades\Reportes\EProcesarChequesInformacionImprimir.cs" />
     <Compile Include="Entidades\Reportes\EProcesarDatosReporteIntermediairoInterno.cs" />
+    <Compile Include="Entidades\Reportes\EProcesarInformacionAntiguedadSaldoCruzado.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionComisionesIntermediarioAlfredo.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionComisionesSupervisores.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionDataCobrado.cs" />

@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionReportesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSegurosNew" Class="BDConexionReportesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSegurosNew;User ID=sa;Encrypt=False" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosNewConnectionString" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDO" Method="SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDO">
     <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Sucursal" Parameter="sucursal" Type="System.String" DbType="VarChar(100)" />
@@ -2255,6 +2255,157 @@
       <Column Name="ValidadoHasta" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
       <Column Name="ValorPoliza" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="BalancePendiente" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_ANTIGUEDAD_SALDO_POLIZAS_EMITIDAS_TRANSITO" Method="SP_BUSCA_ANTIGUEDAD_SALDO_POLIZAS_EMITIDAS_TRANSITO">
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_BUSCA_ANTIGUEDAD_SALDO_POLIZAS_EMITIDAS_TRANSITOResult">
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ConceptoMov" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Origen" Type="System.String" DbType="VarChar(18) NOT NULL" CanBeNull="false" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoRamo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Ramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoSubramo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SubRamo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Item" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="FinVigencia" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="MontoNeto" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CodigoCliente" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="NumeroIdentificacionCliente" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TelefonoOficinaCliente" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TelefonoResidenciaCliente" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CelularCliente" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Column Name="FaxCliente" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MontoMov" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_PROCESAR_INFORMACION_ANTIGUEDAD_SALDO_CRUZADO" Method="SP_PROCESAR_INFORMACION_ANTIGUEDAD_SALDO_CRUZADO">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Origen" Parameter="origen" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="EstatusSistema" Parameter="estatusSistema" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="CodigoRamo" Parameter="codigoRamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="CodigoSubRamo" Parameter="codigoSubRamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SubRamo" Parameter="subRamo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Item" Parameter="item" Type="System.Int32" DbType="Int" />
+    <Parameter Name="InicioVigencia" Parameter="inicioVigencia" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="FInVigencia" Parameter="fInVigencia" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="MontoNeto" Parameter="montoNeto" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="CodigoSupervisor" Parameter="codigoSupervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NombreSupervisor" Parameter="nombreSupervisor" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="CodigoIntermediario" Parameter="codigoIntermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NombreIntermediario" Parameter="nombreIntermediario" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Codigocliente" Parameter="codigocliente" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="NombreCliente" Parameter="nombreCliente" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="NumeroIdentificacionCliente" Parameter="numeroIdentificacionCliente" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="TelefonoOficinaCliente" Parameter="telefonoOficinaCliente" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="TelefonoResidenciaCliente" Parameter="telefonoResidenciaCliente" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="CelularCliente" Parameter="celularCliente" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="FaxCliente" Parameter="faxCliente" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Facturado" Parameter="facturado" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Balance" Parameter="balance" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="CantidadDias" Parameter="cantidadDias" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ValorPorDia" Parameter="valorPorDia" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="UltimaFechaPago" Parameter="ultimaFechaPago" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="MontoUltimoPago" Parameter="montoUltimoPago" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="FinCobertura" Parameter="finCobertura" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="_0_30" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="_31_60" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="_61_90" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="_91_120" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="_121_150" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="_151_MAS" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="SP_PROCESAR_INFORMACION_ANTIGUEDAD_SALDO_CRUZADOResult">
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Origen" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="EstatusSistema" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ramo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoSubRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubRamo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Item" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FInVigencia" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="MontoNeto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreSupervisor" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreIntermediario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Codigocliente" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="NombreCliente" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NumeroIdentificacionCliente" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TelefonoOficinaCliente" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TelefonoResidenciaCliente" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="CelularCliente" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FaxCliente" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Facturado" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="CantidadDias" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ValorPorDia" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="UltimaFechaPago" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="MontoUltimoPago" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="FinCobertura" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="[_0_30]" Member="_0_30" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="[_31_60]" Member="_31_60" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="[_61_90]" Member="_61_90" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="[_91_120]" Member="_91_120" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="[_121_150]" Member="_121_150" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="[_151_MAS]" Member="_151_MAS" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_ANTIGUEDAD_SALDO_POLIZAS_EMITIDAS" Method="SP_BUSCA_ANTIGUEDAD_SALDO_POLIZAS_EMITIDAS">
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_BUSCA_ANTIGUEDAD_SALDO_POLIZAS_EMITIDASResult">
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Origen" Type="System.String" DbType="VarChar(14) NOT NULL" CanBeNull="false" />
+      <Column Name="EstatusSistema" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoRamo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Ramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoSubRamo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Subramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Item" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="FinVigencia" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="MontoNeto" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CodigoCliente" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="NumeroIdentificacionCliente" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TelefonoOficinaCliente" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TelefonoResidenciaCliente" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CelularCliente" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Column Name="FaxCliente" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Facturado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="CantidadDias" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ValorPorDia" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="UltimaFechaPago" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="MontoUltimoPago" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="A_0_30" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="A_31_60" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="A_61_90" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="A_91_120" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="A_121_150" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="A_151_MAS" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

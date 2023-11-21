@@ -2875,6 +2875,201 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
         }
         #endregion
 
-       
+        #region ANTIGUEDAD DE SALDO CRUZADO
+        /// <summary>
+        /// Busca las Policas de Antigeudad de Saldo
+        /// </summary>
+        /// <param name="Poliza"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="Supervisor"></param>
+        /// <param name="Intermediario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EAntiguedadSaldoPolizasEmitidas> BuscaAntiguedadSaldoPolizasEmitidas(string Poliza = null, int? Ramo = null, int? Supervisor = null, int? Intermediario = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Informacion = (from n in ObjData.SP_BUSCA_ANTIGUEDAD_SALDO_POLIZAS_EMITIDAS(Poliza, Ramo, Supervisor, Intermediario)
+                               select new UtilidadesAmigos.Logica.Entidades.Reportes.EAntiguedadSaldoPolizasEmitidas
+                               {
+                                   Poliza=n.Poliza,
+                                   Origen=n.Origen,
+                                   EstatusSistema=n.EstatusSistema,
+                                   CodigoRamo=n.CodigoRamo,
+                                   Ramo=n.Ramo,
+                                   CodigoSubRamo=n.CodigoSubRamo,
+                                   Subramo=n.Subramo,
+                                   Item=n.Item,
+                                   InicioVigencia=n.InicioVigencia,
+                                   FinVigencia=n.FinVigencia,
+                                   MontoNeto=n.MontoNeto,
+                                   CodigoSupervisor=n.CodigoSupervisor,
+                                   Supervisor=n.Supervisor,
+                                   CodigoIntermediario=n.CodigoIntermediario,
+                                   Intermediario=n.Intermediario,
+                                   CodigoCliente=n.CodigoCliente,
+                                   Cliente=n.Cliente,
+                                   NumeroIdentificacionCliente=n.NumeroIdentificacionCliente,
+                                   TelefonoOficinaCliente=n.TelefonoOficinaCliente,
+                                   TelefonoResidenciaCliente=n.TelefonoResidenciaCliente,
+                                   CelularCliente=n.CelularCliente,
+                                   FaxCliente=n.FaxCliente,
+                                   Facturado=n.Facturado,
+                                   Balance=n.Balance,
+                                   CantidadDias=n.CantidadDias,
+                                   ValorPorDia=n.ValorPorDia,
+                                   UltimaFechaPago=n.UltimaFechaPago,
+                                   MontoUltimoPago=n.MontoUltimoPago,
+                                   A_0_30=n.A_0_30,
+                                   A_31_60=n.A_31_60,
+                                   A_61_90=n.A_61_90,
+                                   A_91_120=n.A_91_120,
+                                   A_121_150=n.A_121_150,
+                                   A_151_MAS=n.A_151_MAS
+                               }).ToList();
+            return Informacion;
+        }
+
+        /// <summary>
+        /// usca las Policas de Antigeudad de Saldo en Transito
+        /// </summary>
+        /// <param name="Poliza"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="Supervisor"></param>
+        /// <param name="Intermediario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EAntiguedadSaldoPolizasEmitidasTransito> BuscaAntiguedadSaldoPolizasEmitidasTransito(string Poliza = null, int? Ramo = null, int? Supervisor = null, int? Intermediario = null)
+        {
+            ObjData.CommandTimeout = 999999999;
+
+            var Informacion = (from n in ObjData.SP_BUSCA_ANTIGUEDAD_SALDO_POLIZAS_EMITIDAS_TRANSITO(Poliza, Ramo, Supervisor, Intermediario)
+                               select new UtilidadesAmigos.Logica.Entidades.Reportes.EAntiguedadSaldoPolizasEmitidasTransito
+                               {
+                                   Poliza=n.Poliza,
+                                   ConceptoMov=n.ConceptoMov,
+                                   Origen=n.Origen,
+                                   Estatus=n.Estatus,
+                                   CodigoRamo=n.CodigoRamo,
+                                   Ramo=n.Ramo,
+                                   CodigoSubramo=n.CodigoSubramo,
+                                   SubRamo=n.SubRamo,
+                                   Item=n.Item,
+                                   InicioVigencia=n.InicioVigencia,
+                                   FinVigencia=n.FinVigencia,
+                                   MontoNeto=n.MontoNeto,
+                                   CodigoSupervisor=n.CodigoSupervisor,
+                                   Supervisor=n.Supervisor,
+                                   CodigoIntermediario=n.CodigoIntermediario,
+                                   Intermediario=n.Intermediario,
+                                   CodigoCliente=n.CodigoCliente,
+                                   Cliente=n.Cliente,
+                                   NumeroIdentificacionCliente=n.NumeroIdentificacionCliente,
+                                   TelefonoOficinaCliente=n.TelefonoOficinaCliente,
+                                   TelefonoResidenciaCliente=n.TelefonoResidenciaCliente,
+                                   CelularCliente=n.CelularCliente,
+                                   FaxCliente=n.FaxCliente,
+                                   MontoMov=n.MontoMov
+                               }).ToList();
+            return Informacion;
+        }
+
+        /// <summary>
+        /// Procesa la Informacion del saldo de antiguedad de manera cruzada
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionAntiguedadSaldoCruzado ProcesarInformacionAntiguedadSaldoCruzado(UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionAntiguedadSaldoCruzado Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionAntiguedadSaldoCruzado Procesar = null;
+
+            var Antiguedad = ObjData.SP_PROCESAR_INFORMACION_ANTIGUEDAD_SALDO_CRUZADO(
+                Item.IdUsuario,
+                Item.Poliza,
+                Item.Origen,
+                Item.EstatusSistema,
+                Item.CodigoRamo,
+                Item.Ramo,
+                Item.CodigoSubRamo,
+                Item.SubRamo,
+                Item.Item,
+                Item.InicioVigencia,
+                Item.FInVigencia,
+                Item.MontoNeto,
+                Item.CodigoSupervisor,
+                Item.NombreSupervisor,
+                Item.CodigoIntermediario,
+                Item.NombreIntermediario,
+                Item.Codigocliente,
+                Item.NombreCliente,
+                Item.NumeroIdentificacionCliente,
+                Item.TelefonoOficinaCliente,
+                Item.TelefonoResidenciaCliente,
+                Item.CelularCliente,
+                Item.FaxCliente,
+                Item.Facturado,
+                Item.Balance,
+                Item.CantidadDias,
+                Item.ValorPorDia,
+                Item.UltimaFechaPago,
+                Item.MontoUltimoPago,
+                Item.FinCobertura,
+                Item.__0_30,
+                Item.__31_60,
+                Item.__61_90,
+                Item.__91_120,
+                Item.__121_150,
+                Item.__151_MAS,
+                Accion);
+            if (Antiguedad != null) {
+
+                Procesar = (from n in Antiguedad
+                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionAntiguedadSaldoCruzado
+                            {
+                                IdUsuario=n.IdUsuario,
+                                Poliza=n.Poliza,
+                                Origen=n.Origen,
+                                EstatusSistema=n.EstatusSistema,
+                                CodigoRamo=n.CodigoRamo,
+                                Ramo=n.Ramo,
+                                CodigoSubRamo=n.CodigoSubRamo,
+                                SubRamo=n.SubRamo,
+                                Item=n.Item,
+                                InicioVigencia=n.InicioVigencia,
+                                FInVigencia=n.FInVigencia,
+                                MontoNeto=n.MontoNeto,
+                                CodigoSupervisor=n.CodigoSupervisor,
+                                NombreSupervisor=n.NombreSupervisor,
+                                CodigoIntermediario=n.CodigoIntermediario,
+                                NombreIntermediario=n.NombreIntermediario,
+                                Codigocliente=n.Codigocliente,
+                                NombreCliente=n.NombreCliente,
+                                NumeroIdentificacionCliente=n.NumeroIdentificacionCliente,
+                                TelefonoOficinaCliente=n.TelefonoOficinaCliente,
+                                TelefonoResidenciaCliente=n.TelefonoResidenciaCliente,
+                                CelularCliente=n.CelularCliente,
+                                FaxCliente=n.FaxCliente,
+                                Facturado=n.Facturado,
+                                Balance=n.Balance,
+                                CantidadDias=n.CantidadDias,
+                                ValorPorDia=n.ValorPorDia,
+                                UltimaFechaPago=n.UltimaFechaPago,
+                                MontoUltimoPago=n.MontoUltimoPago,
+                                FinCobertura=n.FinCobertura,
+                                __0_30=n._0_30,
+                                __31_60=n._31_60,
+                                __61_90=n._61_90,
+                                __91_120=n._91_120,
+                                __121_150=n._121_150,
+                                __151_MAS=n._151_MAS
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+            
+        }
+        #endregion
+
+
     }
 }
