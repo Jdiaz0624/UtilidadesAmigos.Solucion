@@ -445,6 +445,7 @@
     <Compile Include="Entidades\Reportes\EBuscaDatosProducionNoAgrupadoDetalle.cs" />
     <Compile Include="Entidades\Reportes\EBuscaDepositosPrima.cs" />
     <Compile Include="Entidades\Reportes\EBuscaEnlaceProveedores.cs" />
+    <Compile Include="Entidades\Reportes\EBuscaInformacionAntiguedadSaldoCruzado.cs" />
     <Compile Include="Entidades\Reportes\EBuscaReporteAgrupadoPorUsuario.cs" />
     <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadaSupervisor.cs" />
     <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadoOficina.cs" />
