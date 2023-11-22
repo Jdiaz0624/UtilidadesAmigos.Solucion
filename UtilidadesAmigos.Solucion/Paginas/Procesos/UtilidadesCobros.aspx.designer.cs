@@ -15,22 +15,31 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
     {
 
         /// <summary>
-        /// lbNumeroreciboSeleccionado control.
+        /// hfNumeroReciboSeleccionado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbNumeroreciboSeleccionado;
+        protected global::System.Web.UI.WebControls.HiddenField hfNumeroReciboSeleccionado;
 
         /// <summary>
-        /// lbIdPerfil control.
+        /// hfIdPerfil control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbIdPerfil;
+        protected global::System.Web.UI.WebControls.HiddenField hfIdPerfil;
+
+        /// <summary>
+        /// DIVBloquePrincial control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVBloquePrincial;
 
         /// <summary>
         /// lbCorreirPolizaSonPagos control.
@@ -51,13 +60,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.TextBox txtPolizaSinPagos;
 
         /// <summary>
-        /// btnProcesarPolizaSinPagos control.
+        /// btnProcesarPolizasSinPagosFinal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnProcesarPolizaSinPagos;
+        protected global::System.Web.UI.WebControls.ImageButton btnProcesarPolizasSinPagosFinal;
 
         /// <summary>
         /// lbConsultarPolizaFormaPago control.
@@ -78,13 +87,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.TextBox txtNumeroRecibo;
 
         /// <summary>
-        /// btnBuscarPolizaFormaPago control.
+        /// btnBuscarPolizaFormaPagoFinal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscarPolizaFormaPago;
+        protected global::System.Web.UI.WebControls.ImageButton btnBuscarPolizaFormaPagoFinal;
 
         /// <summary>
         /// rpListadoFormaPago control.
@@ -94,6 +103,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rpListadoFormaPago;
+
+        /// <summary>
+        /// DIVBloqueSegundario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVBloqueSegundario;
 
         /// <summary>
         /// DivBloqueModificar control.
@@ -159,21 +177,21 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.RadioButton rbOtros;
 
         /// <summary>
-        /// btnGuardar control.
+        /// btnGuardarFinal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardar;
+        protected global::System.Web.UI.WebControls.ImageButton btnGuardarFinal;
 
         /// <summary>
-        /// btnVolver control.
+        /// btnVolverFinal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVolver;
+        protected global::System.Web.UI.WebControls.ImageButton btnVolverFinal;
     }
 }

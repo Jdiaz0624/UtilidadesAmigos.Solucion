@@ -78,7 +78,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
 
             UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionProcesos.ProcesarInformacionFormaPago Procesar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionProcesos.ProcesarInformacionFormaPago(
-                Convert.ToDecimal(lbNumeroreciboSeleccionado.Text),
+                Convert.ToDecimal(hfNumeroReciboSeleccionado.Value),
                 TipoPago,
                 "UPDATE");
             Procesar.ProcesarInformacion();
@@ -86,7 +86,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) {
-                lbNumeroreciboSeleccionado.Text = "0";
+                hfNumeroReciboSeleccionado.Value = "0";
 
                 UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario NombreUsuario = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
                 Label lbNombreUsuario = (Label)Master.FindControl("lbUsuarioConectado");
@@ -95,33 +95,33 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbPantalla.Text = "UTILIDADES DE COBROS";
 
+                DIVBloquePrincial.Visible = true;
+                DIVBloqueSegundario.Visible = false;
+
             }
         }
 
-        protected void btnProcesarPolizaSinPagos_Click(object sender, EventArgs e)
+        protected void btnProcesarPolizasSinPagosFinal_Click(object sender, ImageClickEventArgs e)
         {
             string _Poliza = string.IsNullOrEmpty(txtPolizaSinPagos.Text.Trim()) ? null : txtPolizaSinPagos.Text.Trim();
             CorregirPolizaSinCobro(_Poliza);
         }
 
-        protected void btnBuscarPolizaFormaPago_Click(object sender, EventArgs e)
-        {
-            BuscarReciboFormaPago();
-        }
-
-        protected void btnSeleccionar_Click(object sender, EventArgs e)
+        protected void btnSeleccionarRegistro_Click(object sender, ImageClickEventArgs e)
         {
             DivBloqueModificar.Visible = true;
-            var RegistroSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+            var RegistroSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
             var hfRegistroSeleccionado = ((HiddenField)RegistroSeleccionado.FindControl("hfNumeroRecibo")).Value.ToString();
-            lbNumeroreciboSeleccionado.Text = hfRegistroSeleccionado;
+            hfNumeroReciboSeleccionado.Value = hfRegistroSeleccionado;
 
             string TipoPago = "";
             var SacarTipoPago = ObjData.Value.BuscaPolizaFormaPago(Convert.ToDecimal(hfRegistroSeleccionado));
-            foreach (var n in SacarTipoPago) {
+            foreach (var n in SacarTipoPago)
+            {
                 TipoPago = n.Tipo;
             }
-            switch (TipoPago) {
+            switch (TipoPago)
+            {
 
                 case "EFECTIVO":
                     rbEfectivo.Checked = true;
@@ -147,22 +147,35 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                     rbOtros.Checked = true;
                     break;
             }
+
+            DIVBloquePrincial.Visible = false;
+            DIVBloqueSegundario.Visible = true;
         }
 
-        protected void btnGuardar_Click(object sender, EventArgs e)
+        protected void btnBuscarPolizaFormaPagoFinal_Click(object sender, ImageClickEventArgs e)
+        {
+            BuscarReciboFormaPago();
+        }
+
+        protected void btnGuardarFinal_Click(object sender, ImageClickEventArgs e)
         {
             ModificarInformacion();
-            txtNumeroRecibo.Text = lbNumeroreciboSeleccionado.Text;
+            txtNumeroRecibo.Text = hfNumeroReciboSeleccionado.Value;
             BuscarReciboFormaPago();
-            DivBloqueModificar.Visible = false;
-           
+
+
+            DIVBloquePrincial.Visible = true;
+            DIVBloqueSegundario.Visible = false;
         }
 
-        protected void btnVolver_Click(object sender, EventArgs e)
+        protected void btnVolverFinal_Click(object sender, ImageClickEventArgs e)
         {
-            lbNumeroreciboSeleccionado.Text = "0";
+            hfNumeroReciboSeleccionado.Value = "0";
             DivBloqueModificar.Visible = false;
             txtNumeroRecibo.Text = string.Empty;
+
+            DIVBloquePrincial.Visible = true;
+            DIVBloqueSegundario.Visible = false;
         }
     }
 }
