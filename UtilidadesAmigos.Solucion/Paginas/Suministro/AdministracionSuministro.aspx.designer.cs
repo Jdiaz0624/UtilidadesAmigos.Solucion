@@ -780,15 +780,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         protected global::System.Web.UI.WebControls.Repeater rpListadoInventario;
 
         /// <summary>
-        /// lbCantidadPaginaVariable_InventarioConsulta control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVariable_InventarioConsulta;
-
-        /// <summary>
         /// lbPaginaActualVariable_InventarioConsulta control.
         /// </summary>
         /// <remarks>
@@ -796,6 +787,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbPaginaActualVariable_InventarioConsulta;
+
+        /// <summary>
+        /// lbCantidadPaginaVariable_InventarioConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVariable_InventarioConsulta;
 
         /// <summary>
         /// lbCantidadRegistros_InventarioConsulta control.

@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionSuministroDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSegurosNew" Class="BDConexionSuministroDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSegurosNew;User ID=juan.diaz;Encrypt=False" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosNewConnectionString1" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_BUSCA_SUMINISTRO_INVENTARIO" Method="SP_BUSCA_SUMINISTRO_INVENTARIO">
     <Parameter Name="CodigoArticulo" Parameter="codigoArticulo" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Articulo" Parameter="articulo" Type="System.String" DbType="VarChar(1000)" />
@@ -391,6 +391,28 @@
       <Column Name="CantidadSolicitudes_Canceladas" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CantidadSolicitudes_Rechazadas" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CantidadSolicitudes_Pendientes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_SUMINISTRO_CORREOS_RECEPTORES" Method="SP_BUSCA_SUMINISTRO_CORREOS_RECEPTORES">
+    <Parameter Name="IdRegistro" Parameter="idRegistro" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_BUSCA_SUMINISTRO_CORREOS_RECEPTORESResult">
+      <Column Name="IdRegistro" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="Estatus0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_SACAR_NUMERO_SOLICITUD_MATERIALES" Method="SP_SACAR_NUMERO_SOLICITUD_MATERIALES">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_SACAR_NUMERO_SOLICITUD_MATERIALESResult">
+      <Column Name="NumeroSolicitud" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Hora" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Departamento" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Comentario" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

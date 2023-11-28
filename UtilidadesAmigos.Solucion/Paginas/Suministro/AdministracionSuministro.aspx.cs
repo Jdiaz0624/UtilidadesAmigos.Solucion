@@ -716,6 +716,12 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         }
 
+        protected void BuscarPorEnterHeader(object sender, EventArgs e) {
+
+            CurrentPage_SolicitudHeader = 0;
+            MostrarSolicitudes();
+        }
+
         protected void btnConsultar_Click(object sender, ImageClickEventArgs e)
         {
             CurrentPage_SolicitudHeader = 0;

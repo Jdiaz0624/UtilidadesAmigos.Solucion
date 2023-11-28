@@ -16,7 +16,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSuministro.LogicaSuministro> ObjDataSuministro = new Lazy<Logica.Logica.LogicaSuministro.LogicaSuministro>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSeguridad.LogicaSeguridad> ObjDataSeguridad = new Lazy<Logica.Logica.LogicaSeguridad.LogicaSeguridad>();
-
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaProcesos.LogicaProcesos> ObjDataProceso = new Lazy<Logica.Logica.LogicaProcesos.LogicaProcesos>();
 
 
         #region CONTROL DE PAGINACION DE LAS SOLICITUDES
@@ -549,7 +549,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         }
         #endregion
-        private void ConfiguracionInicial() {
+        #region CONFIGURACION INICIAL
+        private void ConfiguracionInicial()
+        {
             DIVSubBloqueConsultaInventario.Visible = false;
             DIVSubBloqueRegistroSeleccionado.Visible = false;
             DIVSubBloqueCompletarSolicitud.Visible = false;
@@ -557,7 +559,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             DIVBloqueConsulta.Visible = true;
 
             txtNumeroSolicitud_ConsultaSolicitud.Text = string.Empty;
-           
+
             UtilidadesAmigos.Logica.Comunes.Rangofecha Fecha = new Logica.Comunes.Rangofecha();
             Fecha.FechaMes(ref txtFechaDesde_ConsultaSolicitud, ref txtFechaHasta_ConsultaSolicitud);
             EstatusSolicitudConsulta();
@@ -565,6 +567,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             cbNoAgregarRangoFecha.Checked = false;
             CargarDatosUSuario((decimal)Session["IdUsuario"]);
         }
+        #endregion
 
         #region MOSTRAR EL DETALLE DE LA SOLICITUD
         private void MostrarDetalleSocilitud(string Conector) {
@@ -580,6 +583,88 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             }
         }
         #endregion
+
+
+
+        #region ENVIO DE CORREO
+        private void EnvioCorreo(string CorreoEmisor, string Alias, string Asunto, string ClaveCorreo, int Puerto, string SMTP, string Cuerpo, string CorreoEmpleado)
+        {
+            UtilidadesAmigos.Logica.Comunes.EnvioCorreos MAil = new Logica.Comunes.EnvioCorreos
+            {
+                Mail = CorreoEmisor,
+                Alias = Alias,
+                Asunto = Asunto,
+                Clave = ClaveCorreo,
+                Puerto = Puerto,
+                smtp = SMTP,
+                RutaImagen = Server.MapPath("LogoReducido.jpg"),
+                Cuerpo = Cuerpo,
+                Destinatarios = new List<string>(),
+                Adjuntos = new List<string>()
+            };
+
+            MAil.Destinatarios.Add(CorreoEmpleado);
+
+            if (MAil.Enviar(MAil))
+            {
+
+            }
+        }
+
+        #endregion
+        #region ENVIAR CORREO ELECTRONICO
+        private void EnviarCorreoElectronico(string Estatus, string CorreoUsuario, string Comentario)
+        {
+
+            try
+            {
+                string ComentarioValor = "";
+                if (ComentarioValor == "")
+                {
+                    ComentarioValor = "";
+                }
+                else
+                {
+                    ComentarioValor = " | Comentario de Despacho: " + Comentario;
+                }
+                //SACAMOS TODA LA INFORMACION DEL CORREO EMISOR DESDE DONDE SE ENVIARAN LOS VOLANTES DE PAGOS.
+                string CorreoEmisor = "", Alias = "Utilidades Futuro Seguros", Asunto =  Estatus, ClaveCorreo = "", SMTP = "", Cuerpo =  Comentario;
+                int Puerto = 0;
+                var SacarInformacionCorreos = ObjDataProceso.Value.ListadoCorreosEmisores(1, (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.CorreosEmisiorSistema.Suministro_Inventario);
+                foreach (var nCorreo in SacarInformacionCorreos)
+                {
+                    CorreoEmisor = nCorreo.Correo;
+                    ClaveCorreo = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.DesEncriptar(nCorreo.Clave);
+                    SMTP = nCorreo.SMTP;
+                    Puerto = (int)nCorreo.Puerto;
+                }
+
+                EnvioCorreo(
+                                 CorreoEmisor,
+                                 Alias,
+                                 Asunto,
+                                 ClaveCorreo,
+                                 Puerto,
+                                 SMTP,
+                                 Cuerpo,
+                                 CorreoUsuario);
+        
+            }
+            catch (Exception Error)
+            {
+         
+            }
+        }
+        #endregion
+
+
+
+      
+
+
+
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -598,6 +683,17 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                     Convert.ToInt32(lbCodigoDepartamento_Header.Text),
                     Convert.ToDecimal(lbCodigoUsuario_Header.Text));
             }
+        }
+
+
+        protected void BuscarPorEnterHeader(object sender, EventArgs e) {
+
+            CurrentPage_SolicitudHeader = 0;
+            MostrarSolicitudesHEader(
+                   Convert.ToInt32(lbCodigoSucursal_Header.Text),
+                   Convert.ToInt32(lbCodigoOficina_Header.Text),
+                   Convert.ToInt32(lbCodigoDepartamento_Header.Text),
+                   Convert.ToDecimal(lbCodigoUsuario_Header.Text));
         }
 
         protected void btnConsultarInformacion_ConsultaSolicitud_Click(object sender, ImageClickEventArgs e)
@@ -752,37 +848,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 lbUnidadMedida_RegistroSeleccionado.Text = n.IdUnidadMedida.ToString();
             }
         }
-
-        protected void btnPrimeraPagina_ProcesoSolicitud_Click(object sender, ImageClickEventArgs e)
-        {
-
-        }
-
-        protected void btnPaginaAnterior_ProcesoSolicitud_Click(object sender, ImageClickEventArgs e)
-        {
-
-        }
-
-        protected void dtPaginacion_ProcesoSolicitud_ItemDataBound(object sender, DataListItemEventArgs e)
-        {
-
-        }
-
-        protected void dtPaginacion_ProcesoSolicitud_ItemCommand(object source, DataListCommandEventArgs e)
-        {
-
-        }
-
-        protected void btnSiguientePagina_ProcesoSolicitud_Click(object sender, ImageClickEventArgs e)
-        {
-
-        }
-
-        protected void btnUltimaPagina_ProcesoSolicitud_Click(object sender, ImageClickEventArgs e)
-        {
-
-        }
-
         protected void btnAgregarRegistroSeleccionado_Click(object sender, ImageClickEventArgs e)
         {
             decimal idUsuario = (decimal)Session["IdUsuario"];
@@ -939,7 +1004,17 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                     break;
             }
 
-          
+
+
+
+            //VALIDAMOS TODOS LOS CORREOS A LOS QUE LES VA A LLEGAR ESTE PROCESO
+            var SacarCorreosReceptores = ObjDataSuministro.Value.BuscaSuministroCorreosReceptores();
+            foreach (var n2 in SacarCorreosReceptores)
+            {
+
+                EnviarCorreoElectronico("Solicitud Cancelada", n2.Correo, "La Solicitud No. " + NumeroSolicitud + " fue cancelada por el usuario.");
+            }
+
         }
 
 
@@ -974,6 +1049,21 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                        Convert.ToInt32(lbCodigoOficina_Header.Text),
                        Convert.ToInt32(lbCodigoDepartamento_Header.Text),
                        Convert.ToDecimal(lbCodigoUsuario_Header.Text));
+
+                //SACAMOS LOS DATOS DEL USUARIO
+                string Comentario = "";
+                var InformacionUuario = ObjDataSuministro.Value.BuscaInformacionesCOmentarioSolicitudMateriales((decimal)Session["IdUsuario"]);
+                foreach (var n in InformacionUuario) {
+                    Comentario = n.Comentario;
+
+                }
+
+                //VALIDAMOS TODOS LOS CORREOS A LOS QUE LES VA A LLEGAR ESTE PROCESO
+                var SacarCorreosReceptores = ObjDataSuministro.Value.BuscaSuministroCorreosReceptores();
+                foreach (var n2 in SacarCorreosReceptores) {
+
+                    EnviarCorreoElectronico("Nueva Solicitud", n2.Correo, Comentario);
+                }
             }
         }
 

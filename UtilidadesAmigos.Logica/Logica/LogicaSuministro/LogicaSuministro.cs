@@ -511,5 +511,51 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuministro
             return Listado;
         }
         #endregion
+
+        #region BUSCA SUMINISTRO CORREOS RECEPTORES Y FUNCIONES
+        /// <summary>
+        /// Busca los suministro de los correos que reciben las solicitudes de materiales
+        /// </summary>
+        /// <param name="IdRegistro"></param>
+        /// <param name="Nombre"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Suministro.EBuscaSuministroCorreosReceptores> BuscaSuministroCorreosReceptores(int? IdRegistro = null, string Nombre = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Informacion = (from n in ObjData.SP_BUSCA_SUMINISTRO_CORREOS_RECEPTORES(IdRegistro, Nombre)
+                               select new UtilidadesAmigos.Logica.Entidades.Suministro.EBuscaSuministroCorreosReceptores
+                               {
+                                   IdRegistro=n.IdRegistro,
+                                   Nombre=n.Nombre,
+                                   Correo=n.Correo,
+                                   Estatus0=n.Estatus0,
+                                   Estatus=n.Estatus
+                               }).ToList();
+            return Informacion;
+        }
+
+        /// <summary>
+        /// Muestra la Informacion adicional de la solicitud de materiales
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Suministro.ESacarNumeroSolicitudGeneradaInformacionComentario> BuscaInformacionesCOmentarioSolicitudMateriales(decimal? IdUsuario = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var InformacionComentario = (from n in ObjData.SP_SACAR_NUMERO_SOLICITUD_MATERIALES(IdUsuario)
+                                         select new UtilidadesAmigos.Logica.Entidades.Suministro.ESacarNumeroSolicitudGeneradaInformacionComentario
+                                         {
+                                             NumeroSolicitud=n.NumeroSolicitud,
+                                             Fecha=n.Fecha,
+                                             Hora=n.Hora,
+                                             Usuario=n.Usuario,
+                                             Departamento=n.Departamento,
+                                             Comentario=n.Comentario
+                                         }).ToList();
+            return InformacionComentario;
+        }
+        #endregion
     }
 }

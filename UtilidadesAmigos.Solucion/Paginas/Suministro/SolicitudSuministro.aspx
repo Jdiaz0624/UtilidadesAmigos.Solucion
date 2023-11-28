@@ -84,7 +84,7 @@
             <div class="row">
                  <div class="col-md-3">
                      <asp:Label ID="lbNumeroSolicitud" runat="server" CssClass="Letranegrita" Text="No. Solicitud"></asp:Label>
-                     <asp:TextBox ID="txtNumeroSolicitud_ConsultaSolicitud" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                     <asp:TextBox ID="txtNumeroSolicitud_ConsultaSolicitud" runat="server" AutoPostBack="true" OnTextChanged="BuscarPorEnterHeader" CssClass="form-control" TextMode="Number"></asp:TextBox>
                  </div>
                  <div class="col-md-3">
                       <asp:Label ID="lbfechaDesde" runat="server" CssClass="Letranegrita" Text="Fecha Desde"></asp:Label>
@@ -113,8 +113,8 @@
                         <th class="ContenidoCentro" scope="col"> Hora </th>
                         <th class="ContenidoCentro" scope="col"> Items </th>
                         <th class="ContenidoCentro" scope="col"> Estatus </th>
-                        <th class="ContenidoCentro" scope="col"> Cancelar </th>
-                        <th class="ContenidoCentro" scope="col"> Detalle </th>
+                        <th class="ContenidoDerecha" scope="col"> Cancelar </th>
+                        <th class="ContenidoDerecha" scope="col"> Detalle </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -129,8 +129,8 @@
                                 <td class="ContenidoCentro"> <%# Eval("Hora") %> </td>
                                 <td class="ContenidoCentro"> <%#string.Format("{0:N0}", Eval("CantidadItems")) %> </td>
                                 <td class="ContenidoCentro"> <%# Eval("Estatus") %> </td>
-                                <td class="ContenidoCentro"> <asp:ImageButton ID="btnCancelarSolicitud" runat="server" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Cancelar_Nuevo.png" OnClientClick="return confirm('¿Quieres Cancelar Esta Solicitud?');" ToolTip="Cancelar Esta Solicitud" OnClick="btnCancelarSolicitud_Click" /> </td>
-                                <td class="ContenidoCentro"> <asp:ImageButton ID="btnDetalleSolicitud" runat="server" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/hacer-clic.png" ToolTip="Ver el Detalle de la solicitud" OnClick="btnDetalleSolicitud_Click" /> </td>
+                                <td class="ContenidoDerecha"> <asp:ImageButton ID="btnCancelarSolicitud" runat="server" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Cancelar_Nuevo.png" OnClientClick="return confirm('¿Quieres Cancelar Esta Solicitud?');" ToolTip="Cancelar Esta Solicitud" OnClick="btnCancelarSolicitud_Click" /> </td>
+                                <td class="ContenidoDerecha"> <asp:ImageButton ID="btnDetalleSolicitud" runat="server" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/hacer-clic.png" ToolTip="Ver el Detalle de la solicitud" OnClick="btnDetalleSolicitud_Click" /> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
@@ -396,6 +396,7 @@
             <div id="DIVSubBloqueCompletarSolicitud" runat="server">
                   <br />
               <div id="DivBloqueCompletarProceso" runat="server" class="ContenidoCentro">
+                  <asp:TextBox ID="txtCOmentarioCorreo" runat="server" Visible="false"></asp:TextBox>
                 <asp:ImageButton ID="btnGuardarSolicitud" CssClass="BotonImagen" runat="server" ImageUrl="~/ImagenesBotones/Nuevo_Nuevo.png" OnClick="btnGuardarSolicitud_Click" />
                 <asp:ImageButton ID="btnVolverAtras" CssClass="BotonImagen" runat="server" ImageUrl="~/ImagenesBotones/Volver_Nuevo.png" OnClick="btnVolverAtras_Click" />
             </div>

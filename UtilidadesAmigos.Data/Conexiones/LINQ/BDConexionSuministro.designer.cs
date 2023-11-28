@@ -22,7 +22,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="SysFlexSeguros")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="SysFlexSegurosNew")]
 	public partial class BDConexionSuministroDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionSuministroDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosNewConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -165,6 +165,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoSucursal, codigoOficina, codigoDepartamento, codigoUsuario, numeroSocilitud, fechaDesde, fechaHasta, estatusSolicitud);
 			return ((ISingleResult<SP_BUSCA_LISTADO_SOLICITUDES_HEADERResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_SUMINISTRO_CORREOS_RECEPTORES")]
+		public ISingleResult<SP_BUSCA_SUMINISTRO_CORREOS_RECEPTORESResult> SP_BUSCA_SUMINISTRO_CORREOS_RECEPTORES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdRegistro", DbType="Int")] System.Nullable<int> idRegistro, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(100)")] string nombre)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idRegistro, nombre);
+			return ((ISingleResult<SP_BUSCA_SUMINISTRO_CORREOS_RECEPTORESResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_NUMERO_SOLICITUD_MATERIALES")]
+		public ISingleResult<SP_SACAR_NUMERO_SOLICITUD_MATERIALESResult> SP_SACAR_NUMERO_SOLICITUD_MATERIALES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario);
+			return ((ISingleResult<SP_SACAR_NUMERO_SOLICITUD_MATERIALESResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -4189,6 +4203,220 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._CantidadSolicitudes_Pendientes != value))
 				{
 					this._CantidadSolicitudes_Pendientes = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_SUMINISTRO_CORREOS_RECEPTORESResult
+	{
+		
+		private int _IdRegistro;
+		
+		private string _Nombre;
+		
+		private string _Correo;
+		
+		private System.Nullable<bool> _Estatus0;
+		
+		private string _Estatus;
+		
+		public SP_BUSCA_SUMINISTRO_CORREOS_RECEPTORESResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRegistro", DbType="Int NOT NULL")]
+		public int IdRegistro
+		{
+			get
+			{
+				return this._IdRegistro;
+			}
+			set
+			{
+				if ((this._IdRegistro != value))
+				{
+					this._IdRegistro = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(1000)")]
+		public string Correo
+		{
+			get
+			{
+				return this._Correo;
+			}
+			set
+			{
+				if ((this._Correo != value))
+				{
+					this._Correo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus0", DbType="Bit")]
+		public System.Nullable<bool> Estatus0
+		{
+			get
+			{
+				return this._Estatus0;
+			}
+			set
+			{
+				if ((this._Estatus0 != value))
+				{
+					this._Estatus0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="VarChar(8) NOT NULL", CanBeNull=false)]
+		public string Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SACAR_NUMERO_SOLICITUD_MATERIALESResult
+	{
+		
+		private decimal _NumeroSolicitud;
+		
+		private string _Fecha;
+		
+		private string _Hora;
+		
+		private string _Usuario;
+		
+		private string _Departamento;
+		
+		private string _Comentario;
+		
+		public SP_SACAR_NUMERO_SOLICITUD_MATERIALESResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroSolicitud", DbType="Decimal(20,0) NOT NULL")]
+		public decimal NumeroSolicitud
+		{
+			get
+			{
+				return this._NumeroSolicitud;
+			}
+			set
+			{
+				if ((this._NumeroSolicitud != value))
+				{
+					this._NumeroSolicitud = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha", DbType="NVarChar(4000)")]
+		public string Fecha
+		{
+			get
+			{
+				return this._Fecha;
+			}
+			set
+			{
+				if ((this._Fecha != value))
+				{
+					this._Fecha = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hora", DbType="NVarChar(4000)")]
+		public string Hora
+		{
+			get
+			{
+				return this._Hora;
+			}
+			set
+			{
+				if ((this._Hora != value))
+				{
+					this._Hora = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario", DbType="VarChar(150)")]
+		public string Usuario
+		{
+			get
+			{
+				return this._Usuario;
+			}
+			set
+			{
+				if ((this._Usuario != value))
+				{
+					this._Usuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Departamento", DbType="VarChar(100)")]
+		public string Departamento
+		{
+			get
+			{
+				return this._Departamento;
+			}
+			set
+			{
+				if ((this._Departamento != value))
+				{
+					this._Departamento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comentario", DbType="NVarChar(4000)")]
+		public string Comentario
+		{
+			get
+			{
+				return this._Comentario;
+			}
+			set
+			{
+				if ((this._Comentario != value))
+				{
+					this._Comentario = value;
 				}
 			}
 		}

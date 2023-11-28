@@ -110,7 +110,7 @@
          <div class="row">
              <div class="col-md-3">
                  <asp:Label ID="lbNumeroSolicitudConsulta" runat="server" Text="No. Solicitud" CssClass="Letranegrita"></asp:Label>
-                 <asp:TextBox ID="txtNumeroSolicitud" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                 <asp:TextBox ID="txtNumeroSolicitud" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="BuscarPorEnterHeader" TextMode="Number"></asp:TextBox>
              </div>
 
               <div class="col-md-3">
@@ -451,7 +451,8 @@
                 <tfoot class="table-light">
                     <tr>
                         <td class="ContenidoDerecha">
-                            <b>Página </b> <asp:Label ID="lbCantidadPaginaVariable_InventarioConsulta" runat="server" Text="0" ></asp:Label> <b>de </b>  <asp:Label ID="lbPaginaActualVariable_InventarioConsulta" runat="server" Text=" 0 " ></asp:Label>
+                            <label class="Letranegrita">Pagina</label> <asp:Label ID="lbPaginaActualVariable_InventarioConsulta" runat="server" Text=" 0 " ></asp:Label>
+                            <label class="Letranegrita">De</label> <asp:Label ID="lbCantidadPaginaVariable_InventarioConsulta" runat="server" Text="0" ></asp:Label>
                         </td>
                     </tr>
                     <tr>
