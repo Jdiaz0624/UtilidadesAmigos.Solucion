@@ -55,5 +55,19 @@ namespace UtilidadesAmigos.Logica.Entidades.Reportes
         public string FaxCliente {get;set;}
 
         public System.Nullable<decimal> MontoMov {get;set;}
+
+        public System.Nullable<int> CantidadDias { get; set; }
+
+        public System.Nullable<decimal> A_0_30 { get; set; }
+
+        public System.Nullable<decimal> A_31_60 { get; set; }
+
+        public System.Nullable<decimal> A_61_90 { get; set; }
+
+        public System.Nullable<decimal> A_91_120 { get; set; }
+
+        public System.Nullable<decimal> A_121_150 { get; set; }
+
+        public System.Nullable<decimal> A_151_MAS { get; set; }
     }
 }

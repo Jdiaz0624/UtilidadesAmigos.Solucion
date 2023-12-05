@@ -2967,7 +2967,14 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                                    TelefonoResidenciaCliente=n.TelefonoResidenciaCliente,
                                    CelularCliente=n.CelularCliente,
                                    FaxCliente=n.FaxCliente,
-                                   MontoMov=n.MontoMov
+                                   MontoMov=n.MontoMov,
+                                   CantidadDias=n.CantidadDias,
+                                   A_0_30=n.A_0_30,
+                                   A_31_60=n.A_31_60,
+                                   A_61_90=n.A_61_90,
+                                   A_91_120=n.A_91_120,
+                                   A_121_150=n.A_121_150,
+                                   A_151_MAS=n.A_151_MAS
                                }).ToList();
             return Informacion;
         }
