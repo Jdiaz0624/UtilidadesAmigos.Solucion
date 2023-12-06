@@ -453,6 +453,7 @@
     <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadoPorConcepto.cs" />
     <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadoPorIntermediario.cs" />
     <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadoRamo.cs" />
+    <Compile Include="Entidades\Reportes\EBuscarInformacionAntiguedadSaldoCruzadoConChasis.cs" />
     <Compile Include="Entidades\Reportes\EBuscarInformacionCheque.cs" />
     <Compile Include="Entidades\Reportes\EBuscarPolizasRenovadas.cs" />
     <Compile Include="Entidades\Reportes\ECodigosPermitidosSobreComision.cs" />

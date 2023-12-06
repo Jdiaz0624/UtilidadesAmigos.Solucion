@@ -193,46 +193,93 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                     }
                 }
 
-                //EXPORTAR INFORMACION A EXCEL
-                var Exportar = (from n in ObjDataReporte.Value.ExportarAntiguedadCruzadoExcel(UsuarioConectado)
-                                select new
-                                {
-                                    Poliza = n.Poliza,
-                                    Origen = n.Origen,
-                                    EstatusSistema = n.EstatusSistema,
-                                    CodigoRamo = n.CodigoRamo,
-                                    Ramo = n.Ramo,
-                                    CodigoSubRamo = n.CodigoSubRamo,
-                                    SubRamo = n.SubRamo,
-                                    Item = n.Item,
-                                    InicioVigencia = n.InicioVigencia,
-                                    FInVigencia = n.FInVigencia,
-                                    MontoNeto = n.MontoNeto,
-                                    CodigoSupervisor = n.CodigoSupervisor,
-                                    NombreSupervisor = n.NombreSupervisor,
-                                    CodigoIntermediario = n.CodigoIntermediario,
-                                    NombreIntermediario = n.NombreIntermediario,
-                                    Codigocliente = n.Codigocliente,
-                                    NombreCliente = n.NombreCliente,
-                                    NumeroIdentificacionCliente = n.NumeroIdentificacionCliente,
-                                    TelefonoOficinaCliente = n.TelefonoOficinaCliente,
-                                    TelefonoResidenciaCliente = n.TelefonoResidenciaCliente,
-                                    CelularCliente = n.CelularCliente,
-                                    FaxCliente = n.FaxCliente,
-                                    Facturado = n.Facturado,
-                                    Balance = n.Balance,
-                                    CantidadDias = n.CantidadDias,
-                                    ValorPorDia = n.ValorPorDia,
-                                    UltimaFechaPago = n.UltimaFechaPago,
-                                    MontoUltimoPago = n.MontoUltimoPago,
-                                    _0_30 = n.__0_30,
-                                    _31_60 = n.__31_60,
-                                    _61_90 = n.__61_90,
-                                    _91_120 = n.__91_120,
-                                    _121_150 = n.__121_150,
-                                    _151_MAS = n.__151_MAS
-                                }).ToList();
-                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Antiguedad de Saldo Cruzado", Exportar);
+
+                if (cbGenerarConChasisVehiculo.Checked == true) {
+                    //EXPORTAR INFORMACION A EXCEL
+                    var Exportar = (from n in ObjDataReporte.Value.ExportarAntiguedadCruzadoConChasisExcel(UsuarioConectado)
+                                    select new
+                                    {
+                                        Poliza = n.Poliza,
+                                        Chasis=n.Chasis,
+                                        Origen = n.Origen,
+                                        EstatusSistema = n.EstatusSistema,
+                                        CodigoRamo = n.CodigoRamo,
+                                        Ramo = n.Ramo,
+                                        CodigoSubRamo = n.CodigoSubRamo,
+                                        SubRamo = n.SubRamo,
+                                        Item = n.Item,
+                                        InicioVigencia = n.InicioVigencia,
+                                        FInVigencia = n.FInVigencia,
+                                        MontoNeto = n.MontoNeto,
+                                        CodigoSupervisor = n.CodigoSupervisor,
+                                        NombreSupervisor = n.NombreSupervisor,
+                                        CodigoIntermediario = n.CodigoIntermediario,
+                                        NombreIntermediario = n.NombreIntermediario,
+                                        Codigocliente = n.Codigocliente,
+                                        NombreCliente = n.NombreCliente,
+                                        NumeroIdentificacionCliente = n.NumeroIdentificacionCliente,
+                                        TelefonoOficinaCliente = n.TelefonoOficinaCliente,
+                                        TelefonoResidenciaCliente = n.TelefonoResidenciaCliente,
+                                        CelularCliente = n.CelularCliente,
+                                        FaxCliente = n.FaxCliente,
+                                        Facturado = n.Facturado,
+                                        Balance = n.Balance,
+                                        CantidadDias = n.CantidadDias,
+                                        ValorPorDia = n.ValorPorDia,
+                                        UltimaFechaPago = n.UltimaFechaPago,
+                                        MontoUltimoPago = n.MontoUltimoPago,
+                                        _0_30 = n.__0_30,
+                                        _31_60 = n.__31_60,
+                                        _61_90 = n.__61_90,
+                                        _91_120 = n.__91_120,
+                                        _121_150 = n.__121_150,
+                                        _151_MAS = n.__151_MAS
+                                    }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Antiguedad de Saldo Cruzado Con Chasis", Exportar);
+                }
+                else {
+                    //EXPORTAR INFORMACION A EXCEL
+                    var Exportar = (from n in ObjDataReporte.Value.ExportarAntiguedadCruzadoExcel(UsuarioConectado)
+                                    select new
+                                    {
+                                        Poliza = n.Poliza,
+                                        Origen = n.Origen,
+                                        EstatusSistema = n.EstatusSistema,
+                                        CodigoRamo = n.CodigoRamo,
+                                        Ramo = n.Ramo,
+                                        CodigoSubRamo = n.CodigoSubRamo,
+                                        SubRamo = n.SubRamo,
+                                        Item = n.Item,
+                                        InicioVigencia = n.InicioVigencia,
+                                        FInVigencia = n.FInVigencia,
+                                        MontoNeto = n.MontoNeto,
+                                        CodigoSupervisor = n.CodigoSupervisor,
+                                        NombreSupervisor = n.NombreSupervisor,
+                                        CodigoIntermediario = n.CodigoIntermediario,
+                                        NombreIntermediario = n.NombreIntermediario,
+                                        Codigocliente = n.Codigocliente,
+                                        NombreCliente = n.NombreCliente,
+                                        NumeroIdentificacionCliente = n.NumeroIdentificacionCliente,
+                                        TelefonoOficinaCliente = n.TelefonoOficinaCliente,
+                                        TelefonoResidenciaCliente = n.TelefonoResidenciaCliente,
+                                        CelularCliente = n.CelularCliente,
+                                        FaxCliente = n.FaxCliente,
+                                        Facturado = n.Facturado,
+                                        Balance = n.Balance,
+                                        CantidadDias = n.CantidadDias,
+                                        ValorPorDia = n.ValorPorDia,
+                                        UltimaFechaPago = n.UltimaFechaPago,
+                                        MontoUltimoPago = n.MontoUltimoPago,
+                                        _0_30 = n.__0_30,
+                                        _31_60 = n.__31_60,
+                                        _61_90 = n.__61_90,
+                                        _91_120 = n.__91_120,
+                                        _121_150 = n.__121_150,
+                                        _151_MAS = n.__151_MAS
+                                    }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Antiguedad de Saldo Cruzado", Exportar);
+                }
+               
             }
         }
         #endregion

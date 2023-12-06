@@ -6,7 +6,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.ReportSource;
 using CrystalDecisions.Shared;
 using UtilidadesAmigos.Logica.Entidades;
 using System.Web.Security;
@@ -1167,6 +1166,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
 
             Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+
             Reporte.Dispose();
         }
 

@@ -41,6 +41,12 @@
         </div>
     </div>
     <br />
+    <div class="form-check form-switch">
+        <input type="checkbox" id="cbGenerarConChasisVehiculo" runat="server" class="form-check-input" />
+        <label class="form-check-label Letranegrita"> Generar Información con los chasis del Vehiculo</label>
+        <label class="form-check-label Letranegrita Rojo"> Nota: Esta Opción puede duplicar el registro por que va a clasificar por items</label>
+    </div>
+    <br />
     <div class="ContenidoCentro">
         <asp:ImageButton ID="btnExportar" runat="server" ImageUrl="~/ImagenesBotones/Excel.png" OnClick="btnExportar_Click" CssClass="BotonImagen" />
     </div>

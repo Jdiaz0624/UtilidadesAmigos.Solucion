@@ -2498,4 +2498,46 @@
       <Column Name="A_151_MAS" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_BUSCAR_INFORMACION_ANTIGUEDAD_SALDO_CRUZADO_CON_CHASIS" Method="SP_BUSCAR_INFORMACION_ANTIGUEDAD_SALDO_CRUZADO_CON_CHASIS">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_BUSCAR_INFORMACION_ANTIGUEDAD_SALDO_CRUZADO_CON_CHASISResult">
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Chasis" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="Origen" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="EstatusSistema" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ramo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoSubRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubRamo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Item" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FInVigencia" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="MontoNeto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreSupervisor" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreIntermediario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Codigocliente" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="NombreCliente" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NumeroIdentificacionCliente" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TelefonoOficinaCliente" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TelefonoResidenciaCliente" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="CelularCliente" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FaxCliente" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Facturado" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="CantidadDias" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ValorPorDia" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="UltimaFechaPago" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="MontoUltimoPago" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="FinCobertura" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="[_0_30]" Member="_0_30" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="[_31_60]" Member="_31_60" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="[_61_90]" Member="_61_90" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="[_91_120]" Member="_91_120" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="[_121_150]" Member="_121_150" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="[_151_MAS]" Member="_151_MAS" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
