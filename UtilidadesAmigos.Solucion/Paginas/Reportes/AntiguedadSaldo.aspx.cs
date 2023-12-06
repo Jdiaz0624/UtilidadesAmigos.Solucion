@@ -89,6 +89,56 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                     Proceso1.ProcesarInformacion();
 
                 }
+                //CARGAMOS LOS DATOS DE LAS POLIZAS EMITIDAS
+                var PolizasEmitidasProcesoAntetrior = ObjDataReporte.Value.BuscaAntiguedadSaldoPolizasProcesoAnterior(
+                    _Poliza,
+                    _Ramo,
+                    _Supervisor,
+                    _Intermediario);
+                foreach (var Emitidas in PolizasEmitidasProcesoAntetrior)
+                {
+                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.Reporte.ProcesarInformacionAntiguedadSaldoCruzado Proceso_Anterior = new Logica.Comunes.ProcesarMantenimientos.Reporte.ProcesarInformacionAntiguedadSaldoCruzado(
+                        UsuarioConectado,
+                        Emitidas.Poliza,
+                        Emitidas.Origen,
+                        Emitidas.EstatusSistema,
+                        (int)Emitidas.CodigoRamo,
+                        Emitidas.Ramo,
+                        (int)Emitidas.CodigoSubRamo,
+                        Emitidas.Subramo,
+                        (int)Emitidas.Item,
+                        Emitidas.InicioVigencia,
+                        Emitidas.FinVigencia,
+                        (decimal)Emitidas.MontoNeto,
+                        (int)Emitidas.CodigoSupervisor,
+                        Emitidas.Supervisor,
+                        (int)Emitidas.CodigoIntermediario,
+                        Emitidas.Intermediario,
+                        (decimal)Emitidas.CodigoCliente,
+                        Emitidas.Cliente,
+                        Emitidas.NumeroIdentificacionCliente,
+                        Emitidas.TelefonoOficinaCliente,
+                        Emitidas.TelefonoResidenciaCliente,
+                        Emitidas.CelularCliente,
+                        Emitidas.FaxCliente,
+                        (decimal)Emitidas.Facturado,
+                        (decimal)Emitidas.Balance,
+                        (int)Emitidas.CantidadDias,
+                        (decimal)Emitidas.ValorPorDia,
+                        Emitidas.UltimaFechaPago,
+                        (decimal)Emitidas.MontoUltimoPago,
+                        Emitidas.FinVigencia,
+                        (decimal)Emitidas.A_0_30,
+                        (decimal)Emitidas.A_31_60,
+                        (decimal)Emitidas.A_61_90,
+                        (decimal)Emitidas.A_91_120,
+                        (decimal)Emitidas.A_121_150,
+                        (decimal)Emitidas.A_151_MAS,
+                        "INSERT");
+                    Proceso_Anterior.ProcesarInformacion();
+
+                }
+                //-----------------
 
                 //CARGAMOS LOS DATOS DE LAS POLIZAS EMITIDAS EN TRANSITO
                 var PolizasEmitidas_Transito = ObjDataReporte.Value.BuscaAntiguedadSaldoPolizasEmitidasTransito(

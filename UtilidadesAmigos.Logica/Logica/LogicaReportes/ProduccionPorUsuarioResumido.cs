@@ -3127,6 +3127,51 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                             }).ToList();
             return Exportar;
         }
+
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaAntiguedadSaldoPolizasEmitidasProcesoAnterior> BuscaAntiguedadSaldoPolizasProcesoAnterior(string Poliza = null, int? Ramo = null, int? Supervisor = null, int? Intermediario = null)
+        {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_ANTIGUEDAD_SALDO_POLIZAS_EMITIDAS_PROCESO_ANTERIOR(Poliza, Ramo, Supervisor, Intermediario)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaAntiguedadSaldoPolizasEmitidasProcesoAnterior
+                           {
+                               Poliza = n.Poliza,
+                               Origen = n.Origen,
+                               EstatusSistema = n.EstatusSistema,
+                               CodigoRamo = n.CodigoRamo,
+                               Ramo = n.Ramo,
+                               CodigoSubRamo = n.CodigoSubRamo,
+                               Subramo = n.Subramo,
+                               Item = n.Item,
+                               InicioVigencia = n.InicioVigencia,
+                               FinVigencia = n.FinVigencia,
+                               MontoNeto = n.MontoNeto,
+                               CodigoSupervisor = n.CodigoSupervisor,
+                               Supervisor = n.Supervisor,
+                               CodigoIntermediario = n.CodigoIntermediario,
+                               Intermediario = n.Intermediario,
+                               CodigoCliente = n.CodigoCliente,
+                               Cliente = n.Cliente,
+                               NumeroIdentificacionCliente = n.NumeroIdentificacionCliente,
+                               TelefonoOficinaCliente = n.TelefonoOficinaCliente,
+                               TelefonoResidenciaCliente = n.TelefonoResidenciaCliente,
+                               CelularCliente = n.CelularCliente,
+                               FaxCliente = n.FaxCliente,
+                               Facturado = n.Facturado,
+                               Balance = n.Balance,
+                               CantidadDias = n.CantidadDias,
+                               ValorPorDia = n.ValorPorDia,
+                               UltimaFechaPago = n.UltimaFechaPago,
+                               MontoUltimoPago = n.MontoUltimoPago,
+                               A_0_30 = n.A_0_30,
+                               A_31_60 = n.A_31_60,
+                               A_61_90 = n.A_61_90,
+                               A_91_120 = n.A_91_120,
+                               A_121_150 = n.A_121_150,
+                               A_151_MAS = n.A_151_MAS
+                           }).ToList();
+            return Listado;
+        }
         #endregion
 
 

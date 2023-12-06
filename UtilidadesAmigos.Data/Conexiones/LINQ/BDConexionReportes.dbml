@@ -2456,4 +2456,46 @@
       <Column Name="A_151_MAS" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_BUSCA_ANTIGUEDAD_SALDO_POLIZAS_EMITIDAS_PROCESO_ANTERIOR" Method="SP_BUSCA_ANTIGUEDAD_SALDO_POLIZAS_EMITIDAS_PROCESO_ANTERIOR">
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_BUSCA_ANTIGUEDAD_SALDO_POLIZAS_EMITIDAS_PROCESO_ANTERIORResult">
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Origen" Type="System.String" DbType="VarChar(14) NOT NULL" CanBeNull="false" />
+      <Column Name="EstatusSistema" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoRamo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Ramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoSubRamo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Subramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Item" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="FinVigencia" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="MontoNeto" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CodigoCliente" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="NumeroIdentificacionCliente" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TelefonoOficinaCliente" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TelefonoResidenciaCliente" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CelularCliente" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Column Name="FaxCliente" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Facturado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="CantidadDias" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ValorPorDia" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="UltimaFechaPago" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="MontoUltimoPago" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="A_0_30" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="A_31_60" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="A_61_90" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="A_91_120" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="A_121_150" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="A_151_MAS" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
