@@ -159,6 +159,7 @@
                       <th class="ContenidoCentro" scope="col"> Fecha </th>
                       <th class="ContenidoCentro" scope="col"> Items </th>
                       <th class="ContenidoCentro" scope="col"> Estatus </th>
+                     <th class="ContenidoDerecha" scope="col"> Imprimir </th>
                       <th class="ContenidoDerecha" scope="col"> Procesar </th>
                  </tr>
              </thead>
@@ -177,6 +178,7 @@
                              <td class="ContenidoCentro"> <%# Eval("Fecha") %> </td>
                              <td class="ContenidoCentro"> <%#string.Format("{0:N0}", Eval("CantidadItems")) %> </td>
                              <td class="ContenidoCentro"> <%# Eval("Estatus") %> </td>
+                             <td class="ContenidoDerecha"> <asp:ImageButton ID="btnImprimir" runat="server" ToolTip="Imprimir Registro" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/impresora-de-papel.png" OnClick="btnImprimir_Click" /> </td>
                              <td class="ContenidoDerecha"> <asp:ImageButton ID="btnVer" runat="server" ToolTip="Ver Detalle del registro" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/proceso.png" OnClick="btnVer_Click" /> </td>
                          </tr>
                      </ItemTemplate>

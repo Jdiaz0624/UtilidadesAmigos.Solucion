@@ -1145,6 +1145,31 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             }
         }
 
+        protected void btnImprimir_Click(object sender, ImageClickEventArgs e)
+        {
+            var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var NumeroSolcicitud = ((HiddenField)ItemSeleccionado.FindControl("hfNumeroSolicitudHeader")).Value.ToString();
+            var NumeroConector = ((HiddenField)ItemSeleccionado.FindControl("hfNumeroConectorHeader")).Value.ToString();
+
+            string RutaReporte = "", NombreReporte = "";
+
+            RutaReporte = Server.MapPath("ReporteSolicitudesSuministro.rpt");
+            NombreReporte = "Confirmacion de Solicitud";
+
+            ReportDocument Reporte = new ReportDocument();
+
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+
+            Reporte.SetParameterValue("@NumeroSolicitud", Convert.ToDecimal(NumeroSolcicitud));
+            Reporte.SetParameterValue("@NumeroConector", NumeroConector);
+
+            Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+
+            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+            Reporte.Dispose();
+        }
+
         protected void btnGuardar_Click(object sender, ImageClickEventArgs e)
         {
             ProcesarInformacionInventario(Convert.ToInt32(lbIdregistroSeleccionado.Text),Convert.ToInt32(txtStockMantenimiento.Text), lbAccionTomarInventario.Text);
