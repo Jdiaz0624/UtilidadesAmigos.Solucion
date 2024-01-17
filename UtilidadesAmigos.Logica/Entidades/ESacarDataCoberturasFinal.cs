@@ -65,8 +65,11 @@ namespace UtilidadesAmigos.Logica.Entidades
 		public System.Nullable<decimal> ValorAsegurado { get; set; }
 
 		public string Cobertura { get; set; }
+        public string Servicio { get; set; }
 
-		public string TipoMovimiento { get; set; }
+        public string PlanCobertura { get; set; }
+
+        public string TipoMovimiento { get; set; }
 
 		public System.Nullable<int> CantidadRegistros { get; set; }
 		public string ValidadoDesde { get; set; }

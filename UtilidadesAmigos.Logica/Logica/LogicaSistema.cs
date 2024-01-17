@@ -1643,11 +1643,11 @@ namespace UtilidadesAmigos.Logica.Logica
 
         #region SACAR DATA DE LA CASA DEL CONDUCTOR
         //SACAR EL LISTADO DE LA DATA DE LA CASA DEL CONDUCTOR
-        public List<UtilidadesAmigos.Logica.Entidades.ESacarDataCasaConductor> SacarDataCasaConductor(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Poliza = null, int? Cobertura = null)
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarDataCasaConductor> SacarDataCasaConductor(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Poliza = null, int? Cobertura = null,int? Oficina = null)
         {
             Objdata.CommandTimeout = 999999999;
 
-            var Buscar = (from n in Objdata.SP_SACAR_DATA_CASA_CONDUCTOR(FechaDesde, FechaHasta, Poliza, Cobertura)
+            var Buscar = (from n in Objdata.SP_SACAR_DATA_CASA_CONDUCTOR(FechaDesde, FechaHasta, Poliza, Cobertura, Oficina)
                           select new UtilidadesAmigos.Logica.Entidades.ESacarDataCasaConductor
                           {
                               Poliza=n.Poliza,
@@ -1725,11 +1725,11 @@ namespace UtilidadesAmigos.Logica.Logica
 
         #region SACAR LA DATA DE TU ASISTENCIA
         //SACAR EL LISTADO DE TU ASISTENCIA
-        public List<UtilidadesAmigos.Logica.Entidades.ESacarDataTuAsistencia> SacarDataTuAsistencia(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Poliza = null, int? Cobertura = null)
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarDataTuAsistencia> SacarDataTuAsistencia(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Poliza = null, int? Cobertura = null,int? IdOficina = null)
         {
             Objdata.CommandTimeout = 999999999;
 
-            var Buscar = (from n in Objdata.SP_SACAR_DATA_TU_ASISTENCIA(FechaDesde, FechaHasta, Poliza, Cobertura)
+            var Buscar = (from n in Objdata.SP_SACAR_DATA_TU_ASISTENCIA(FechaDesde, FechaHasta, Poliza, Cobertura, IdOficina)
                           select new UtilidadesAmigos.Logica.Entidades.ESacarDataTuAsistencia
                           {
                               Nombre=n.Nombre,
@@ -1771,10 +1771,10 @@ namespace UtilidadesAmigos.Logica.Logica
         #endregion
 
         #region SACAR LA DATA DE LAS COBERTURAS FINAL
-        public List<UtilidadesAmigos.Logica.Entidades.ESacarDataCoberturasFinal> SacarDataCoberturasFinal(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Poliza = null, int? Cobertura = null, int? Oficina = null, decimal? UsuarioGenera = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarDataCoberturasFinal> SacarDataCoberturasFinal(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Poliza = null, int? Cobertura = null,int? Servicio=null, int? Oficina = null, decimal? UsuarioGenera = null) {
             Objdata.CommandTimeout = 999999999;
 
-            var Listado = (from n in Objdata.SP_SACAR_DATA_COBERTURA_FINAL(FechaDesde, FechaHasta, Poliza, Cobertura, Oficina, UsuarioGenera)
+            var Listado = (from n in Objdata.SP_SACAR_DATA_COBERTURA_FINAL(FechaDesde, FechaHasta, Poliza, Cobertura,Servicio, Oficina, UsuarioGenera)
                            select new UtilidadesAmigos.Logica.Entidades.ESacarDataCoberturasFinal
                            {
                                Poliza=n.Poliza,
@@ -1807,8 +1807,9 @@ namespace UtilidadesAmigos.Logica.Logica
                                Placa=n.Placa,
                                ValorAsegurado=n.ValorAsegurado,
                                Cobertura=n.Cobertura,
+                               Servicio=n.Servicio,
+                               PlanCobertura=n.PlanCobertura,
                                TipoMovimiento=n.TipoMovimiento,
-                               CantidadRegistros=n.CantidadRegistros,
                                ValidadoDesde=n.ValidadoDesde,
                                ValidadoHasta=n.ValidadoHasta,
                                GeneradoPor=n.GeneradoPor,
@@ -4099,5 +4100,115 @@ namespace UtilidadesAmigos.Logica.Logica
             return Listado;
         }
         #endregion
+
+        #region SACAR DATA DEL CENTRO DEL AUTOMOVILISTA
+        /// <summary>
+        /// Saca la Data del Centro del Automovilista en Archivo TXT
+        /// </summary>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="Poliza"></param>
+        /// <param name="Cobertura"></param>
+        /// <param name="Oficina"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.ESacarDataCentroAutomovilistaArchivo> SacardataCentroAutomovilistaArchivo(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Poliza = null, int? Cobertura = null, int? Oficina = null) {
+
+            Objdata.CommandTimeout = 999999999;
+
+            var Informacion = (from n in Objdata.SP_SACAR_DATA_CENTRO_DEL_AUTOMOVILISTA_ARCHIVO(FechaDesde, FechaHasta, Poliza, Cobertura, Oficina)
+                               select new UtilidadesAmigos.Logica.Entidades.Consulta.ESacarDataCentroAutomovilistaArchivo
+                               {
+                                   Informacion=n.Informacion
+                               }).ToList();
+            return Informacion;
+        }
+
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.ESacarDataCentroAutomovilistaDetalle> SacarDataCentroAutomovilistaDetalle(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Poliza = null, int? Cobertura = null, int? Oficina = null) {
+
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_SACAR_DATA_CENTRO_DEL_AUTOMOVILISTA_DETALLE(FechaDesde, FechaHasta, Poliza, Cobertura, Oficina)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.ESacarDataCentroAutomovilistaDetalle
+                           {
+                               Poliza=n.Poliza,
+                               Referencia=n.Referencia,
+                               Tipo_Poliza=n.Tipo_Poliza,
+                               Tipo_ID=n.Tipo_ID,
+                               Id_Propietario=n.Id_Propietario,
+                               Nombre_Propietario=n.Nombre_Propietario,
+                               Tipo_Vehiculo=n.Tipo_Vehiculo,
+                               Marca_Vehiculo=n.Marca_Vehiculo,
+                               Modelo_Vehiculo=n.Modelo_Vehiculo,
+                               Color_Vehiculo=n.Color_Vehiculo,
+                               Placa_Vehiculo=n.Placa_Vehiculo,
+                               Chasis_Vehiculo=n.Chasis_Vehiculo,
+                               Ano_Vehiculo=n.Ano_Vehiculo,
+                               Inicio_Vigencia=n.Inicio_Vigencia,
+                               Fin_Vigencia=n.Fin_Vigencia,
+                               TipoMovimiento=n.TipoMovimiento,
+                               Concepto=n.Concepto,
+                               Fecha_Baja=n.Fecha_Baja
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
+
+        #region SACAR DATA PROINSA
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.ESacarDataProinsa> SacarDataProinsa(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Poliza = null, int? Servicio = null, int? Oficina = null) {
+
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_SACAR_DATA_PROINSA(FechaDesde, FechaHasta, Poliza, Servicio, Oficina)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.ESacarDataProinsa
+                           {
+                               Poliza=n.Poliza,
+                               Asegurado=n.Asegurado,
+                               Inicio_Vigencia=n.Inicio_Vigencia,
+                               Fin_Vigencia=n.Fin_Vigencia,
+                               Marca_Vehiculo=n.Marca_Vehiculo,
+                               Modelo_Vehiculo=n.Modelo_Vehiculo,
+                               Ano_Vehiculo=n.Ano_Vehiculo,
+                               Chasis_Vehiculo=n.Chasis_Vehiculo,
+                               Placa_Vehiculo=n.Placa_Vehiculo,
+                               Tipo_Vehiculo=n.Tipo_Vehiculo,
+                               FechaTrabajo=n.FechaTrabajo,
+                               Sucursal=n.Sucursal,
+                               Cobertura=n.Cobertura,
+                               Concepto=n.Concepto,
+                               TipoMovimiento=n.TipoMovimiento
+
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
+
+        #region SACAR DATA COBERTURAS POR PANTALLA
+        /// <summary>
+        /// Muestra el listado por pantalla
+        /// </summary>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="Poliza"></param>
+        /// <param name="Servicio"></param>
+        /// <param name="Oficina"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.ESacarDataServiciosPorPantalla> SacarDataServiciosPorpAntalla(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Poliza = null, int? Servicio = null, int? Oficina = null) {
+
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_SACAR_DATA_SERVICIOS_POR_PANTALLA(FechaDesde, FechaHasta, Poliza, Servicio, Oficina)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.ESacarDataServiciosPorPantalla
+                           {
+                               Poliza=n.Poliza,
+                               Asegurado=n.Asegurado,
+                               Concepto=n.Concepto,
+                               Fecha=n.Fecha,
+                               Cobertura=n.Cobertura,
+                               TipoMovimiento=n.TipoMovimiento
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }
+    

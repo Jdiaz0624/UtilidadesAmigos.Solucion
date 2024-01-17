@@ -4,6 +4,18 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
          <link rel="stylesheet" href="../../Content/EstilosComunes.css" />
 
+    <script type="text/javascript">
+        function OpcionNoDisponible() {
+            alert("Esta cobertura no requiere archivo TXT para su envio, solo esta habilitada para el Centro del Automovilista.");
+        }
+        function Archivogenerado() {
+            alert("Archivo Generado con Exito, favor consultar la carpeta asignada para y validar este archivo");
+        }
+        function FuncionNodisponible() {
+            alert("Esta Función no esta disponible por el momento");
+        }
+    </script>
+
     <div class="container-fluid">
         <div id="DIVBloqueConsulta" runat="server">
             <br />
@@ -63,11 +75,10 @@
                         <thead class="table-dark">
                             <tr>
                                 <th scope="col"> Poliza </th>
-                                <th scope="col"> Estatus </th>
+                                <th scope="col"> Asegurado </th>
                                 <th scope="col"> Concepto </th>
                                 <th scope="col"> Fecha </th>
                                 <th scope="col"> Cobertura </th>
-                                <th scope="col"> Plan </th>
                                 <th scope="col"> Movimiento </th>
                             </tr>
                         </thead>
@@ -75,13 +86,12 @@
                             <asp:Repeater ID="rpListadoGeneral" runat="server">
                                 <ItemTemplate>
                                     <tr>
-                                        <td> <%# Eval("") %> </td>
-                                        <td> <%# Eval("") %> </td>
-                                        <td> <%# Eval("") %> </td>
-                                        <td> <%# Eval("") %> </td>
-                                        <td> <%# Eval("") %> </td>
-                                        <td> <%# Eval("") %> </td>
-                                        <td> <%# Eval("") %> </td>
+                                        <td> <%# Eval("Poliza") %> </td>
+                                        <td> <%# Eval("Asegurado") %> </td>
+                                        <td> <%# Eval("Concepto") %> </td>
+                                        <td> <%# Eval("Fecha") %> </td>
+                                        <td> <%# Eval("Cobertura") %> </td>
+                                        <td> <%# Eval("TipoMovimiento") %> </td>
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>
@@ -107,7 +117,8 @@
                             <td align="center">
                                 <asp:DataList ID="dtPaginacion" runat="server" OnCancelCommand="dtPaginacion_CancelCommand" OnItemDataBound="dtPaginacion_ItemDataBound" RepeatDirection="Horizontal" >
                                     <ItemTemplate>
-                                        <asp:Button ID="btnPaginacionCentral" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
+                                        <asp:Button ID="btnPaginacionCentral" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' class="btn btn-outline-dark" />
+                                   
                                     </ItemTemplate>
                                 </asp:DataList>
 
@@ -235,7 +246,7 @@
                  <ItemTemplate>
                      <tr>
                          <asp:HiddenField ID="hfIdServicios_servicio" runat="server" Value='<%# Eval("IdCobertura") %>' />
-                         <asp:HiddenField ID="HiddenField1" runat="server" Value='<%# Eval("IdPlanCobertura") %>' />
+                         <asp:HiddenField ID="hfIdPlanCobertura" runat="server" Value='<%# Eval("IdPlanCobertura") %>' />
                          <asp:HiddenField ID="hfEstatusServicio" runat="server" Value='<%# Eval("Estatus0") %>' />
                          <asp:HiddenField ID="hfCodigoCobertura" runat="server" Value='<%# Eval("CodigoCobertura") %>' />
 

@@ -119,6 +119,8 @@
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionComentariosClientesSinPoliza.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionEstadisticaRenovacion.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionGestionCobrosAntiguedadSaldo.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionMAntenimientoCoberturas.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionMantenimientoPlanCobertura.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionPolizasAvisosGestionCobros.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionReporteComentarioGestionCobros.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionValidacionCoberturaArchivo.cs" />
@@ -197,6 +199,7 @@
     <Compile Include="Comunes\SacarNombreIntermediarioSupervisor.cs" />
     <Compile Include="Comunes\SacarNombreUsuario.cs" />
     <Compile Include="Comunes\SacarNumeroCotizacionPoliza.cs" />
+    <Compile Include="Comunes\SacarRutaArchivoGuardado.cs" />
     <Compile Include="Comunes\SacartasaMoneda.cs" />
     <Compile Include="Comunes\SeguridadEncriptacion.cs" />
     <Compile Include="Comunes\UtilidadDrop.cs" />
@@ -242,6 +245,10 @@
     <Compile Include="Entidades\Consulta\EProcesarInformacionReporteComentarioGestionCobro.cs" />
     <Compile Include="Entidades\Consulta\EProcesarInformacionValidacionArchivo.cs" />
     <Compile Include="Entidades\Consulta\EProcesarInformacionValidacionCoberturaSistema.cs" />
+    <Compile Include="Entidades\Consulta\ESacarDataCentroAutomovilistaArchivo.cs" />
+    <Compile Include="Entidades\Consulta\ESacarDataCentroAutomovilistaDetalle.cs" />
+    <Compile Include="Entidades\Consulta\ESacarDataProinsa.cs" />
+    <Compile Include="Entidades\Consulta\ESacarDataServiciosPorPantalla.cs" />
     <Compile Include="Entidades\Correcciones\EBitacoraMontoAfianzado.cs" />
     <Compile Include="Entidades\Correcciones\EBuscaInformacionPolizaEquiposElectronicos.cs" />
     <Compile Include="Entidades\Correcciones\EBuscaInformacionPolizasFianzas.cs" />
