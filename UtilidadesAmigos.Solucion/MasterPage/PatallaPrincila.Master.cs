@@ -248,7 +248,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     break;
 
                 case (int)PefilesUsuarios.LEGAL:
-                    DivModuloSuministro.Visible = false;
+                    DivModuloSuministro.Visible = true;
                     DivModuloConsulta.Visible = false;
                     DivModuloReportes.Visible = false;
                     DivModuloProcesos.Visible = false;
