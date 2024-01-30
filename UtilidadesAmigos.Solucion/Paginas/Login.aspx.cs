@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Web.Security;
 using System.Speech.Synthesis;
 using System.Threading;
+using System.Security.Principal;
 
 
 namespace UtilidadesAmigos.Solucion.Paginas
@@ -132,11 +133,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
             }
         }
-
-     
-
- 
-
         protected void btnIngresarSistema_Click(object sender, ImageClickEventArgs e)
         {
             IngresarSistema();

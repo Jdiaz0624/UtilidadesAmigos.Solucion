@@ -24,7 +24,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         private void GenerarSaldoAntigeudadCruzado() {
 
             //VALIDAMSO TODOS LOS FILTROS
-            if (string.IsNullOrEmpty(txtPoliza.Text.Trim()) && string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) && string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()))
+            if (string.IsNullOrEmpty(txtPoliza.Text.Trim()) /*&& string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim())*/ && string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()))
             {
                 ClientScript.RegisterStartupScript(GetType(), "CamposVacios()", "CamposVacios();", true);
             }
