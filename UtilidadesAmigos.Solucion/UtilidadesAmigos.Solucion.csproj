@@ -293,6 +293,7 @@
     <Content Include="Paginas\CumplimientoLegal\MatrizRiesgo.aspx" />
     <Content Include="Paginas\EliminarBalancePoliza.aspx" />
     <Content Include="Paginas\GenerarFacturasPDF.aspx" />
+    <Content Include="Paginas\Gerencia\AcuerdoPago.aspx" />
     <Content Include="Paginas\Hojas\CerrtificadoMaritimo.aspx" />
     <Content Include="Paginas\Inventario.aspx" />
     <Content Include="Paginas\LoginSistema.aspx" />
@@ -725,6 +726,13 @@
     </Compile>
     <Compile Include="Paginas\GenerarFacturasPDF.aspx.designer.cs">
       <DependentUpon>GenerarFacturasPDF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Gerencia\AcuerdoPago.aspx.cs">
+      <DependentUpon>AcuerdoPago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Gerencia\AcuerdoPago.aspx.designer.cs">
+      <DependentUpon>AcuerdoPago.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Hojas\CerrtificadoMaritimo.aspx.cs">
       <DependentUpon>CerrtificadoMaritimo.aspx</DependentUpon>

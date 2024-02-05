@@ -15,6 +15,33 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
     {
 
         /// <summary>
+        /// rbRecibosDigital control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbRecibosDigital;
+
+        /// <summary>
+        /// rbCuadreCaja control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbCuadreCaja;
+
+        /// <summary>
+        /// DIVRecibosDigitales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVRecibosDigitales;
+
+        /// <summary>
         /// lbIdPerfil control.
         /// </summary>
         /// <remarks>
@@ -526,5 +553,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton btnVolver;
+
+        /// <summary>
+        /// DIVCuadreCaja control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVCuadreCaja;
     }
 }

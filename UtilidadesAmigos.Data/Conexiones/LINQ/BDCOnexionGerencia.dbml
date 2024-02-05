@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSegurosNew" Class="BDCOnexionGerenciaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSegurosNew;User ID=sa;Encrypt=False" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosNewConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="Utililades.SP_BUSCA_ACUERDO_PAGO" Method="SP_BUSCA_ACUERDO_PAGO">
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="GeneradoPor" Parameter="generadoPor" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_BUSCA_ACUERDO_PAGOResult">
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ValorPoliza" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Concepto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaFacturacion" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="TipoAcuerdo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Frecuencia" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Supervisor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Intermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreSupervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="NombreIntermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FrecuenciaPagos" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="CantidadCuotas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Inicial" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Cuota" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="FechaC1" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="DiasC1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PagoC1" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="EstatusC1" Type="System.String" DbType="VarChar(9) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaC2" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="DiasC2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PagoC2" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="EstatusC2" Type="System.String" DbType="VarChar(9) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha3" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="DiasC3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Pago3" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="EstatusC3" Type="System.String" DbType="VarChar(9) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaC4" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="DiasC4" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Pago4" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DiasC5" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FechaC5" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="EstatusC4" Type="System.String" DbType="VarChar(9) NOT NULL" CanBeNull="false" />
+      <Column Name="PagoC5" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="EstatusC5" Type="System.String" DbType="VarChar(9) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaC6" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="DiasC6" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PagoC6" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="EstatusC6" Type="System.String" DbType="VarChar(9) NOT NULL" CanBeNull="false" />
+      <Column Name="PagadoTotal" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Pendiente" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="ValidadoDesde" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="ValidadoHasta" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

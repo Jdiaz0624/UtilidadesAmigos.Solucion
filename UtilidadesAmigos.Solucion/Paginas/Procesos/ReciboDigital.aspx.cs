@@ -320,7 +320,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
         }
 
-
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -340,6 +339,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 txtFechaHastaConsulta.Text = _FechaHasta.ToString("yyyy-MM-dd");
                 CurrentPage_ReciboDigital = 0;
                 MostrarListado();
+
+                rbRecibosDigital.Checked = true;
+                DIVRecibosDigitales.Visible = true;
+                DIVCuadreCaja.Visible = false;
      
             }
         }
@@ -583,6 +586,19 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected void btnRecibosLote_Click(object sender, ImageClickEventArgs e)
         {
             GenerarReporteEnLote();
+        }
+        protected void RadiosProcesos(object sender, EventArgs e) {
+
+            if (rbRecibosDigital.Checked == true) {
+
+                DIVRecibosDigitales.Visible = true;
+                DIVCuadreCaja.Visible = false;
+            }
+            else if (rbCuadreCaja.Checked == true) {
+                DIVRecibosDigitales.Visible = false;
+                DIVCuadreCaja.Visible = true;
+            }
+
         }
 
         protected void btnVolver_Click(object sender, ImageClickEventArgs e)

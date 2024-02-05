@@ -67,6 +67,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BDConexionCumplimiento.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Conexiones\LINQ\BDCOnexionGerencia.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BDCOnexionGerencia.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Conexiones\LINQ\BDConexionHojas.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -151,6 +156,14 @@
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>BDConexionCumplimiento.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Conexiones\LINQ\BDCOnexionGerencia.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>BDCOnexionGerencia.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Conexiones\LINQ\BDCOnexionGerencia.dbml.layout">
+      <DependentUpon>BDCOnexionGerencia.dbml</DependentUpon>
     </None>
     <None Include="Conexiones\LINQ\BDConexionHojas.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
