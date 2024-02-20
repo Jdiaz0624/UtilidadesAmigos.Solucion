@@ -117,9 +117,10 @@
         </ul>
         </li>
 
-         <li id="DIVReporteGerenciaes" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-cart-arrow-down"></i>Gerencia<i class="icono derecha fa fa-chevron-down"></i></a>
+         <li id="DIVReporteGerenciaes" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-cart-arrow-down"></i>Cobros<i class="icono derecha fa fa-chevron-down"></i></a>
           <ul>
               <li> <asp:LinkButton ID="LinkAcuerdosPagos" runat="server" Text="Acuerdos de Pagos" ToolTip="Reporte de Acuerdo de pagos" OnClick="LinkAcuerdosPagos_Click" ></asp:LinkButton> </li>
+              <li> <asp:LinkButton ID="LinkAntigeudadPorAtraso" runat="server" Text="Antiguedad Por Atraso" ToolTip="Reporte de Antiguedad por Atraso" OnClick="LinkAntigeudadPorAtraso_Click" ></asp:LinkButton> </li>
           </ul>
           </li>
 

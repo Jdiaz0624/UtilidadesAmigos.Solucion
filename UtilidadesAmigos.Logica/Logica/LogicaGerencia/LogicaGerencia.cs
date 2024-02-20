@@ -75,5 +75,158 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaGerencia
             return Listado;
         }
         #endregion
+        #region REPORTE DE ANTIGUEDAD POR ATRASO
+        public List<UtilidadesAmigos.Logica.Entidades.Gerencia.EReporteAntiguedadPorAtras> ReporteAntiguedadPorAtraso(string Poliza = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Ramo = null, int? SubRamo = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_REPORTE_ANTIGUEDAD_POR_ATRASO(Poliza, FechaDesde, FechaHasta, Ramo, SubRamo)
+                           select new UtilidadesAmigos.Logica.Entidades.Gerencia.EReporteAntiguedadPorAtras
+                           {
+                               Poliza=n.Poliza,
+                               Codigo_Intermediario=n.Codigo_Intermediario,
+                               Intermediario=n.Intermediario,
+                               Codigo_Supervisor=n.Codigo_Supervisor,
+                               Supervisor=n.Supervisor,
+                               Codigo=n.Codigo,
+                               Cliente=n.Cliente,
+                               Direccion=n.Direccion,
+                               Telefonos=n.Telefonos,
+                               Concepto=n.Concepto,
+                               Fecha_Facturacion=n.Fecha_Facturacion,
+                               Inicio_Vigencia=n.Inicio_Vigencia,
+                               Fin_Vigencia=n.Fin_Vigencia,
+                               Fecha_Ultimo_Pago=n.Fecha_Ultimo_Pago,
+                               DiasTranscurridos=n.DiasTranscurridos,
+                               Dias_Transcurridos_Pago=n.Dias_Transcurridos_Pago,
+                               Valor_Poliza=n.Valor_Poliza,
+                               Total_Pagado=n.Total_Pagado,
+                               TotalDescuento=n.TotalDescuento,
+                               Balance_Pendiente=n.Balance_Pendiente,
+                               Ramo=n.Ramo,
+                               SubRamo=n.SubRamo,
+                               NombreRamo=n.NombreRamo,
+                               NombreSubRamo=n.NombreSubRamo,
+                               Inicial=n.Inicial,
+                               Inicial_Pagado=n.Inicial_Pagado,
+                               Cuota=n.Cuota,
+                               C1_Pagada=n.C1_Pagada,
+                               C1=n.C1,
+                               C2_Pagada=n.C2_Pagada,
+                               C2=n.C2,
+                               C3_Pagada=n.C3_Pagada,
+                               C3=n.C3,
+                               C4_Pagada=n.C4_Pagada,
+                               C4=n.C4,
+                               C5_Pagada=n.C5_Pagada,
+                               C5=n.C5
+
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
+        #region GUARDAR INFORMACION DE LAS POLIZAS CON ATRASO
+        /// <summary>
+        /// Procesa la Informacion de la data de cobros
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Gerencia.EProcesarInformacionGuardarAntiguedadPorAtraso ProcesarPolizasConAtrasos(UtilidadesAmigos.Logica.Entidades.Gerencia.EProcesarInformacionGuardarAntiguedadPorAtraso Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Gerencia.EProcesarInformacionGuardarAntiguedadPorAtraso Procesar = null;
+
+            var PolizasConAtrasos = ObjData.SP_GUARDAR_ANTIGUEDAD_POR_ATRASO(
+                Item.IdUsuario,
+                Item.Poliza,
+                Item.Codigo_Intermediario,
+                Item.Intermediario,
+                Item.Codigo_Supervisor,
+                Item.Supervisor,
+                Item.Codigo,
+                Item.Cliente,
+                Item.Direccion,
+                Item.Telefonos,
+                Item.Concepto,
+                Item.Fecha_Facturacion,
+                Item.Inicio_Vigencia,
+                Item.Fin_Vigencia,
+                Item.Fecha_Ultimo_Pago,
+                Item.DiasTranscurridos,
+                Item.Dias_Transcurridos_Pago,
+                Item.Valor_Poliza,
+                Item.Total_Pagado,
+                Item.Balance_Pendiente,
+                Item.Ramo,
+                Item.SubRamo,
+                Item.NombreRamo,
+                Item.NombreSubRamo,
+                Item.Inicial,
+                Item.Inicial_Pagado,
+                Item.Cuota,
+                Item.C1_Pagada,
+                Item.C1,
+                Item.C2_Pagada,
+                Item.C2,
+                Item.C3_Pagada,
+                Item.C3,
+                Item.C4_Pagada,
+                Item.C4,
+                Item.C5_Pagada,
+                Item.C5,
+                Item.TotalDescuento,
+                Accion);
+            if (PolizasConAtrasos != null) {
+
+                Procesar = (from n in PolizasConAtrasos
+                            select new UtilidadesAmigos.Logica.Entidades.Gerencia.EProcesarInformacionGuardarAntiguedadPorAtraso
+                            {
+                                IdUsuario=n.IdUsuario,
+                                Poliza = n.Poliza,
+                                Codigo_Intermediario = n.Codigo_Intermediario,
+                                Intermediario = n.Intermediario,
+                                Codigo_Supervisor = n.Codigo_Supervisor,
+                                Supervisor = n.Supervisor,
+                                Codigo = n.Codigo,
+                                Cliente = n.Cliente,
+                                Direccion = n.Direccion,
+                                Telefonos = n.Telefonos,
+                                Concepto = n.Concepto,
+                                Fecha_Facturacion = n.Fecha_Facturacion,
+                                Inicio_Vigencia = n.Inicio_Vigencia,
+                                Fin_Vigencia = n.Fin_Vigencia,
+                                Fecha_Ultimo_Pago = n.Fecha_Ultimo_Pago,
+                                DiasTranscurridos = n.DiasTranscurridos,
+                                Dias_Transcurridos_Pago = n.Dias_Transcurridos_Pago,
+                                Valor_Poliza = n.Valor_Poliza,
+                                Total_Pagado = n.Total_Pagado,
+                                Balance_Pendiente = n.Balance_Pendiente,
+                                Ramo = n.Ramo,
+                                SubRamo = n.SubRamo,
+                                NombreRamo = n.NombreRamo,
+                                NombreSubRamo = n.NombreSubRamo,
+                                Inicial = n.Inicial,
+                                Inicial_Pagado = n.Inicial_Pagado,
+                                Cuota = n.Cuota,
+                                C1_Pagada = n.C1_Pagada,
+                                C1 = n.C1,
+                                C2_Pagada = n.C2_Pagada,
+                                C2 = n.C2,
+                                C3_Pagada = n.C3_Pagada,
+                                C3 = n.C3,
+                                C4_Pagada = n.C4_Pagada,
+                                C4 = n.C4,
+                                C5_Pagada = n.C5_Pagada,
+                                C5 = n.C5,
+                                TotalDescuento=n.TotalDescuento
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+
+
+        }
+        #endregion
     }
 }

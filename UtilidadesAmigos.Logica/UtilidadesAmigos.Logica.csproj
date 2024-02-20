@@ -111,6 +111,7 @@
     <Compile Include="Comunes\Mail.cs" />
     <Compile Include="Comunes\PermisoPerfiles.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\Cumplimiento\ProcesarInformacionMatrizRiezgo.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\Gerencia\ProcesarInformacionPolizasConAtraso.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionBackupBD.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionCorreosENviar.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionRutaBackupBD.cs" />
@@ -381,6 +382,8 @@
     <Compile Include="Entidades\EValidarPoliza.cs" />
     <Compile Include="Entidades\EValidarPolizasCanceladasCoberturas.cs" />
     <Compile Include="Entidades\Gerencia\EBuscaAcuerdoPago.cs" />
+    <Compile Include="Entidades\Gerencia\EProcesarInformacionGuardarAntiguedadPorAtraso.cs" />
+    <Compile Include="Entidades\Gerencia\EReporteAntiguedadPorAtras.cs" />
     <Compile Include="Entidades\Hoja\ECertificadoMaritimo.cs" />
     <Compile Include="Entidades\Mantenimientos\EBuscaListadoIntermediarios.cs" />
     <Compile Include="Entidades\Mantenimientos\EBuscaMonedas.cs" />

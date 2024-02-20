@@ -123,6 +123,15 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkAcuerdosPagos;
 
         /// <summary>
+        /// LinkAntigeudadPorAtraso control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkAntigeudadPorAtraso;
+
+        /// <summary>
         /// DIVModuloCumpplimiento control.
         /// </summary>
         /// <remarks>
