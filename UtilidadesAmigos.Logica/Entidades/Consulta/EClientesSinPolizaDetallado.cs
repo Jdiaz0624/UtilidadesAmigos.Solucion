@@ -72,5 +72,9 @@ namespace UtilidadesAmigos.Logica.Entidades.Consulta
 		public string Estatus { get; set; }
 
 		public System.Nullable<int> CodigoEstatus { get; set; }
-	}
+
+        public string EstatusRegistro { get; set; }
+
+        public string Poliza { get; set; }
+    }
 }

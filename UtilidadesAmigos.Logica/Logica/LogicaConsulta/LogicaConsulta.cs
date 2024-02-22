@@ -911,7 +911,9 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                CantidadPolizas1=n.CantidadPolizas1,
                                SiglaEstatus=n.SiglaEstatus,
                                CodigoEstatus=n.CodigoEstatus,
-                               Estatus=n.Estatus
+                               Estatus=n.Estatus,
+                               EstatusRegistro=n.EstatusRegistro,
+                               Poliza=n.Poliza
                            }).ToList();
             return Listado;
         }

@@ -684,7 +684,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                                                  Oficina = n.Oficina,
                                                  GeneradoPor = n.GeneradoPor,
                                                  SiglaEstatus=n.SiglaEstatus,
-                                                 Estatus=n.Estatus
+                                                 Estatus=n.Estatus,
+                                                 EstatusProceo=n.EstatusRegistro,
+                                                 Poliza = n.Poliza
                                              }).ToList();
                     UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Clientes Sin Poliza Detallado", ExportarDetallado);
                 }
@@ -692,8 +694,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             else {
                 ReporteClienteSinPoliza();
             }
-
-
         }
 
         private void ReporteClienteSinPoliza() {
