@@ -7,8 +7,8 @@
     <div class="container-fluid">
         <br />
         <div class="form-check form-switch">
-            <input type="checkbox" id="cbBuscarPorFechaCorte" runat="server" class="form-check-input" />
-            <label class="Letranegrita form-check-label">Filtrar Por Fecha de Corte</label>
+            <input type="checkbox" id="cbNoAgregarRangoFecha" runat="server" class="form-check-input" />
+            <label class="Letranegrita form-check-label">No Agregar Rango de Fecha</label>
         </div>
 
         <br />
@@ -19,7 +19,7 @@
             </div>
             <div class="col-md-4">
                  <label class="Letranegrita">Ramo</label>
-                <asp:DropDownList ID="ddlRamo" runat="server" ToolTip="Seleccionar Ramo" CssClass="form-control"></asp:DropDownList>
+                <asp:DropDownList ID="ddlRamo" runat="server" ToolTip="Seleccionar Ramo" AutoPostBack="true" OnSelectedIndexChanged="ddlRamo_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>
             </div>
             <div class="col-md-4">
                  <label class="Letranegrita">Sub Ramo</label>
@@ -51,10 +51,7 @@
                   <label class="Letranegrita">Fecha Hasta</label>
                   <asp:TextBox ID="txtFechaHasta" runat="server" TextMode="Date"  CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="col-md-4">
-                <label class="Letranegrita">Fecha Corte</label>
-               <asp:TextBox ID="txtFechaCorte" runat="server" TextMode="Date"  CssClass="form-control"></asp:TextBox>
-            </div>
+      
         </div>
         <br />
         <div class="ContenidoCentro">

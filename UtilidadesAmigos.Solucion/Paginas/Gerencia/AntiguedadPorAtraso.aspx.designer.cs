@@ -15,13 +15,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Gerencia
     {
 
         /// <summary>
-        /// cbBuscarPorFechaCorte control.
+        /// cbNoAgregarRangoFecha control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbBuscarPorFechaCorte;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbNoAgregarRangoFecha;
 
         /// <summary>
         /// txtPoliza control.
@@ -103,15 +103,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Gerencia
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFechaHasta;
-
-        /// <summary>
-        /// txtFechaCorte control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaCorte;
 
         /// <summary>
         /// btnGenerarReporte control.

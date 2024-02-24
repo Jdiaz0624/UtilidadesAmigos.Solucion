@@ -384,6 +384,7 @@
     <Compile Include="Entidades\Gerencia\EBuscaAcuerdoPago.cs" />
     <Compile Include="Entidades\Gerencia\EProcesarInformacionGuardarAntiguedadPorAtraso.cs" />
     <Compile Include="Entidades\Gerencia\EReporteAntiguedadPorAtras.cs" />
+    <Compile Include="Entidades\Gerencia\EReporteAntiguedadPorAtrasoResultado.cs" />
     <Compile Include="Entidades\Hoja\ECertificadoMaritimo.cs" />
     <Compile Include="Entidades\Mantenimientos\EBuscaListadoIntermediarios.cs" />
     <Compile Include="Entidades\Mantenimientos\EBuscaMonedas.cs" />
