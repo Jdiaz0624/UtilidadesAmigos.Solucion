@@ -75,7 +75,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Gerencia
                 _FechaDesde,
                 _FechaHasta,
                 _Ramo,
-                _SubRamoo);
+                _SubRamoo,
+                _Supervisor,
+                _Intermediario);
             foreach (var n in Data) {
 
                 UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.Gerencia.ProcesarInformacionPolizasConAtraso Procesar = new Logica.Comunes.ProcesarMantenimientos.Gerencia.ProcesarInformacionPolizasConAtraso(
@@ -124,8 +126,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Gerencia
 
             //EXPORTAMOS EL RESULTADO A EXCEL
             var Exportar = (from n in ObjData.Value.ReporteAntiguedadPorAtrasoResultado(
-                _Supervisor,
-                _Intermediario,
+                null,
+                null,
                 IdUsuario)
                             select new
                             {

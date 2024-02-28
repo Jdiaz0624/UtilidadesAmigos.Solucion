@@ -134,52 +134,6 @@
       <Column Name="TotalDescuento" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_REPORTE_ANTIGUEDAD_POR_ATRASO" Method="SP_REPORTE_ANTIGUEDAD_POR_ATRASO">
-    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
-    <Parameter Name="SubRamo" Parameter="subRamo" Type="System.Int32" DbType="Int" />
-    <ElementType Name="SP_REPORTE_ANTIGUEDAD_POR_ATRASOResult">
-      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Codigo_Intermediario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Intermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Codigo_Supervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Supervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Codigo" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Cliente" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="Direccion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="Telefonos" Type="System.String" DbType="VarChar(209) NOT NULL" CanBeNull="false" />
-      <Column Name="Concepto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Fecha_Facturacion" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="Inicio_Vigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="Fin_Vigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="Fecha_Ultimo_Pago" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
-      <Column Name="DiasTranscurridos" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Dias_Transcurridos_Pago" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Valor_Poliza" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Total_Pagado" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
-      <Column Name="TotalDescuento" Type="System.Decimal" DbType="Decimal(38,2) NOT NULL" CanBeNull="false" />
-      <Column Name="Balance_Pendiente" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="Ramo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="SubRamo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="NombreRamo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="NombreSubRamo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Inicial" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-      <Column Name="Inicial_Pagado" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
-      <Column Name="Cuota" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
-      <Column Name="C1_Pagada" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
-      <Column Name="C1" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-      <Column Name="C2_Pagada" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
-      <Column Name="C2" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-      <Column Name="C3_Pagada" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
-      <Column Name="C3" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-      <Column Name="C4_Pagada" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
-      <Column Name="C4" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-      <Column Name="C5_Pagada" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
-      <Column Name="C5" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="Utililades.SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO" Method="SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO">
     <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
     <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
@@ -218,6 +172,54 @@
       <Column Name="Atraso_61_90" Type="System.Decimal" DbType="Decimal(23,2) NOT NULL" CanBeNull="false" />
       <Column Name="Atraso_91_120" Type="System.Decimal" DbType="Decimal(22,2) NOT NULL" CanBeNull="false" />
       <Column Name="Atraso_Mas_120_Dias" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_REPORTE_ANTIGUEDAD_POR_ATRASO" Method="SP_REPORTE_ANTIGUEDAD_POR_ATRASO">
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SubRamo" Parameter="subRamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_REPORTE_ANTIGUEDAD_POR_ATRASOResult">
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Codigo_Intermediario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Codigo_Supervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Codigo" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Telefonos" Type="System.String" DbType="VarChar(209) NOT NULL" CanBeNull="false" />
+      <Column Name="Concepto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Facturacion" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Inicio_Vigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Fin_Vigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Fecha_Ultimo_Pago" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="DiasTranscurridos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Dias_Transcurridos_Pago" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Valor_Poliza" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Total_Pagado" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="TotalDescuento" Type="System.Decimal" DbType="Decimal(38,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Balance_Pendiente" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Ramo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SubRamo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NombreRamo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NombreSubRamo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Inicial" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Inicial_Pagado" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="Cuota" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="C1_Pagada" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="C1" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="C2_Pagada" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="C2" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="C3_Pagada" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="C3" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="C4_Pagada" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="C4" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="C5_Pagada" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="C5" Type="System.Decimal" DbType="Money" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

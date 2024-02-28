@@ -76,11 +76,11 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaGerencia
         }
         #endregion
         #region REPORTE DE ANTIGUEDAD POR ATRASO
-        public List<UtilidadesAmigos.Logica.Entidades.Gerencia.EReporteAntiguedadPorAtras> ReporteAntiguedadPorAtraso(string Poliza = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Ramo = null, int? SubRamo = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.Gerencia.EReporteAntiguedadPorAtras> ReporteAntiguedadPorAtraso(string Poliza = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Ramo = null, int? SubRamo = null,int? Supervisor = null, int? Intermediario=null) {
 
             ObjData.CommandTimeout = 999999999;
 
-            var Listado = (from n in ObjData.SP_REPORTE_ANTIGUEDAD_POR_ATRASO(Poliza, FechaDesde, FechaHasta, Ramo, SubRamo)
+            var Listado = (from n in ObjData.SP_REPORTE_ANTIGUEDAD_POR_ATRASO(Poliza, FechaDesde, FechaHasta, Ramo, SubRamo,Supervisor,Intermediario)
                            select new UtilidadesAmigos.Logica.Entidades.Gerencia.EReporteAntiguedadPorAtras
                            {
                                Poliza=n.Poliza,
