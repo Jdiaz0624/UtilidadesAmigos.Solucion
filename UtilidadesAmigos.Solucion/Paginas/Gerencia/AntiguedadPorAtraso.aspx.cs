@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Drawing.Charts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -35,9 +36,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Gerencia
 
                 CargarRamos();
                 CargarSubRamo();
-
-                UtilidadesAmigos.Logica.Comunes.Rangofecha Rango = new Logica.Comunes.Rangofecha();
-                Rango.FechaMes(ref txtFechaDesde, ref txtFechaHasta);
             }
         }
 
@@ -55,80 +53,19 @@ namespace UtilidadesAmigos.Solucion.Paginas.Gerencia
 
         protected void btnGenerarReporte_Click(object sender, ImageClickEventArgs e)
         {
-            decimal IdUsuario = (decimal)Session["IdUsuario"];
             string Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
             int? _Ramo = ddlRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlRamo.SelectedValue) : new Nullable<int>();
             int? _SubRamoo = ddlSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSubRamo.SelectedValue) : new Nullable<int>();
             int? _Supervisor = string.IsNullOrEmpty(txtSupervisor_Codigo.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtSupervisor_Codigo.Text);
             int? _Intermediario = string.IsNullOrEmpty(txtIntermediario_Codigo.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtIntermediario_Codigo.Text);
-            DateTime? _FechaDesde = cbNoAgregarRangoFecha.Checked == true ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaDesde.Text);
-            DateTime? _FechaHasta = cbNoAgregarRangoFecha.Checked == true ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaHasta.Text);
-
-            //BORRAMOS LOS DATOS DE LA TABLA MEDIANTE EL USUARIO CONECTADO
-            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.Gerencia.ProcesarInformacionPolizasConAtraso Eliminar = new Logica.Comunes.ProcesarMantenimientos.Gerencia.ProcesarInformacionPolizasConAtraso(
-                IdUsuario,
-                "", 0, "", 0, "", 0, "", "", "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, 0, "DELETE");
-            Eliminar.ProcesarInformacion();
-
-            var Data = ObjData.Value.ReporteAntiguedadPorAtraso(
-                Poliza,
-                _FechaDesde,
-                _FechaHasta,
-                _Ramo,
-                _SubRamoo,
-                _Supervisor,
-                _Intermediario);
-            foreach (var n in Data) {
-
-                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.Gerencia.ProcesarInformacionPolizasConAtraso Procesar = new Logica.Comunes.ProcesarMantenimientos.Gerencia.ProcesarInformacionPolizasConAtraso(
-                    IdUsuario,
-                    n.Poliza,
-                    (int)n.Codigo_Intermediario,
-                    n.Intermediario,
-                    (int)n.Codigo_Supervisor,
-                    n.Supervisor,
-                    (decimal)n.Codigo,
-                    n.Cliente,
-                    n.Direccion,
-                    n.Telefonos,
-                    n.Concepto,
-                    n.Fecha_Facturacion,
-                    n.Inicio_Vigencia,
-                    n.Fin_Vigencia,
-                    n.Fecha_Ultimo_Pago,
-                    (int)n.DiasTranscurridos,
-                    (int)n.Dias_Transcurridos_Pago,
-                    (decimal)n.Valor_Poliza,
-                    (decimal)n.Total_Pagado,
-                    (decimal)n.Balance_Pendiente,
-                    (int)n.Ramo,
-                    (int)n.SubRamo,
-                    n.NombreRamo,
-                    n.NombreSubRamo,
-                    (decimal)n.Inicial,
-                    n.Inicial_Pagado,
-                    (decimal)n.Cuota,
-                    n.C1_Pagada,
-                    (decimal)n.C1,
-                    n.C2_Pagada,
-                    (decimal)n.C2,
-                    n.C3_Pagada,
-                    (decimal)n.C3,
-                    n.C4_Pagada,
-                    (decimal)n.C4,
-                    n.C5_Pagada,
-                    (decimal)n.C5,
-                    (decimal)n.TotalDescuento,
-                    "INSERT");
-                Procesar.ProcesarInformacion();
-            }
-
 
             //EXPORTAMOS EL RESULTADO A EXCEL
             var Exportar = (from n in ObjData.Value.ReporteAntiguedadPorAtrasoResultado(
-                null,
-                null,
-                IdUsuario)
+                Poliza,
+                _Ramo,
+                _SubRamoo,
+                _Supervisor,
+                _Intermediario)
                             select new
                             {
                                 Poliza = n.Poliza,

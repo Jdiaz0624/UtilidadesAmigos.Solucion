@@ -15,15 +15,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Gerencia
     {
 
         /// <summary>
-        /// cbNoAgregarRangoFecha control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbNoAgregarRangoFecha;
-
-        /// <summary>
         /// txtPoliza control.
         /// </summary>
         /// <remarks>
@@ -85,24 +76,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Gerencia
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNombre_Intermediario;
-
-        /// <summary>
-        /// txtFechaDesde control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaDesde;
-
-        /// <summary>
-        /// txtFechaHasta control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaHasta;
 
         /// <summary>
         /// btnGenerarReporte control.

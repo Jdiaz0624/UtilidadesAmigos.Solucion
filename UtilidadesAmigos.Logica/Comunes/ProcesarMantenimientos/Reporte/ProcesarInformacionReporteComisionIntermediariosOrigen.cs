@@ -143,52 +143,55 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.Reporte
 
         public void ProcesarInformacion() {
 
-            UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionReporteComisionIntermediarioOrgen Procesar = new Entidades.Reportes.EProcesarInformacionReporteComisionIntermediarioOrgen();
+            try {
+                UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionReporteComisionIntermediarioOrgen Procesar = new Entidades.Reportes.EProcesarInformacionReporteComisionIntermediarioOrgen();
 
 
-            Procesar.IdUSuario = IdUSuario;
-            Procesar.CodigoSupervisor = CodigoSupervisor;
-            Procesar.Supervisor = Supervisor;
-            Procesar.CodigoIntermediario = CodigoIntermediario;
-            Procesar.Intermediario = Intermediario;
-            Procesar.Oficina = Oficina;
-            Procesar.NombreOficina = NombreOficina;
-            Procesar.NumeroIdentificacion = NumeroIdentificacion;
-            Procesar.NumeroCuenta = NumeroCuenta;
-            Procesar.TipoCuentaBanco = TipoCuentaBanco;
-            Procesar.Banco = Banco;
-            Procesar.NombreBanco = NombreBanco;
-            Procesar.NumeroRecibo = NumeroRecibo;
-            Procesar.FechaRecibo0 = FechaRecibo0;
-            Procesar.FechaRecibo = FechaRecibo;
-            Procesar.HoraRecibo = HoraRecibo;
-            Procesar.NumeroReciboFormateado = NumeroReciboFormateado;
-            Procesar.NumeroFactura = NumeroFactura;
-            Procesar.NumeroFacturaFormateada = NumeroFacturaFormateada;
-            Procesar.FechaFactura0 = FechaFactura0;
-            Procesar.FechaFactura = FechaFactura;
-            Procesar.HoraFactura = HoraFactura;
-            Procesar.CodMoneda = CodMoneda;
-            Procesar.NoPoliza = NoPoliza;
-            Procesar.Ramo = Ramo;
-            Procesar.NombreRamo = NombreRamo;
-            Procesar.TasaPesos = TasaPesos;
-            Procesar.TasaDollar = TasaDollar;
-            Procesar.TasaEuro = TasaEuro;
-            Procesar.ValorRecibo = ValorRecibo;
-            Procesar.PorcientoComision = PorcientoComision;
-            Procesar.Bruto = Bruto;
-            Procesar.Neto = Neto;
-            Procesar.Comision = Comision;
-            Procesar.Retencion = Retencion;
-            Procesar.AvanceComision = AvanceComision;
-            Procesar.Aliquidar = Aliquidar;
-            Procesar.GeneradoPor = GeneradoPor;
-            Procesar.CodigoUsuario = CodigoUsuario;
-            Procesar.ValidadoDesde = ValidadoDesde;
-            Procesar.ValidadoHasta = ValidadoHasta;
+                Procesar.IdUSuario = IdUSuario;
+                Procesar.CodigoSupervisor = CodigoSupervisor;
+                Procesar.Supervisor = Supervisor;
+                Procesar.CodigoIntermediario = CodigoIntermediario;
+                Procesar.Intermediario = Intermediario;
+                Procesar.Oficina = Oficina;
+                Procesar.NombreOficina = NombreOficina;
+                Procesar.NumeroIdentificacion = NumeroIdentificacion;
+                Procesar.NumeroCuenta = NumeroCuenta;
+                Procesar.TipoCuentaBanco = TipoCuentaBanco;
+                Procesar.Banco = Banco;
+                Procesar.NombreBanco = NombreBanco;
+                Procesar.NumeroRecibo = NumeroRecibo;
+                Procesar.FechaRecibo0 = FechaRecibo0;
+                Procesar.FechaRecibo = FechaRecibo;
+                Procesar.HoraRecibo = HoraRecibo;
+                Procesar.NumeroReciboFormateado = NumeroReciboFormateado;
+                Procesar.NumeroFactura = NumeroFactura;
+                Procesar.NumeroFacturaFormateada = NumeroFacturaFormateada;
+                Procesar.FechaFactura0 = FechaFactura0;
+                Procesar.FechaFactura = FechaFactura;
+                Procesar.HoraFactura = HoraFactura;
+                Procesar.CodMoneda = CodMoneda;
+                Procesar.NoPoliza = NoPoliza;
+                Procesar.Ramo = Ramo;
+                Procesar.NombreRamo = NombreRamo;
+                Procesar.TasaPesos = TasaPesos;
+                Procesar.TasaDollar = TasaDollar;
+                Procesar.TasaEuro = TasaEuro;
+                Procesar.ValorRecibo = ValorRecibo;
+                Procesar.PorcientoComision = PorcientoComision;
+                Procesar.Bruto = Bruto;
+                Procesar.Neto = Neto;
+                Procesar.Comision = Comision;
+                Procesar.Retencion = Retencion;
+                Procesar.AvanceComision = AvanceComision;
+                Procesar.Aliquidar = Aliquidar;
+                Procesar.GeneradoPor = GeneradoPor;
+                Procesar.CodigoUsuario = CodigoUsuario;
+                Procesar.ValidadoDesde = ValidadoDesde;
+                Procesar.ValidadoHasta = ValidadoHasta;
 
-            var MAN = Objata.ProcesarDatosInformacionReporteIntermediarioOrigen(Procesar, Accion);
+                var MAN = Objata.ProcesarDatosInformacionReporteIntermediarioOrigen(Procesar, Accion);
+            }
+            catch (Exception ex) { }
         }
     }
 }

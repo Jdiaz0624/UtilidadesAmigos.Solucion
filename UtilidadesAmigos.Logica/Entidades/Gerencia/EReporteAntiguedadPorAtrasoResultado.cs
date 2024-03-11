@@ -8,8 +8,6 @@ namespace UtilidadesAmigos.Logica.Entidades.Gerencia
 {
     public class EReporteAntiguedadPorAtrasoResultado
     {
-        public System.Nullable<decimal> IdUsuario { get; set; }
-
         public string Poliza { get; set; }
 
         public string Fecha_Facturacion { get; set; }
@@ -30,15 +28,15 @@ namespace UtilidadesAmigos.Logica.Entidades.Gerencia
 
         public System.Nullable<decimal> Valor_Poliza { get; set; }
 
-        public System.Nullable<decimal> Total_Pagado { get; set; }
+        public decimal Total_Pagado { get; set; }
 
         public System.Nullable<decimal> Balance_Pendiente { get; set; }
 
-        public System.Nullable<int> Ramo { get; set; }
+        public int Ramo { get; set; }
 
         public string NombreRamo { get; set; }
 
-        public System.Nullable<int> SubRamo { get; set; }
+        public int SubRamo { get; set; }
 
         public string NombreSubRamo { get; set; }
 

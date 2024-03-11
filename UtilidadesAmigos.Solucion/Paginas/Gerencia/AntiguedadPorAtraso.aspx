@@ -5,11 +5,6 @@
     <link rel="stylesheet" href="../../Content/EstilosComunes.css" />
 
     <div class="container-fluid">
-        <br />
-        <div class="form-check form-switch">
-            <input type="checkbox" id="cbNoAgregarRangoFecha" runat="server" class="form-check-input" />
-            <label class="Letranegrita form-check-label">No Agregar Rango de Fecha</label>
-        </div>
 
         <br />
         <div class="row">
@@ -41,15 +36,6 @@
             <div class="col-md-4">
                   <label class="Letranegrita">Nombre</label>
                   <asp:TextBox ID="txtNombre_Intermediario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-            </div>
-
-            <div class="col-md-4">
-                 <label class="Letranegrita">Fecha Desde</label>
-                 <asp:TextBox ID="txtFechaDesde" runat="server" TextMode="Date"  CssClass="form-control"></asp:TextBox>
-            </div>
-            <div class="col-md-4">
-                  <label class="Letranegrita">Fecha Hasta</label>
-                  <asp:TextBox ID="txtFechaHasta" runat="server" TextMode="Date"  CssClass="form-control"></asp:TextBox>
             </div>
       
         </div>

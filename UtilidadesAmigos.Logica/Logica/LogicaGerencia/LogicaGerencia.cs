@@ -236,14 +236,13 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaGerencia
         /// <param name="Intermediario"></param>
         /// <param name="IdUsuario"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.Gerencia.EReporteAntiguedadPorAtrasoResultado> ReporteAntiguedadPorAtrasoResultado(int? Supervisor = null, int? Intermediario = null,decimal? IdUsuario = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.Gerencia.EReporteAntiguedadPorAtrasoResultado> ReporteAntiguedadPorAtrasoResultado(string Poliza = null, int? Ramo = null, int? Subramo = null, int? Supervisor = null, int? Intermediario = null) {
 
             ObjData.CommandTimeout = 999999999;
 
-            var Listado = (from n in ObjData.SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO(Supervisor, Intermediario, IdUsuario)
+            var Listado = (from n in ObjData.SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO(Poliza,Ramo,Subramo,Supervisor,Intermediario)
                            select new UtilidadesAmigos.Logica.Entidades.Gerencia.EReporteAntiguedadPorAtrasoResultado
                            {
-                              IdUsuario=n.IdUsuario,
                               Poliza=n.Poliza,
                               Fecha_Facturacion=n.Fecha_Facturacion,
                               Inicio_Vigencia=n.Inicio_Vigencia,

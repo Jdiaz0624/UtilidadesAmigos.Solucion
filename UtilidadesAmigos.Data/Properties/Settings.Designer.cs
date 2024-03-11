@@ -285,5 +285,16 @@ namespace UtilidadesAmigos.Data.Properties {
                 return ((string)(this["SysFlexSegurosNewConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=JDIAZ0624;Initial Catalog=SysFlexSegurosNew;User ID=juan.diaz;Passwor" +
+            "d=!@@Pa$$W0rd!@**--;Encrypt=False")]
+        public string SysFlexSegurosNewConnectionString2 {
+            get {
+                return ((string)(this["SysFlexSegurosNewConnectionString2"]));
+            }
+        }
     }
 }
