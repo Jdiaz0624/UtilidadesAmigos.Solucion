@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDCOnexionGerenciaDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosNewConnectionString1, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosNewConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -127,6 +127,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, ramo, subRamo, supervisor, intermediario);
 			return ((ISingleResult<SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADOResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO_POLIZAS_ESPECIALES")]
+		public ISingleResult<SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO_POLIZAS_ESPECIALESResult> SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO_POLIZAS_ESPECIALES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SubRamo", DbType="Int")] System.Nullable<int> subRamo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Supervisor", DbType="Int")] System.Nullable<int> supervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Intermediario", DbType="Int")] System.Nullable<int> intermediario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, ramo, subRamo, supervisor, intermediario);
+			return ((ISingleResult<SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO_POLIZAS_ESPECIALESResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2346,6 +2353,590 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		private System.Nullable<decimal> _Atraso_Mas_120_Dias;
 		
 		public SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Poliza", DbType="VarChar(50)")]
+		public string Poliza
+		{
+			get
+			{
+				return this._Poliza;
+			}
+			set
+			{
+				if ((this._Poliza != value))
+				{
+					this._Poliza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Facturacion", DbType="NVarChar(4000)")]
+		public string Fecha_Facturacion
+		{
+			get
+			{
+				return this._Fecha_Facturacion;
+			}
+			set
+			{
+				if ((this._Fecha_Facturacion != value))
+				{
+					this._Fecha_Facturacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Inicio_Vigencia", DbType="NVarChar(4000)")]
+		public string Inicio_Vigencia
+		{
+			get
+			{
+				return this._Inicio_Vigencia;
+			}
+			set
+			{
+				if ((this._Inicio_Vigencia != value))
+				{
+					this._Inicio_Vigencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fin_Vigencia", DbType="NVarChar(4000)")]
+		public string Fin_Vigencia
+		{
+			get
+			{
+				return this._Fin_Vigencia;
+			}
+			set
+			{
+				if ((this._Fin_Vigencia != value))
+				{
+					this._Fin_Vigencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Ultimo_Pago", DbType="NVarChar(4000) NOT NULL", CanBeNull=false)]
+		public string Fecha_Ultimo_Pago
+		{
+			get
+			{
+				return this._Fecha_Ultimo_Pago;
+			}
+			set
+			{
+				if ((this._Fecha_Ultimo_Pago != value))
+				{
+					this._Fecha_Ultimo_Pago = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Supervisor", DbType="VarChar(233) NOT NULL", CanBeNull=false)]
+		public string Supervisor
+		{
+			get
+			{
+				return this._Supervisor;
+			}
+			set
+			{
+				if ((this._Supervisor != value))
+				{
+					this._Supervisor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Intermediario", DbType="VarChar(233) NOT NULL", CanBeNull=false)]
+		public string Intermediario
+		{
+			get
+			{
+				return this._Intermediario;
+			}
+			set
+			{
+				if ((this._Intermediario != value))
+				{
+					this._Intermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cliente", DbType="VarChar(288) NOT NULL", CanBeNull=false)]
+		public string Cliente
+		{
+			get
+			{
+				return this._Cliente;
+			}
+			set
+			{
+				if ((this._Cliente != value))
+				{
+					this._Cliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Concepto", DbType="VarChar(50)")]
+		public string Concepto
+		{
+			get
+			{
+				return this._Concepto;
+			}
+			set
+			{
+				if ((this._Concepto != value))
+				{
+					this._Concepto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Valor_Poliza", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Valor_Poliza
+		{
+			get
+			{
+				return this._Valor_Poliza;
+			}
+			set
+			{
+				if ((this._Valor_Poliza != value))
+				{
+					this._Valor_Poliza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total_Pagado", DbType="Money NOT NULL")]
+		public decimal Total_Pagado
+		{
+			get
+			{
+				return this._Total_Pagado;
+			}
+			set
+			{
+				if ((this._Total_Pagado != value))
+				{
+					this._Total_Pagado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Balance_Pendiente", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Balance_Pendiente
+		{
+			get
+			{
+				return this._Balance_Pendiente;
+			}
+			set
+			{
+				if ((this._Balance_Pendiente != value))
+				{
+					this._Balance_Pendiente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ramo", DbType="Int NOT NULL")]
+		public int Ramo
+		{
+			get
+			{
+				return this._Ramo;
+			}
+			set
+			{
+				if ((this._Ramo != value))
+				{
+					this._Ramo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreRamo", DbType="NVarChar(50)")]
+		public string NombreRamo
+		{
+			get
+			{
+				return this._NombreRamo;
+			}
+			set
+			{
+				if ((this._NombreRamo != value))
+				{
+					this._NombreRamo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubRamo", DbType="Int NOT NULL")]
+		public int SubRamo
+		{
+			get
+			{
+				return this._SubRamo;
+			}
+			set
+			{
+				if ((this._SubRamo != value))
+				{
+					this._SubRamo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreSubRamo", DbType="NVarChar(50)")]
+		public string NombreSubRamo
+		{
+			get
+			{
+				return this._NombreSubRamo;
+			}
+			set
+			{
+				if ((this._NombreSubRamo != value))
+				{
+					this._NombreSubRamo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="VarChar(50)")]
+		public string Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Balance_En_Atraso", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Balance_En_Atraso
+		{
+			get
+			{
+				return this._Balance_En_Atraso;
+			}
+			set
+			{
+				if ((this._Balance_En_Atraso != value))
+				{
+					this._Balance_En_Atraso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Inicial", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> Inicial
+		{
+			get
+			{
+				return this._Inicial;
+			}
+			set
+			{
+				if ((this._Inicial != value))
+				{
+					this._Inicial = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cuota", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> Cuota
+		{
+			get
+			{
+				return this._Cuota;
+			}
+			set
+			{
+				if ((this._Cuota != value))
+				{
+					this._Cuota = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pago_0_10", DbType="Money")]
+		public System.Nullable<decimal> Pago_0_10
+		{
+			get
+			{
+				return this._Pago_0_10;
+			}
+			set
+			{
+				if ((this._Pago_0_10 != value))
+				{
+					this._Pago_0_10 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pago_0_30", DbType="Money")]
+		public System.Nullable<decimal> Pago_0_30
+		{
+			get
+			{
+				return this._Pago_0_30;
+			}
+			set
+			{
+				if ((this._Pago_0_30 != value))
+				{
+					this._Pago_0_30 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pago_31_60", DbType="Money")]
+		public System.Nullable<decimal> Pago_31_60
+		{
+			get
+			{
+				return this._Pago_31_60;
+			}
+			set
+			{
+				if ((this._Pago_31_60 != value))
+				{
+					this._Pago_31_60 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pago_61_90", DbType="Money")]
+		public System.Nullable<decimal> Pago_61_90
+		{
+			get
+			{
+				return this._Pago_61_90;
+			}
+			set
+			{
+				if ((this._Pago_61_90 != value))
+				{
+					this._Pago_61_90 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pago_91_120", DbType="Money")]
+		public System.Nullable<decimal> Pago_91_120
+		{
+			get
+			{
+				return this._Pago_91_120;
+			}
+			set
+			{
+				if ((this._Pago_91_120 != value))
+				{
+					this._Pago_91_120 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pago_121_Mas", DbType="Money")]
+		public System.Nullable<decimal> Pago_121_Mas
+		{
+			get
+			{
+				return this._Pago_121_Mas;
+			}
+			set
+			{
+				if ((this._Pago_121_Mas != value))
+				{
+					this._Pago_121_Mas = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiasTranscurridos", DbType="Int")]
+		public System.Nullable<int> DiasTranscurridos
+		{
+			get
+			{
+				return this._DiasTranscurridos;
+			}
+			set
+			{
+				if ((this._DiasTranscurridos != value))
+				{
+					this._DiasTranscurridos = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Atraso_0_30", DbType="Decimal(24,4) NOT NULL")]
+		public decimal Atraso_0_30
+		{
+			get
+			{
+				return this._Atraso_0_30;
+			}
+			set
+			{
+				if ((this._Atraso_0_30 != value))
+				{
+					this._Atraso_0_30 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Atraso_31_60", DbType="Decimal(24,4) NOT NULL")]
+		public decimal Atraso_31_60
+		{
+			get
+			{
+				return this._Atraso_31_60;
+			}
+			set
+			{
+				if ((this._Atraso_31_60 != value))
+				{
+					this._Atraso_31_60 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Atraso_61_90", DbType="Decimal(25,4) NOT NULL")]
+		public decimal Atraso_61_90
+		{
+			get
+			{
+				return this._Atraso_61_90;
+			}
+			set
+			{
+				if ((this._Atraso_61_90 != value))
+				{
+					this._Atraso_61_90 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Atraso_91_120", DbType="Decimal(24,4) NOT NULL")]
+		public decimal Atraso_91_120
+		{
+			get
+			{
+				return this._Atraso_91_120;
+			}
+			set
+			{
+				if ((this._Atraso_91_120 != value))
+				{
+					this._Atraso_91_120 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Atraso_Mas_120_Dias", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Atraso_Mas_120_Dias
+		{
+			get
+			{
+				return this._Atraso_Mas_120_Dias;
+			}
+			set
+			{
+				if ((this._Atraso_Mas_120_Dias != value))
+				{
+					this._Atraso_Mas_120_Dias = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO_POLIZAS_ESPECIALESResult
+	{
+		
+		private string _Poliza;
+		
+		private string _Fecha_Facturacion;
+		
+		private string _Inicio_Vigencia;
+		
+		private string _Fin_Vigencia;
+		
+		private string _Fecha_Ultimo_Pago;
+		
+		private string _Supervisor;
+		
+		private string _Intermediario;
+		
+		private string _Cliente;
+		
+		private string _Concepto;
+		
+		private System.Nullable<decimal> _Valor_Poliza;
+		
+		private decimal _Total_Pagado;
+		
+		private System.Nullable<decimal> _Balance_Pendiente;
+		
+		private int _Ramo;
+		
+		private string _NombreRamo;
+		
+		private int _SubRamo;
+		
+		private string _NombreSubRamo;
+		
+		private string _Estatus;
+		
+		private System.Nullable<decimal> _Balance_En_Atraso;
+		
+		private System.Nullable<decimal> _Inicial;
+		
+		private System.Nullable<decimal> _Cuota;
+		
+		private System.Nullable<decimal> _Pago_0_10;
+		
+		private System.Nullable<decimal> _Pago_0_30;
+		
+		private System.Nullable<decimal> _Pago_31_60;
+		
+		private System.Nullable<decimal> _Pago_61_90;
+		
+		private System.Nullable<decimal> _Pago_91_120;
+		
+		private System.Nullable<decimal> _Pago_121_Mas;
+		
+		private System.Nullable<int> _DiasTranscurridos;
+		
+		private decimal _Atraso_0_30;
+		
+		private decimal _Atraso_31_60;
+		
+		private decimal _Atraso_61_90;
+		
+		private decimal _Atraso_91_120;
+		
+		private System.Nullable<decimal> _Atraso_Mas_120_Dias;
+		
+		public SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO_POLIZAS_ESPECIALESResult()
 		{
 		}
 		

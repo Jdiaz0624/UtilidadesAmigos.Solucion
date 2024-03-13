@@ -78,6 +78,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Gerencia
         protected global::System.Web.UI.WebControls.TextBox txtNombre_Intermediario;
 
         /// <summary>
+        /// cbRenovacionesTransito control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbRenovacionesTransito;
+
+        /// <summary>
         /// btnGenerarReporte control.
         /// </summary>
         /// <remarks>

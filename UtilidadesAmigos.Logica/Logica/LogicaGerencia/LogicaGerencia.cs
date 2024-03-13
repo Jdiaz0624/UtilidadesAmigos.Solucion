@@ -124,6 +124,9 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaGerencia
                            }).ToList();
             return Listado;
         }
+
+
+
         #endregion
         #region GUARDAR INFORMACION DE LAS POLIZAS CON ATRASO
         /// <summary>
@@ -275,6 +278,61 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaGerencia
                               Atraso_61_90=n.Atraso_61_90,
                               Atraso_91_120=n.Atraso_91_120,
                               Atraso_Mas_120_Dias=n.Atraso_Mas_120_Dias
+                           }).ToList();
+            return Listado;
+
+        }
+
+
+        /// <summary>
+        /// Muestra las Renovaciones que se realizaron en el proceso de transito.
+        /// </summary>
+        /// <param name="Poliza"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="Subramo"></param>
+        /// <param name="Supervisor"></param>
+        /// <param name="Intermediario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Gerencia.EReporteAntiguedadPorAtrasoPolizasEspeciales> ReporteAntiguedadPorAtrasoResultadoRenovacionesTransito(string Poliza = null, int? Ramo = null, int? Subramo = null, int? Supervisor = null, int? Intermediario = null)
+        {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO_POLIZAS_ESPECIALES(Poliza, Ramo, Subramo, Supervisor, Intermediario)
+                           select new UtilidadesAmigos.Logica.Entidades.Gerencia.EReporteAntiguedadPorAtrasoPolizasEspeciales
+                           {
+                               Poliza = n.Poliza,
+                               Fecha_Facturacion = n.Fecha_Facturacion,
+                               Inicio_Vigencia = n.Inicio_Vigencia,
+                               Fin_Vigencia = n.Fin_Vigencia,
+                               Fecha_Ultimo_Pago = n.Fecha_Ultimo_Pago,
+                               Supervisor = n.Supervisor,
+                               Intermediario = n.Intermediario,
+                               Cliente = n.Cliente,
+                               Concepto = n.Concepto,
+                               Valor_Poliza = n.Valor_Poliza,
+                               Total_Pagado = n.Total_Pagado,
+                               Balance_Pendiente = n.Balance_Pendiente,
+                               Ramo = n.Ramo,
+                               NombreRamo = n.NombreRamo,
+                               SubRamo = n.SubRamo,
+                               NombreSubRamo = n.NombreSubRamo,
+                               Estatus = n.Estatus,
+                               Balance_En_Atraso = n.Balance_En_Atraso,
+                               Inicial = n.Inicial,
+                               Cuota = n.Cuota,
+                               Pago_0_10 = n.Pago_0_10,
+                               Pago_0_30 = n.Pago_0_30,
+                               Pago_31_60 = n.Pago_31_60,
+                               Pago_61_90 = n.Pago_61_90,
+                               Pago_91_120 = n.Pago_91_120,
+                               Pago_121_Mas = n.Pago_121_Mas,
+                               DiasTranscurridos = n.DiasTranscurridos,
+                               Atraso_0_30 = n.Atraso_0_30,
+                               Atraso_31_60 = n.Atraso_31_60,
+                               Atraso_61_90 = n.Atraso_61_90,
+                               Atraso_91_120 = n.Atraso_91_120,
+                               Atraso_Mas_120_Dias = n.Atraso_Mas_120_Dias
                            }).ToList();
             return Listado;
 

@@ -10,7 +10,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Gerencia
 {
     public partial class AntiguedadPorAtraso : System.Web.UI.Page
     {
-
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaGerencia.LogicaGerencia> ObjData = new Lazy<Logica.Logica.LogicaGerencia.LogicaGerencia>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjDataComun = new Lazy<Logica.Logica.LogicaSistema>();
 
@@ -59,47 +58,94 @@ namespace UtilidadesAmigos.Solucion.Paginas.Gerencia
             int? _Supervisor = string.IsNullOrEmpty(txtSupervisor_Codigo.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtSupervisor_Codigo.Text);
             int? _Intermediario = string.IsNullOrEmpty(txtIntermediario_Codigo.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtIntermediario_Codigo.Text);
 
-            //EXPORTAMOS EL RESULTADO A EXCEL
-            var Exportar = (from n in ObjData.Value.ReporteAntiguedadPorAtrasoResultado(
-                Poliza,
-                _Ramo,
-                _SubRamoo,
-                _Supervisor,
-                _Intermediario)
-                            select new
-                            {
-                                Poliza = n.Poliza,
-                                Fecha_Facturacion = n.Fecha_Facturacion,
-                                Inicio_Vigencia = n.Inicio_Vigencia,
-                                Fin_Vigencia = n.Fin_Vigencia,
-                                Fecha_Ultimo_Pago = n.Fecha_Ultimo_Pago,
-                                Supervisor = n.Supervisor,
-                                Intermediario = n.Intermediario,
-                                Cliente = n.Cliente,
-                                Concepto = n.Concepto,
-                                Valor_Poliza = n.Valor_Poliza,
-                                Total_Pagado = n.Total_Pagado,
-                                Balance_Pendiente = n.Balance_Pendiente,
-                                Ramo = n.NombreRamo,
-                                SubRamo = n.NombreSubRamo,
-                                Estatus = n.Estatus,
-                                Balance_En_Atraso = n.Balance_En_Atraso,
-                                Inicial = n.Inicial,
-                                Cuota_Estimada = n.Cuota,
-                                Pago_0_10 = n.Pago_0_10,
-                                Pago_0_30 = n.Pago_0_30,
-                                Pago_31_60 = n.Pago_31_60,
-                                Pago_61_90 = n.Pago_61_90,
-                                Pago_91_120 = n.Pago_91_120,
-                                Pago_121_Mas = n.Pago_121_Mas,
-                                DiasTranscurridos = n.DiasTranscurridos,
-                                Atraso_0_30 = n.Atraso_0_30,
-                                Atraso_31_60 = n.Atraso_31_60,
-                                Atraso_61_90 = n.Atraso_61_90,
-                                Atraso_91_120 = n.Atraso_91_120,
-                                Atraso_Mas_120_Dias = n.Atraso_Mas_120_Dias
-                            }).ToList();
-            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte de Polizas en Atraso", Exportar);
+            if (cbRenovacionesTransito.Checked == true) {
+
+                //EXPORTAMOS EL RESULTADO A EXCEL
+                var Exportar = (from n in ObjData.Value.ReporteAntiguedadPorAtrasoResultadoRenovacionesTransito(
+                    Poliza,
+                    _Ramo,
+                    _SubRamoo,
+                    _Supervisor,
+                    _Intermediario)
+                                select new
+                                {
+                                    Poliza = n.Poliza,
+                                    Fecha_Facturacion = n.Fecha_Facturacion,
+                                    Inicio_Vigencia = n.Inicio_Vigencia,
+                                    Fin_Vigencia = n.Fin_Vigencia,
+                                    Fecha_Ultimo_Pago = n.Fecha_Ultimo_Pago,
+                                    Supervisor = n.Supervisor,
+                                    Intermediario = n.Intermediario,
+                                    Cliente = n.Cliente,
+                                    Concepto = n.Concepto,
+                                    Valor_Poliza = n.Valor_Poliza,
+                                    Total_Pagado = n.Total_Pagado,
+                                    Balance_Pendiente = n.Balance_Pendiente,
+                                    Ramo = n.NombreRamo,
+                                    SubRamo = n.NombreSubRamo,
+                                    Estatus = n.Estatus,
+                                    Balance_En_Atraso = n.Balance_En_Atraso,
+                                    Inicial = n.Inicial,
+                                    Cuota_Estimada = n.Cuota,
+                                    Pago_0_10 = n.Pago_0_10,
+                                    Pago_0_30 = n.Pago_0_30,
+                                    Pago_31_60 = n.Pago_31_60,
+                                    Pago_61_90 = n.Pago_61_90,
+                                    Pago_91_120 = n.Pago_91_120,
+                                    Pago_121_Mas = n.Pago_121_Mas,
+                                    DiasTranscurridos = n.DiasTranscurridos,
+                                    Atraso_0_30 = n.Atraso_0_30,
+                                    Atraso_31_60 = n.Atraso_31_60,
+                                    Atraso_61_90 = n.Atraso_61_90,
+                                    Atraso_91_120 = n.Atraso_91_120,
+                                    Atraso_Mas_120_Dias = n.Atraso_Mas_120_Dias
+                                }).ToList();
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte de Polizas en Atraso (Data 2)", Exportar);
+            }
+            else {
+
+                //EXPORTAMOS EL RESULTADO A EXCEL
+                var Exportar = (from n in ObjData.Value.ReporteAntiguedadPorAtrasoResultado(
+                    Poliza,
+                    _Ramo,
+                    _SubRamoo,
+                    _Supervisor,
+                    _Intermediario)
+                                select new
+                                {
+                                    Poliza = n.Poliza,
+                                    Fecha_Facturacion = n.Fecha_Facturacion,
+                                    Inicio_Vigencia = n.Inicio_Vigencia,
+                                    Fin_Vigencia = n.Fin_Vigencia,
+                                    Fecha_Ultimo_Pago = n.Fecha_Ultimo_Pago,
+                                    Supervisor = n.Supervisor,
+                                    Intermediario = n.Intermediario,
+                                    Cliente = n.Cliente,
+                                    Concepto = n.Concepto,
+                                    Valor_Poliza = n.Valor_Poliza,
+                                    Total_Pagado = n.Total_Pagado,
+                                    Balance_Pendiente = n.Balance_Pendiente,
+                                    Ramo = n.NombreRamo,
+                                    SubRamo = n.NombreSubRamo,
+                                    Estatus = n.Estatus,
+                                    Balance_En_Atraso = n.Balance_En_Atraso,
+                                    Inicial = n.Inicial,
+                                    Cuota_Estimada = n.Cuota,
+                                    Pago_0_10 = n.Pago_0_10,
+                                    Pago_0_30 = n.Pago_0_30,
+                                    Pago_31_60 = n.Pago_31_60,
+                                    Pago_61_90 = n.Pago_61_90,
+                                    Pago_91_120 = n.Pago_91_120,
+                                    Pago_121_Mas = n.Pago_121_Mas,
+                                    DiasTranscurridos = n.DiasTranscurridos,
+                                    Atraso_0_30 = n.Atraso_0_30,
+                                    Atraso_31_60 = n.Atraso_31_60,
+                                    Atraso_61_90 = n.Atraso_61_90,
+                                    Atraso_91_120 = n.Atraso_91_120,
+                                    Atraso_Mas_120_Dias = n.Atraso_Mas_120_Dias
+                                }).ToList();
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte de Polizas en Atraso", Exportar);
+            }
         }
 
         protected void ddlRamo_SelectedIndexChanged(object sender, EventArgs e)

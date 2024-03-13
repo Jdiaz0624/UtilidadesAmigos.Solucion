@@ -40,6 +40,12 @@
       
         </div>
         <br />
+      
+        <div class="form-check form-switch">
+            <input type="checkbox" id="cbRenovacionesTransito" runat="server" class="form-check-input" />
+            <label class="Letranegrita"> Mostrar las renovaciones del Proceso de Transito </label>
+        </div>
+        <br />
         <div class="ContenidoCentro">
             <asp:ImageButton ID="btnGenerarReporte" runat="server" ImageUrl="~/ImagenesBotones/Reporte_Nuevo.png" CssClass="BotonImagen" OnClick="btnGenerarReporte_Click" ToolTip="Generar Reporte" />
         </div>
