@@ -15,8 +15,9 @@ namespace UtilidadesAmigos.Logica.Entidades.Consulta
 		public System.Nullable<decimal> Prima {get;set;}
 
 		public string Estatus {get;set;}
+        public string Origen { get; set; }
 
-		public string InicioVigencia {get;set;}
+        public string InicioVigencia {get;set;}
 
 		public string FinVigencia {get;set;}
 

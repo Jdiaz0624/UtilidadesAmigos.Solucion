@@ -814,6 +814,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                                          Poliza = n.Poliza,
                                          Prima = n.Prima,
                                          Estatus = n.Estatus,
+                                         Origen=n.Origen,
                                          InicioVigencia = n.InicioVigencia,
                                          FinVigencia = n.FinVigencia,
                                          Supervisor = n.Supervisor,
@@ -1036,9 +1037,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbPantalla.Text = "REGISTROS IMCOMPLETOS";
 
+                UtilidadesAmigos.Logica.Comunes.Rangofecha Rango = new Logica.Comunes.Rangofecha();
+                Rango.FechaMes(ref txtFechaDesdeClienteSinPoliza, ref txtFechaHastaClienteSinPoliza);
+                Rango.FechaMes(ref txtfechaDesdePolizaSinImpresion, ref txtFechaHAstaPolizaSinMarbete);
+
                 rbCLientesSinPolizas.Checked = true;
-                rbReporteResumido.Checked = true;
-                rbPDF.Checked = true;
+                rbReporteDetallado.Checked = true;
+                rbExcelPlano.Checked = true;
                 DIVBloqueClientesSinPoliza.Visible = true;
                 DivBloquePaginacionPolizasSinMarbete.Visible = false;
                 CargaroficinaClienteSinPoliza();

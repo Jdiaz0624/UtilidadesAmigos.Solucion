@@ -67,18 +67,18 @@
             <asp:RadioButton ID="rbPolizasSInImpresionMarbete" runat="server" Text="Polizas Sin Impresion de Marbetes" GroupName="TipoInformacion" AutoPostBack="true" OnCheckedChanged="rbPolizasSInImpresionMarbete_CheckedChanged" ToolTip="Mostrar el listado de las polizas que no tiene marbete impreso" />
             <br />
             <asp:Label ID="lbFormaReporte" runat="server" CssClass="LetrasNegrita" Text="Forma de Reporte: "></asp:Label>
-            <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Reporte Resumido" GroupName="FormaReporte"  ToolTip="Genera el Reporte de Manera Resumida" />
+            <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Reporte Resumido" GroupName="FormaReporte" Enabled="false" ToolTip="Genera el Reporte de Manera Resumida" />
             <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Reporte Detallado" GroupName="FormaReporte"  ToolTip="Genera el Reporte de Manera Detallada" />
             <br />
             <asp:Label ID="lbFormatoReporte" runat="server" CssClass="LetrasNegrita" Text="Formato de Reporte: "></asp:Label>
-            <asp:RadioButton ID="rbPDF" runat="server" Text="PDF" GroupName="FormatoReporte"  ToolTip="Generar Reporte en PDF" />
-            <asp:RadioButton ID="rbExcel" runat="server" Text="Excel" GroupName="FormatoReporte"  ToolTip="Generar Reporte en Excel" />
+            <asp:RadioButton ID="rbPDF" runat="server" Text="PDF" GroupName="FormatoReporte" Enabled="false"  ToolTip="Generar Reporte en PDF" />
+            <asp:RadioButton ID="rbExcel" runat="server" Text="Excel" GroupName="FormatoReporte" Enabled="false"  ToolTip="Generar Reporte en Excel" />
             <asp:RadioButton ID="rbExcelPlano" runat="server" Text="Excel Plano" GroupName="FormatoReporte"  ToolTip="Generar el Reporte en Excel Sin Formato" />
         </div>
         <br />
          <div id="DIVBotones" runat="server" align="center">
-                <asp:ImageButton ID="btnConsultar" runat="server" CssClass="BotonImagen" ToolTip="Consultar información" ImageUrl="~/Imagenes/Buscar.png" OnClick="btnConsultar_Click" />
-                <asp:ImageButton ID="btnReporte" runat="server" CssClass="BotonImagen" ToolTip="Generar Reporte" ImageUrl="~/Imagenes/Reporte.png" OnClick="btnReporte_Click" />
+                <asp:ImageButton ID="btnConsultar" runat="server" CssClass="BotonImagen" ToolTip="Consultar información" ImageUrl="~/ImagenesBotones/Lupa_Nuevo.png" OnClick="btnConsultar_Click" />
+                <asp:ImageButton ID="btnReporte" runat="server" CssClass="BotonImagen" ToolTip="Generar Reporte" ImageUrl="~/ImagenesBotones/Reporte_Nuevo.png" OnClick="btnReporte_Click" />
             </div>
             <br />
         <div id="DIVBloqueClientesSinPoliza" visible="true" runat="server">

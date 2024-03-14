@@ -1015,6 +1015,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                Cotizacion = n.Cotizacion,
                                Prima = n.Prima,
                                Estatus = n.Estatus,
+                               Origen=n.Origen,
                                InicioVigencia = n.InicioVigencia,
                                FinVigencia = n.FinVigencia,
                                CodigoSupervisor = n.CodigoSupervisor,
