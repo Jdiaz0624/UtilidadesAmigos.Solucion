@@ -74,7 +74,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             else if (rbTarjeta.Checked == true) { TipoPago = "TARJETA"; }
             else if (rbTransferencia.Checked == true) { TipoPago = "TRANSFERENCIA"; }
             else if (rbCheque.Checked == true) { TipoPago = "CHEQUE"; }
-            else if (rbOtros.Checked == true) { TipoPago = "OTROS"; }
+            else if (rbOtros.Checked == true) { TipoPago = "OTROS PAGOS"; }
 
 
             UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionProcesos.ProcesarInformacionFormaPago Procesar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionProcesos.ProcesarInformacionFormaPago(
