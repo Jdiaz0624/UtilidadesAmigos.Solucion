@@ -33,7 +33,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
         MiguelBerrora=22,
         AngelaGenoveva=82,
         SarayMota=88,
-        WandaSancuez=91
+        WandaSancuez=91,
+        keriannyburgos= 127
         }
         
         #region CONTROL PARA MOSTRAR LA PAGINACION
@@ -466,6 +467,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     btnEliminarNuevo.Visible = false;
                 }
                 else if (IdUsuario == (decimal)PermisoUsuarios.AngelaGenoveva)
+                {
+
+                    btnNuevoNuevo.Visible = true;
+                    btnModificarNuevo.Visible = true;
+                    btnEliminarNuevo.Visible = false;
+                }
+                else if (IdUsuario == (decimal)PermisoUsuarios.keriannyburgos)
                 {
 
                     btnNuevoNuevo.Visible = true;
