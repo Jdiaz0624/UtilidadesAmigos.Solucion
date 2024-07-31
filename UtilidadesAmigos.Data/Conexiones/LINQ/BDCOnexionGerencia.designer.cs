@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDCOnexionGerenciaDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosNewConnectionString, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosNewConnectionString3, mappingSource)
 		{
 			OnCreated();
 		}
@@ -122,18 +122,18 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			return ((ISingleResult<SP_REPORTE_ANTIGUEDAD_POR_ATRASOResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO")]
-		public ISingleResult<SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADOResult> SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SubRamo", DbType="Int")] System.Nullable<int> subRamo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Supervisor", DbType="Int")] System.Nullable<int> supervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Intermediario", DbType="Int")] System.Nullable<int> intermediario)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, ramo, subRamo, supervisor, intermediario);
-			return ((ISingleResult<SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADOResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO_POLIZAS_ESPECIALES")]
 		public ISingleResult<SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO_POLIZAS_ESPECIALESResult> SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO_POLIZAS_ESPECIALES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SubRamo", DbType="Int")] System.Nullable<int> subRamo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Supervisor", DbType="Int")] System.Nullable<int> supervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Intermediario", DbType="Int")] System.Nullable<int> intermediario)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, ramo, subRamo, supervisor, intermediario);
 			return ((ISingleResult<SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO_POLIZAS_ESPECIALESResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO")]
+		public ISingleResult<SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADOResult> SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SubRamo", DbType="Int")] System.Nullable<int> subRamo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Supervisor", DbType="Int")] System.Nullable<int> supervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Intermediario", DbType="Int")] System.Nullable<int> intermediario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, ramo, subRamo, supervisor, intermediario);
+			return ((ISingleResult<SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADOResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2285,7 +2285,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 	}
 	
-	public partial class SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADOResult
+	public partial class SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO_POLIZAS_ESPECIALESResult
 	{
 		
 		private string _Poliza;
@@ -2352,7 +2352,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private System.Nullable<decimal> _Atraso_Mas_120_Dias;
 		
-		public SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADOResult()
+		public SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO_POLIZAS_ESPECIALESResult()
 		{
 		}
 		
@@ -2869,7 +2869,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 	}
 	
-	public partial class SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO_POLIZAS_ESPECIALESResult
+	public partial class SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADOResult
 	{
 		
 		private string _Poliza;
@@ -2890,9 +2890,15 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private string _Concepto;
 		
+		private System.Nullable<decimal> _FacturadoYear;
+		
+		private System.Nullable<decimal> _CobradoYear;
+		
 		private System.Nullable<decimal> _Valor_Poliza;
 		
 		private decimal _Total_Pagado;
+		
+		private int _TotalDescuento;
 		
 		private System.Nullable<decimal> _Balance_Pendiente;
 		
@@ -2936,7 +2942,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private System.Nullable<decimal> _Atraso_Mas_120_Dias;
 		
-		public SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO_POLIZAS_ESPECIALESResult()
+		public SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADOResult()
 		{
 		}
 		
@@ -3084,7 +3090,39 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Valor_Poliza", DbType="Decimal(18,2)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FacturadoYear", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> FacturadoYear
+		{
+			get
+			{
+				return this._FacturadoYear;
+			}
+			set
+			{
+				if ((this._FacturadoYear != value))
+				{
+					this._FacturadoYear = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CobradoYear", DbType="Money")]
+		public System.Nullable<decimal> CobradoYear
+		{
+			get
+			{
+				return this._CobradoYear;
+			}
+			set
+			{
+				if ((this._CobradoYear != value))
+				{
+					this._CobradoYear = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Valor_Poliza", DbType="Decimal(20,2)")]
 		public System.Nullable<decimal> Valor_Poliza
 		{
 			get
@@ -3112,6 +3150,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Total_Pagado != value))
 				{
 					this._Total_Pagado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalDescuento", DbType="Int NOT NULL")]
+		public int TotalDescuento
+		{
+			get
+			{
+				return this._TotalDescuento;
+			}
+			set
+			{
+				if ((this._TotalDescuento != value))
+				{
+					this._TotalDescuento = value;
 				}
 			}
 		}

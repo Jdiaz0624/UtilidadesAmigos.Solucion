@@ -255,6 +255,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaGerencia
                               Intermediario=n.Intermediario,
                               Cliente=n.Cliente,
                               Concepto=n.Concepto,
+                              FacturadoYear=n.FacturadoYear,
+                              CobradoYear=n.CobradoYear,
                               Valor_Poliza=n.Valor_Poliza,
                               Total_Pagado=n.Total_Pagado,
                               Balance_Pendiente=n.Balance_Pendiente,

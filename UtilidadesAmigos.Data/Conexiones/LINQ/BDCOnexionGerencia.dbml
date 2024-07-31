@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSegurosNew" Class="BDCOnexionGerenciaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSegurosNew;User ID=sa;Encrypt=False" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosNewConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSegurosNew;User ID=SA;Encrypt=False" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosNewConnectionString3" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_BUSCA_ACUERDO_PAGO" Method="SP_BUSCA_ACUERDO_PAGO">
     <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
     <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
@@ -182,13 +182,13 @@
       <Column Name="C5" Type="System.Decimal" DbType="Money" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO" Method="SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO">
+  <Function Name="Utililades.SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO_POLIZAS_ESPECIALES" Method="SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO_POLIZAS_ESPECIALES">
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
     <Parameter Name="SubRamo" Parameter="subRamo" Type="System.Int32" DbType="Int" />
     <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
     <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
-    <ElementType Name="SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADOResult">
+    <ElementType Name="SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO_POLIZAS_ESPECIALESResult">
       <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Fecha_Facturacion" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
       <Column Name="Inicio_Vigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
@@ -223,13 +223,13 @@
       <Column Name="Atraso_Mas_120_Dias" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO_POLIZAS_ESPECIALES" Method="SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO_POLIZAS_ESPECIALES">
+  <Function Name="Utililades.SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO" Method="SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO">
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
     <Parameter Name="SubRamo" Parameter="subRamo" Type="System.Int32" DbType="Int" />
     <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
     <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
-    <ElementType Name="SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADO_POLIZAS_ESPECIALESResult">
+    <ElementType Name="SP_REPORTE_ANTIGUEDAD_POR_ATRASO_RESULTADOResult">
       <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Fecha_Facturacion" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
       <Column Name="Inicio_Vigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
@@ -239,8 +239,11 @@
       <Column Name="Intermediario" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
       <Column Name="Cliente" Type="System.String" DbType="VarChar(288) NOT NULL" CanBeNull="false" />
       <Column Name="Concepto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Valor_Poliza" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="FacturadoYear" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="CobradoYear" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Valor_Poliza" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
       <Column Name="Total_Pagado" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="TotalDescuento" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Balance_Pendiente" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="Ramo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="NombreRamo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />

@@ -25,6 +25,9 @@ namespace UtilidadesAmigos.Logica.Entidades.Gerencia
         public string Cliente { get; set; }
 
         public string Concepto { get; set; }
+        public System.Nullable<decimal> FacturadoYear { get; set; }
+
+        public System.Nullable<decimal> CobradoYear { get; set; }
 
         public System.Nullable<decimal> Valor_Poliza { get; set; }
 
