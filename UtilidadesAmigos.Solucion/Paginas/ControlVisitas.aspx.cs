@@ -29,12 +29,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         enum PermisoUsuarios { 
         JuanMarcelino=1,
-        AlfredoPimentel=10,
-        MiguelBerrora=22,
         AngelaGenoveva=82,
         SarayMota=88,
         WandaSancuez=91,
-        keriannyburgos= 127
+        MaryKateDePaula= 135
         }
         
         #region CONTROL PARA MOSTRAR LA PAGINACION
@@ -473,7 +471,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     btnModificarNuevo.Visible = true;
                     btnEliminarNuevo.Visible = false;
                 }
-                else if (IdUsuario == (decimal)PermisoUsuarios.keriannyburgos)
+                else if (IdUsuario == (decimal)PermisoUsuarios.MaryKateDePaula)
                 {
 
                     btnNuevoNuevo.Visible = true;
