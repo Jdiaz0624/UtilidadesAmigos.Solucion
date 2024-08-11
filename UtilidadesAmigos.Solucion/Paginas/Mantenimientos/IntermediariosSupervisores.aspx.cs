@@ -1426,6 +1426,70 @@ namespace UtilidadesAmigos.Solucion.Paginas
             UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Intermediarios", Exportar);
         }
 
+        protected void btnProceso_Click(object sender, ImageClickEventArgs e)
+        {
+            var SacarInformacion = Objdatamantenimientos.CargaMAsivaIntermediario();
+            foreach (var n in SacarInformacion) {
+
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionMantenimientos.ProcesarInformacionGuardarMAsivoClientes Guardr = new Logica.Comunes.ProcesarMantenimientos.InformacionMantenimientos.ProcesarInformacionGuardarMAsivoClientes(
+                    30,
+                    (decimal)n.CodigoFormateado,
+                    1,
+                    (int)n.TipoRnc,
+                    n.Rnc,
+                    n.NombreVendedor,
+                    n.Direccion,
+                    (int)n.Ubicacion,
+                    0,
+                    0,
+                    (int)n.Codigo,
+                    1,
+                    1,
+                    30,
+                    "AUTOMATICO - INTERMEDIARIO",
+                    1,
+                    DateTime.Now,
+                    DateTime.Now,
+                    0,
+                    0,
+                    DateTime.Now,
+                    "AUTOMATICO - INTERMEDIARIO",
+                    DateTime.Now,
+                    n.Telefono,
+                    n.TelefonoOficina,
+                    n.Fax,
+                    n.Beeper,
+                    n.Email,
+                    n.Celular,
+                    0,
+                    0,
+                    7,
+                    n.Nombre,
+                    n.Apellido,
+                    (DateTime)n.Fec_Nac,
+                    DateTime.Now,
+                    0,
+                    "AUTOMATICO - INTERMEDIARIO",
+                    1,
+                    "AUTOMATICO - INTERMEDIARIO",
+                    "",
+                    1,
+                    "",
+                    1,
+                    "",
+                    "Persona Natural",
+                    "",
+                    "",
+                    0,
+                    "soltero",
+                    "",
+                    "INSERT");
+                Guardr.ProcesarInformacion();
+
+
+            }
+        }
+
         protected void btnVolverAtrasComisionesNuevo_Click(object sender, ImageClickEventArgs e)
         {
             VolverAtras();

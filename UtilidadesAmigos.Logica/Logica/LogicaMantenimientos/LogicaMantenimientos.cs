@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using UtilidadesAmigos.Logica.Entidades.Mantenimientos;
 
 namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
 {
@@ -1669,6 +1672,195 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                                  }).FirstOrDefault();
             }
             return Mantenimiento;
+        }
+        #endregion
+
+
+        #region CARGA MASIVA INTERMEDIARIOS
+        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.ECargaMasivaIntermediarios> CargaMAsivaIntermediario() {
+
+            Objdata.CommandTimeout = 999999999;
+
+            var Informacion = (from n in Objdata.SP_CARGA_MASIVA_INTEERMEDIARIOS()
+                               select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.ECargaMasivaIntermediarios
+                               {
+                                   Compania=n.Compania,
+                                   Codigo=n.Codigo,
+                                   CodigoFormateado=n.CodigoFormateado,
+                                   Cuenta=n.Cuenta,
+                                   Auxiliar=n.Auxiliar,
+                                   TipoRnc=n.TipoRnc,
+                                   Rnc=n.Rnc,
+                                   NombreVendedor = n.NombreVendedor,
+                                   PorcientoComision = n.PorcientoComision,
+                                   CodigoSupervisor = n.CodigoSupervisor,
+                                   Estatus = n.Estatus,
+                                   Fecha_Entrada = n.Fecha_Entrada,
+                                   UsuarioAdiciona = n.UsuarioAdiciona,
+                                   FechaAdiciona = n.FechaAdiciona,
+                                   UsuarioModifica = n.UsuarioModifica,
+                                   FechaModifica = n.FechaModifica,
+                                   PorcientoGastos = n.PorcientoGastos,
+                                   nota = n.nota,
+                                   tipo_Intermediario = n.tipo_Intermediario,
+                                   Agencia = n.Agencia,
+                                   Fec_Nac = n.Fec_Nac,
+                                   Publicidad = n.Publicidad,
+                                   PagoComPor = n.PagoComPor,
+                                   Banco = n.Banco,
+                                   CtaBanco = n.CtaBanco,
+                                   CodigoRnc = n.CodigoRnc,
+                                   Retencion = n.Retencion,
+                                   PorcDescuento = n.PorcDescuento,
+                                   SupervisorCrea = n.SupervisorCrea,
+                                   VendedorCrea = n.VendedorCrea,
+                                   Poliza = n.Poliza,
+                                   Direccion = n.Direccion,
+                                   Ubicacion = n.Ubicacion,
+                                   Telefono = n.Telefono,
+                                   TelefonoOficina = n.TelefonoOficina,
+                                   Celular = n.Celular,
+                                   Beeper = n.Beeper,
+                                   Fax = n.Fax,
+                                   Email = n.Email,
+                                   LicenciaSeguro = n.LicenciaSeguro,
+                                   CodigoAnterior = n.CodigoAnterior,
+                                   Apellido = n.Apellido,
+                                   Nombre = n.Nombre,
+                                   Oficina = n.Oficina,
+                                   TipoCuentaBco = n.TipoCuentaBco,
+                                   EjecutivoServicio = n.EjecutivoServicio,
+                                   AsumeCxc = n.AsumeCxc,
+                                   CodigoCliente = n.CodigoCliente,
+                                   Record_Id = n.Record_Id,
+                                   Gestor = n.Gestor,
+                                   EjecutivoCobros = n.EjecutivoCobros,
+                                   VenceLicencia = n.VenceLicencia
+                               }).ToList();
+            return Informacion;
+        }
+
+
+        public UtilidadesAmigos.Logica.Entidades.Mantenimientos.EGuardarClientesMasivos GaurdarClienteMasivo(UtilidadesAmigos.Logica.Entidades.Mantenimientos.EGuardarClientesMasivos Item, string Accion) {
+
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Mantenimientos.EGuardarClientesMasivos Procesar = null;
+
+            var Clientes = Objdata.SP_GUARDAR_CLIENTE_MASIVO(
+                Item.Compania,
+                Item.Codigo,
+                Item.TipoCliente,
+                Item.TipoRnc,
+                Item.RNC,
+                Item.NombreCliente,
+                Item.Direccion,
+                Item.Ubicacion,
+                Item.LimiteCredito,
+                Item.Descuento,
+                Item.Vendedor,
+                Item.Cobrador,
+                Item.Facturacion,
+                Item.CondicionPago,
+                Item.UsuarioAdiciona,
+                Item.Estatus,
+                Item.Fecha_ingreso,
+                Item.FechaUltPago,
+                Item.MontoUltPago,
+                Item.Balance,
+                Item.FechaAdiciona,
+                Item.UsuarioModifica,
+                Item.FechaModifica,
+                Item.TelefonoResidencia,
+                Item.TelefonoOficina,
+                Item.fax,
+                Item.Beeper,
+                Item.Email,
+                Item.Celular,
+                Item.CodigoRnc,
+                Item.Consorcio,
+                Item.Ncf,
+                Item.Nombre,
+                Item.Apellidos,
+                Item.FechaNacimiento,
+                Item.FechaLicencia,
+                Item.Itbis,
+                Item.Contacto,
+                Item.Sexo,
+                Item.Comentario,
+                Item.Record_Id,
+                Item.Nacionalidad,
+                Item.TipoRnc1,
+                Item.Rnc1,
+                Item.TipoRnc2,
+                Item.Rnc2,
+                Item.ClaseCliente,
+                Item.LugarTrabajo,
+                Item.CargoTrabajo,
+                Item.IngresoSalarial,
+                Item.EstadoCivil,
+                Item.Ocupacion,
+                Accion);
+            if (Clientes != null) {
+
+                Procesar = (from n in Clientes
+                            select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EGuardarClientesMasivos
+                            {
+                                Compania=n.Compania,
+                                Codigo = n.Codigo,
+                                TipoCliente = n.TipoCliente,
+                                TipoRnc = n.TipoRnc,
+                                RNC = n.RNC,
+                                NombreCliente = n.NombreCliente,
+                                Direccion = n.Direccion,
+                                Ubicacion = n.Ubicacion,
+                                LimiteCredito = n.LimiteCredito,
+                                Descuento = n.Descuento,
+                                Vendedor = n.Vendedor,
+                                Cobrador = n.Cobrador,
+                                Facturacion = n.Facturacion,
+                                CondicionPago = n.CondicionPago,
+                                UsuarioAdiciona = n.UsuarioAdiciona,
+                                Estatus = n.Estatus,
+                                Fecha_ingreso = n.Fecha_ingreso,
+                                FechaUltPago = n.FechaUltPago,
+                                MontoUltPago = n.MontoUltPago,
+                                Balance = n.Balance,
+                                FechaAdiciona = n.FechaAdiciona,
+                                UsuarioModifica = n.UsuarioModifica,
+                                FechaModifica = n.FechaModifica,
+                                TelefonoResidencia = n.TelefonoResidencia,
+                                TelefonoOficina = n.TelefonoOficina,
+                                fax = n.fax,
+                                Beeper = n.Beeper,
+                                Email = n.Email,
+                                Celular = n.Celular,
+                                CodigoRnc = n.CodigoRnc,
+                                Consorcio = n.Consorcio,
+                                Ncf = n.Ncf,
+                                Nombre = n.Nombre,
+                                Apellidos = n.Apellidos,
+                                FechaNacimiento = n.FechaNacimiento,
+                                FechaLicencia = n.FechaLicencia,
+                                Itbis = n.Itbis,
+                                Contacto = n.Contacto,
+                                Sexo = n.Sexo,
+                                Comentario = n.Comentario,
+                                Record_Id = n.Record_Id,
+                                Nacionalidad = n.Nacionalidad,
+                                TipoRnc1 = n.TipoRnc1,
+                                Rnc1 = n.Rnc1,
+                                TipoRnc2 = n.TipoRnc2,
+                                Rnc2 = n.Rnc2,
+                                ClaseCliente = n.ClaseCliente,
+                                LugarTrabajo = n.LugarTrabajo,
+                                CargoTrabajo = n.CargoTrabajo,
+                                IngresoSalarial = n.IngresoSalarial,
+                                EstadoCivil = n.EstadoCivil,
+                                Ocupacion = n.Ocupacion
+                            }).FirstOrDefault();
+            }
+            return Procesar;
         }
         #endregion
 
