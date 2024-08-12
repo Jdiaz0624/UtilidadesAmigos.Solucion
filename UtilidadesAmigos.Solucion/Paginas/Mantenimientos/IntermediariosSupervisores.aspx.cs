@@ -1455,7 +1455,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     DateTime.Now,
                     "AUTOMATICO - INTERMEDIARIO",
                     DateTime.Now,
-                    n.Telefono,
+                    n.Telefono,  
                     n.TelefonoOficina,
                     n.Fax,
                     n.Beeper,
