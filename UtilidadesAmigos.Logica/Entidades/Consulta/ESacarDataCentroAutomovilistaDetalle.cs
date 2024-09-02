@@ -43,5 +43,6 @@ namespace UtilidadesAmigos.Logica.Entidades.Consulta
         public string Concepto { get; set; }
 
         public string Fecha_Baja { get; set; }
+        public string FechaProceso { get; set; }
     }
 }

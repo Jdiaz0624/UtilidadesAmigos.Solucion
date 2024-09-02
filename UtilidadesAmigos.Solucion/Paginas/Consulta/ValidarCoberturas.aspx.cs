@@ -274,36 +274,76 @@ namespace UtilidadesAmigos.Solucion.Paginas
             string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
             int? _oficina = ddlOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlOficina.SelectedValue) : new Nullable<int>();
 
-            var ExportarInformacion = (from n in ObjData.Value.SacarDataTuAsistencia(
-                _FechaDesde,
-                _FechaHAsta,
-                _Poliza,
-                _Plan,
-                _oficina)
-                                       select new
-                                       {
-                                           Nombre = n.Nombre,
-                                           Apellido = n.Apellido,
-                                           Poliza = n.Poliza,
-                                           Ciudad = n.Ciudad,
-                                           Direccion = n.Direccion,
-                                           Telefono = n.Telefono,
-                                           TipoIdentificacion = n.TipoIdentificacion,
-                                           NumeroIdentificacion = n.NumeroIdentificacion,
-                                           Tipovehiculo = n.Tipovehiculo,
-                                           Marca = n.Marca,
-                                           Modelo = n.Modelo,
-                                           Ano = n.Ano,
-                                           Color = n.Color,
-                                           Chasis = n.Chasis,
-                                           Placa = n.Placa,
-                                           InicioVigencia = n.InicioVigencia,
-                                           FinVigencia = n.FinVigencia,
-                                           Estatus = n.Estatus,
-                                           Cobertura = n.Cobertura,
-                                           TipoMovimiento = n.TipoMovimiento
-                                       }).ToList();
-            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Data Grupo Nobe " + ddlPlan.SelectedItem.Text, ExportarInformacion);
+
+            if (cbValidacionAuditoria.Checked == true) {
+
+                var ExportarInformacion = (from n in ObjData.Value.SacarDataTuAsistencia(
+               _FechaDesde,
+               _FechaHAsta,
+               _Poliza,
+               _Plan,
+               _oficina)
+                                           select new
+                                           {
+                                               Nombre = n.Nombre,
+                                               Apellido = n.Apellido,
+                                               Poliza = n.Poliza,
+                                               Ciudad = n.Ciudad,
+                                               Direccion = n.Direccion,
+                                               Telefono = n.Telefono,
+                                               TipoIdentificacion = n.TipoIdentificacion,
+                                               NumeroIdentificacion = n.NumeroIdentificacion,
+                                               Tipovehiculo = n.Tipovehiculo,
+                                               Marca = n.Marca,
+                                               Modelo = n.Modelo,
+                                               Ano = n.Ano,
+                                               Color = n.Color,
+                                               Chasis = n.Chasis,
+                                               Placa = n.Placa,
+                                               FechaProceso=n.FechaProceso,
+                                               InicioVigencia = n.InicioVigencia,
+                                               FinVigencia = n.FinVigencia,
+                                               Estatus = n.Estatus,
+                                               Cobertura = n.Cobertura,
+                                               TipoMovimiento = n.TipoMovimiento
+                                           }).ToList();
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Data Grupo Nobe " + ddlPlan.SelectedItem.Text, ExportarInformacion);
+
+            }
+            else {
+                var ExportarInformacion = (from n in ObjData.Value.SacarDataTuAsistencia(
+                   _FechaDesde,
+                   _FechaHAsta,
+                   _Poliza,
+                   _Plan,
+                   _oficina)
+                                           select new
+                                           {
+                                               Nombre = n.Nombre,
+                                               Apellido = n.Apellido,
+                                               Poliza = n.Poliza,
+                                               Ciudad = n.Ciudad,
+                                               Direccion = n.Direccion,
+                                               Telefono = n.Telefono,
+                                               TipoIdentificacion = n.TipoIdentificacion,
+                                               NumeroIdentificacion = n.NumeroIdentificacion,
+                                               Tipovehiculo = n.Tipovehiculo,
+                                               Marca = n.Marca,
+                                               Modelo = n.Modelo,
+                                               Ano = n.Ano,
+                                               Color = n.Color,
+                                               Chasis = n.Chasis,
+                                               Placa = n.Placa,
+                                               InicioVigencia = n.InicioVigencia,
+                                               FinVigencia = n.FinVigencia,
+                                               Estatus = n.Estatus,
+                                               Cobertura = n.Cobertura,
+                                               TipoMovimiento = n.TipoMovimiento
+                                           }).ToList();
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Data Grupo Nobe " + ddlPlan.SelectedItem.Text, ExportarInformacion);
+            }
+
+           
 
 
 
@@ -373,34 +413,68 @@ namespace UtilidadesAmigos.Solucion.Paginas
             string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
             int? _oficina = ddlOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlOficina.SelectedValue) : new Nullable<int>();
 
-            var Exportar = (from n in ObjData.Value.SacarDataCentroAutomovilistaDetalle(
+            if (cbValidacionAuditoria.Checked == true) {
+
+                var Exportar = (from n in ObjData.Value.SacarDataCentroAutomovilistaDetalle(
                 _FechaDesde,
                 _FechaHAsta,
                 _Poliza,
                 _Plan,
                 _oficina)
-                            select new
-                            {
-                                Poliza = n.Poliza,
-                                Referencia = n.Referencia,
-                                Tipo_Poliza = n.Tipo_Poliza,
-                                Tipo_ID = n.Tipo_ID,
-                                Id_Propietario = n.Id_Propietario,
-                                Nombre_Propietario = n.Nombre_Propietario,
-                                Tipo_Vehiculo = n.Tipo_Vehiculo,
-                                Marca_Vehiculo = n.Marca_Vehiculo,
-                                Modelo_Vehiculo = n.Modelo_Vehiculo,
-                                Color_Vehiculo = n.Color_Vehiculo,
-                                Placa_Vehiculo = n.Placa_Vehiculo,
-                                Chasis_Vehiculo = n.Chasis_Vehiculo,
-                                Ano_Vehiculo = n.Ano_Vehiculo,
-                                Inicio_Vigencia = n.Inicio_Vigencia,
-                                Fin_Vigencia = n.Fin_Vigencia,
-                                TipoMovimiento = n.TipoMovimiento,
-                                Concepto = n.Concepto,
-                                Fecha_Baja = n.Fecha_Baja
-                            }).ToList();
-            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Data Centro del Automovilista", Exportar);
+                                select new
+                                {
+                                    Poliza = n.Poliza,
+                                    Referencia = n.Referencia,
+                                    Tipo_Poliza = n.Tipo_Poliza,
+                                    Tipo_ID = n.Tipo_ID,
+                                    Id_Propietario = n.Id_Propietario,
+                                    Nombre_Propietario = n.Nombre_Propietario,
+                                    Tipo_Vehiculo = n.Tipo_Vehiculo,
+                                    Marca_Vehiculo = n.Marca_Vehiculo,
+                                    Modelo_Vehiculo = n.Modelo_Vehiculo,
+                                    Color_Vehiculo = n.Color_Vehiculo,
+                                    Placa_Vehiculo = n.Placa_Vehiculo,
+                                    Chasis_Vehiculo = n.Chasis_Vehiculo,
+                                    Ano_Vehiculo = n.Ano_Vehiculo,
+                                    FechaProceso=n.FechaProceso,
+                                    Inicio_Vigencia = n.Inicio_Vigencia,
+                                    Fin_Vigencia = n.Fin_Vigencia,
+                                    TipoMovimiento = n.TipoMovimiento,
+                                    Concepto = n.Concepto,
+                                    Fecha_Baja = n.Fecha_Baja
+                                }).ToList();
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Data Centro del Automovilista", Exportar);
+            }
+            else {
+                var Exportar = (from n in ObjData.Value.SacarDataCentroAutomovilistaDetalle(
+                    _FechaDesde,
+                    _FechaHAsta,
+                    _Poliza,
+                    _Plan,
+                    _oficina)
+                                select new
+                                {
+                                    Poliza = n.Poliza,
+                                    Referencia = n.Referencia,
+                                    Tipo_Poliza = n.Tipo_Poliza,
+                                    Tipo_ID = n.Tipo_ID,
+                                    Id_Propietario = n.Id_Propietario,
+                                    Nombre_Propietario = n.Nombre_Propietario,
+                                    Tipo_Vehiculo = n.Tipo_Vehiculo,
+                                    Marca_Vehiculo = n.Marca_Vehiculo,
+                                    Modelo_Vehiculo = n.Modelo_Vehiculo,
+                                    Color_Vehiculo = n.Color_Vehiculo,
+                                    Placa_Vehiculo = n.Placa_Vehiculo,
+                                    Chasis_Vehiculo = n.Chasis_Vehiculo,
+                                    Ano_Vehiculo = n.Ano_Vehiculo,
+                                    Inicio_Vigencia = n.Inicio_Vigencia,
+                                    Fin_Vigencia = n.Fin_Vigencia,
+                                    TipoMovimiento = n.TipoMovimiento,
+                                    Concepto = n.Concepto,
+                                    Fecha_Baja = n.Fecha_Baja
+                                }).ToList();
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Data Centro del Automovilista", Exportar);
+            }
 
         }
         #endregion

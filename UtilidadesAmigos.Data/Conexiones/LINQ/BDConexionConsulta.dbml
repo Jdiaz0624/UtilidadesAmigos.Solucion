@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSegurosNew" Class="BDConexionConsultaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSegurosNew;User ID=sa;Encrypt=False" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosNewConnectionString" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_PROCESAR_INFORMACON_REPORTE_COMENTARIO_GESTION_COBRO" Method="SP_PROCESAR_INFORMACON_REPORTE_COMENTARIO_GESTION_COBRO">
     <Parameter Name="NumeroRegistro" Parameter="numeroRegistro" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />

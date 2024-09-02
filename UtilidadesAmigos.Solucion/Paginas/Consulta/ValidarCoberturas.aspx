@@ -62,6 +62,11 @@
                     <asp:RadioButton ID="rbTXT" runat="server" Text="TXT" GroupName="Formato" />
                 </div>
                 <br />
+                <div class="form-check form-switch">
+                    <input type="checkbox" runat="server" id="cbValidacionAuditoria" class="form-check-input" />
+                    <label class="Letranegrita form-check-label">Validación de Auditoria</label>
+                </div>
+                <br />
                 <div class="ContenidoCentro">
                       <asp:ImageButton ID="btnConsultar" runat="server" ImageUrl="~/ImagenesBotones/Lupa_Nuevo.png" OnClick="btnConsultar_Click" CssClass="BotonImagen" />
                       <asp:ImageButton ID="btnReporte" runat="server" ImageUrl="~/ImagenesBotones/Reporte_Nuevo.png" OnClick="btnReporte_Click" CssClass="BotonImagen" />

@@ -32,12 +32,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     partial void OnCreated();
     #endregion
 		
-		public BDConexionConsultaDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosNewConnectionString, mappingSource)
-		{
-			OnCreated();
-		}
-		
 		public BDConexionConsultaDataContext(string connection) : 
 				base(connection, mappingSource)
 		{

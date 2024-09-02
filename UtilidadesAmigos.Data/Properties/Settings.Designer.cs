@@ -318,5 +318,27 @@ namespace UtilidadesAmigos.Data.Properties {
                 return ((string)(this["SysFlexSegurosNewConnectionString4"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=172.25.24.3;Initial Catalog=SysFlexSegurosNew;User ID=sa;Encrypt=Fals" +
+            "e;TrustServerCertificate=True")]
+        public string SysFlexSegurosNewConnectionString5 {
+            get {
+                return ((string)(this["SysFlexSegurosNewConnectionString5"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=172.25.24.3;Initial Catalog=SysFlexSegurosNew;User ID=sa;Encrypt=Fals" +
+            "e;TrustServerCertificate=True")]
+        public string SysFlexSegurosNewConnectionString6 {
+            get {
+                return ((string)(this["SysFlexSegurosNewConnectionString6"]));
+            }
+        }
     }
 }
