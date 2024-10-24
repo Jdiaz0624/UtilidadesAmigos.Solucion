@@ -32,7 +32,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
         AngelaGenoveva=82,
         SarayMota=88,
         WandaSancuez=91,
-        MaryKateDePaula= 135
+        MaryKateDePaula= 135,
+            Iamdrapichardo=141
         }
         
         #region CONTROL PARA MOSTRAR LA PAGINACION
@@ -472,6 +473,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     btnEliminarNuevo.Visible = false;
                 }
                 else if (IdUsuario == (decimal)PermisoUsuarios.MaryKateDePaula)
+                {
+
+                    btnNuevoNuevo.Visible = true;
+                    btnModificarNuevo.Visible = true;
+                    btnEliminarNuevo.Visible = false;
+                }
+                else if (IdUsuario == (decimal)PermisoUsuarios.Iamdrapichardo)
                 {
 
                     btnNuevoNuevo.Visible = true;
