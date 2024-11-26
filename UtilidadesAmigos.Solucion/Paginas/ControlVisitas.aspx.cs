@@ -33,9 +33,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
         SarayMota=88,
         WandaSancuez=91,
         MaryKateDePaula= 135,
-            Iamdrapichardo=141
+        Iamdrapichardo=141
         }
-        
+
+
+        private void CargarCarnet() {
+
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlCarnet, ObjData.Value.BuscaListas("CARNETVISITANTE", null, null), true);
+        }
+
         #region CONTROL PARA MOSTRAR LA PAGINACION
         readonly PagedDataSource pagedDataSource = new PagedDataSource();
         int _PrimeraPagina, _UltimaPagina;
@@ -56,7 +62,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
 
         }
-        private void HandlePaging(ref DataList NombreDataList, ref Label PaginaActual)
+        private void HandlePaging(ref DataList NombreDataList, ref Label LbPaginaActual)
         {
             var dt = new DataTable();
             dt.Columns.Add("IndicePagina"); //Start from 0
@@ -80,7 +86,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
             //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
             int NumeroPagina = (int)CurrentPage;
-            PaginaActual.Text = (NumeroPagina + 1).ToString();
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
             // Now creating page number based on above first and last page index
             for (var i = _PrimeraPagina; i < _UltimaPagina; i++)
             {
@@ -94,14 +100,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
             NombreDataList.DataSource = dt;
             NombreDataList.DataBind();
         }
-        private void Paginar(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label CantidadPagina, ref LinkButton PrimeraPagina, ref LinkButton PaginaAnterior, ref LinkButton SiguientePagina, ref LinkButton UltimaPagina)
+        private void Paginar(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
         {
             pagedDataSource.DataSource = Listado;
             pagedDataSource.AllowPaging = true;
 
             ViewState["TotalPages"] = pagedDataSource.PageCount;
             // lbNumeroVariable.Text = "1";
-            CantidadPagina.Text = pagedDataSource.PageCount.ToString();
+            lbCantidadPagina.Text = pagedDataSource.PageCount.ToString();
 
             //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
             pagedDataSource.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina : _NumeroRegistros);
@@ -117,9 +123,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             RptGrid.DataBind();
 
 
-            //divPaginacionCliente.Visible = true;
-            //DivPaginacionIntermediario.Visible = true;
-            //OcultarDetalle();
+            //divPaginacionComisionSupervisor.Visible = true;
         }
         enum OpcionesPaginacionValores
         {
@@ -128,7 +132,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             PaginaAnterior = 3,
             UltimaPagina = 4
         }
-        private void MoverValoresPaginacion(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPagina)
+        private void MoverValoresPaginacion(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
         {
 
             int PaginaActual = 0;
@@ -160,15 +164,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                 case 4:
                     //ULTIMA PAGINA
-                    lbPaginaActual.Text = lbCantidadPagina.Text;
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
                     break;
 
 
             }
 
         }
-
-
         #endregion
         #region MOSTRAR EL LISTADO DEL CONTROL DE LAS VISITAS
         private void MostrarListadoControlCisitas() {
@@ -191,8 +193,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 _FechaDesde,
                 _FechaHasta,
                 null);
-            Paginar(ref rpListadoControlVisitas, Listado, 10, ref lbCantidadPaginaVAriableControlVisistas, ref LinkPrimeraPaginaControlVisistas, ref LinkAnteriorControlVisistas, ref LinkSiguienteControlVisistas, ref LinkUltimoControlVisistas);
-            HandlePaging(ref dtPaginacionControlVisistas, ref lbPaginaActualVariableControlVisistas);
+            Paginar(ref rpListadoControlVisitas, Listado, 10, ref lbCantidadPagina, ref btnPrimeraPagina, ref btnPaginaAnterior, ref btnSiguientePagina, ref btnUltimaPagina);
+            HandlePaging(ref dtPaginacion, ref lbPaginaActual);
             GraficarCantidadProcesos();
         }
         #endregion
@@ -238,10 +240,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnNuevoNuevo.Enabled = true;
             btnModificarNuevo.Enabled = false;
             btnEliminarNuevo.Enabled = false;
-            LinkPrimeraPaginaControlVisistas.Enabled = true;
-            LinkSiguienteControlVisistas.Enabled = true;
-            LinkAnteriorControlVisistas.Enabled = true;
-            LinkUltimoControlVisistas.Enabled = true;
+            btnPrimeraPagina.Enabled = true;
+            btnSiguientePagina.Enabled = true;
+            btnPaginaAnterior.Enabled = true;
+            btnUltimaPagina.Enabled = true;
             btnRestablecerNuevo.Enabled = false;
 
 
@@ -508,81 +510,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 DivFechaHAsta.Visible = false;
             }
         }
+     
 
-        protected void btnConsultar_Click(object sender, EventArgs e)
-        {
-          
-        }
 
-        protected void btnNuevo_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        protected void btnModificar_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        protected void btnEliminar_Click(object sender, EventArgs e)
-        {
-          
-        }
-
-        protected void LinkPrimeraPaginaControlVisistas_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            MostrarListadoControlCisitas();
-        }
-
-        protected void LinkAnteriorControlVisistas_Click(object sender, EventArgs e)
-        {
-            CurrentPage += -1;
-            MostrarListadoControlCisitas();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableControlVisistas, ref lbCantidadPaginaVAriableControlVisistas);
-        }
-
-        protected void dtPaginacionControlVisistas_ItemDataBound(object sender, DataListItemEventArgs e)
-        {
-
-        }
-
-        protected void dtPaginacionControlVisistas_ItemCommand(object source, DataListCommandEventArgs e)
-        {
-            if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
-            MostrarListadoControlCisitas();
-        }
-
-        protected void LinkSiguienteControlVisistas_Click(object sender, EventArgs e)
-        {
-            CurrentPage += 1;
-            MostrarListadoControlCisitas();
-        }
-
-        protected void LinkUltimoControlVisistas_Click(object sender, EventArgs e)
-        {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-            MostrarListadoControlCisitas();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableControlVisistas, ref lbCantidadPaginaVAriableControlVisistas);
-        }
-
-        protected void btnGuardar_Click(object sender, EventArgs e)
-        {
-            
-           
-        }
-
-        protected void btnVolver_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        protected void btnReporte_Click(object sender, EventArgs e)
-        {
-           
-            
-        }
 
         protected void ddlTipoprocesoMantenimiento_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -630,6 +560,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             txtComentarioMantenimiento.Text = string.Empty;
             DivBloqueCOnsulta.Visible = false;
             DivBloqueMantenimiento.Visible = true;
+            ddlCarnet.Enabled = true;
+            CargarCarnet();
 
             AccionDrop(Convert.ToInt32(ddlTipoprocesoMantenimiento.SelectedValue));
         }
@@ -641,6 +573,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             lbAccionTomarSeleccionado.Text = "UPDATE";
             DivBloqueCOnsulta.Visible = false;
             DivBloqueMantenimiento.Visible = true;
+            ddlCarnet.Enabled = false;
+            CargarCarnet();
         }
 
         protected void btnEliminarNuevo_Click(object sender, ImageClickEventArgs e)
@@ -649,6 +583,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             lbAccionTomarSeleccionado.Text = "DELETE";
             DivBloqueCOnsulta.Visible = false;
             DivBloqueMantenimiento.Visible = true;
+            ddlCarnet.Enabled = false;
+            CargarCarnet();
         }
 
         protected void btnRestablecerNuevo_Click(object sender, ImageClickEventArgs e)
@@ -665,8 +601,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             var BuscarInformacionSeleccionada = ObjData.Value.BuscaControlVisitas(
                 Convert.ToDecimal(hfNoRegistroseleccionado),
                 null, null, null, null, null, null, null, null);
-            Paginar(ref rpListadoControlVisitas, BuscarInformacionSeleccionada, 1, ref lbCantidadPaginaVAriableControlVisistas, ref LinkPrimeraPaginaControlVisistas, ref LinkAnteriorControlVisistas, ref LinkSiguienteControlVisistas, ref LinkUltimoControlVisistas);
-            HandlePaging(ref dtPaginacionControlVisistas, ref lbPaginaActualVariableControlVisistas);
+            Paginar(ref rpListadoControlVisitas, BuscarInformacionSeleccionada, 1, ref lbCantidadPagina, ref btnPrimeraPagina, ref btnPaginaAnterior, ref btnSiguientePagina, ref btnUltimaPagina);
+            HandlePaging(ref dtPaginacion, ref lbPaginaActual);
 
             foreach (var n in BuscarInformacionSeleccionada)
             {
@@ -695,10 +631,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnNuevoNuevo.Enabled = false;
             btnModificarNuevo.Enabled = true;
             btnEliminarNuevo.Enabled = true;
-            LinkPrimeraPaginaControlVisistas.Enabled = false;
-            LinkSiguienteControlVisistas.Enabled = false;
-            LinkAnteriorControlVisistas.Enabled = false;
-            LinkUltimoControlVisistas.Enabled = false;
+            btnPrimeraPagina.Enabled = false;
+            btnSiguientePagina.Enabled = false;
+            btnPaginaAnterior.Enabled = false;
+            btnUltimaPagina.Enabled = false;
             btnRestablecerNuevo.Enabled = true;
             DivBloqueDetalle.Visible = true;
             DivGraficoControlVisitas.Visible = false;
@@ -735,6 +671,49 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             else if (TipoProcesoSeleccionado == (int)TipoDeProceso.EntregaDeDocumentos) { }
             else if (TipoProcesoSeleccionado == (int)TipoDeProceso.SalidaDeDocumentos) { }
+        }
+
+        protected void btnPrimeraPagina_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = 0;
+            MostrarListadoControlCisitas();
+        }
+
+        protected void btnPaginaAnterior_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage += -1;
+            MostrarListadoControlCisitas();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActual, ref lbCantidadPagina);
+        }
+
+        protected void dtPaginacionListadoPrincipal_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionListadoPrincipal_CancelCommand(object source, DataListCommandEventArgs e)
+        {
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarListadoControlCisitas();
+        }
+
+        protected void btnSiguientePagina_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage += 1;
+            MostrarListadoControlCisitas();
+        }
+
+        protected void btnUltimaPagina_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarListadoControlCisitas();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActual, ref lbCantidadPagina);
+        }
+
+        protected void ddlCarnet_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         protected void btnSeleccionarRegistros_Click(object sender, EventArgs e)

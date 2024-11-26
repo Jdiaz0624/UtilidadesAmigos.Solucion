@@ -517,6 +517,10 @@ padding-left: 15px;
             <h1>Se estan realizando algunos ajustes a la parte de estadistica de renovación, se notificara una vez este disponible.</h1>
              <img src="../Imagenes/remodelacion.jpg" class="d-block w-100" alt="..." />
         </div>
+
+        <div id="DIVBloqueNotificacionesReclamaciones" runat="server">
+            <br />
+        </div>
      </div>
 
 </asp:Content>

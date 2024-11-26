@@ -32,6 +32,12 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     partial void OnCreated();
     #endregion
 		
+		public BDConexionDataContext() : 
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosNewConnectionString, mappingSource)
+		{
+			OnCreated();
+		}
+		
 		public BDConexionDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
@@ -1286,6 +1292,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta, poliza, cobertura, oficina);
 			return ((ISingleResult<SP_SACAR_DATA_CENTRO_DEL_AUTOMOVILISTA_DETALLEResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_INFORMACION_SEGUIMIENTO_CARNET")]
+		public ISingleResult<SP_PROCESAR_INFORMACION_SEGUIMIENTO_CARNETResult> SP_PROCESAR_INFORMACION_SEGUIMIENTO_CARNET([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdRegistro", DbType="Decimal(31,0)")] System.Nullable<decimal> idRegistro, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroVisita", DbType="Decimal(31,0)")] System.Nullable<decimal> numeroVisita, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaEntrada", DbType="DateTime")] System.Nullable<System.DateTime> fechaEntrada, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaSalida", DbType="DateTime")] System.Nullable<System.DateTime> fechaSalida, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCarnet", DbType="Int")] System.Nullable<int> idCarnet, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Estatus", DbType="Bit")] System.Nullable<bool> estatus, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(100)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idRegistro, numeroVisita, fechaEntrada, fechaSalida, idCarnet, estatus, accion);
+			return ((ISingleResult<SP_PROCESAR_INFORMACION_SEGUIMIENTO_CARNETResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -40096,6 +40109,122 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._FechaProceso != value))
 				{
 					this._FechaProceso = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_PROCESAR_INFORMACION_SEGUIMIENTO_CARNETResult
+	{
+		
+		private System.Nullable<decimal> _IdRegistro;
+		
+		private System.Nullable<decimal> _NumeroVisita;
+		
+		private System.Nullable<System.DateTime> _FechaEntrada;
+		
+		private System.Nullable<System.DateTime> _FechaSalida;
+		
+		private System.Nullable<int> _IdCarnet;
+		
+		private System.Nullable<bool> _Estatus;
+		
+		public SP_PROCESAR_INFORMACION_SEGUIMIENTO_CARNETResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRegistro", DbType="Decimal(31,0)")]
+		public System.Nullable<decimal> IdRegistro
+		{
+			get
+			{
+				return this._IdRegistro;
+			}
+			set
+			{
+				if ((this._IdRegistro != value))
+				{
+					this._IdRegistro = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroVisita", DbType="Decimal(31,0)")]
+		public System.Nullable<decimal> NumeroVisita
+		{
+			get
+			{
+				return this._NumeroVisita;
+			}
+			set
+			{
+				if ((this._NumeroVisita != value))
+				{
+					this._NumeroVisita = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaEntrada", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaEntrada
+		{
+			get
+			{
+				return this._FechaEntrada;
+			}
+			set
+			{
+				if ((this._FechaEntrada != value))
+				{
+					this._FechaEntrada = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaSalida", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaSalida
+		{
+			get
+			{
+				return this._FechaSalida;
+			}
+			set
+			{
+				if ((this._FechaSalida != value))
+				{
+					this._FechaSalida = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCarnet", DbType="Int")]
+		public System.Nullable<int> IdCarnet
+		{
+			get
+			{
+				return this._IdCarnet;
+			}
+			set
+			{
+				if ((this._IdCarnet != value))
+				{
+					this._IdCarnet = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="Bit")]
+		public System.Nullable<bool> Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
 				}
 			}
 		}

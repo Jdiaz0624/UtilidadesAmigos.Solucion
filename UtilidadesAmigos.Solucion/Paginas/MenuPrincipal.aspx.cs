@@ -390,6 +390,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 DivBloqueEstadistica.Visible = false;
                 DIVBloqueImagen.Visible = true;
                 DIvBloqueRemodelacion.Visible = false;
+                DIVBloqueNotificacionesReclamaciones.Visible = false;
 
                 var SacarPerfiles = Objtata.Value.BuscaUsuarios((decimal)Session["IdUsuario"]);
                 foreach (var n in SacarPerfiles) {
@@ -403,6 +404,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         DivBloqueEstadistica.Visible = true;
                         DIVBloqueImagen.Visible = false;
                         DIvBloqueRemodelacion.Visible = false;
+                        DIVBloqueNotificacionesReclamaciones.Visible = true;
 
                        // ActualizarInformacionEstadistica();
                         break;
@@ -411,8 +413,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         DivBloqueEstadistica.Visible = true;
                         DIVBloqueImagen.Visible = false;
                         DIvBloqueRemodelacion.Visible = false;
+                        DIVBloqueNotificacionesReclamaciones.Visible = false;
 
-                        
 
                        // ActualizarInformacionEstadistica();
                         break;
@@ -421,6 +423,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         DivBloqueEstadistica.Visible = true;
                         DIVBloqueImagen.Visible = false;
                         DIvBloqueRemodelacion.Visible = false;
+                        DIVBloqueNotificacionesReclamaciones.Visible = false;
 
                         //ActualizarInformacionEstadistica();
                         break;
@@ -429,8 +432,18 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         DivBloqueEstadistica.Visible = true;
                         DIVBloqueImagen.Visible = false;
                         DIvBloqueRemodelacion.Visible = false;
+                        DIVBloqueNotificacionesReclamaciones.Visible = false;
 
-                        
+
+                        break;
+
+                    case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.RECLAMACIONES:
+                        DivBloqueEstadistica.Visible = false;
+                        DIVBloqueImagen.Visible = true;
+                        DIvBloqueRemodelacion.Visible = false;
+                        DIVBloqueNotificacionesReclamaciones.Visible = true;
+
+
                         break;
                 }
                 DivBloqueCheck.Visible = false;

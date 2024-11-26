@@ -4209,6 +4209,44 @@ namespace UtilidadesAmigos.Logica.Logica
             return Listado;
         }
         #endregion
+
+        #region SEGUIMIENO CARNET
+        /// <summary>
+        /// Procesar Informacion Seguimiento Carnet
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.EProcesarInformacionSeguimientoCarnet ProcesarSeguimientoCarnet(UtilidadesAmigos.Logica.Entidades.EProcesarInformacionSeguimientoCarnet Item, string Accion) {
+
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.EProcesarInformacionSeguimientoCarnet Procesar = null;
+
+            var SeguimientoCarnet = Objdata.SP_PROCESAR_INFORMACION_SEGUIMIENTO_CARNET(
+                Item.IdRegistro,
+                Item.NumeroVisita,
+                Item.FechaEntrada,
+                Item.FechaSalida,
+                Item.IdCarnet,
+                Item.Estatus,
+                Accion);
+            if (SeguimientoCarnet != null) {
+
+                Procesar = (from n in SeguimientoCarnet
+                            select new UtilidadesAmigos.Logica.Entidades.EProcesarInformacionSeguimientoCarnet
+                            {
+                                IdRegistro=n.IdRegistro,
+                                NumeroVisita=n.NumeroVisita,
+                                FechaEntrada=n.FechaSalida,
+                                FechaSalida=n.FechaSalida,
+                                IdCarnet=n.IdCarnet,
+                                Estatus=n.Estatus
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
     }
 }
     

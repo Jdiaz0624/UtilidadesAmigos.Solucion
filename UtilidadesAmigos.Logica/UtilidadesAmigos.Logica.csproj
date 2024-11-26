@@ -171,6 +171,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionRegistrosSolicitudChequeLote.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionReporteAntiguedadSaldo.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionReporteEstadisticaPolizasSinPagos.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionSeguimientoCarnet.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionSolicitudCheques.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionSolicitudCuentas.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarMontosSolicitudCheques.cs" />
@@ -339,6 +340,7 @@
     <Compile Include="Entidades\EProcesarComisionesIntermediario.cs" />
     <Compile Include="Entidades\EProcesarDatosComisionesSupervisores.cs" />
     <Compile Include="Entidades\EProcesarInformacionComisionesIntermediariosMontosAcumulados.cs" />
+    <Compile Include="Entidades\EProcesarInformacionSeguimientoCarnet.cs" />
     <Compile Include="Entidades\EProduccionDiariaConsulta.cs" />
     <Compile Include="Entidades\EProduccionDiariaDetalle.cs" />
     <Compile Include="Entidades\EProduccionReclamos.cs" />

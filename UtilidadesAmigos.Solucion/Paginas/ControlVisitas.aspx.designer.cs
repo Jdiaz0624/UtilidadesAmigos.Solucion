@@ -321,76 +321,76 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Repeater rpListadoControlVisitas;
 
         /// <summary>
-        /// lbPaginaActualVariableControlVisistas control.
+        /// lbPaginaActual control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPaginaActualVariableControlVisistas;
+        protected global::System.Web.UI.WebControls.Label lbPaginaActual;
 
         /// <summary>
-        /// lbCantidadPaginaVAriableControlVisistas control.
+        /// lbCantidadPagina control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVAriableControlVisistas;
+        protected global::System.Web.UI.WebControls.Label lbCantidadPagina;
 
         /// <summary>
-        /// divPaginacionControlVisistas control.
+        /// DivPaginacionListadoPrincipal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPaginacionControlVisistas;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivPaginacionListadoPrincipal;
 
         /// <summary>
-        /// LinkPrimeraPaginaControlVisistas control.
+        /// btnPrimeraPagina control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeraPaginaControlVisistas;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPagina;
 
         /// <summary>
-        /// LinkAnteriorControlVisistas control.
+        /// btnPaginaAnterior control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorControlVisistas;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnterior;
 
         /// <summary>
-        /// dtPaginacionControlVisistas control.
+        /// dtPaginacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dtPaginacionControlVisistas;
+        protected global::System.Web.UI.WebControls.DataList dtPaginacion;
 
         /// <summary>
-        /// LinkSiguienteControlVisistas control.
+        /// btnSiguientePagina control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteControlVisistas;
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguientePagina;
 
         /// <summary>
-        /// LinkUltimoControlVisistas control.
+        /// btnUltimaPagina control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoControlVisistas;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPagina;
 
         /// <summary>
         /// DivGraficoControlVisitas control.
@@ -546,15 +546,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBloqueMantenimiento;
 
         /// <summary>
-        /// lbTipoProcesoMantenimiento control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTipoProcesoMantenimiento;
-
-        /// <summary>
         /// ddlTipoprocesoMantenimiento control.
         /// </summary>
         /// <remarks>
@@ -562,15 +553,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlTipoprocesoMantenimiento;
-
-        /// <summary>
-        /// lbNombreMantenimiento control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbNombreMantenimiento;
 
         /// <summary>
         /// txtNombreMantenimiento control.
@@ -582,15 +564,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.TextBox txtNombreMantenimiento;
 
         /// <summary>
-        /// lbNumeroIdentificacionMantenimiento control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbNumeroIdentificacionMantenimiento;
-
-        /// <summary>
         /// txtNumeroIdentificacionMantenimiento control.
         /// </summary>
         /// <remarks>
@@ -598,15 +571,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNumeroIdentificacionMantenimiento;
-
-        /// <summary>
-        /// lbRemitenteMantenimiento control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbRemitenteMantenimiento;
 
         /// <summary>
         /// txtRemitenteMantenimiento control.
@@ -618,15 +582,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.TextBox txtRemitenteMantenimiento;
 
         /// <summary>
-        /// lbDestinatarioMantenimiento control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbDestinatarioMantenimiento;
-
-        /// <summary>
         /// txtDestinatarioMantenimiento control.
         /// </summary>
         /// <remarks>
@@ -634,15 +589,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDestinatarioMantenimiento;
-
-        /// <summary>
-        /// lbCantidadDocumentosMantenimiento control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadDocumentosMantenimiento;
 
         /// <summary>
         /// txtCantidadDocumentosMantenimiento control.
@@ -654,15 +600,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.TextBox txtCantidadDocumentosMantenimiento;
 
         /// <summary>
-        /// lbCantidadPersonasMantenimient control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPersonasMantenimient;
-
-        /// <summary>
         /// txtCantidadPersonasMantenimiento control.
         /// </summary>
         /// <remarks>
@@ -670,6 +607,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCantidadPersonasMantenimiento;
+
+        /// <summary>
+        /// ddlCarnet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCarnet;
 
         /// <summary>
         /// lbComentario control.
