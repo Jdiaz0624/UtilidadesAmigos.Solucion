@@ -3435,4 +3435,16 @@
       <Column Name="Estatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_BUSCA_ULTIMO_REGISTRO_CREADO_CONTROL_VISITA" Method="SP_BUSCA_ULTIMO_REGISTRO_CREADO_CONTROL_VISITA">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(31,0)" />
+    <ElementType Name="SP_BUSCA_ULTIMO_REGISTRO_CREADO_CONTROL_VISITAResult">
+      <Column Name="NoRegistro" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_VALIDAR_CARNET_DISPONIBLE" Method="SP_VALIDAR_CARNET_DISPONIBLE">
+    <Parameter Name="IdCarnet" Parameter="idCarnet" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_VALIDAR_CARNET_DISPONIBLEResult">
+      <Column Name="Resultado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

@@ -4211,6 +4211,9 @@ namespace UtilidadesAmigos.Logica.Logica
         #endregion
 
         #region SEGUIMIENO CARNET
+
+        
+
         /// <summary>
         /// Procesar Informacion Seguimiento Carnet
         /// </summary>
@@ -4245,6 +4248,41 @@ namespace UtilidadesAmigos.Logica.Logica
                             }).FirstOrDefault();
             }
             return Procesar;
+        }
+
+        /// <summary>
+        /// Sacar el ultimo registro creado
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.EUltimoRegistroControlVisita> SacaUltimoRegistroControlVisita(decimal? IdUsuario = null) {
+
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_BUSCA_ULTIMO_REGISTRO_CREADO_CONTROL_VISITA(IdUsuario)
+                           select new UtilidadesAmigos.Logica.Entidades.EUltimoRegistroControlVisita
+                           {
+                               NoRegistro=n.NoRegistro
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Validar Carnet Disponible
+        /// </summary>
+        /// <param name="IdCarnet"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.EValidarCarnetDIsponible> ValidarCarnetDisponible(int? IdCarnet = null)
+        {
+
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_VALIDAR_CARNET_DISPONIBLE(IdCarnet)
+                           select new UtilidadesAmigos.Logica.Entidades.EValidarCarnetDIsponible
+                           {
+                               Resultado = n.Resultado
+                           }).ToList();
+            return Listado;
         }
         #endregion
     }

@@ -4,12 +4,22 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link rel="stylesheet" href="../Content/EstilosComunes.css" />
 
-  
+   
 
     <script type="text/javascript">
 
+
+
         function CamposFechasVacios() {
             alert("Los campos fechas no pueden estar vacios para realizar este tipo de busqueda.");
+        }
+
+        function CarnetNoDisponible() {
+            $("#<%=ddlCarnet.ClientID%>").css("border-color", "red");
+        }
+
+        function CarnetDisponible() {
+            $("#<%=ddlCarnet.ClientID%>").css("border-color", "green");
         }
 
         function FechaDesdeVacio() {
@@ -282,7 +292,7 @@
 
 
     <div id="DivBloqueMantenimiento" runat="server">
-
+        <asp:HiddenField ID="hfResultadoValidacionCarnet" runat="server" />
         <br />
         <div class="row">
             <div class="col-md-4">

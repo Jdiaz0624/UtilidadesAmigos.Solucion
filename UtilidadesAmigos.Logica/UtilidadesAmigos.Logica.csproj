@@ -381,7 +381,9 @@
     <Compile Include="Entidades\ESupervisoresPorDefectoPolizasSinPagos.cs" />
     <Compile Include="Entidades\ETipoReclamacion.cs" />
     <Compile Include="Entidades\ETransaccionesEfectivo.cs" />
+    <Compile Include="Entidades\EUltimoRegistroControlVisita.cs" />
     <Compile Include="Entidades\EUsuarios.cs" />
+    <Compile Include="Entidades\EValidarCarnetDIsponible.cs" />
     <Compile Include="Entidades\EValidarPoliza.cs" />
     <Compile Include="Entidades\EValidarPolizasCanceladasCoberturas.cs" />
     <Compile Include="Entidades\Gerencia\EBuscaAcuerdoPago.cs" />

@@ -1300,6 +1300,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idRegistro, numeroVisita, fechaEntrada, fechaSalida, idCarnet, estatus, accion);
 			return ((ISingleResult<SP_PROCESAR_INFORMACION_SEGUIMIENTO_CARNETResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_ULTIMO_REGISTRO_CREADO_CONTROL_VISITA")]
+		public ISingleResult<SP_BUSCA_ULTIMO_REGISTRO_CREADO_CONTROL_VISITAResult> SP_BUSCA_ULTIMO_REGISTRO_CREADO_CONTROL_VISITA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(31,0)")] System.Nullable<decimal> idUsuario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario);
+			return ((ISingleResult<SP_BUSCA_ULTIMO_REGISTRO_CREADO_CONTROL_VISITAResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_VALIDAR_CARNET_DISPONIBLE")]
+		public ISingleResult<SP_VALIDAR_CARNET_DISPONIBLEResult> SP_VALIDAR_CARNET_DISPONIBLE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCarnet", DbType="Int")] System.Nullable<int> idCarnet)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCarnet);
+			return ((ISingleResult<SP_VALIDAR_CARNET_DISPONIBLEResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_LISTA_CARGAR_RAMOSResult
@@ -40225,6 +40239,58 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Estatus != value))
 				{
 					this._Estatus = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_ULTIMO_REGISTRO_CREADO_CONTROL_VISITAResult
+	{
+		
+		private System.Nullable<decimal> _NoRegistro;
+		
+		public SP_BUSCA_ULTIMO_REGISTRO_CREADO_CONTROL_VISITAResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoRegistro", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> NoRegistro
+		{
+			get
+			{
+				return this._NoRegistro;
+			}
+			set
+			{
+				if ((this._NoRegistro != value))
+				{
+					this._NoRegistro = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_VALIDAR_CARNET_DISPONIBLEResult
+	{
+		
+		private System.Nullable<int> _Resultado;
+		
+		public SP_VALIDAR_CARNET_DISPONIBLEResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Resultado", DbType="Int")]
+		public System.Nullable<int> Resultado
+		{
+			get
+			{
+				return this._Resultado;
+			}
+			set
+			{
+				if ((this._Resultado != value))
+				{
+					this._Resultado = value;
 				}
 			}
 		}

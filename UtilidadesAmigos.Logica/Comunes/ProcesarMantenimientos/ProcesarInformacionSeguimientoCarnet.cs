@@ -27,13 +27,13 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos
          bool EstatusCON,
          string AccionCON)
         {
-            IdRegistroCON = IdRegistro;
-            NumeroVisitaCON = NumeroVisita;
-            FechaEntradaCON = FechaEntrada;
-            FechaSalidaCON = FechaSalida;
-            IdCarnetCON = IdCarnet;
-            EstatusCON = Estatus;
-            AccionCON = Accion;
+            IdRegistro = IdRegistroCON;
+            NumeroVisita = NumeroVisitaCON;
+            FechaEntrada = FechaEntradaCON;
+            FechaSalida = FechaSalidaCON;
+            IdCarnet = IdCarnetCON;
+            Estatus = EstatusCON;
+            Accion = AccionCON;
         }
 
         public void ProcesarInformacion() {

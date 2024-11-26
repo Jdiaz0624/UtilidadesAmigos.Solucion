@@ -42,6 +42,70 @@ namespace UtilidadesAmigos.Solucion.Paginas
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlCarnet, ObjData.Value.BuscaListas("CARNETVISITANTE", null, null), true);
         }
 
+        private void ValidarCarnetDisponible() {
+
+            int Resultado = 0;
+            int IdCarnet = ddlCarnet.SelectedValue != "-1" ? Convert.ToInt32(ddlCarnet.SelectedValue) : 0;
+            decimal NumeroRegsitro = 0;
+           
+            if (IdCarnet != 0)
+            {
+                var SacarInformacion = ObjData.Value.ValidarCarnetDisponible(IdCarnet);
+                foreach (var n in SacarInformacion)
+                {
+
+                    Resultado = (int)n.Resultado;
+                }
+
+
+                if (Resultado > 0)
+                {
+                    hfResultadoValidacionCarnet.Value = "NO";
+                    ClientScript.RegisterStartupScript(GetType(), "CarnetNoDisponible()", "CarnetNoDisponible();", true);
+                }
+                else
+                {
+                    hfResultadoValidacionCarnet.Value = "SI";
+                    ClientScript.RegisterStartupScript(GetType(), "CarnetDisponible()", "CarnetDisponible();", true);
+                }
+            }
+            else {
+                hfResultadoValidacionCarnet.Value = "SI";
+            }
+        }
+        private void AsignacionCarnet() {
+
+            try {
+                int CodigoCarnet = ddlCarnet.SelectedValue != "-1" ? Convert.ToInt32(ddlCarnet.SelectedValue) : 0;
+
+
+
+                if (CodigoCarnet != 0)
+                {
+                    decimal NumeroVisita = 0;
+                    decimal IdUsuario = (decimal)Session["IdUsuario"];
+
+                    var SacarInformacion = ObjData.Value.SacaUltimoRegistroControlVisita(IdUsuario);
+                    foreach (var n in SacarInformacion)
+                    {
+
+                        NumeroVisita = (decimal)n.NoRegistro;
+                    }
+
+                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSeguimientoCarnet Procesar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSeguimientoCarnet(
+                        0,
+                        NumeroVisita,
+                        DateTime.Now,
+                        DateTime.Now,
+                        CodigoCarnet,
+                        false,
+                        "INSERT");
+                    Procesar.ProcesarInformacion();
+                }
+            }
+            catch (Exception) { }
+        }
+
         #region CONTROL PARA MOSTRAR LA PAGINACION
         readonly PagedDataSource pagedDataSource = new PagedDataSource();
         int _PrimeraPagina, _UltimaPagina;
@@ -446,6 +510,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 btnModificarNuevo.Visible = false;
                 btnEliminarNuevo.Visible = false;
 
+
+
                 decimal IdUsuario = (decimal)Session["IdUsuario"];
 
                 if (IdUsuario == (decimal)PermisoUsuarios.JuanMarcelino)
@@ -645,6 +711,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (Session["IdUsuario"] != null)
             {
                 ProcesarInformacion(Convert.ToDecimal(lbIdRegistroSeleccionado.Text), lbAccionTomarSeleccionado.Text);
+                AsignacionCarnet();
                 VolverAtras();
             }
             else
@@ -713,7 +780,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void ddlCarnet_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ValidarCarnetDisponible();
         }
 
         protected void btnSeleccionarRegistros_Click(object sender, EventArgs e)
