@@ -8,7 +8,16 @@
 
     <script type="text/javascript">
 
+        function ProcesoCompletado() {
+            alert("Proceso Completado con exito.");
+        }
+        function SinCarnetAsignado() {
+            alert("Este registro no tiene carnet asigndo.");
+        }
 
+        function NoProcedeCarnet() {
+            alert("No se puede crear este registro por que el carnet seleccionado ya esta asignado, favor de validar.");
+        }
 
         function CamposFechasVacios() {
             alert("Los campos fechas no pueden estar vacios para realizar este tipo de busqueda.");
@@ -113,6 +122,10 @@
         </div>
         <div class="row">
             <div class="col-md-4">
+   <label class="Letranegrita">Numero de Visita</label>
+   <asp:TextBox ID="txtNumeroVisitaConsulta" runat="server" TextMode="Number" AutoPostBack="true" OnTextChanged="txtNumeroVisitaConsulta_TextChanged" CssClass="form-control" MaxLength="100"></asp:TextBox>
+</div>
+            <div class="col-md-4">
                 <asp:Label ID="lbTipoProcesoConsulta" runat="server" Text="Tipo de Proceso" CssClass="Letranegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarTipoProcesoCOnsulta" runat="server" ToolTip="Seleccionar el Tipo de Proceso" CssClass="form-control"></asp:DropDownList>
             </div>
@@ -141,7 +154,7 @@
                 <asp:Label ID="lbFechaHasta" runat="server" Text="Fecha Hasta" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaHAsta" runat="server" TextMode="Date" CssClass="form-control" MaxLength="100"></asp:TextBox>
             </div>
-             <div class="col-md-6" id="Div1" runat="server">
+             <div class="col-md-4" id="Div1" runat="server">
                 <asp:Label ID="lbUsuario" runat="server" Text="Usuario" CssClass="Letranegrita"></asp:Label>
                 <asp:DropDownList ID="ddlUsuarioDigita" runat="server" ToolTip="Seleccionar Usuario para filtro" CssClass="form-control"></asp:DropDownList>
             </div>
@@ -161,40 +174,45 @@
             <asp:ImageButton ID="btnConsultarNuevo" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" OnClick="btnConsultarNuevo_Click" ImageUrl="~/ImagenesBotones/Lupa_Nuevo.png" />
             <asp:ImageButton ID="btnReporteNuevo" runat="server" ToolTip="Generar Reporte de Control de Visitas" CssClass="BotonImagen" OnClick="btnReporteNuevo_Click" ImageUrl="~/ImagenesBotones/Reporte_Nuevo.png" />
             <asp:ImageButton ID="btnNuevoNuevo" runat="server" ToolTip="Crear Nuevo Registro" CssClass="BotonImagen" OnClick="btnNuevoNuevo_Click" ImageUrl="~/ImagenesBotones/Agregar_Nuevo.png" />
-            <asp:ImageButton ID="btnModificarNuevo" runat="server" Enabled="false" ToolTip="Modificar Registro Seleccionado" CssClass="BotonImagen" OnClick="btnModificarNuevo_Click" ImageUrl="~/ImagenesBotones/Editar_Nuevo.png" />
-            <asp:ImageButton ID="btnEliminarNuevo" runat="server" Enabled="false" ToolTip="Eliminar Registro Seleccionado" CssClass="BotonImagen" OnClick="btnEliminarNuevo_Click" ImageUrl="~/ImagenesBotones/borrar.png" />
-            <asp:ImageButton ID="btnRestablecerNuevo" runat="server" Enabled="false" ToolTip="Restablecer Pantalla" CssClass="BotonImagen" OnClick="btnRestablecerNuevo_Click" ImageUrl="~/ImagenesBotones/Restablecer_Nuevo.png" />
+            <asp:ImageButton ID="btnModificarNuevo" runat="server"  ToolTip="Modificar Registro Seleccionado" CssClass="BotonImagen" OnClick="btnModificarNuevo_Click" ImageUrl="~/ImagenesBotones/Editar_Nuevo.png" />
+            <asp:ImageButton ID="btnEliminarNuevo" runat="server"  ToolTip="Eliminar Registro Seleccionado" CssClass="BotonImagen" OnClick="btnEliminarNuevo_Click" ImageUrl="~/ImagenesBotones/borrar.png" />
+            <asp:ImageButton ID="btnRestablecerNuevo" runat="server"  ToolTip="Restablecer Pantalla" CssClass="BotonImagen" OnClick="btnRestablecerNuevo_Click" ImageUrl="~/ImagenesBotones/Restablecer_Nuevo.png" />
         </div>
         <br />
            <div class="table-responsive">
                 <table class="table table-striped">
      <thead class="table-dark">
          <tr>
-             
+             <th scope="col">Registro</th>
              <th scope="col">Nombre</th>
              <th scope="col">RNC</th>
              <th scope="col">Fecha</th>
              <th scope="col">Tipo PROC</th>
              <th scope="col">Remitente</th>
              <th scope="col">Destinatario</th>
-             <th scope="col">Selet</th>
+             <th class="ContenidoCentro" scope="col">Carnet</th>
+             <th class="ContenidoCentro" scope="col">Quitar Carnet</th>
+             <th class="ContenidoCentro" scope="col">Selet</th>
          </tr>
      </thead>
      <tbody>
          <asp:Repeater ID="rpListadoControlVisitas" runat="server">
              <ItemTemplate>
                  <asp:HiddenField ID="hfNoRegistro" runat="server" Value='<%# Eval("NoRegistro") %>' />
+                 <asp:HiddenField ID="hfCodigoCarnetAsignado" runat="server" Value='<%# Eval("CodigoCarnetAsignado") %>' />
+                 <asp:HiddenField ID="hfNumeroRegistroAsignado" runat="server" Value='<%# Eval("NumeroRegisreoCarnet") %>' />
 
                  <tr>
-                     
+                     <td><%# Eval("NoRegistro") %> </td>
                      <td><%# Eval("Nombre") %> </td>
                      <td><%# Eval("NumeroIdentificacion") %></td>
                      <td><%# Eval("FechaDigita") %></td>
                      <td><%# Eval("TipoProceso") %></td>
                      <td><%# Eval("Remitente") %></td>
                      <td><%# Eval("Destinatario") %></td>
-                     
-                     <td><asp:ImageButton ID="btnSeleccionarRegistrosNuevo" runat="server" ToolTip="Seleccionar Registro" CssClass="BotonImagen" OnClick="btnSeleccionarRegistrosNuevo_Click" ImageUrl="~/ImagenesBotones/hacer-clic.png" /></td>
+                     <td class="ContenidoCentro"><%# Eval("CarnetAsignado") %></td>
+                     <td class="ContenidoCentro"><asp:ImageButton ID="btnQUitarCarnet" runat="server" ToolTip="Quitar Carnet" CssClass="BotonImagen" OnClick="btnQUitarCarnet_Click" OnClientClick="return confirm('¿Quieres Quitar el carnet asignado a este registro?');" ImageUrl="~/ImagenesBotones/Completado.png" /></td>
+                     <td class="ContenidoCentro"><asp:ImageButton ID="btnSeleccionarRegistrosNuevo" runat="server" ToolTip="Seleccionar Registro" CssClass="BotonImagen" OnClick="btnSeleccionarRegistrosNuevo_Click" ImageUrl="~/ImagenesBotones/hacer-clic.png" /></td>
                  </tr>
              </ItemTemplate>
          </asp:Repeater>
@@ -279,14 +297,51 @@
                 </div>
 
                 <div class="col-md-4">
-
+                    <label class="Letranegrita">Carnet Asiggnado</label>
+                    <asp:TextBox ID="txtCarnetAsignado" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                 </div>
+
+                <div class="col-md-3">
+    <label class="Letranegrita">Fecha de Entrada</label>
+    <asp:TextBox ID="txtFechaEntrada" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+</div>
+
+                <div class="col-md-3">
+    <label class="Letranegrita">Hora de Entrada</label>
+    <asp:TextBox ID="txtHoraEntrada" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+</div>
+
+                <div class="col-md-3">
+    <label class="Letranegrita">Fecha de Salida</label>
+    <asp:TextBox ID="txtFechaSalida" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+</div>
+
+                <div class="col-md-3">
+    <label class="Letranegrita">Hora de Salida</label>
+    <asp:TextBox ID="txtHoraSalida" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+</div>
+
+                <div class="col-md-3">
+    <label class="Letranegrita"> Hora </label>
+    <asp:TextBox ID="txtHoraTranscurrida" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+</div>
+
+                <div class="col-md-3">
+    <label class="Letranegrita">Minutos</label>
+    <asp:TextBox ID="txtMinutosTranscurridos" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+</div>
+
+                <div class="col-md-3">
+    <label class="Letranegrita">Segundos</label>
+    <asp:TextBox ID="txtSegundosTranscurridos" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+</div>
 
                 <div class="col-md-12">
                     <asp:Label id="lbComentarioVistaPrevia" runat="server" Text="Comentario / Descripción" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtComentarioVistaPrevia" runat="server" Enabled="false" TextMode="MultiLine" Height="100px" CssClass="form-control"></asp:TextBox>
                 </div>
             </div>
+            <br />
         </div>
     </div>
 
@@ -344,7 +399,8 @@
             </div>
 
             <div class="col-md-4">
-       
+       <label class="Letranegrita "> No. Visita con carnet </label>
+                <asp:TextBox ID="txtNumeroVisitaCarnet" runat="server" Enabled="false" AutoCompleteType ="Disabled" CssClass="form-control"></asp:TextBox>
             </div>
 
             <div class="col-md-12">

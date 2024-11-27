@@ -10,6 +10,7 @@ using CrystalDecisions.ReportSource;
 using CrystalDecisions.Shared;
 using System.Web.Security;
 using System.Data.SqlClient;
+using System.ComponentModel;
 
 
 namespace UtilidadesAmigos.Solucion.Paginas
@@ -27,16 +28,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             SalidaDeDocumentos = 3
         }
 
-        enum PermisoUsuarios { 
-        JuanMarcelino=1,
-        AngelaGenoveva=82,
-        SarayMota=88,
-        WandaSancuez=91,
-        MaryKateDePaula= 135,
-        Iamdrapichardo=141
-        }
-
-
         private void CargarCarnet() {
 
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlCarnet, ObjData.Value.BuscaListas("CARNETVISITANTE", null, null), true);
@@ -53,8 +44,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 var SacarInformacion = ObjData.Value.ValidarCarnetDisponible(IdCarnet);
                 foreach (var n in SacarInformacion)
                 {
-
+                   
                     Resultado = (int)n.Resultado;
+                }
+
+                var SacarNumeroRegistro = ObjData.Value.BuscaRegistroCarnet(IdCarnet);
+                foreach (var n2 in SacarNumeroRegistro) {
+                    NumeroRegsitro = (decimal)n2.NumeroVisita;
+
                 }
 
 
@@ -62,15 +59,18 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 {
                     hfResultadoValidacionCarnet.Value = "NO";
                     ClientScript.RegisterStartupScript(GetType(), "CarnetNoDisponible()", "CarnetNoDisponible();", true);
+                    txtNumeroVisitaCarnet.Text ="Carnet Asignado a " + NumeroRegsitro.ToString();
                 }
                 else
                 {
                     hfResultadoValidacionCarnet.Value = "SI";
                     ClientScript.RegisterStartupScript(GetType(), "CarnetDisponible()", "CarnetDisponible();", true);
+                    txtNumeroVisitaCarnet.Text = string.Empty;
                 }
             }
             else {
                 hfResultadoValidacionCarnet.Value = "SI";
+                txtNumeroVisitaCarnet.Text = string.Empty;
             }
         }
         private void AsignacionCarnet() {
@@ -238,7 +238,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #endregion
         #region MOSTRAR EL LISTADO DEL CONTROL DE LAS VISITAS
         private void MostrarListadoControlCisitas() {
-            int? _TipoProceso = ddlSeleccionarTipoProcesoCOnsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarTipoProcesoCOnsulta.SelectedValue) : new Nullable<int>();
+            decimal? _IdRegistro = string.IsNullOrEmpty(txtNumeroVisitaConsulta.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroVisitaConsulta.Text);
+            int ? _TipoProceso = ddlSeleccionarTipoProcesoCOnsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarTipoProcesoCOnsulta.SelectedValue) : new Nullable<int>();
             string _Nombre = string.IsNullOrEmpty(txtNombreConsulta.Text.Trim()) ? null : txtNombreConsulta.Text.Trim();
             string _Remitente = string.IsNullOrEmpty(txtRemitenteConsulta.Text.Trim()) ? null : txtRemitenteConsulta.Text.Trim();
             string _Destinatario = string.IsNullOrEmpty(txtDestinatario.Text.Trim()) ? null : txtDestinatario.Text.Trim();
@@ -248,7 +249,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             DateTime? _FechaHasta = cbAgregarRangoFecha.Checked == true ? Convert.ToDateTime(txtFechaHAsta.Text) : new Nullable<DateTime>();
 
             var Listado = ObjData.Value.BuscaControlVisitas(
-                new Nullable<decimal>(),
+                _IdRegistro,
                 _TipoProceso,
                 _Nombre,
                 _Remitente,
@@ -299,16 +300,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
             MostrarListadoControlCisitas();
 
 
-            btnConsultarNuevo.Enabled = true;
-            btnReporteNuevo.Enabled = true;
-            btnNuevoNuevo.Enabled = true;
-            btnModificarNuevo.Enabled = false;
-            btnEliminarNuevo.Enabled = false;
+            btnConsultarNuevo.Visible = true;
+            btnReporteNuevo.Visible = true;
+            btnNuevoNuevo.Visible = true;
+            btnModificarNuevo.Visible = false;
+            btnRestablecerNuevo.Visible = false;
             btnPrimeraPagina.Enabled = true;
             btnSiguientePagina.Enabled = true;
             btnPaginaAnterior.Enabled = true;
             btnUltimaPagina.Enabled = true;
-            btnRestablecerNuevo.Enabled = false;
+            
 
 
             txtCantidadDocumentosVistaPrevia.Text = string.Empty;
@@ -381,7 +382,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #endregion
         #region REPORTE DE CONTROL DE VISITAS
         private void GenerarReporte(string RutaReporte, string NombreArchivo,decimal UsuarioGenera) {
-            decimal? _NoRegistro = new Nullable<decimal>();
+            decimal? _IdRegistro = string.IsNullOrEmpty(txtNumeroVisitaConsulta.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroVisitaConsulta.Text);
             int? _TipoProceso = ddlSeleccionarTipoProcesoCOnsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarTipoProcesoCOnsulta.SelectedValue) : new Nullable<int>();
             string _Nombre = string.IsNullOrEmpty(txtNombreConsulta.Text.Trim()) ? null : txtNombreConsulta.Text.Trim();
             string _Remitente = string.IsNullOrEmpty(txtRemitenteConsulta.Text.Trim()) ? null : txtRemitenteConsulta.Text.Trim();
@@ -395,7 +396,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             Reporte.Load(RutaReporte);
             Reporte.Refresh();
 
-            Reporte.SetParameterValue("@NoRegistro", _NoRegistro);
+            Reporte.SetParameterValue("@NoRegistro", _IdRegistro);
             Reporte.SetParameterValue("@IdTipoProcesoRecepcion", _TipoProceso);
             Reporte.SetParameterValue("@Nombre", _Nombre);
             Reporte.SetParameterValue("@Remitente", _Remitente);
@@ -513,54 +514,75 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
 
                 decimal IdUsuario = (decimal)Session["IdUsuario"];
+                int Idperfil = 0;
+                UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario User = new Logica.Comunes.SacarNombreUsuario(IdUsuario);
+                Idperfil = User.SacarPerfilUsuarioConectado();
 
-                if (IdUsuario == (decimal)PermisoUsuarios.JuanMarcelino)
+                if (Idperfil == (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.ADMINISTRADOR)
                 {
+                    btnConsultarNuevo.Visible = true;
+                    btnReporteNuevo.Visible = true;
                     btnNuevoNuevo.Visible = true;
-                    btnModificarNuevo.Visible = true;
-                    btnEliminarNuevo.Visible = false;
-                }
-                else if (IdUsuario == (decimal)PermisoUsuarios.SarayMota)
-                {
-                    btnNuevoNuevo.Visible = true;
-                    btnModificarNuevo.Visible = true;
-                    btnEliminarNuevo.Visible = false;
-                }
-                else if (IdUsuario == (decimal)PermisoUsuarios.WandaSancuez)
-                {
-
-                    btnNuevoNuevo.Visible = true;
-                    btnModificarNuevo.Visible = true;
-                    btnEliminarNuevo.Visible = false;
-                }
-                else if (IdUsuario == (decimal)PermisoUsuarios.AngelaGenoveva)
-                {
-
-                    btnNuevoNuevo.Visible = true;
-                    btnModificarNuevo.Visible = true;
-                    btnEliminarNuevo.Visible = false;
-                }
-                else if (IdUsuario == (decimal)PermisoUsuarios.MaryKateDePaula)
-                {
-
-                    btnNuevoNuevo.Visible = true;
-                    btnModificarNuevo.Visible = true;
-                    btnEliminarNuevo.Visible = false;
-                }
-                else if (IdUsuario == (decimal)PermisoUsuarios.Iamdrapichardo)
-                {
-
-                    btnNuevoNuevo.Visible = true;
-                    btnModificarNuevo.Visible = true;
-                    btnEliminarNuevo.Visible = false;
-                }
-                else
-                {
-                    btnNuevoNuevo.Visible = false;
                     btnModificarNuevo.Visible = false;
+                    btnRestablecerNuevo.Visible = false;
+                  //  btnEliminarNuevo.Visible = false;
+                }
+                else {
+
+                    btnConsultarNuevo.Visible = true;
+                    btnReporteNuevo.Visible = true;
+                    btnNuevoNuevo.Visible = true;
+                    btnModificarNuevo.Visible = false;
+                    btnRestablecerNuevo.Visible = false;
                     btnEliminarNuevo.Visible = false;
                 }
-            
+                //if (IdUsuario == (decimal)PermisoUsuarios.JuanMarcelino)
+                //{
+                //    btnNuevoNuevo.Visible = true;
+                //    btnModificarNuevo.Visible = true;
+                //    btnEliminarNuevo.Visible = false;
+                //}
+                //else if (IdUsuario == (decimal)PermisoUsuarios.SarayMota)
+                //{
+                //    btnNuevoNuevo.Visible = true;
+                //    btnModificarNuevo.Visible = true;
+                //    btnEliminarNuevo.Visible = false;
+                //}
+                //else if (IdUsuario == (decimal)PermisoUsuarios.WandaSancuez)
+                //{
+
+                //    btnNuevoNuevo.Visible = true;
+                //    btnModificarNuevo.Visible = true;
+                //    btnEliminarNuevo.Visible = false;
+                //}
+                //else if (IdUsuario == (decimal)PermisoUsuarios.AngelaGenoveva)
+                //{
+
+                //    btnNuevoNuevo.Visible = true;
+                //    btnModificarNuevo.Visible = true;
+                //    btnEliminarNuevo.Visible = false;
+                //}
+                //else if (IdUsuario == (decimal)PermisoUsuarios.MaryKateDePaula)
+                //{
+
+                //    btnNuevoNuevo.Visible = true;
+                //    btnModificarNuevo.Visible = true;
+                //    btnEliminarNuevo.Visible = false;
+                //}
+                //else if (IdUsuario == (decimal)PermisoUsuarios.Iamdrapichardo)
+                //{
+
+                //    btnNuevoNuevo.Visible = true;
+                //    btnModificarNuevo.Visible = true;
+                //    btnEliminarNuevo.Visible = false;
+                //}
+                //else
+                //{
+                //    btnNuevoNuevo.Visible = false;
+                //    btnModificarNuevo.Visible = false;
+                //    btnEliminarNuevo.Visible = false;
+                //}
+
 
             }
         }
@@ -691,17 +713,25 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 txtModificadoPorVistaPrevia.Text = n.Modificado;
                 txtFechaModificadoVistaPrevia.Text = n.FechaModifica;
                 txtComentarioVistaPrevia.Text = n.Comentario;
+                txtCarnetAsignado.Text = n.CarnetAsignado;
+                txtFechaEntrada.Text = n.FechaEntrada;
+                txtHoraEntrada.Text = n.HoraEntrada;
+                txtFechaSalida.Text = n.FechaSalida;
+                txtHoraSalida.Text = n.HoraSalida;
+                txtHoraTranscurrida.Text = n.Horas.ToString();
+                txtMinutosTranscurridos.Text = n.Minutos.ToString();
+                txtSegundosTranscurridos.Text = n.Segundos.ToString();
             }
-            btnConsultarNuevo.Enabled = false;
-            btnReporteNuevo.Enabled = false;
-            btnNuevoNuevo.Enabled = false;
-            btnModificarNuevo.Enabled = true;
-            btnEliminarNuevo.Enabled = true;
+            btnConsultarNuevo.Visible = false;
+            btnReporteNuevo.Visible = false;
+            btnNuevoNuevo.Visible = false;
+            btnModificarNuevo.Visible = true;
+
             btnPrimeraPagina.Enabled = false;
             btnSiguientePagina.Enabled = false;
             btnPaginaAnterior.Enabled = false;
             btnUltimaPagina.Enabled = false;
-            btnRestablecerNuevo.Enabled = true;
+            btnRestablecerNuevo.Visible = true;
             DivBloqueDetalle.Visible = true;
             DivGraficoControlVisitas.Visible = false;
         }
@@ -710,9 +740,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (Session["IdUsuario"] != null)
             {
-                ProcesarInformacion(Convert.ToDecimal(lbIdRegistroSeleccionado.Text), lbAccionTomarSeleccionado.Text);
-                AsignacionCarnet();
-                VolverAtras();
+                if (hfResultadoValidacionCarnet.Value == "NO")
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "NoProcedeCarnet()", "NoProcedeCarnet();", true);
+                }
+                else {
+                    ProcesarInformacion(Convert.ToDecimal(lbIdRegistroSeleccionado.Text), lbAccionTomarSeleccionado.Text);
+                    AsignacionCarnet();
+                    VolverAtras();
+                }
+
+                
             }
             else
             {
@@ -781,6 +819,39 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void ddlCarnet_SelectedIndexChanged(object sender, EventArgs e)
         {
             ValidarCarnetDisponible();
+        }
+
+        protected void txtNumeroVisitaConsulta_TextChanged(object sender, EventArgs e)
+        {
+            CurrentPage = 0;
+            MostrarListadoControlCisitas();
+        }
+
+        protected void btnQUitarCarnet_Click(object sender, ImageClickEventArgs e)
+        {
+            var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var NumeroVisita = ((HiddenField)ItemSeleccionado.FindControl("hfNoRegistro")).Value.ToString();
+            var IdRegistro = ((HiddenField)ItemSeleccionado.FindControl("hfNumeroRegistroAsignado")).Value.ToString();
+            var CarnetAsignado = ((HiddenField)ItemSeleccionado.FindControl("hfCodigoCarnetAsignado")).Value.ToString();
+
+            int CodigoCarnet = Convert.ToInt32(CarnetAsignado);
+            if (CodigoCarnet == 0)
+            {
+                ClientScript.RegisterStartupScript(GetType(), "SinCarnetAsignado()", "SinCarnetAsignado();", true);
+
+            }
+            else {
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSeguimientoCarnet Quitar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSeguimientoCarnet(
+                   Convert.ToDecimal(IdRegistro),
+                   Convert.ToDecimal(NumeroVisita),
+                   DateTime.Now, DateTime.Now,
+                   0, false, "UPDATE");
+                Quitar.ProcesarInformacion();
+                ClientScript.RegisterStartupScript(GetType(), "ProcesoCompletado()", "ProcesoCompletado();", true);
+                VolverAtras();
+            }
+
+           
         }
 
         protected void btnSeleccionarRegistros_Click(object sender, EventArgs e)

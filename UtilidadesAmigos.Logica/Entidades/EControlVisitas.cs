@@ -49,5 +49,25 @@ namespace UtilidadesAmigos.Logica.Entidades
 		public string Comentario {get;set;}
 
 		public string GeneradoPor {get;set;}
-	}
+
+        public string CarnetAsignado { get; set; }
+
+        public System.Nullable<int> CodigoCarnetAsignado { get; set; }
+
+        public System.Nullable<decimal> NumeroRegisreoCarnet { get; set; }
+
+        public string FechaEntrada { get; set; }
+
+        public string HoraEntrada { get; set; }
+
+        public string FechaSalida { get; set; }
+
+        public string HoraSalida { get; set; }
+
+        public System.Nullable<int> Horas { get; set; }
+
+        public System.Nullable<int> Minutos { get; set; }
+
+        public System.Nullable<int> Segundos { get; set; }
+    }
 }

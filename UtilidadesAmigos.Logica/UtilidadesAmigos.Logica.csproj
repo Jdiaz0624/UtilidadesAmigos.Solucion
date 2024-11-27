@@ -285,6 +285,7 @@
     <Compile Include="Entidades\EBuscarCoberturasPoliza.cs" />
     <Compile Include="Entidades\EBuscarCodigosSupervisoresPermitidos.cs" />
     <Compile Include="Entidades\EBuscarDetalleIntermediarioComisiones.cs" />
+    <Compile Include="Entidades\EBuscaRegistroCarnet.cs" />
     <Compile Include="Entidades\EBuscarEmpleados.cs" />
     <Compile Include="Entidades\ECambiaValorPolizaCondiciones.cs" />
     <Compile Include="Entidades\ECargarDataproduccionPowerBi.cs" />

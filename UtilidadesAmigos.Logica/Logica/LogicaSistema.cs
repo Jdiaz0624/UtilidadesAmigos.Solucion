@@ -3824,7 +3824,17 @@ namespace UtilidadesAmigos.Logica.Logica
                                HoraModifica=n.HoraModifica,
                                FechaModifica=n.FechaModifica,
                                Comentario=n.Comentario,
-                               GeneradoPor=n.GeneradoPor
+                               GeneradoPor=n.GeneradoPor,
+                               CarnetAsignado=n.CarnetAsignado,
+                               CodigoCarnetAsignado=n.CodigoCarnetAsignado,
+                               NumeroRegisreoCarnet=n.NumeroRegisreoCarnet,
+                               FechaEntrada=n.FechaEntrada,
+                               HoraEntrada=n.HoraEntrada,
+                               FechaSalida=n.FechaSalida,
+                               HoraSalida=n.HoraSalida,
+                               Horas=n.Horas,
+                               Minutos=n.Minutos,
+                               Segundos=n.Segundos
 
                            }).ToList();
             return Listado;
@@ -4281,6 +4291,24 @@ namespace UtilidadesAmigos.Logica.Logica
                            select new UtilidadesAmigos.Logica.Entidades.EValidarCarnetDIsponible
                            {
                                Resultado = n.Resultado
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Busca el registro de las visitas a la que esta asociada el carnet
+        /// </summary>
+        /// <param name="IdCarnet"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.EBuscaRegistroCarnet> BuscaRegistroCarnet(int? IdCarnet = null) {
+
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_BUSCA_REGISTRO_CARNET(IdCarnet)
+                           select new UtilidadesAmigos.Logica.Entidades.EBuscaRegistroCarnet
+                           {
+                               NumeroVisita=n.NumeroVisita,
+                               IdCarnet=n.IdCarnet
                            }).ToList();
             return Listado;
         }
