@@ -273,6 +273,7 @@
     <Compile Include="Entidades\EBuscaCoberturasMantenimiento.cs" />
     <Compile Include="Entidades\EBuscaDatosCobrador.cs" />
     <Compile Include="Entidades\EBuscaDetalleFacturacion.cs" />
+    <Compile Include="Entidades\EBuscaDetalleNotificacionesReclamaciones.cs" />
     <Compile Include="Entidades\EBuscaDetalleReclamaciones.cs" />
     <Compile Include="Entidades\EBuscaDetallesCobros.cs" />
     <Compile Include="Entidades\EBuscaEstadisticaPagosPolizaCantidad.cs" />
@@ -312,6 +313,7 @@
     <Compile Include="Entidades\EEEstadisticaPolizaRegistros.cs" />
     <Compile Include="Entidades\EEstadisticaCobrosPolizasAntiguedad.cs" />
     <Compile Include="Entidades\EEstadisticaRenovacion.cs" />
+    <Compile Include="Entidades\EEstatusNotificacionesReclamaciones.cs" />
     <Compile Include="Entidades\EEstatusTarjeta.cs" />
     <Compile Include="Entidades\EExportarComisiones.cs" />
     <Compile Include="Entidades\EExportarDatatxtCSV.cs" />

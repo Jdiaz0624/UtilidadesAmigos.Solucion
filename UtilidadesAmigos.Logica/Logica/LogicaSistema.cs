@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using UtilidadesAmigos.Logica.Entidades;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace UtilidadesAmigos.Logica.Logica
 {
@@ -4311,6 +4313,70 @@ namespace UtilidadesAmigos.Logica.Logica
                                IdCarnet=n.IdCarnet
                            }).ToList();
             return Listado;
+        }
+        #endregion
+
+        #region NOTIFIACIONES RECLAMACIONES
+        public List<UtilidadesAmigos.Logica.Entidades.EEstatusNotificacionesReclamaciones> BuscaNotificacionesReclamaciones(int? IdRegistro = null, int? IdEstatus = null) {
+
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_BUSCA_ESTATUS_RECLAMACIONES_NOTIFICACIONES(IdRegistro, IdEstatus)
+                           select new UtilidadesAmigos.Logica.Entidades.EEstatusNotificacionesReclamaciones
+                           {
+                               IdRegistro=n.IdRegistro,
+                               IdEstatus=n.IdEstatus,
+                               NombreEstatus=n.NombreEstatus,
+                               DiasNotificacion=n.DiasNotificacion,
+                               Estatus0=n.Estatus0,
+                               Estatus=n.Estatus,
+                               CantidadPolias=n.CantidadPolias,
+                               ANotificar=n.ANotificar
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Muestra el detalle de las notificaciones
+        /// </summary>
+        /// <param name="IdEstatus"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.EBuscaDetalleNotificacionesReclamaciones> BuscaDetalleNotificacionesReclamaciones(int? IdEstatus = null) {
+
+            Objdata.CommandTimeout = 999999999;
+
+            var Detalle = (from n in Objdata.SP_BUSCA_DETALLE_NOTIFICACIONES_RECLAMACIONES(IdEstatus)
+                           select new UtilidadesAmigos.Logica.Entidades.EBuscaDetalleNotificacionesReclamaciones
+                           {
+                               Reclamacion=n.Reclamacion,
+                               Estatus=n.Estatus,
+                               NombreEstatus = n.NombreEstatus,
+                               MontoReclamado=n.MontoReclamado,
+                               MontoAjustado=n.MontoAjustado,
+                               MontoReserva=n.MontoReserva,
+                               MontoSalvamento=n.MontoSalvamento,
+                               FechaApertura0=n.FechaApertura0,
+                               FechaApertura=n.FechaApertura,
+                               HoraApertura=n.HoraApertura,
+                               FechaSiniestro0=n.FechaSiniestro0,
+                               FechaSiniestro=n.FechaSiniestro,
+                               HoraSiniestro=n.HoraSiniestro,
+                               Poliza=n.Poliza,
+                               CLiente=n.CLiente,
+                               Supervisor=n.Supervisor,
+                               Intermediario=n.Intermediario,
+                               MontoPrima=n.MontoPrima,
+                               MontoAsegurado=n.MontoAsegurado,
+                               Comentario=n.Comentario,
+                               IniciodeVigencia=n.Inicio_de_Vigencia,
+                               FindeVigencia=n.Fin_de_Vigencia,
+                               CreadaPor=n.CreadaPor,
+                               FechaCreada=n.Fecha_Creada,
+                               ModificadoPor=n.ModificadoPor,
+                               Fecha_Modificada=n.Fecha_Modificada
+
+                           }).ToList();
+            return Detalle;
         }
         #endregion
     }

@@ -10,6 +10,7 @@ using System.Web.Security;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.ReportSource;
 using CrystalDecisions.Shared;
+using System.Data;
 
 namespace UtilidadesAmigos.Solucion.Paginas
 
@@ -18,6 +19,137 @@ namespace UtilidadesAmigos.Solucion.Paginas
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> Objtata = new Lazy<Logica.Logica.LogicaSistema>();
         public UtilidadesAmigos.Logica.Comunes.VariablesGlobales VariablesGlobales = new Logica.Comunes.VariablesGlobales();
+
+        #region CONTROL PARA MOSTRAR LA PAGINACION
+        readonly PagedDataSource pagedDataSource = new PagedDataSource();
+        int _PrimeraPagina, _UltimaPagina;
+        private int _TamanioPagina = 10;
+        private int CurrentPage
+        {
+            get
+            {
+                if (ViewState["CurrentPage"] == null)
+                {
+                    return 0;
+                }
+                return ((int)ViewState["CurrentPage"]);
+            }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
+
+        }
+        private void HandlePaging(ref DataList NombreDataList, ref Label LbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina = CurrentPage - 5;
+            if (CurrentPage > 5)
+                _UltimaPagina = CurrentPage + 5;
+            else
+                _UltimaPagina = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina = _UltimaPagina - 10;
+            }
+
+            if (_PrimeraPagina < 0)
+                _PrimeraPagina = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina; i < _UltimaPagina; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+        private void Paginar(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource.DataSource = Listado;
+            pagedDataSource.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina : _NumeroRegistros);
+            pagedDataSource.CurrentPageIndex = CurrentPage;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource;
+            RptGrid.DataBind();
+
+
+            //divPaginacionComisionSupervisor.Visible = true;
+        }
+        enum OpcionesPaginacionValores
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
 
         enum OpcionesEstadisticaPolizasSinPagos
         {
@@ -31,66 +163,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
             PolizasConUnQuintoPagoAplicado=8, 
             PolizasConMasDeCintoPagosAplicados=9
         }
-        private int MostrarEstadisticaPolizasSinPolizaCantidad(int Codigoproceso, int Ramo) {
 
-            int Cantidad = 0;
-            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
-            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
 
-            var SacarInformacion = Objtata.Value.BuscaEstadisticaPolizasSinPagosCantidad(Codigoproceso, Ramo, _Supervisor, _Intermediario);
-            if (SacarInformacion.Count() < 1) {
+        private void MostrarListadoHeader() {
 
-                Cantidad = 0;
-            }
-            else {
-                foreach (var n in SacarInformacion) {
-
-                    Cantidad = (int)n.Cantidad;
-                }
-            }
-            return Cantidad;
-
-        }
-
-        private void ExportarInformacionEstadisticaPolizasSinPagosRegistros(int CodigoProceso, int Ramo, string Nombre) {
-
-            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
-            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
-
-            var Exportar = (from n in Objtata.Value.BuscaEstadisticaPolizaSinPagosRegistros(CodigoProceso, Ramo,_Supervisor,_Intermediario)
-                            select new
-                            {
-                                Poliza = n.Poliza,
-                                InicioVigencia=n.InicioVigencia,
-                                FinVigencia=n.FinVigencia,
-                                No_Factura = n.Numero,
-                                Codigo_Ramo = n.CodigoRamo,
-                                Ramo = n.Ramo,
-                                Codigo_SubRamo = n.CodigoSubRamo,
-                                SubRamo = n.SubRamo,
-                                Codigo_Asegurado = n.CodigoAsegurado,
-                                Asegurado = n.Asegurado,
-                                Codigo_Vendedor = n.CodigoVendedor,
-                                Vendedor = n.Vendedor,
-                                Codigo_Supervisor = n.CodigoSupervisor,
-                                Supervisor = n.Supervisor,
-                                Oficina = n.Oficina,
-                                Fecha = n.Fecha,
-                                Hora = n.Hora,
-                                Dias_Transcurridos = n.DiasTranscurridos,
-                                Ncf = n.Ncf,
-                                Monto_Bruto = n.MontoBruto,
-                                ISC = n.ISC,
-                                Monto_Neto = n.MontoNeto,
-                                Cobrado = n.Cobrado,
-                                Moneda = n.Moneda,
-                                Siglas = n.Siglas,
-                                Factura=n.Numero,
-                                BalancePendiente=n.Balance,
-                                Concepto = n.Concepto
-                            }).ToList();
-            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel(Nombre, Exportar);
-
+            var Data = Objtata.Value.BuscaNotificacionesReclamaciones();
+            Paginar(ref rpNotificaciones, Data, 10, ref lbCantidadPagina, ref btnPrimeraPagina, ref btnPaginaAnterior, ref btnSiguientePagina, ref btnUltimaPagina);
+            HandlePaging(ref dtPaginacion, ref lbPaginaActual);
         }
 
         private void ProcesarInformacionEstadisticaPolizasSinPagos(int Codigoproceso, int Ramo, decimal IdUsuario, int CodigoEstatus, string Accion) {
@@ -164,212 +243,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
             Reporte.Dispose();
         }
 
-        private void ActualizarInformacionEstadistica() {
-
-            int PolizasSinInicialPrimero = 0, PolizasSinInicialSegundo = 0, PolizasSinInicialTercero = 0, PrimerPago = 0, SegundoPago = 0, TercerPago = 0, CuartoPago = 0, QuintoPago = 0, MasDeCincoPago = 0;
-
-            PolizasSinInicialPrimero = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.PolizasSinPagoInicialPrimero, 106);
-            PolizasSinInicialSegundo = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.PolizasSinPagoInicialSegundo, 106);
-            PolizasSinInicialTercero = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.PolizasSinPagoInicialTercero, 106);
-            PrimerPago = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnPrimerPagoAplicado, 106);
-            SegundoPago = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnSegundoPagoAplicado, 106);
-            TercerPago = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnTercerPagoAplicado, 106);
-            CuartoPago = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnCuartoPagoAplicado, 106);
-            QuintoPago = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnQuintoPagoAplicado, 106);
-            MasDeCincoPago = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConMasDeCintoPagosAplicados, 106);
 
 
-            btnSinInicialPrimero.Text = PolizasSinInicialPrimero.ToString("N0");
-            btnSinInicialSegundo.Text = PolizasSinInicialSegundo.ToString("N0");
-            btnSinInicialTercero.Text = PolizasSinInicialTercero.ToString("N0");
-            btnPrimerPAgoAplicado.Text = PrimerPago.ToString("N0");
-            btnSegundoPagoAplicado.Text = SegundoPago.ToString("N0");
-            btnTercerPagoAplicado.Text = TercerPago.ToString("N0");
-            btnCuartoPago.Text = CuartoPago.ToString("N0");
-            btnQuintoPago.Text = QuintoPago.ToString("N0");
-            btnMasDeCincoPagos.Text = MasDeCincoPago.ToString("N0");
 
-            AntigudadPrimerPago();
-            AntiguedadSegundoPago();
-            AntiguedadTercerPago();
-            AntiguedadCuartoPago();
-            AntiguedadQuintoPago();
-            AntiguedadMasDeCincoPagos();
-        }
-
-
-        #region INFORMACION DE ANTIGUEDAD
-        private void AntigudadPrimerPago() {
-
-            int E_0_30 = 0, E_31_60 = 0, E_61_90 = 0, E_91_120 = 0, E_121_150 = 0, E_151_MAS = 0, DiasNegativos = 0;
-            decimal CantidadAcumulada = 0;
-            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
-            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
-
-            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnPrimerPagoAplicado, 106, _Supervisor, _Intermediario);
-            foreach (var n in SacarInformacion) {
-                E_0_30 = (int)n.E_0_30;
-                E_31_60 = (int)n.E_31_60;
-                E_61_90 = (int)n.E_61_90;
-                E_91_120 = (int)n.E_91_120;
-                E_121_150 = (int)n.E_121_150;
-                E_151_MAS = (int)n.E_151_MAS;
-                DiasNegativos = (int)n.E_DIAS_NEGATIVOS;
-                CantidadAcumulada = (decimal)n.CantidadAcumulada;
-            }
-
-            lb0_30_PrimerPago.Text = E_0_30.ToString("N0");
-            lb31_60_PrimerPago.Text = E_31_60.ToString("N0");
-            lb61_90_PrimerPago.Text = E_61_90.ToString("N0");
-            lb91_120_PrimerPago.Text = E_91_120.ToString("N0");
-            lb121_150_PrimerPago.Text = E_121_150.ToString("N0");
-            lbMas_150_Dias_PrimerPago.Text = E_151_MAS.ToString("N0");
-            lbDiasNegativosPrimerPago.Text = DiasNegativos.ToString("N0");
-            lbCantidadAcumuladaPrimerPago.Text = CantidadAcumulada.ToString("N2");
-        }
-
-        private void AntiguedadSegundoPago() {
-
-            int E_0_30 = 0, E_31_60 = 0, E_61_90 = 0, E_91_120 = 0, E_121_150 = 0, E_151_MAS = 0, DiasNegativos = 0;
-            decimal CantidadAcumulada = 0;
-            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
-            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
-
-            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnSegundoPagoAplicado, 106, _Supervisor, _Intermediario);
-            foreach (var n in SacarInformacion)
-            {
-                E_0_30 = (int)n.E_0_30;
-                E_31_60 = (int)n.E_31_60;
-                E_61_90 = (int)n.E_61_90;
-                E_91_120 = (int)n.E_91_120;
-                E_121_150 = (int)n.E_121_150;
-                E_151_MAS = (int)n.E_151_MAS;
-                DiasNegativos = (int)n.E_DIAS_NEGATIVOS;
-                CantidadAcumulada = (decimal)n.CantidadAcumulada;
-            }
-
-            lb0_30_SegundoPago.Text = E_0_30.ToString("N0");
-            lb31_60_SegundoPago.Text = E_31_60.ToString("N0");
-            lb61_90_SegundoPago.Text = E_61_90.ToString("N0");
-            lb91_120_SegundoPago.Text = E_91_120.ToString("N0");
-            lb121_150_SegundoPago.Text = E_121_150.ToString("N0");
-            lb151_Mas_SegundoPago.Text = E_151_MAS.ToString("N0");
-            lbDiasNegativosSegundoPago.Text = DiasNegativos.ToString("N0");
-            lbCantidadAcumulada_SegundoPago.Text = CantidadAcumulada.ToString("N2");
-        }
-        private void AntiguedadTercerPago() {
-            int E_0_30 = 0, E_31_60 = 0, E_61_90 = 0, E_91_120 = 0, E_121_150 = 0, E_151_MAS = 0, DiasNegativos = 0;
-            decimal CantidadAcumulada = 0;
-            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
-            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
-
-            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnTercerPagoAplicado, 106, _Supervisor, _Intermediario);
-            foreach (var n in SacarInformacion)
-            {
-                E_0_30 = (int)n.E_0_30;
-                E_31_60 = (int)n.E_31_60;
-                E_61_90 = (int)n.E_61_90;
-                E_91_120 = (int)n.E_91_120;
-                E_121_150 = (int)n.E_121_150;
-                E_151_MAS = (int)n.E_151_MAS;
-                DiasNegativos = (int)n.E_DIAS_NEGATIVOS;
-                CantidadAcumulada = (decimal)n.CantidadAcumulada;
-            }
-
-            lb0_30_TercerPago.Text = E_0_30.ToString("N0");
-            lb31_60_TercerPago.Text = E_31_60.ToString("N0");
-            lb61_90_TercerPago.Text = E_61_90.ToString("N0");
-            lb91_120_TercerPago.Text = E_91_120.ToString("N0");
-            lb121_150_TercerPago.Text = E_121_150.ToString("N0");
-            lb151_Mas_TercerPago.Text = E_151_MAS.ToString("N0");
-            lbDiasNegativosTercerPago.Text = DiasNegativos.ToString("N0");
-            lbCantidadAcumulada_TercerPago.Text = CantidadAcumulada.ToString("N2");
-        }
-        private void AntiguedadCuartoPago() {
-            int E_0_30 = 0, E_31_60 = 0, E_61_90 = 0, E_91_120 = 0, E_121_150 = 0, E_151_MAS = 0, DiasNegativos = 0;
-            decimal CantidadAcumulada = 0;
-            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
-            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
-
-            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnCuartoPagoAplicado, 106, _Supervisor, _Intermediario);
-            foreach (var n in SacarInformacion)
-            {
-                E_0_30 = (int)n.E_0_30;
-                E_31_60 = (int)n.E_31_60;
-                E_61_90 = (int)n.E_61_90;
-                E_91_120 = (int)n.E_91_120;
-                E_121_150 = (int)n.E_121_150;
-                E_151_MAS = (int)n.E_151_MAS;
-                DiasNegativos = (int)n.E_DIAS_NEGATIVOS;
-                CantidadAcumulada = (decimal)n.CantidadAcumulada;
-            }
-
-            lb0_30_CuartoPago.Text = E_0_30.ToString("N0");
-            lb31_60_CuartoPago.Text = E_31_60.ToString("N0");
-            lb61_90_CuartoPago.Text = E_61_90.ToString("N0");
-            lb91_120_CuartoPago.Text = E_91_120.ToString("N0");
-            lb121_150_CuartoPago.Text = E_121_150.ToString("N0");
-            lb151_Mas_CuartoPago.Text = E_151_MAS.ToString("N0");
-            lbDiasNegativosCuartoPago.Text = DiasNegativos.ToString("N0");
-            lbCantidadAcumulada_CuartoPago.Text = CantidadAcumulada.ToString("N2");
-        }
-        private void AntiguedadQuintoPago() {
-            int E_0_30 = 0, E_31_60 = 0, E_61_90 = 0, E_91_120 = 0, E_121_150 = 0, E_151_MAS = 0, DiasNegativos = 0;
-            decimal CantidadAcumulada = 0;
-            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
-            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
-
-            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnQuintoPagoAplicado, 106, _Supervisor, _Intermediario);
-            foreach (var n in SacarInformacion)
-            {
-                E_0_30 = (int)n.E_0_30;
-                E_31_60 = (int)n.E_31_60;
-                E_61_90 = (int)n.E_61_90;
-                E_91_120 = (int)n.E_91_120;
-                E_121_150 = (int)n.E_121_150;
-                E_151_MAS = (int)n.E_151_MAS;
-                DiasNegativos = (int)n.E_DIAS_NEGATIVOS;
-                CantidadAcumulada = (decimal)n.CantidadAcumulada;
-            }
-
-            lb0_30_QuintoPago.Text = E_0_30.ToString("N0");
-            lb31_60_QuintoPago.Text = E_31_60.ToString("N0");
-            lb61_90_QuintoPago.Text = E_61_90.ToString("N0");
-            lb91_120_QuintoPago.Text = E_91_120.ToString("N0");
-            lb121_150_QuintoPago.Text = E_121_150.ToString("N0");
-            lb151_Mas_QuintoPago.Text = E_151_MAS.ToString("N0");
-            lbDiasNegativosQuintoPago.Text = DiasNegativos.ToString("N0");
-            lbCantidadAcumulada_QuintoPago.Text = CantidadAcumulada.ToString("N2");
-        }
-        private void AntiguedadMasDeCincoPagos() {
-            int E_0_30 = 0, E_31_60 = 0, E_61_90 = 0, E_91_120 = 0, E_121_150 = 0, E_151_MAS = 0, DiasNegativos = 0;
-            decimal CantidadAcumulada = 0;
-            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
-            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
-
-            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConMasDeCintoPagosAplicados, 106, _Supervisor, _Intermediario);
-            foreach (var n in SacarInformacion)
-            {
-                E_0_30 = (int)n.E_0_30;
-                E_31_60 = (int)n.E_31_60;
-                E_61_90 = (int)n.E_61_90;
-                E_91_120 = (int)n.E_91_120;
-                E_121_150 = (int)n.E_121_150;
-                E_151_MAS = (int)n.E_151_MAS;
-                DiasNegativos = (int)n.E_DIAS_NEGATIVOS;
-                CantidadAcumulada = (decimal)n.CantidadAcumulada;
-            }
-
-            lb0_30_Mas_Cinco_Pagos.Text = E_0_30.ToString("N0");
-            lb31_60_Mas_Cinco_Pagos.Text = E_31_60.ToString("N0");
-            lb61_90_Mas_Cinco_Pagos.Text = E_61_90.ToString("N0");
-            lb91_120_Mas_Cinco_Pagos.Text = E_91_120.ToString("N0");
-            lb121_150_Mas_Cinco_Pagos.Text = E_121_150.ToString("N0");
-            lb151_Mas_Mas_Cinco_Pagos.Text = E_151_MAS.ToString("N0");
-            lbDiasNegativosMasDeCincoPagos.Text = DiasNegativos.ToString("N0");
-            lbCantidadAcumulada_Mas_Cinco_Pagos.Text = CantidadAcumulada.ToString("N2");
-        }
-        #endregion
+    
 
 
 
@@ -387,7 +264,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
 
                 int IdPerfil = 0;
-                DivBloqueEstadistica.Visible = false;
+
                 DIVBloqueImagen.Visible = true;
                 DIvBloqueRemodelacion.Visible = false;
                 DIVBloqueNotificacionesReclamaciones.Visible = false;
@@ -401,16 +278,18 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 switch (IdPerfil) {
 
                     case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.ADMINISTRADOR:
-                        DivBloqueEstadistica.Visible = true;
+ 
                         DIVBloqueImagen.Visible = false;
                         DIvBloqueRemodelacion.Visible = false;
                         DIVBloqueNotificacionesReclamaciones.Visible = true;
+                        CurrentPage = 0;
+                        MostrarListadoHeader();
 
                        // ActualizarInformacionEstadistica();
                         break;
 
                     case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.COBROS:
-                        DivBloqueEstadistica.Visible = true;
+             
                         DIVBloqueImagen.Visible = false;
                         DIvBloqueRemodelacion.Visible = false;
                         DIVBloqueNotificacionesReclamaciones.Visible = false;
@@ -420,7 +299,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         break;
 
                     case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.Cobros_Especial:
-                        DivBloqueEstadistica.Visible = true;
+        
                         DIVBloqueImagen.Visible = false;
                         DIvBloqueRemodelacion.Visible = false;
                         DIVBloqueNotificacionesReclamaciones.Visible = false;
@@ -429,7 +308,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         break;
 
                     case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.NEGOCIOS:
-                        DivBloqueEstadistica.Visible = true;
+
                         DIVBloqueImagen.Visible = false;
                         DIvBloqueRemodelacion.Visible = false;
                         DIVBloqueNotificacionesReclamaciones.Visible = false;
@@ -438,344 +317,97 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         break;
 
                     case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.RECLAMACIONES:
-                        DivBloqueEstadistica.Visible = false;
+          
                         DIVBloqueImagen.Visible = true;
                         DIvBloqueRemodelacion.Visible = false;
                         DIVBloqueNotificacionesReclamaciones.Visible = true;
-
+                        CurrentPage = 0;
+                        MostrarListadoHeader();
 
                         break;
                 }
-                DivBloqueCheck.Visible = false;
-                cbSinInicial.Checked = true;
-                cbPrimerPago.Checked = true;
-                cbSegundoPago.Checked = true;
-                cbTercerpago.Checked = true;
-                cbCuartoPago.Checked = true;
-                cbQuintoPago.Checked = true;
-                //ActualizarInformacionEstadistica();
+             
 
 
-                decimal IdUsuario = (decimal)Session["IdUsuario"];
-            
-                var ValidarInformmacion = Objtata.Value.BuscaSupervisoresPorDefectoPolizasSinPagos(IdUsuario);
-                if (ValidarInformmacion.Count() < 1) {
                 
-                }
-                else {
-                    foreach (var n in ValidarInformmacion) {
 
-                        txtCodigoSupervisor.Text = n.CodigoSupervisor.ToString();
-                        txtNombreSupervisor.Text = n.Supervisor;
-                    }
-
-                    ActualizarInformacionEstadistica();
-                }
+          
             }
           
         }
 
-        protected void LinkSinPagoInicial_Click(object sender, EventArgs e)
+        protected void btnExportarReclamaciones_Click(object sender, ImageClickEventArgs e)
         {
-        //    ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.Poliza_Sin_Pago_Inicial, 106,"Polizas SIn Pago Inicial");
-        }
+            var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var IdEstatus = ((HiddenField)ItemSeleccionado.FindControl("hfCodigoEstatus")).Value.ToString();
+            var NombreEstatus = ((HiddenField)ItemSeleccionado.FindControl("hfNombreEstatus")).Value.ToString();
 
-        protected void btnSinPagoInicial_Click(object sender, EventArgs e)
-        {
-            //ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.Poliza_Sin_Pago_Inicial, 106,"Polizas Sin Pago Inicial");
-        }
-
-        protected void btnPrimerPagoSinCobros_Click(object sender, EventArgs e)
-        {
-            //ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.Polzias_11_30,106,"Polizas Sin Pagos de 11 a 30 Dias");
-        }
-
-        protected void btnSegundoPagoSinCobros_Click(object sender, EventArgs e)
-        {
-            //ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.Polizas_31_60,106, "Polizas Sin Pagos de 31 a 60 Dias");
-        }
-
-        protected void btnTercerPagoSinCobros_Click(object sender, EventArgs e)
-        {
-            //ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.Polizas_61_90,106, "Polizas Sin Pagos de 61 a 90 Dias");
-        }
-
-        protected void btnCuartoPagoSinCobros_Click(object sender, EventArgs e)
-        {
-            //ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.Polizas_91_120, 106, "Polizas Sin Pagos de 91 a 120 Dias");
-        }
-
-        protected void btnMasDeCientoVeinteDiasSinCobros_Click(object sender, EventArgs e)
-        {
-          //  ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.Polizas_121_mas, 106, "Polizas Sin Pagos mas de 120 Dias");
-        }
-
-        protected void btnActualizar_Click(object sender, ImageClickEventArgs e)
-        {
-            ActualizarInformacionEstadistica();
-        }
-
-        protected void cbTodos_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbTodos.Checked == true) {
-
-                cbSinInicial.Checked = true;
-                cbPrimerPago.Checked = true;
-                cbSegundoPago.Checked = true;
-                cbTercerpago.Checked = true;
-                cbCuartoPago.Checked = true;
-                cbQuintoPago.Checked = true;
-            }
-            else if (cbTodos.Checked == false) {
-                cbSinInicial.Checked = false;
-                cbPrimerPago.Checked = false;
-                cbSegundoPago.Checked = false;
-                cbTercerpago.Checked = false;
-                cbCuartoPago.Checked = false;
-                cbQuintoPago.Checked = false;
-            }
-        }
-
-        protected void cbSinInicial_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbSinInicial.Checked == true) {
-
-                if (cbSinInicial.Checked == true &&
-                    cbPrimerPago.Checked == true &&
-                    cbSegundoPago.Checked == true &&
-                    cbTercerpago.Checked == true &&
-                    cbCuartoPago.Checked == true &&
-                    cbQuintoPago.Checked == true)
-                {
-                    cbTodos.Checked = true;
-                }
+            var Exportar = Objtata.Value.BuscaDetalleNotificacionesReclamaciones(Convert.ToInt32(IdEstatus));
+            if (Exportar.Count() < 1)
+            {
+                ClientScript.RegisterStartupScript(GetType(), "MensajeNotificacion()", "MensajeNotificacion();", true);
             }
             else {
-                cbTodos.Checked = false;
+
+                var Resultado = (from n in Exportar
+                                 select new
+                                 {
+                                     Reclamacion = n.Reclamacion,
+                                     Estatus = n.NombreEstatus,
+                                     Monto_Reclamado = n.MontoReclamado,
+                                     Monto_Ajustado = n.MontoAjustado,
+                                     Monto_Reserva = n.MontoReserva,
+                                     Monto_Salvamento = n.MontoSalvamento,
+                                     Fecha_Apertura = n.FechaApertura,
+                                     Hora_Apertura = n.HoraApertura,
+                                     Fecha_Siniestro = n.FechaSiniestro,
+                                     Hora_Siniestro = n.HoraSiniestro,
+                                     Poliza = n.Poliza,
+                                     CLiente = n.CLiente,
+                                     Supervisor = n.Supervisor,
+                                     Intermediario = n.Intermediario,
+                                     Monto_Prima = n.MontoPrima,
+                                     Monto_Asegurado = n.MontoAsegurado,
+                                     Comentario = n.Comentario,
+                                     Inicio_de_Vigencia = n.IniciodeVigencia,
+                                     Fin_de_Vigencia = n.FindeVigencia,
+                                     CreadaPor = n.CreadaPor,
+                                     Fecha_Creada = n.FechaCreada,
+                                     ModificadoPor = n.ModificadoPor,
+                                     Fecha_Modificada = n.Fecha_Modificada
+                                 }).ToList();
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reclamaciones con Estatus " + NombreEstatus, Resultado);
             }
         }
 
-        protected void cbPrimerPago_CheckedChanged(object sender, EventArgs e)
+        protected void btnPrimeraPagina_Click(object sender, ImageClickEventArgs e)
         {
-            if (cbPrimerPago.Checked == true)
-            {
-
-                if (cbSinInicial.Checked == true &&
-                    cbPrimerPago.Checked == true &&
-                    cbSegundoPago.Checked == true &&
-                    cbTercerpago.Checked == true &&
-                    cbCuartoPago.Checked == true &&
-                    cbQuintoPago.Checked == true)
-                {
-                    cbTodos.Checked = true;
-                }
-            }
-            else
-            {
-                cbTodos.Checked = false;
-            }
-        }
-
-        protected void cbSegundoPago_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbSegundoPago.Checked == true)
-            {
-
-                if (cbSinInicial.Checked == true &&
-                    cbPrimerPago.Checked == true &&
-                    cbSegundoPago.Checked == true &&
-                    cbTercerpago.Checked == true &&
-                    cbCuartoPago.Checked == true &&
-                    cbQuintoPago.Checked == true)
-                {
-                    cbTodos.Checked = true;
-                }
-            }
-            else
-            {
-                cbTodos.Checked = false;
-            }
-        }
-
-        protected void cbTercerpago_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbTercerpago.Checked == true)
-            {
-
-                if (cbSinInicial.Checked == true &&
-                    cbPrimerPago.Checked == true &&
-                    cbSegundoPago.Checked == true &&
-                    cbTercerpago.Checked == true &&
-                    cbCuartoPago.Checked == true &&
-                    cbQuintoPago.Checked == true)
-                {
-                    cbTodos.Checked = true;
-                }
-            }
-            else
-            {
-                cbTodos.Checked = false;
-            }
-        }
-
-        protected void cbCuartoPago_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbCuartoPago.Checked == true)
-            {
-
-                if (cbSinInicial.Checked == true &&
-                    cbPrimerPago.Checked == true &&
-                    cbSegundoPago.Checked == true &&
-                    cbTercerpago.Checked == true &&
-                    cbCuartoPago.Checked == true &&
-                    cbQuintoPago.Checked == true)
-                {
-                    cbTodos.Checked = true;
-                }
-            }
-            else
-            {
-                cbTodos.Checked = false;
-            }
-        }
-
-        protected void cbQuintoPago_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbQuintoPago.Checked == true)
-            {
-
-                if (cbSinInicial.Checked == true &&
-                    cbPrimerPago.Checked == true &&
-                    cbSegundoPago.Checked == true &&
-                    cbTercerpago.Checked == true &&
-                    cbCuartoPago.Checked == true &&
-                    cbQuintoPago.Checked == true)
-                {
-                    cbTodos.Checked = true;
-                }
-            }
-            else
-            {
-                cbTodos.Checked = false;
-            }
-        }
-
-        protected void btnReporte_Click(object sender, ImageClickEventArgs e)
-        {
-            if (cbSinInicial.Checked == false &&
-                cbPrimerPago.Checked == false &&
-                cbSegundoPago.Checked == false &&
-                cbTercerpago.Checked == false &&
-                cbCuartoPago.Checked == false &&
-                cbQuintoPago.Checked == false)
-            {
-                ClientScript.RegisterStartupScript(GetType(), "Mensaje()", "Mensaje();", true);
-            }
-            else
-            {
-
-                //decimal IdUsuario = (decimal)Session["IdUsuario"];
-                //int CodigoEstatus = 0;
-
-                //EliminarInformacion(IdUsuario, "DELETE");
-
-                //if (cbSinInicial.Checked == true)
-                //{
-                //    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Poliza_Sin_Pago_Inicial;
-                //    ProcesarInformacionEstadisticaPolizasSinPagos(CodigoEstatus, 106, IdUsuario, CodigoEstatus, "INSERT");
-                //}
-
-                //if (cbPrimerPago.Checked == true)
-                //{
-                //    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Polzias_11_30;
-                //    ProcesarInformacionEstadisticaPolizasSinPagos((int)OpcionesEstadisticaPolizasSinPagos.Polzias_11_30, 106, IdUsuario, CodigoEstatus, "INSERT");
-                //}
-
-                //if (cbSegundoPago.Checked == true)
-                //{
-                //    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Polizas_31_60;
-                //    ProcesarInformacionEstadisticaPolizasSinPagos((int)OpcionesEstadisticaPolizasSinPagos.Polizas_31_60, 106, IdUsuario, CodigoEstatus, "INSERT");
-                //}
-
-                //if (cbTercerpago.Checked == true)
-                //{
-                //    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Polizas_61_90;
-                //    ProcesarInformacionEstadisticaPolizasSinPagos((int)OpcionesEstadisticaPolizasSinPagos.Polizas_61_90, 106, IdUsuario, CodigoEstatus, "INSERT");
-                //}
-
-                //if (cbCuartoPago.Checked == true)
-                //{
-                //    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Polizas_91_120;
-                //    ProcesarInformacionEstadisticaPolizasSinPagos((int)OpcionesEstadisticaPolizasSinPagos.Polizas_91_120, 106, IdUsuario, CodigoEstatus, "INSERT");
-                //}
-
-                //if (cbQuintoPago.Checked == true)
-                //{
-                //    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Polizas_121_mas;
-                //    ProcesarInformacionEstadisticaPolizasSinPagos((int)OpcionesEstadisticaPolizasSinPagos.Polizas_121_mas, 106, IdUsuario, CodigoEstatus, "INSERT");
-                //}
-                //GenerarReporteEstadisticaPolizasSinPagos();
-            }
-        }
-
-        protected void btnTercerPagoAplicado_Click(object sender, EventArgs e)
-        {
-            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnTercerPagoAplicado, 106, "Polizas Con un Tercer Pago Aplicado");
-        }
-
-        protected void btnSegundoPagoAplicado_Click(object sender, EventArgs e)
-        {
-            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnSegundoPagoAplicado, 106, "Polizas Con un Segundo Pago Aplicado");
-        }
-
-        protected void btnPrimerPAgoAplicado_Click(object sender, EventArgs e)
-        {
-            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnPrimerPagoAplicado, 106, "Polizas Con un Primer Pago Aplicado");
-            
-
 
         }
 
-        protected void btnSinInicialTercero_Click(object sender, EventArgs e)
+        protected void btnPaginaAnterior_Click(object sender, ImageClickEventArgs e)
         {
-            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.PolizasSinPagoInicialTercero, 106, "Polizas Sin Pagos de Mas de 30 Dias");
+
         }
 
-        protected void btnSinInicialSegundo_Click(object sender, EventArgs e)
+        protected void dtPaginacion_ItemDataBound(object sender, DataListItemEventArgs e)
         {
-            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.PolizasSinPagoInicialSegundo, 106, "Polizas Sin Pagos de 11 a 30 Dias");
+
         }
 
-        protected void btnSinInicialPrimero_Click(object sender, EventArgs e)
+        protected void dtPaginacion_CancelCommand(object source, DataListCommandEventArgs e)
         {
-            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.PolizasSinPagoInicialPrimero, 106, "Polizas Sin Pagos de 0 a 11 Dias");
+
         }
 
-        protected void btnCuartoPago_Click(object sender, EventArgs e)
+        protected void btnSiguientePagina_Click(object sender, ImageClickEventArgs e)
         {
-            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnCuartoPagoAplicado, 106, "Polizas Con un Cuarto Pago Aplicado");
+
         }
 
-        protected void btnQuintoPago_Click(object sender, EventArgs e)
+        protected void btnUltimaPagina_Click(object sender, ImageClickEventArgs e)
         {
-            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnQuintoPagoAplicado, 106, "Polizas Con un Quinto Pago Aplicado");
-        }
 
-        protected void btnMasDeCincoPagos_Click(object sender, EventArgs e)
-        {
-            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.PolizasConMasDeCintoPagosAplicados, 106, "Polizas Con Mas de Cinco Pagos Aplicados");
-        }
-
-        protected void txtCodigoSupervisor_TextChanged(object sender, EventArgs e)
-        {
-            UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor NombreSupervisor = new Logica.Comunes.SacarNombreIntermediarioSupervisor(txtCodigoSupervisor.Text);
-            txtNombreSupervisor.Text = NombreSupervisor.SacarNombreSupervisor();
-        }
-
-        protected void txtCodigoIntermediario_TextChanged(object sender, EventArgs e)
-        {
-            UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor NombreIntermediario = new Logica.Comunes.SacarNombreIntermediarioSupervisor(txtCodigoIntermediario.Text);
-            txtNombreIntermediario.Text = NombreIntermediario.SacarNombreIntermediario();
         }
     }
 }

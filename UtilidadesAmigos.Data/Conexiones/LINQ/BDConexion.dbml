@@ -3464,4 +3464,49 @@
       <Column Name="Segundos" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_BUSCA_ESTATUS_RECLAMACIONES_NOTIFICACIONES" Method="SP_BUSCA_ESTATUS_RECLAMACIONES_NOTIFICACIONES">
+    <Parameter Name="IdRegistro" Parameter="idRegistro" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEstatus" Parameter="idEstatus" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_BUSCA_ESTATUS_RECLAMACIONES_NOTIFICACIONESResult">
+      <Column Name="IdRegistro" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdEstatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreEstatus" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="DiasNotificacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Estatus0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="CantidadPolias" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ANotificar" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_DETALLE_NOTIFICACIONES_RECLAMACIONES" Method="SP_BUSCA_DETALLE_NOTIFICACIONES_RECLAMACIONES">
+    <Parameter Name="IdEstatus" Parameter="idEstatus" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_BUSCA_DETALLE_NOTIFICACIONES_RECLAMACIONESResult">
+      <Column Name="Reclamacion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Estatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreEstatus" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="MontoReclamado" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="MontoAjustado" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="MontoReserva" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="MontoSalvamento" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="FechaApertura0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaApertura" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="HoraApertura" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaSiniestro0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaSiniestro" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="HoraSiniestro" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CLiente" Type="System.String" DbType="VarChar(288) NOT NULL" CanBeNull="false" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
+      <Column Name="MontoPrima" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="MontoAsegurado" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="[Inicio de Vigencia]" Member="Inicio_de_Vigencia" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="[Fin de Vigencia]" Member="Fin_de_Vigencia" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="CreadaPor" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="[Fecha Creada]" Member="Fecha_Creada" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="ModificadoPor" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Fecha Modificada]" Member="Fecha_Modificada" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>
