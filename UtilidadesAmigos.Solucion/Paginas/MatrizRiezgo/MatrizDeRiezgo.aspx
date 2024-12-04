@@ -163,12 +163,145 @@
     </script>
 
     <div class="container-fluid">
+          <asp:ScriptManager ID="ScripManagerMatrizRiezgo" runat="server"></asp:ScriptManager> 
         <br />
-        <div id="DIVBloqueConsulta" runat="server"></div>
+        <div id="DIVBloqueConsulta" runat="server">
+            <br />
+           <div class="form-check form-switch">
+               <input type="checkbox" id="cbNoAgregarRangoFecha" runat="server" class="form-check-input" />
+               <label class="Letranegrita form-check-label">No Agregar Rango de Fecha</label>
+           </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="Letranegrita"> Fecha Desde </label>
+                    <asp:TextBox ID="txtFechaDesde_Consulta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                </div>
+                <div class="col-md-3">
+                     <label class="Letranegrita"> Fecha Hasta </label>
+                    <asp:TextBox ID="txtFechaHasta_Consulta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                </div>
+                <div class="col-md-3">
+                     <label class="Letranegrita"> Cliente </label>
+                    <asp:TextBox ID="txtCliente_Consulta" runat="server" CssClass="form-control" ></asp:TextBox>
+                </div>
+                <div class="col-md-3">
+                     <label class="Letranegrita"> Clasificación </label>
+                    <asp:DropDownList ID="ddlClasificacion_Consulta" runat="server" ToolTip="Seleccionar Clasificación" CssClass="form-control"></asp:DropDownList>
+                </div>
+
+                <div class="col-md-3">
+                     <label class="Letranegrita"> Tipo de Identificación </label>
+                     <asp:DropDownList ID="ddlTipoIdentificacion" runat="server" ToolTip="Seleccionar Tipo de Identificación" CssClass="form-control"></asp:DropDownList>
+                </div>
+                <div class="col-md-3">
+                     <label class="Letranegrita"> Numero Identificación </label>
+                    <asp:TextBox ID="txtNumeroIdentificacion_Consulta" runat="server" CssClass="form-control" ></asp:TextBox>
+
+                      <ajaxToolkit:MaskedEditExtender runat="server" TargetControlID="txtNumeroIdentificacion_Consulta" Mask="999-9999999-9" 
+      MessageValidatorTip="true" OnFocusCssClass="MaskedEditFocus" OnInvalidCssClass="MaskedEditError"
+      MaskType="Number" InputDirection="LeftToRight" AcceptNegative="None" DisplayMoney="None"
+      ErrorTooltipEnabled="True"  ID="MascaraCedula_Consulta" />
+   
+  <ajaxToolkit:MaskedEditExtender runat="server" TargetControlID="txtNumeroIdentificacion_Consulta" Mask="999-999999" 
+     MessageValidatorTip="true" OnFocusCssClass="MaskedEditFocus" OnInvalidCssClass="MaskedEditError"
+     MaskType="Number" InputDirection="LeftToRight" AcceptNegative="None" DisplayMoney="None"
+     ErrorTooltipEnabled="True"  ID="MascaraRNC_Consulta" />
+                </div>
+                <div class="col-md-3">
+                     <label class="Letranegrita"> Oficina </label>
+                    <asp:DropDownList ID="ddlOficina_Consulta" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
+                </div>
+            </div>
+            <br />
+            <div class="form-check-inline">
+                <label class="Letranegrita">Tipo de Reporte: </label>
+                <asp:RadioButton ID="rbPDF" runat="server" Text="PDF" ToolTip="Generar Reporte en PDF" GroupName="TipoReporte" />
+                <asp:RadioButton ID="rbExcel" runat="server" Text="Excel Plano" ToolTip="Generar Reporte en Excel Plano" GroupName="TipoReporte" />
+            </div>
+            <br />
+            <div class="ContenidoCentro">
+                <asp:ImageButton ID="btnConsultar" runat="server" CssClass="BotonImagen" ToolTip="Consultar Información" ImageUrl="~/ImagenesBotones/Lupa_Nuevo.png" OnClick="btnConsultar_Click" />
+                <asp:ImageButton ID="btnReporte" runat="server" CssClass="BotonImagen" ToolTip="Reporte de Matriz" ImageUrl="~/ImagenesBotones/Reporte_Nuevo.png" OnClick="btnReporte_Click" />
+                <asp:ImageButton ID="btnNuevo" runat="server" CssClass="BotonImagen" ToolTip="Crear Nuevo Registro" ImageUrl="~/ImagenesBotones/Agregar_Nuevo.png" OnClick="btnNuevo_Click" />
+                <asp:ImageButton ID="btnMatriz" runat="server" CssClass="BotonImagen" ToolTip="Generar Matriz de Riesgo" ImageUrl="~/ImagenesBotones/HojaVenta.png" OnClick="btnMatriz_Click" />
+                <asp:ImageButton ID="btnEditar" runat="server" CssClass="BotonImagen" ToolTip="Editar Registro Seleccionado" ImageUrl="~/ImagenesBotones/Editar_Nuevo.png" OnClick="btnEditar_Click" />
+                <asp:ImageButton ID="btnBorrar" runat="server" CssClass="BotonImagen" ToolTip="Borrar Registro Seleccionado" ImageUrl="~/ImagenesBotones/borrar.png" OnClick="btnBorrar_Click" />
+                <asp:ImageButton ID="btnReestablecer" runat="server" CssClass="BotonImagen" ToolTip="Reestablecer Pantalla" ImageUrl="~/ImagenesBotones/Restablecer_Nuevo.png" OnClick="btnReestablecer_Click" />
+            </div>
+            <br />
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                             <th scope="col"> No. Matriz </th>
+                             <th scope="col"> Cliente </th>
+                             <th scope="col"> Tipo </th>
+                             <th scope="col"> Identificación </th>
+                             <th scope="col"> Clasificación </th>
+                             <th scope="col"> Oficina </th>
+                             <th scope="col"> Seleccionar </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <asp:Repeater ID="rpListadoMatriz" runat="server">
+                            <ItemTemplate>
+                                <tr>
+
+                                    <asp:HiddenField ID="hfMatrizSeleccionaa" runat="server" Value='<%# Eval("") %>' />
+                                    <asp:HiddenField ID="hfOficinaSeleccionada" runat="server" Value='<%# Eval("") %>' />
+
+                                    <td> <%# Eval("") %> </td>
+                                    <td> <%# Eval("") %> </td>
+                                    <td> <%# Eval("") %> </td>
+                                    <td> <%# Eval("") %> </td>
+                                    <td> <%# Eval("") %> </td>
+                                    <td> <%# Eval("") %> </td>
+                                    <td> <asp:ImageButton ID="btnSeleccionar" runat="server" CssClass="BotonImagen" ToolTip="Seleccionar Registro" ImageUrl="~/ImagenesBotones/hacer-clic.png" OnClick="btnSeleccionar_Click" /> </td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </tbody>
+                </table>
+            </div>
+            <table class="table">
+            <tfoot class="table-light ContenidoDerecha">
+        <tr class="ContenidoDerecha">
+            <td class="ContenidoDerecha"><b>Pagina </b> <asp:Label ID="lbPaginaActual" runat="server" Text=" 0 "></asp:Label> <b>De </b>   <asp:Label ID="lbCantidadPagina" runat="server" Text="0" ></asp:Label> </td>
+        </tr>
+    </tfoot>
+</table>
+
+ <div id="DivPaginacionListadoPrincipal" runat="server" align="center" >
+    <div style="margin-top=20px;">
+        <table style="width:600px;">
+            <tr>
+                <td> <asp:ImageButton ID="btnPrimeraPagina" runat="server" ImageUrl="~/ImagenesBotones/PrimeraPagina_Nuevo.png" OnClick="btnPrimeraPagina_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                <td> <asp:ImageButton ID="btnPaginaAnterior" runat="server" ImageUrl="~/ImagenesBotones/Anterior_Nuevo.png" OnClick="btnPaginaAnterior_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                <td align="center">
+                    <asp:DataList ID="dtPaginacion" runat="server" OnCancelCommand="dtPaginacion_CancelCommand" OnItemDataBound="dtPaginacion_ItemDataBound" RepeatDirection="Horizontal" >
+                        <ItemTemplate>
+                            <asp:Button ID="btnPaginacionCentral" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
+                        </ItemTemplate>
+                    </asp:DataList>
+
+                </td>
+                <td> <asp:ImageButton ID="btnSiguientePagina" runat="server" ImageUrl="~/ImagenesBotones/Siguiente_Nuevo.png" OnClick="btnSiguientePagina_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                <td> <asp:ImageButton ID="btnUltimaPagina" runat="server" ImageUrl="~/ImagenesBotones/UltimaPagina_Nuevo.png" OnClick="btnUltimaPagina_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+               
+            </tr>
+        </table>
+    </div>
+</div>
+            <br />
+        </div>
 
         <div id="DIVBloqueProceso" runat="server">
+            <asp:HiddenField ID="hfIdMatriz" runat="server" />
+            <asp:HiddenField ID="hfIdOficina" runat="server" />
 
-            <asp:ScriptManager ID="ScripManagerMatrizRiezgo" runat="server"></asp:ScriptManager> 
+          
 
 
             <div class="table-responsive">
@@ -432,6 +565,32 @@
                  <asp:ImageButton ID="btnVolver" runat="server" ImageUrl="~/ImagenesBotones/Volver_Nuevo.png" OnClick="btnVolver_Click" CssClass="BotonImagen" ToolTip="Volver Atras" />
             </div>
             <br />
+        </div>
+
+
+        <div id="DIvBloqueProcesoCompletado" class="ContenidoCentro" runat="server">
+             <br />
+<label class="Letranegrita">Numero de Matriz Generado (</label>
+<asp:Label ID="lbNumeroMatrizGenerado" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
+<label class="Letranegrita">)</label>
+<br />
+            <label class="Letranegrita">Clasificación de Matriz (</label>
+<asp:Label ID="lbClasificacionMatriz" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
+<label class="Letranegrita">)</label>
+<br />
+        <asp:HiddenField ID="hfNumeroMatrizGenerado_ProcesoCOmpletado" runat="server" />
+        <asp:HiddenField ID="hfIfoficina_ProcesoCOmpletado" runat="server" />
+        <asp:HiddenField ID="hfClasificacion_ProcesoCompletado" runat="server" />
+
+<asp:Image ID="IMGCompletado" runat="server" CssClass="BotonImagenCompletado" ImageUrl="~/Imagenes/ProcesoCompletado.gif" />
+<br />
+
+   
+
+
+<asp:ImageButton ID="btnImprimirMatriz" runat="server" CssClass="BotonImagen" ToolTip="Imprimir Matriz de Riezgo" ImageUrl="~/ImagenesBotones/HojaVenta.png" OnClick="btnImprimirMatriz_Click" />
+<asp:ImageButton ID="btnNuevoRegistro" runat="server" CssClass="BotonImagen" ToolTip="Nuevo Registro" ImageUrl="~/ImagenesBotones/Agregar_Nuevo.png" OnClick="btnNuevoRegistro_Click" />
+<br />
         </div>
     </div>
 </asp:Content>

@@ -151,6 +151,17 @@ namespace UtilidadesAmigos.Solucion.Paginas.MatrizRiezgo
             PRIMAANUAL();
             TIPOMONITOREO();
             TIPODEBIDADILIGENCIA();
+
+
+            btnConsultar.Visible = true;
+            btnReporte.Visible = true;
+            btnNuevo.Visible = true;
+            btnMatriz.Visible = false;
+            btnEditar.Visible = false;
+            btnBorrar.Visible = false;
+            btnReestablecer.Visible = false;
+
+
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -163,6 +174,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.MatrizRiezgo
 
                 Label lbNombrePantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbNombrePantalla.Text = "MATRIZ DE RIESGO";
+
+                DIVBloqueConsulta.Visible = false;
+                DIVBloqueProceso.Visible = false;
+                DIvBloqueProcesoCompletado.Visible = true;
 
                 ConfiguracionInicial();
             }
@@ -277,6 +292,86 @@ namespace UtilidadesAmigos.Solucion.Paginas.MatrizRiezgo
         }
 
         protected void ddlSubProducto_Proceso2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnConsultar_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnReporte_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnMatriz_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnEditar_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnBorrar_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnReestablecer_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnSeleccionar_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnPrimeraPagina_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnPaginaAnterior_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacion_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacion_CancelCommand(object source, DataListCommandEventArgs e)
+        {
+
+        }
+
+        protected void btnSiguientePagina_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnUltimaPagina_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnImprimirMatriz_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnNuevoRegistro_Click(object sender, ImageClickEventArgs e)
         {
 
         }
