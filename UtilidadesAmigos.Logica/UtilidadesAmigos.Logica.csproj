@@ -145,6 +145,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSuministro\ProcesarInformacionSuministroHeader.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSuministro\ProcesarInformacionSuministroInventario.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSuministro\ProcesarInformacionSuministroSolicitud.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\MatrisRiesgo\ProcesarInformacionMatrisRiesgo.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionCodigosSupervisoresPermitidos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesIntermediarioSeleccionado.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesMontosAcumulados.cs" />
@@ -428,6 +429,7 @@
     <Compile Include="Entidades\Mantenimientos\ESacarTasaMoneda.cs" />
     <Compile Include="Entidades\Mantenimientos\ESacarUltimoNumeroSolicitudGenerado.cs" />
     <Compile Include="Entidades\Mantenimientos\MantenimientoComisionesIntermediarios.cs" />
+    <Compile Include="Entidades\MatrizRiesgo\EMatrisRiesgo.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\EBuscaListadoCorreosEnviar.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\ECorreosEnviar.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\EMantenimientoBackupDatabase.cs" />
@@ -570,6 +572,7 @@
     <Compile Include="Logica\LogicaGerencia\LogicaGerencia.cs" />
     <Compile Include="Logica\LogicaHoja\LogicaHoja.cs" />
     <Compile Include="Logica\LogicaMantenimientos\LogicaMantenimientos.cs" />
+    <Compile Include="Logica\LogicaMatrisRiesgo\LogicaMatrisRiesgo.cs" />
     <Compile Include="Logica\LogicaOpcionesAdministrador\LogicaOpcionesdministrador.cs" />
     <Compile Include="Logica\LogicaProcesos\LogicaProcesos.cs" />
     <Compile Include="Logica\LogicaReportes\ProduccionPorUsuarioResumido.cs" />

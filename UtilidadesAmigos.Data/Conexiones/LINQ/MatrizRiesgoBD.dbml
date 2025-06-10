@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSegurosNew" Class="MatrizRiesgoBDDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSegurosNew;User ID=juan.diaz;Encrypt=False" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosNewConnectionString1" Provider="System.Data.SqlClient" />
+  <Function Name="MatrizRiesgo.SP_PROCESAR_INFORMACION_MATRIZ_RIEZGO" Method="SP_PROCESAR_INFORMACION_MATRIZ_RIEZGO">
+    <Parameter Name="IdRegistro" Parameter="idRegistro" Type="System.Decimal" DbType="Decimal(31,0)" />
+    <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(31,0)" />
+    <Parameter Name="Nombres" Parameter="nombres" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="IdTipoIdentificacion" Parameter="idTipoIdentificacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NumeroIdentificacion" Parameter="numeroIdentificacion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="IdProducto" Parameter="idProducto" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdProductoNivel" Parameter="idProductoNivel" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdSubProducto" Parameter="idSubProducto" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdSUbProductoNivel" Parameter="idSUbProductoNivel" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdCanalDistribucion" Parameter="idCanalDistribucion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdCanalDistribucionNivel" Parameter="idCanalDistribucionNivel" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdPaisResidencia" Parameter="idPaisResidencia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdPaisResidenciaNivel" Parameter="idPaisResidenciaNivel" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdPaisProcedencia" Parameter="idPaisProcedencia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdPaisProcedenciaNivel" Parameter="idPaisProcedenciaNivel" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdProvincia" Parameter="idProvincia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdProvinciaNivel" Parameter="idProvinciaNivel" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdMontoRiesgo" Parameter="idMontoRiesgo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdMontoRIesgoNivel" Parameter="idMontoRIesgoNivel" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdActividadEconomica" Parameter="idActividadEconomica" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdActivicadEconomicaNivel" Parameter="idActivicadEconomicaNivel" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdPromedioIngresoAnual" Parameter="idPromedioIngresoAnual" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdPromedioIngresoAnualNivel" Parameter="idPromedioIngresoAnualNivel" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdPEP" Parameter="idPEP" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IDPEPNivel" Parameter="iDPEPNivel" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdPrimaAnual" Parameter="idPrimaAnual" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdPrimaAnualNivel" Parameter="idPrimaAnualNivel" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdTipoMonitoreo" Parameter="idTipoMonitoreo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdTipoDebidaDiligencia" Parameter="idTipoDebidaDiligencia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Observaciones" Parameter="observaciones" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_PROCESAR_INFORMACION_MATRIZ_RIEZGOResult">
+      <Column Name="IdRegistro" Type="System.Decimal" DbType="Decimal(31,0)" CanBeNull="true" />
+      <Column Name="IdOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(31,0)" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Nombres" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdTipoIdentificacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NumeroIdentificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IdProducto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdProductoNivel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdSubProducto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdSUbProductoNivel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdCanalDistribucion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdCanalDistribucionNivel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdPaisResidencia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdPaisResidenciaNivel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdPaisProcedencia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdPaisProcedenciaNivel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdProvincia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdProvinciaNivel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdMontoRiesgo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdMontoRIesgoNivel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdActividadEconomica" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdActivicadEconomicaNivel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdPromedioIngresoAnual" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdPromedioIngresoAnualNivel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdPEP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDPEPNivel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdPrimaAnual" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdPrimaAnualNivel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdTipoMonitoreo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdTipoDebidaDiligencia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Observaciones" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

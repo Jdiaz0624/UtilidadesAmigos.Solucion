@@ -131,6 +131,25 @@
         </ul>
         </li>
 
+         <!--MATRIZ DE RIEZGO-->
+ <li id="Li1" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-cart-arrow-down"></i>Matriz de Riezgo<i class="icono derecha fa fa-chevron-down"></i></a>
+ <ul>
+     <li> <asp:LinkButton ID="LinkMatrizDeRiezgo" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" OnClick="LinkMatrizDeRiezgo_Click" ></asp:LinkButton> </li>
+     <li> <asp:LinkButton ID="LinkButton2" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
+     <li> <asp:LinkButton ID="LinkButton3" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
+     <li> <asp:LinkButton ID="LinkButton4" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
+     <li> <asp:LinkButton ID="LinkButton5" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
+     <li> <asp:LinkButton ID="LinkButton6" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
+     <li> <asp:LinkButton ID="LinkButton7" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
+     <li> <asp:LinkButton ID="LinkButton8" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
+     <li> <asp:LinkButton ID="LinkButton9" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
+     <li> <asp:LinkButton ID="LinkButton10" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
+     <li> <asp:LinkButton ID="LinkButton11" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
+     <li> <asp:LinkButton ID="LinkButton12" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
+     <li> <asp:LinkButton ID="LinkButton13" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
+ </ul>
+ </li>
+
          <!--MODULO DE CONSULTAS-->
         <li id="DivModuloConsulta" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-search-plus"></i>Consultas<i class="icono derecha fa fa-chevron-down"></i></a>
         <ul>

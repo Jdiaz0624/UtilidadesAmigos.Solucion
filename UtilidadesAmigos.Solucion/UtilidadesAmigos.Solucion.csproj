@@ -240,6 +240,7 @@
     <Content Include="Imagenes\png-transparent-computer-icons-synchronization-encapsulated-postscript-icon-design-update-button-angle-text-logo.png" />
     <Content Include="Imagenes\Primera Pagina.png" />
     <Content Include="Imagenes\Procesar.png" />
+    <Content Include="Imagenes\ProcesoCompletado.gif" />
     <Content Include="Imagenes\remodelacion.jpg" />
     <Content Include="Imagenes\Reporte.png" />
     <Content Include="Imagenes\salvar.png" />
@@ -304,6 +305,7 @@
     <Content Include="Paginas\Mantenimientos\IntermediariosSupervisores.aspx" />
     <Content Include="Paginas\Mantenimientos\MantenimientoDependientes.aspx" />
     <Content Include="Paginas\Mantenimientos\MantenimientoMonedas.aspx" />
+    <Content Include="Paginas\MatrizRiezgo\MatrizDeRiezgo.aspx" />
     <Content Include="Paginas\ProcesarDataAsegurado.aspx" />
     <Content Include="Paginas\ProcesoPoliza\Cotizador.aspx" />
     <Content Include="Paginas\Procesos\AgregarItemsReclamos.aspx" />
@@ -818,6 +820,13 @@
     </Compile>
     <Compile Include="Paginas\Mantenimientos\MantenimientoMonedas.aspx.designer.cs">
       <DependentUpon>MantenimientoMonedas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\MatrizRiezgo\MatrizDeRiezgo.aspx.cs">
+      <DependentUpon>MatrizDeRiezgo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\MatrizRiezgo\MatrizDeRiezgo.aspx.designer.cs">
+      <DependentUpon>MatrizDeRiezgo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Oficinas.aspx.cs">
       <DependentUpon>Oficinas.aspx</DependentUpon>
