@@ -24,6 +24,22 @@
         }
         function CampoNombreVacioConductorUnico() { $("#<%=txtNombreConductorUnico.ClientID%>").css("border-color", "red"); }
         function CampoCedulaVacioConductorUnico() { $("#<%=txtCedulaConductorUnico.ClientID%>").css("border-color", "red"); }
+
+
+
+        function MostrarVentanaEmergente(url) {
+            console.log("URL del reporte cargado en iframe:", url); // Esto mostrará la URL en la consola
+            document.getElementById('iframeReporte').src = url; // Cargar la URL en el iframe
+            document.getElementById('ventanaEmergente').style.display = 'block'; // Mostrar la ventana emergente
+        }
+
+
+        function CerrarVentana() {
+            document.getElementById('ventanaEmergente').style.display = 'none';
+        }
+
+
+
         $(function () {
             
             //VALIDAR EL BOTON BUSCAR
@@ -46,6 +62,15 @@
         })
     </script>
     <div class="container-fluid">
+
+                  <div id="ventanaEmergente" style="display:none; position:fixed; top:10%; left:15%; width:70%; height:80%; background:white; border:1px solid black; z-index:1000;">
+    <iframe id="iframeReporte" style="width:100%; height:100%; border:none;"></iframe>
+ <button onclick="CerrarVentana()" style="position:absolute; top:10px; right:10px; border:none; background:none;">
+    <img src="../../ImagenesBotones/Cerrar.png" alt="Cerrar" style="width:30px; height:30px;">
+</button>
+</div>
+
+
         <div class="progress">
   <asp:UpdateProgress ID="progress" runat="server"></asp:UpdateProgress>
 </div>

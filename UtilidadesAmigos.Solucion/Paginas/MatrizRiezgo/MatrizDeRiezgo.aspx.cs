@@ -134,6 +134,66 @@ namespace UtilidadesAmigos.Solucion.Paginas.MatrizRiezgo
 
         #endregion
 
+        #region LISTAS CONSULTA
+        private void CargarTipoIdentificcionCOnsulta() {
+
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlTipoIdentificacion, ObjDataComun.Value.BuscaListas("TIPOIDENTIFICCIONMATRIZ", null, null),true);
+        }
+
+        private void CargarClasificaciones()
+        {
+
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlClasificacion_Consulta, ObjDataComun.Value.BuscaListas("CLASIFICACION", null, null), true);
+        }
+        private void CargarOficina()
+        {
+
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficina_Consulta, ObjDataComun.Value.BuscaListas("OFICINANORMAL", null, null), true);
+        }
+        #endregion
+
+        #region PROCESAR INFORMACION DE LA MATRIZ DE RIESGO
+        private void ProcesarMatrisRiezgo(decimal IdRegistro, int IdOficina,decimal IdUsuario, string Accion) {
+
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.MatrisRiesgo.ProcesarInformacionMatrisRiesgo Procesar = new Logica.Comunes.ProcesarMantenimientos.MatrisRiesgo.ProcesarInformacionMatrisRiesgo(
+                IdRegistro,
+                IdOficina,
+                IdUsuario,
+                DateTime.Now,
+                txtNombre_Proceso.Text,
+                Convert.ToInt32(ddlTipoIdentificacion.SelectedValue),
+                txtNumeroIDentificcion_Proceso.Text,
+                Convert.ToInt32(ddlProducto_Proceso.SelectedValue),
+                Convert.ToInt32(ddlNivelRiesgoProducto_Proceso.SelectedValue),
+                Convert.ToInt32(ddlSubProducto_Proceso.SelectedValue),
+                Convert.ToInt32(ddlNivelRiesgoSubProducto_Proceso.SelectedValue),
+                Convert.ToInt32(ddlCanalDistribucion_Proceso.SelectedValue),
+                Convert.ToInt32(ddlNivelRiesgoCanalDistribucion_Proceso.SelectedValue),
+                Convert.ToInt32(ddlPaisResidencia_Proceso.SelectedValue),
+                Convert.ToInt32(ddlNivelRiesgoPaisResidencia_Proceso.SelectedValue),
+                Convert.ToInt32(ddlPaisProcedencia_Proceso.SelectedValue),
+                Convert.ToInt32(ddlNivelRiesgoPaisProcedencia_Proceso.SelectedValue),
+                Convert.ToInt32(ddlProvincia_Proceso.SelectedValue),
+                Convert.ToInt32(ddlNivelRiesgoProvincia_Proceso.SelectedValue),
+                Convert.ToInt32(ddlMontoRiezgo_Proceso.SelectedValue),
+                Convert.ToInt32(ddlNivelRiesgoMontoRiesgo_Proceso.SelectedValue),
+                Convert.ToInt32(ddlActividadEconomica_Proceso.SelectedValue),
+                Convert.ToInt32(ddlNivelRiesgoActividadEconomica_Proceso.SelectedValue),
+                Convert.ToInt32(ddlPromedioIngresoAnuales_Proceso.SelectedValue),
+                Convert.ToInt32(ddlNivelRiesgoPromedioIngresoAnuales.SelectedValue),
+                Convert.ToInt32(ddlPersonaPEP_Proceso.SelectedValue),
+                Convert.ToInt32(ddlNivelRiesgoPersonaPEP_Proceso.SelectedValue),
+                Convert.ToInt32(ddlPrimaAnual_Proceso.SelectedValue),
+                Convert.ToInt32(ddlNivelRiesgo_PrimaAnual_Proceso.SelectedValue),
+                Convert.ToInt32(ddlTipoMonitoreo_Proceso.SelectedValue),
+                Convert.ToInt32(ddlTipoDebidaDiligencia_Proceso.SelectedValue),
+                txtObservaciones_Proceso.Text,
+                Accion);
+            Procesar.ProcesarInformacion();
+        }
+        #endregion
+
         private void ConfiguracionInicial() {
             txtNumeroIDentificcion_Proceso.Enabled = false;
 
@@ -152,6 +212,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.MatrizRiezgo
             TIPOMONITOREO();
             TIPODEBIDADILIGENCIA();
 
+            CargarTipoIdentificcionCOnsulta();
+            CargarClasificaciones();
+            CargarOficina();
+
 
             btnConsultar.Visible = true;
             btnReporte.Visible = true;
@@ -161,7 +225,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.MatrizRiezgo
             btnBorrar.Visible = false;
             btnReestablecer.Visible = false;
 
-
+            UtilidadesAmigos.Logica.Comunes.Rangofecha Rango = new Logica.Comunes.Rangofecha();
+            Rango.FechaMes(ref txtFechaDesde_Consulta, ref txtFechaHasta_Consulta);
+            txtNumeroIdentificacion_Consulta.Enabled = false;
+            rbPDF.Checked = true;
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -175,9 +242,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.MatrizRiezgo
                 Label lbNombrePantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbNombrePantalla.Text = "MATRIZ DE RIESGO";
 
-                DIVBloqueConsulta.Visible = false;
+                DIVBloqueConsulta.Visible = true;
                 DIVBloqueProceso.Visible = false;
-                DIvBloqueProcesoCompletado.Visible = true;
+                DIvBloqueProcesoCompletado.Visible = false;
 
                 ConfiguracionInicial();
             }
@@ -283,7 +350,18 @@ namespace UtilidadesAmigos.Solucion.Paginas.MatrizRiezgo
 
         protected void btnCompletar_Click(object sender, ImageClickEventArgs e)
         {
-
+            decimal IdRegistro = 0, IdUsuario = 0;
+            int IdOficina = 0;
+            string Accion = "";
+            IdRegistro = Convert.ToDecimal(hfIdMatriz.Value);
+            IdUsuario = Convert.ToDecimal(hfIdUsuario.Value);
+            IdOficina = Convert.ToInt32(hfIdOficina.Value);
+            Accion = hfAccion.Value;
+            ProcesarMatrisRiezgo(IdRegistro, IdOficina, IdUsuario, Accion);
+            ClientScript.RegisterStartupScript(GetType(), "ProcesoCOmpletado()", "ProcesoCOmpletado();", true);
+            DIVBloqueConsulta.Visible = false;
+            DIVBloqueProceso.Visible = false;
+            DIvBloqueProcesoCompletado.Visible = true;
         }
 
         protected void btnVolver_Click(object sender, ImageClickEventArgs e)
@@ -308,7 +386,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.MatrizRiezgo
 
         protected void btnNuevo_Click(object sender, ImageClickEventArgs e)
         {
-
+            DIVBloqueConsulta.Visible = false;
+            DIVBloqueProceso.Visible = true;
+            DIvBloqueProcesoCompletado.Visible = false;
+            hfIdMatriz.Value = "0";
+            decimal IdIUsuario = (decimal)Session["IdUsuario"];
+            hfIdUsuario.Value = IdIUsuario.ToString();
+            UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario Dato = new Logica.Comunes.SacarNombreUsuario(IdIUsuario);
+            hfIdOficina.Value = Dato.SacarIdOficina().ToString();
+            hfAccion.Value = "INSERT";
         }
 
         protected void btnMatriz_Click(object sender, ImageClickEventArgs e)
@@ -374,6 +460,42 @@ namespace UtilidadesAmigos.Solucion.Paginas.MatrizRiezgo
         protected void btnNuevoRegistro_Click(object sender, ImageClickEventArgs e)
         {
 
+        }
+
+        protected void ddlTipoIdentificacion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlTipoIdentificacion.SelectedValue != "-1")
+            {
+                txtNumeroIdentificacion_Consulta.Text = string.Empty;
+                txtNumeroIdentificacion_Consulta.Enabled = true;
+                txtNumeroIdentificacion_Consulta.Focus();
+                int TipoIdentificacion = Convert.ToInt32(ddlTipoIdentificacion.SelectedValue);
+
+                switch (TipoIdentificacion)
+                {
+
+                    case (int)TipoIdentificaiom.Cedula:
+                        MascaraCedula_Consulta.Enabled = true;
+                        MascaraRNC_Consulta.Enabled = false;
+                        break;
+
+                    case (int)TipoIdentificaiom.RNC:
+                        MascaraCedula_Consulta.Enabled = false;
+                        MascaraRNC_Consulta.Enabled = true;
+                        break;
+
+                    case (int)TipoIdentificaiom.Pasaporte:
+                        MascaraCedula_Consulta.Enabled = false;
+                        MascaraRNC_Consulta.Enabled = false;
+                        break;
+                }
+
+            }
+            else
+            {
+                txtNumeroIdentificacion_Consulta.Text = string.Empty;
+                txtNumeroIdentificacion_Consulta.Enabled = false;
+            }
         }
     }
 }

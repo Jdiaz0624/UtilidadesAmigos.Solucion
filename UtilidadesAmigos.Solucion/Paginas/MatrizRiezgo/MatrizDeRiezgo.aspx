@@ -5,6 +5,9 @@
     <link href="../../Content/EstilosComunes.css" rel="stylesheet" />
 
     <script type="text/javascript">
+        function ProcesoCOmpletado() {
+            alert("Proceso Completado.");
+        }
         $(function () {
 
             $("#<%=btnCompletar.ClientID%>").click(function () {
@@ -192,7 +195,7 @@
 
                 <div class="col-md-3">
                      <label class="Letranegrita"> Tipo de Identificación </label>
-                     <asp:DropDownList ID="ddlTipoIdentificacion" runat="server" ToolTip="Seleccionar Tipo de Identificación" CssClass="form-control"></asp:DropDownList>
+                     <asp:DropDownList ID="ddlTipoIdentificacion" runat="server" ToolTip="Seleccionar Tipo de Identificación" AutoPostBack="true" OnSelectedIndexChanged="ddlTipoIdentificacion_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>
                 </div>
                 <div class="col-md-3">
                      <label class="Letranegrita"> Numero Identificación </label>
@@ -300,7 +303,8 @@
         <div id="DIVBloqueProceso" runat="server">
             <asp:HiddenField ID="hfIdMatriz" runat="server" />
             <asp:HiddenField ID="hfIdOficina" runat="server" />
-
+             <asp:HiddenField ID="hfIdUsuario" runat="server" />
+            <asp:HiddenField ID="hfAccion" runat="server" />
           
 
 
@@ -561,7 +565,7 @@
 </div>
             <br />
             <div class="ContenidoCentro">
-                <asp:ImageButton ID="btnCompletar" runat="server" ImageUrl="~/ImagenesBotones/Completado.png" OnClick="btnCompletar_Click" CssClass="BotonImagen" ToolTip="Completar Proceso" />
+                <asp:ImageButton ID="btnCompletar" runat="server" ImageUrl="~/ImagenesBotones/Completado.png" OnClick="btnCompletar_Click" CssClass="BotonImagen" ToolTip="Completar Proceso" OnClientClick="return confirm('¿Quieres Completar este Proceso?');" />
                  <asp:ImageButton ID="btnVolver" runat="server" ImageUrl="~/ImagenesBotones/Volver_Nuevo.png" OnClick="btnVolver_Click" CssClass="BotonImagen" ToolTip="Volver Atras" />
             </div>
             <br />

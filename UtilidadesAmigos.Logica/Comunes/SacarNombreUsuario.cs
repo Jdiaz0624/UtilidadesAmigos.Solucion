@@ -47,6 +47,15 @@ namespace UtilidadesAmigos.Logica.Comunes
             return Perfil;
         }
 
-
+        public int SacarIdOficina()
+        {
+            int IdOficina = 0;
+            var Buscar = Objdata.BuscaUsuarios(IdUsuario);
+            foreach (var n in Buscar)
+            {
+                IdOficina = (int)n.IdOficina;
+            }
+            return IdOficina;
+        }
     }
 }

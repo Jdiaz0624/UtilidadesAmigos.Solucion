@@ -1301,6 +1301,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Prueba\" />
+    <Folder Include="TempReports\" />
     <Folder Include="WS\" />
   </ItemGroup>
   <ItemGroup>

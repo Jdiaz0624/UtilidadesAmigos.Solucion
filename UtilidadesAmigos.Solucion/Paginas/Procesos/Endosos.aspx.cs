@@ -9,6 +9,8 @@ using System.Web.Security;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.ReportSource;
 using CrystalDecisions.Shared;
+using System.IO;
+using DocumentFormat.OpenXml.Office2010.Excel;
 
 namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 {
@@ -447,13 +449,40 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         #endregion
 
         #region GENERAR REPORTE
-        
+
+        public void LimpiarCarpetaTemporal()
+        {
+            string carpetaTemp = Server.MapPath("~/TempReports/");
+
+            // Iterar sobre todos los archivos en la carpeta
+            foreach (string archivo in Directory.GetFiles(carpetaTemp))
+            {
+                FileInfo infoArchivo = new FileInfo(archivo);
+
+                infoArchivo.Delete();
+
+                // Eliminar archivos más antiguos que 7 días
+                //if (infoArchivo.CreationTime < DateTime.Now.AddDays(-7))
+                //{
+
+                //}
+            }
+        }
+
         private void GenerarEndoso(string Poliza,int Item, decimal GeneradoPor,int CodigoTipoEndoso,int? Secuencia, int TipoEndoso,string RutaReporte,string NombreEndoso) {
 
             string UsuarioBD = "", ClaveBD = "";
             UtilidadesAmigos.Logica.Comunes.SacarCredencialesBD Credenciales = new Logica.Comunes.SacarCredencialesBD(1);
             UsuarioBD = Credenciales.SacarUsuario();
             ClaveBD = Credenciales.SacarClaveBD();
+
+            Random Codigo = new Random();
+            int Valor = Codigo.Next(0, 999999999);
+
+            NombreEndoso = NombreEndoso + Valor.ToString();
+
+            string RutaTemporal = Server.MapPath("~/TempReports/" + $"{NombreEndoso}.pdf");
+            string RutaAccesible = ResolveUrl("~/TempReports/" + $"{NombreEndoso}.pdf");
 
             ReportDocument Reporte = new ReportDocument();
             Reporte.Close();
@@ -471,15 +500,27 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             Reporte.SetDatabaseLogon(UsuarioBD, ClaveBD);
 
-            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreEndoso);
+            // Exportar a PDF en el servidor
 
-           // Reporte.Close();
+            Reporte.ExportToDisk(ExportFormatType.PortableDocFormat, RutaTemporal);
             Reporte.Dispose();
+            Reporte.Close();
+
+            // Mostrar la ventana emergente en el reporte
+            ScriptManager.RegisterStartupScript(this, GetType(), "MostrarReporte", $"MostrarVentanaEmergente('{RutaAccesible}');", true);
         }
         #endregion
 
         #region REPORTE DE ENDOSOS IMPRESOS
         private void GenerarListadoEndososImpresos() {
+
+            Random codigo = new Random();
+            int valor = codigo.Next(0, 999999999);
+            string Nombre = "dd" + valor.ToString();
+
+
+            string RutaTemporal = Server.MapPath("~/TempReports/" + $"{Nombre}.pdf");
+            string RutaAccesible = ResolveUrl("~/TempReports/" + $"{Nombre}.pdf");
 
             ReportDocument Reporte = new ReportDocument();
             Reporte.Close();
@@ -496,10 +537,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             Reporte.SetParameterValue("@TipoEndoso", 1);
 
             Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
-            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Reporte de Impresion Endosos");
+            // Exportar a PDF en el servidor
 
-        //    Reporte.Close();
+            Reporte.ExportToDisk(ExportFormatType.PortableDocFormat, RutaTemporal);
             Reporte.Dispose();
+            Reporte.Close();
+
+            // Mostrar la ventana emergente en el reporte
+            ScriptManager.RegisterStartupScript(this, GetType(), "MostrarReporte", $"MostrarVentanaEmergente('{RutaAccesible}');", true);
         }
         #endregion
 

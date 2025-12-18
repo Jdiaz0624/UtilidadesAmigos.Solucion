@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
+using System.IO;
 
 namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 {
@@ -251,7 +252,29 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             MONEDA=7
         }
 
+        public void LimpiarCarpetaTemporal()
+        {
+            string carpetaTemp = Server.MapPath("~/TempReports/");
+
+            // Iterar sobre todos los archivos en la carpeta
+            foreach (string archivo in Directory.GetFiles(carpetaTemp))
+            {
+                FileInfo infoArchivo = new FileInfo(archivo);
+                infoArchivo.Delete();
+                //// Eliminar archivos más antiguos que 7 días
+                //if (infoArchivo.CreationTime < DateTime.Now.AddDays(-7))
+                //{
+                //    infoArchivo.Delete();
+                //}
+            }
+
+        }
+
         private void GenerarReporteFormateado(string RutaReporte, string NombreReporte) {
+
+            LimpiarCarpetaTemporal();
+
+
             int? _Intermediario = string.IsNullOrEmpty(txtCodIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodIntermediario.Text);
             int? _Supervisor = string.IsNullOrEmpty(txtCodSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodSupervisor.Text);
             int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
@@ -262,6 +285,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             int? _Moneda = ddlSeleccionarMoneda.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarMoneda.SelectedValue) : new Nullable<int>();
             string _Usuario = ddlSeleccionarUsuario.SelectedValue != "-1" ? ddlSeleccionarUsuario.SelectedItem.Text : null;
             decimal? _NumeroFactura = string.IsNullOrEmpty(txtNumeroDocumento.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroDocumento.Text);
+
+            Random Codigo = new Random();
+            int valor = Codigo.Next(0, 999999999);
+            NombreReporte = "Reporte de Marcas" + valor.ToString();
+
+            string RutaTemporal = Server.MapPath("~/TempReports/" + $"{NombreReporte}.pdf");
+            string RutaAccesible = ResolveUrl("~/TempReports/" + $"{NombreReporte}.pdf");
+
 
             ReportDocument Reporte = new ReportDocument();
 
@@ -285,16 +316,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
             Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
 
-            if (rbPDF.Checked == true) {
-
-                Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
-            }
-            else if (rbExcel.Checked == true) {
-                Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
-            }
-
-            Reporte.Close();
+            Reporte.ExportToDisk(ExportFormatType.PortableDocFormat, RutaTemporal);
             Reporte.Dispose();
+            Reporte.Close();
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "MostrarReporte", $"MostrarVentanaEmergente('{RutaAccesible}');", true);
         }
         private void GenerarReporteAgrupadoFormateado(string RutaReporte, string NombreReporte, int TipoAgrupacion) {
 

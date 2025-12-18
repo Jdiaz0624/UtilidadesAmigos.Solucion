@@ -5,6 +5,19 @@
 
     <link href="../../Content/EstilosComunes.css" rel="stylesheet" />
     <script type="text/javascript">
+
+        function MostrarVentanaEmergente(url) {
+            console.log("URL del reporte cargado en iframe:", url); // Esto mostrará la URL en la consola
+            document.getElementById('iframeReporte').src = url; // Cargar la URL en el iframe
+            document.getElementById('ventanaEmergente').style.display = 'block'; // Mostrar la ventana emergente
+        }
+
+
+        function CerrarVentana() {
+            document.getElementById('ventanaEmergente').style.display = 'none';
+        }
+
+
         function CamposFechaVAcios() {
             alert("Los campos Fechas son necesarios para generar esta información, favor de verificar.");
         }
@@ -39,6 +52,15 @@
     <asp:Label ID="lbTasaValidacion" runat="server" Text="0" Visible="false"></asp:Label>
 
     <div class="container-fluid">
+
+                  <div id="ventanaEmergente" style="display:none; position:fixed; top:10%; left:15%; width:70%; height:80%; background:white; border:1px solid black; z-index:1000;">
+    <iframe id="iframeReporte" style="width:100%; height:100%; border:none;"></iframe>
+ <button onclick="CerrarVentana()" style="position:absolute; top:10px; right:10px; border:none; background:none;">
+    <img src="../../Recursos/Imagenes/IconosTranslucidos/Cerrar.png" alt="Cerrar" style="width:30px; height:30px;">
+</button>
+</div>
+
+
         <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <div class="form-check-inline">
             <asp:Label ID="lbAgruparDatos" runat="server" Text="Agrupar Datos" CssClass="Letranegrita"></asp:Label>
