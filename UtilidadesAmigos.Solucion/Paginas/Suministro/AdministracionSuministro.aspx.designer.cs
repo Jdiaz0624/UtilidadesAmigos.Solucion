@@ -249,15 +249,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         protected global::System.Web.UI.WebControls.Repeater rpSolicitudesHeader;
 
         /// <summary>
-        /// lbCantidadPaginaVariable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVariable;
-
-        /// <summary>
         /// lbPaginaActualVariable control.
         /// </summary>
         /// <remarks>
@@ -265,6 +256,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbPaginaActualVariable;
+
+        /// <summary>
+        /// lbCantidadPaginaVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVariable;
 
         /// <summary>
         /// lbCantidadSolicitudes control.
@@ -490,15 +490,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScripManagerGestionCobros;
-
-        /// <summary>
-        /// lbRegistroSeleccionado control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbRegistroSeleccionado;
 
         /// <summary>
         /// UpdatePanelRegistroSeleccionado control.

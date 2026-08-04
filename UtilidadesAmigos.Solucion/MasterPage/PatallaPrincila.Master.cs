@@ -2790,5 +2790,10 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                 FormsAuthentication.RedirectToLoginPage();
             }
         }
+
+        protected void LinkMatrizDeRiezgo_Click1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -4,338 +4,1032 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+
+    <!-- *** ESTE ES EL QUE FALTABA *** -->
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+
     <title>Utilidades Futuro Seguros</title>
 
+    <!-- Bootstrap moderno -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-    <link href="../Estilos/EstilosMaster.css" rel="stylesheet" type="text/css" />
-    <link href="../Estilos/EstiloMenuPrincipal.css" rel="stylesheet" type="text/css" />
-    
+    <!-- FontAwesome moderno -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+
+    <!-- jQuery (NECESARIO PARA EL MENÚ) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+       /* ================================
+   LAYOUT GENERAL
+================================ */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#wrapper {
+    width: 100%;
+    display: flex;
+    min-height: 100vh;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    flex-grow: 1;
+    background-color: #f8f9fa;
+}
+
+/* ================================
+   SIDEBAR
+================================ */
+#sidebar-wrapper {
+    min-height: 100vh;
+    background: #212529;
+    color: white;
+    padding: 15px;
+    width: 260px;
+    flex-shrink: 0;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+/* ================================
+   MENÚ PRINCIPAL
+================================ */
+.menu {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.menu > li > a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    color: white !important;
+    text-decoration: none !important;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.05);
+}
+
+.menu > li > a:hover {
+    background: rgba(255,255,255,0.15);
+    text-decoration: none !important;
+}
+
+/* Quitar línea debajo del texto */
+.menu a, .menu a:hover, .menu a:focus {
+    text-decoration: none !important;
+    border-bottom: none !important;
+}
+
+/* Submenús ocultos por defecto */
+.menu li ul {
+    display: none;
+    padding-left: 0;
+}
+
+/* Estilo de los items del submenú */
+.menu li ul li a,
+.nav-link.text-light {
+    display: block;
+    padding: 8px 12px;
+    color: #e9ecef !important;
+    text-decoration: none !important;
+    border-radius: 4px;
+}
+
+.menu li ul li a:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+/* ================================
+   NAVBAR
+================================ */
+.nav-user-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+}
+
+/* ================================
+   SIDEBAR TOGGLE
+================================ */
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: -260px;
+    transition: all 0.3s ease;
+}
+
+#sidebar-wrapper {
+    transition: all 0.3s ease;
+}
+
+/* ================================
+   ESPACIADO ENTRE INICIO Y MÓDULOS
+================================ */
+.menu li.inicio {
+    margin-bottom: 15px; /* ajusta el valor según lo que quieras */
+}
 
 
-    <link type="text/css" href="../Content/bootstrap.min.css" rel="stylesheet" />
-    <link type="text/css" href="../Content/bootstrap.min.css" rel="stylesheet" />
-    <script type="text/javascript" src="../scripts/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../scripts/jquery-3.4.1.slim.min.js"></script>
-    <script type="text/javascript" src="../scripts/popper-utils.min.js"></script>
-    <script type="text/javascript" src="../scripts/MensajesPagina.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="../scripts/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="../scripts/jquery.maskedinput.min.js"></script>
-    <script type="text/javascript" src="../JS/Utililades.js"></script>
-    <script type="text/javascript" src="../JS/Mask.js"></script>
+/* ================================
+   RESPONSIVE SIDEBAR
+================================ */
+@media (max-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: -260px; /* oculta el sidebar */
+    }
 
-
-    <link rel="shortcut icon" href="../Imagenes/Iniciales.ico" />
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com"/>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet" />
-     <link rel="stylesheet" href="../Content/DisenoMasterPage.css" />
-    <asp:ContentPlaceHolder ID="head" runat="server">    
-    </asp:ContentPlaceHolder>
- 
-
-       
-
-       <script type="text/javascript">
-          function disableBackButton() {
-              window.history.forward();
-          }
-          setTimeout("disableBackButton()", 0);
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: 0; /* lo muestra si se activa el toggle */
+    }
+}
 
 
 
-          $(document).ready(function () {
-              disableBackButton();
+    </style>
 
-              $('.menu li:has(ul)').click(function (e) {
-                  e.preventDefault();
+    <script>
+        $(document).ready(function () {
 
-                  if ($(this).hasClass('activado')) {
-                      $(this).removeClass('activado');
-                      $(this).children('ul').slideUp();
-                  }
-                  else {
+            $('.menu > li > a').click(function (e) {
+                e.preventDefault();
+            });
 
-                      $('.menu li ul').slideUp();
-                      $('.menu li').removeClass('activado');
-                      $(this).addClass('activado');
-                      $(this).children('ul').slideDown();
+            $('.menu li').has('ul').children('a').click(function () {
 
-                  }
-              });
+                let parentLi = $(this).parent('li');
 
-              $('.btn-menu').click(function () {
+                if (parentLi.hasClass('activado')) {
+                    parentLi.removeClass('activado');
+                    parentLi.children('ul').slideUp();
+                } else {
+                    $('.menu li ul').slideUp();
+                    $('.menu li').removeClass('activado');
+                    parentLi.addClass('activado');
+                    parentLi.children('ul').slideDown();
+                }
+            });
 
-                  $('.contenedor-menu .menu').slideToggle();
-              });
-
-              $(window).resize(function () {
-                  if ($(document).width() > 450) {
-                      $('.contenedor-menu .menu').css({ 'display': 'block' });
-                  }
-                  if ($(document).width() < 450) {
-                      $('.contenedor-menu .menu').css({ 'display': 'none' });
-                  }
-
-
-              });
-              $('.menu li ul li a').click(function () {
-                  window.location.href = $(this).attr("href");
-              });
-          });
-      </script>
-
+        });
+    </script>
 
 </head>
 
 <body>
+
     <asp:Label ID="lbIdPerfil" runat="server" Visible="false" Text="0"></asp:Label>
     <asp:Label ID="lbControlUsuarioConectado" runat="server" Visible="false" Text="0"></asp:Label>
     <asp:Label ID="lbControlOficinaUsuario" runat="server" Visible="false" Text="0"></asp:Label>
-      <form id="form1" runat="server">   
-      
-  <div class="d-flex" id="wrapper">
-           <div class="bg-dark  border-right" id="sidebar-wrapper">
-               <asp:Image ID="LogoSistema" runat="server" Height="65px" Width="240px" ImageUrl="~/Imagenes/Logo.jpg" />
-                <div class="sidebar-heading">Menu Principal </div>
 
-               <div class="list-group  list-group-flush">
+    <form id="form1" runat="server">
 
-                   <!---INICIO-->
-                   <div class="contenedor-menu">
-    <a href="#" class="btn-menu">Menu <i class="icono fa fa-bars"></i> </a>
+        <div class="d-flex" id="wrapper">
 
-    <ul class="menu">
-        <li>  <asp:LinkButton ID="LinkInicio" runat="server" Text="     Inicio" CssClass="fa fa-home" OnClick="LinkInicio_Click"></asp:LinkButton></li>
-        <!--MODULO DE SUMINISTRO-->
-        <li id="DivModuloSuministro" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-cart-arrow-down"></i>Suministro<i class="icono derecha fa fa-chevron-down"></i></a>
-        <ul>
-            <li> <asp:LinkButton ID="LinkAdministracion" runat="server" Text="Administración" ToolTip="Administración de Inventario" OnClick="LinkAdministracionSuministro_Click" ></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkSolicitud" runat="server" Text="Solicitud" ToolTip="Solicitud de Inventario" OnClick="LinkSolicitud_Click" ></asp:LinkButton> </li>
-        </ul>
+            <!-- SIDEBAR -->
+            <div id="sidebar-wrapper" class="shadow-sm">
+                <a href="#" class="d-block text-center mb-3">
+                    <asp:Image ID="LogoSistema" runat="server" Height="65px" Width="240px"
+                               ImageUrl="~/Imagenes/Logo.jpg" CssClass="img-fluid" />
+                </a>
+
+                <div class="sidebar-heading">Menú Principal</div>
+
+                <div class="contenedor-menu">
+
+                    <a href="#" class="btn btn-outline-light w-100 text-start mb-3">
+                        <i class="fa fa-bars me-2"></i> Menú
+                    </a>
+
+                    <ul class="menu list-unstyled">
+
+                        <!-- Inicio -->
+                       <li class="inicio">
+    <asp:LinkButton ID="LinkInicio" runat="server"
+        CssClass="btn btn-outline-info w-100 text-start"
+        OnClick="LinkInicio_Click">
+        <i class="fa fa-home me-2"></i> Inicio
+    </asp:LinkButton>
+</li>
+
+                        <!-- MÓDULO SUMINISTRO -->
+                        <li id="DivModuloSuministro" runat="server" visible="true" class="mb-2">
+                            <a href="#" class="text-white d-flex justify-content-between align-items-center px-2 py-2 rounded bg-gradient bg-opacity-75">
+                                <span><i class="fa fa-cart-arrow-down me-2"></i> Suministro</span>
+                                <i class="fa fa-chevron-down"></i>
+                            </a>
+
+                            <ul class="list-unstyled ms-3 mt-2">
+
+                                <li class="mb-1">
+                                    <asp:LinkButton ID="LinkAdministracion" runat="server"
+                                        CssClass="nav-link text-light ps-4"
+                                        Text="📦 Administración"
+                                        ToolTip="Administración de Inventario"
+                                        OnClick="LinkAdministracionSuministro_Click" />
+                                </li>
+
+                                <li class="mb-1">
+                                    <asp:LinkButton ID="LinkSolicitud" runat="server"
+                                        CssClass="nav-link text-light ps-4"
+                                        Text="📝 Solicitud"
+                                        ToolTip="Solicitud de Inventario"
+                                        OnClick="LinkSolicitud_Click" />
+                                </li>
+
+                            </ul>
+                        </li>
+
+                        <!-- MÓDULO COBROS -->
+<li id="DIVReporteGerenciaes" runat="server" visible="true" class="mb-2">
+    <a href="#" class="text-white d-flex justify-content-between align-items-center px-2 py-2 rounded bg-gradient bg-opacity-75">
+        <span><i class="fa fa-cash-register me-2"></i> Cobros</span>
+        <i class="fa fa-chevron-down"></i>
+    </a>
+
+    <ul class="list-unstyled ms-3 mt-2">
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkAcuerdosPagos" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📄 Acuerdos de Pagos"
+                Visible="false"
+                ToolTip="Reporte de Acuerdo de Pagos"
+                OnClick="LinkAcuerdosPagos_Click" />
         </li>
 
-         <li id="DIVReporteGerenciaes" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-cart-arrow-down"></i>Cobros<i class="icono derecha fa fa-chevron-down"></i></a>
-          <ul>
-              <li> <asp:LinkButton ID="LinkAcuerdosPagos" runat="server" Text="Acuerdos de Pagos" Visible="false" ToolTip="Reporte de Acuerdo de pagos" OnClick="LinkAcuerdosPagos_Click" ></asp:LinkButton> </li>
-              <li> <asp:LinkButton ID="LinkAntigeudadPorAtraso" runat="server" Text="Antiguedad Por Atraso" ToolTip="Reporte de Antiguedad por Atraso" OnClick="LinkAntigeudadPorAtraso_Click" ></asp:LinkButton> </li>
-          </ul>
-          </li>
-
-        <!--CUMPLIMIENTO / LEGAL-->
-        <li id="DIVModuloCumpplimiento" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-cart-arrow-down"></i>Cumplimiento / Legal<i class="icono derecha fa fa-chevron-down"></i></a>
-        <ul>
-            <li> <asp:LinkButton ID="LinkMatrizRiesgo" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
-        </ul>
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkAntigeudadPorAtraso" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="⏳ Antigüedad por Atraso"
+                ToolTip="Reporte de Antigüedad por Atraso"
+                OnClick="LinkAntigeudadPorAtraso_Click" />
         </li>
 
-         <!--MATRIZ DE RIEZGO-->
- <li id="Li1" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-cart-arrow-down"></i>Matriz de Riezgo<i class="icono derecha fa fa-chevron-down"></i></a>
- <ul>
-     <li> <asp:LinkButton ID="LinkMatrizDeRiezgo" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" OnClick="LinkMatrizDeRiezgo_Click" ></asp:LinkButton> </li>
-     <li> <asp:LinkButton ID="LinkButton2" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
-     <li> <asp:LinkButton ID="LinkButton3" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
-     <li> <asp:LinkButton ID="LinkButton4" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
-     <li> <asp:LinkButton ID="LinkButton5" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
-     <li> <asp:LinkButton ID="LinkButton6" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
-     <li> <asp:LinkButton ID="LinkButton7" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
-     <li> <asp:LinkButton ID="LinkButton8" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
-     <li> <asp:LinkButton ID="LinkButton9" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
-     <li> <asp:LinkButton ID="LinkButton10" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
-     <li> <asp:LinkButton ID="LinkButton11" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
-     <li> <asp:LinkButton ID="LinkButton12" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
-     <li> <asp:LinkButton ID="LinkButton13" runat="server" Text="Matriz de Riesgo" ToolTip="Matriz de Riesgo" Visible="false" OnClick="LinkMatrizRiesgo_Click" ></asp:LinkButton> </li>
- </ul>
- </li>
-
-         <!--MODULO DE CONSULTAS-->
-        <li id="DivModuloConsulta" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-search-plus"></i>Consultas<i class="icono derecha fa fa-chevron-down"></i></a>
-        <ul>
-            <li> <asp:LinkButton ID="LinkCartera" runat="server" Text="Cartera" ToolTip="Buscar Cartera de Intermediarios y Supervisores" OnClick="LinkCartera_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkConsultaPersonas" runat="server" Text="Consulta Personas" ToolTip="Consulta de Personas" OnClick="LinkConsultarPersonas_Click"></asp:LinkButton> </li>
-             <li> <asp:LinkButton ID="LinkListadoRenovacion" runat="server" Text="Listado de Renovación" ToolTip="Listado de renovación" OnClick="linkComisionesCobrador_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkGestionCobros" runat="server" Text="Gestión de Cobros" ToolTip="Gestión de Cobros" OnClick="LinkGestionCobros_Click1"></asp:LinkButton> </li>
-             <li> <asp:LinkButton ID="LinkEstadisticaRenovacion" runat="server" Text="Estadistica de Renovación" ToolTip="Consulta de Estadistica de Renovación" OnClick="LinkEstadisticaRenovacion_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkSacarDataCoberturas" runat="server" Text="Sacar Data Coberturas" ToolTip="Sacar Información de Coberturas" OnClick="linkValidarCoberturas_Click"></asp:LinkButton> </li>
-             <li> <asp:LinkButton ID="LinkGenerarReporteUAF" runat="server" Text="Generar Reporte UAF" ToolTip="Generar Reporte de Operaciones Sospechosas" OnClick="linkGenerarReporteUAF_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkControlVisitas" runat="server" Text="Control de Visitas" ToolTip="Control de Visitas" OnClick="LinkControlVisitas_Click"></asp:LinkButton> </li>
-             <li> <asp:LinkButton ID="LinkInformacionAsegurado" runat="server" Text="Informacion Asegura.do" ToolTip="Información del proceso de Asegura.do" OnClick="LinkConsultarInformacionAsegurado_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkRegistrosInconpletos" runat="server" Text="Registros Incompletos" ToolTip="Pantalla de Registros Incompletos" OnClick="LinkCLientesSinPolizaPolizaSinMarbete_Click"></asp:LinkButton> </li>
-        </ul>
-        </li>
-
-          <!--MODULO DE HOJAS-->
-        <li id="DIVModuloHoja" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-search-plus"></i>Hojas<i class="icono derecha fa fa-chevron-down"></i></a>
-        <ul>
-            <li> <asp:LinkButton ID="LinkCertificadoMaritimo" runat="server" Text="Certificado Maritimo" ToolTip="Generar Hoja de Certificado Maritimo" OnClick="LinkCertificadoMaritimo_Click"></asp:LinkButton> </li>
-        </ul>
-        </li>
-
-         <!--TRANSITO-->
-        <li id="DIvBloqueTransito" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-search-plus"></i>Transito<i class="icono derecha fa fa-chevron-down"></i></a>
-        <ul>
-            <li> <asp:LinkButton ID="LinkGenerarMarbete" runat="server" Text="Generar Marbetes" ToolTip="Generación de Marbetes" OnClick="LinkGenerarMarbete_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkEndososTransito" runat="server" Text="Endosos" ToolTip="Generación de Marbetes" OnClick="LinkEndososTransito_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkReportePolizasTransito" runat="server" Text="Reporte"  ToolTip="Generación de Marbetes" OnClick="LinkReportePolizasTransito_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkPolizasPendientesPagos" runat="server" Text="Polizas Pendientes de Pago"  ToolTip="Polizas Con Pagos Pendientes" OnClick="LinkPolizasPendientesPagos_Click"></asp:LinkButton> </li>
-        </ul>
-        </li>
-
-         <!--MODULO DE REPORTES-->
-        <li id="DivModuloReportes" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-line-chart"></i>Reportes<i class="icono derecha fa fa-chevron-down"></i></a>
-        <ul>
-            <li> <asp:LinkButton ID="LinkReporteProduccion" runat="server" Text="Reporte de Producción" ToolTip="Generar Reporte de Producción" OnClick="LinkProduccionIntermediarioSupervisor_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkReporteCobros" runat="server" Text="Reporte de Cobros" ToolTip="Generar Reporte de Cobros" OnClick="LinkReporteCobrado_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkReporteProduccionIntermediarioAlfredo" runat="server" Text="Reporte de Intermediarios Alfredo" ToolTip="Generar Reporte de Intermediarios Espesificos" OnClick="LinkReporteAlfredoIntermediarios_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkComisionesIntermediario" runat="server" Text="Comisiones de Intermediario" ToolTip="Generar Reporte de Comisiones de Intermediarios" OnClick="LiniComisionesIntermediarios_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkComisionesSupervisores" runat="server" Text="Comisiones de Supervisores" ToolTip="Generar Reporte de Comisiones de Supervisores" OnClick="LinkComisionesSupervisores_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkSobreComision" runat="server" Text="Sobre Comisión" ToolTip="Generar Reporte de Sobre Comisión" OnClick="LinkSobreComision_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkProduccionDiaria" runat="server" Text="Producción Diaria Contabilidad" ToolTip="Generar Reporte de Producción diaria de Contabilidad" OnClick="LinkProduccionDiariaContabilidad_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkAntiguedadSaldoCXP" runat="server" Text="Antiguedad de Saldo CXP" ToolTip="Generar Reporte de Antiguedad de Saldo CXP" OnClick="LinkAntiguedadSaldoCXP_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkReporteCuentaProveedores" runat="server" Text="Reporte de Cuentas Proveedores" ToolTip="Generar Reporte de Cuentas de Proveedores" OnClick="LinkReporteCuuentasProveedores_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkDepositosPrima" runat="server" Text="Depositos en Prima" ToolTip="Generar Reporte de Depsoitos En Prima" OnClick="LinkReportePrimaDeposito_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkAntiguedadSaldo" runat="server" Text="Antiguedad de Saldo" ToolTip="Generar Reporte de Antiguedad de Saldo" OnClick="LinkAntiguedadSaldo_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkReporteREclmaciones" runat="server" Text="Reporte de Reclamaciones" ToolTip="Generar Reporte de Reclamaciones" OnClick="LinkReporteReclamaciones_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkReclamacionesPagadas" runat="server" Text="Reclamaciones Pagadas" ToolTip="Generar Reporte de Reclamaciones Pagadas" OnClick="LinkReclamacionesPagadas_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkImpresionMarbetes" runat="server" Text="Impresion de Marbetes" ToolTip="Impresión de Marbetes" OnClick="LinkReporteImpresionMarbetes_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkFichatecnica" runat="server" Text="Ficha Tecnica" ToolTip="Ficha tecnica de Supervisores / Intermediarios" OnClick="LinkFichatecnica_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkReportePolizasBalance" runat="server" Text="Polizas Con Balances" ToolTip="Generar Reporte de Polizas con Balance por antiguedad de saldo" OnClick="LinkReportePolizasBalance_Click"></asp:LinkButton> </li>
-            
-        </ul>
-        </li>
-
-         <!--MODULO DE PROCESOS-->
-        <li id="DivModuloProcesos" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-cogs"></i>Procesos<i class="icono derecha fa fa-chevron-down"></i></a>
-        <ul>
-            <li> <asp:LinkButton ID="LinkGenerarBAckupBD" runat="server" Text="Generar Backup BD" ToolTip="Generar Backup de Base de Datos" OnClick="LinkBakupBD_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkSolicitudesCheques" runat="server" Text="Solicitudes de Cheques" ToolTip="Generar Solicitudes de Cheques" OnClick="LinkGenerarSOlicitudChequeComisiones_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkImpresionCheques" runat="server" Text="Impresión de Cheques" ToolTip="Imprimir Cheques" OnClick="LinkImpresionCheques_Click1"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkProcesarDataAsegurado" runat="server" Text="Procesar Data Asegura.do" ToolTip="Procesar Data Asegura.do" OnClick="LinkProcesarDataAsegurado_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkEndosos" runat="server" Text="Endosos" ToolTip="Generar Endosos" OnClick="LinkGenerarEndoso_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkProcesoEmision" runat="server" Text="Proceso de Emision" ToolTip="Proceso de Emisión de Polizas" OnClick="LinkProcesoEmision_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkVolantePagos" runat="server" Text="Volantes de Pagos" ToolTip="Generar Volantes de Pagos" OnClick="LinkVolantePago_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkUtilidadesCobros" runat="server" Text="Utilidades de Cobros" ToolTip="Utilidades de Cobros" OnClick="linkUtilidadesCobros_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkAgregarItemsReclamos" runat="server" Text="Agregar Items Reclamos" ToolTip="Agregar o Sacar Items de Reclamos" OnClick="LinkAgregarDPAReclamos_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkReciboIngreso" runat="server" Text="Recibo de Ingreso" ToolTip="Recibo de Ingresos" OnClick="LinkReciboDigital_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkCartaCancelacion" runat="server" Text="Carta de Cancelación" ToolTip="Generar Carta de Cancelación de Asegurados / Intermediarios" OnClick="LinkCartaCancelacion_Click"></asp:LinkButton> </li>
-        </ul>
-        </li>
-
-         <!--MODULO DE CORRECCIONES-->
-        <li id="DivModuloCorrecciones" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-cogs"></i>Correcciones<i class="icono derecha fa fa-chevron-down"></i></a>
-        <ul>
-            <li> <asp:LinkButton ID="LinkDatoPoliza" runat="server" Text="Dato Poliza" ToolTip="Dato Poliza"  OnClick="LinkCorregirValorDeclarativa_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkEliminarEndosos" runat="server" Text="Eliminar Endoso" ToolTip="Eliminar Endoso a Poliza" OnClick="LinkEliminarEndosos_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkSumaAseguradaFianzas" runat="server" Text="Monto Afianzar Fianzas" ToolTip="Modificar el Monto Afianzada de las Fianzas"  OnClick="LinkSumaAseguradaFianzas_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkEquiposElectronicos" runat="server" Text="Equipos Electronicos" ToolTip="Procesar Informacion De Equipos Electronicos"  OnClick="LinkEquiposElectronicos_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkPolizaTransito" runat="server" Text="Poliza en Transito" ForeColor="Red" ToolTip="Corregor valor de Poliza colgada en Transito" OnClick="LinkPolizaTransito_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkCambioIntermediario" runat="server" Text="Cambio de Intermediario" ForeColor="Red" ToolTip="Cambiar Intermediario a Poliza" OnClick="LinkCambioIntermediario_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkCambioCliente" runat="server" Text="Cambio de Cliente" ForeColor="Red" ToolTip="Cambiar Cliente a Poliza" OnClick="LinkCambioCliente_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkModificarDatosCliente" runat="server" Text="Modificar Cliente" ForeColor="Red" ToolTip="Modificar Cliente" OnClick="LinkModificarDatosCliente_Click"></asp:LinkButton> </li>
-            
-        </ul>
-        </li>
-
-        <!--MODULO DE MANTENIMIENTO-->
-        <li id="DivModuloMantenimiento" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-wrench"></i>Mantenimiento<i class="icono derecha fa fa-chevron-down"></i></a>
-        <ul>
-            <li> <asp:LinkButton ID="LinkClientes" runat="server" Text="Clientes" ToolTip="Mantenimiento de Clientes" OnClick="LinkClientes_Click1"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkIntermediariosSupervisores" runat="server" Text="Intermediarios / Supervisores" ToolTip="Mantenimiento de Intermediarios y Supervisores" OnClick="LinkIntermediariosSupervisores_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkOficinas" runat="server" Text="Oficinas" ToolTip="Mantenimiento de Oficinas" OnClick="linkOficinas_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkDepartamentos" runat="server" Text="Departamentos" ToolTip="Mantenimiento de Departamentos" OnClick="linkDeprtamentos_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkEmpleados" runat="server" Text="Empleados" ToolTip="Mantenimiento de Empleados" OnClick="linkEmpleados_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkInventario" runat="server" Text="Inventario" ToolTip="Mantenimiento de Inventario" OnClick="linkInventario_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkDependientes" runat="server" Text="Dependientes" ToolTip="Mantenimiento de Dependientes" OnClick="LinkDependientes_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkPorcientoComision" runat="server" Text="Porciento de Comisión" ToolTip="Mantenimiento de Porciento de Comisiones por Defecto" OnClick="LinkMantenimientoPorcientoComisionPorDefecto_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkMonedas" runat="server" Text="Monedas" ToolTip="Mantenimiento de Monedas" OnClick="LinkMantenimientoMonedas_Click"></asp:LinkButton> </li>
-        </ul>
-        </li>
-
-         <!--MODULO DE SEGURIDAD-->
-        <li id="DivModuloSeguridad" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-unlock-alt"></i>Seguridad<i class="icono derecha fa fa-chevron-down"></i></a>
-        <ul>
-            <li> <asp:LinkButton ID="LinkUsuarios" runat="server" Text="Usuarios" ToolTip="Mantenimiento de Usuarios" OnClick="linkUsuarios_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkPerfilesUsuarios" runat="server" Text="Perfiles de Usuarios" ToolTip="Mantenimiento de Perfiles de Usuarios" OnClick="linkPerfilesUsuarios_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkClaveSeguridad" runat="server" Text="Clave de Seguridad" ToolTip="Configurar Clave de Seguridad" OnClick="linkClaveSeguridad_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkConfiguracionCorreos" runat="server" Text="Configuracion de Correos" ToolTip="Configuración de Correos" OnClick="LinkCorreosEmisoresProcesos_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkMovimientoUsuarios" runat="server" Text="Movimiento de Usuario" ToolTip="Movimientos de Usuarios" OnClick="linkMovimientoUsuarios_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkTarjetaAcceso" runat="server" Text="Tarjetas de Acceso" ToolTip="Asignación de Tarjetas de Acceso" OnClick="linkTarjetasAccesos_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkModulos" runat="server" Text="Modulos" ToolTip="Mantenimiento de Modulos" OnClick="linkOpcionMenu_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkPantallas" runat="server" Text="Pantallas" ToolTip="Mantenimiento de Pantallas" OnClick="linkOpcion_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkOpciones" runat="server" Text="Opciones" ToolTip="Mantenimiento de Opciones" OnClick="linkBotones_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkPermisoUsuarios" runat="server" Text="Permiso de Usuarios" ToolTip="Mantenimiento de Permiso de Usuarios" OnClick="linkPermisoUsuarios_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkCredencialesBD" runat="server" Text="Credenciales de BD" ToolTip="Credenciales de Bases de Datos" OnClick="LinkCredencialesBD_Click"></asp:LinkButton> </li>
-        </ul>
-        </li>
-    
-      <li>   <asp:LinkButton ID="linkCerrarCesion" runat="server" ToolTip="     Cerrar Sesión" Text="Cerrar Sesión" CssClass="fa fa-sign-out" OnClick="linkCerrarCesion_Click" OnClientClick="return confirm('¿Quieres Cerrar Sesión?');"></asp:LinkButton></li>
     </ul>
-    
-</div>
-                   <!---FIN-->
-                  
-                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
+</li>
+
+                        <!-- CUMPLIMIENTO / LEGAL -->
+<li id="DIVModuloCumpplimiento" runat="server" visible="true" class="mb-2">
+    <a href="#" class="text-white d-flex justify-content-between align-items-center px-2 py-2 rounded bg-gradient bg-opacity-75">
+        <span><i class="fa fa-balance-scale me-2"></i> Cumplimiento / Legal</span>
+        <i class="fa fa-chevron-down"></i>
+    </a>
+
+    <ul class="list-unstyled ms-3 mt-2">
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkMatrizRiesgo" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="⚖️ Matriz de Riesgo"
+                ToolTip="Matriz de Riesgo"
+                OnClick="LinkMatrizRiesgo_Click" />
+        </li>
+    </ul>
+</li>
+
+                        <!-- MATRIZ DE RIESGO -->
+<li id="Li1" runat="server" visible="true" class="mb-2">
+    <a href="#" class="text-white d-flex justify-content-between align-items-center px-2 py-2 rounded bg-gradient bg-opacity-75">
+        <span><i class="fa fa-project-diagram me-2"></i> Matriz de Riesgo</span>
+        <i class="fa fa-chevron-down"></i>
+    </a>
+
+    <ul class="list-unstyled ms-3 mt-2">
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkMatrizDeRiezgo" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📊 Matriz de Riesgo"
+                ToolTip="Matriz de Riesgo"
+                OnClick="LinkMatrizDeRiezgo_Click" />
+        </li>
+    </ul>
+</li>
+
+<!-- MÓDULO DE CONSULTAS -->
+<li id="DivModuloConsulta" runat="server" visible="true" class="mb-2">
+    <a href="#" class="text-white d-flex justify-content-between align-items-center px-2 py-2 rounded bg-gradient bg-opacity-75">
+        <span><i class="fa fa-search-plus me-2"></i> Consultas</span>
+        <i class="fa fa-chevron-down"></i>
+    </a>
+
+    <ul class="list-unstyled ms-3 mt-2">
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkCartera" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📂 Cartera"
+                ToolTip="Buscar Cartera de Intermediarios y Supervisores"
+                OnClick="LinkCartera_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkConsultaPersonas" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="👥 Consulta Personas"
+                ToolTip="Consulta de Personas"
+                OnClick="LinkConsultarPersonas_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkListadoRenovacion" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📑 Listado de Renovación"
+                ToolTip="Listado de renovación"
+                OnClick="linkComisionesCobrador_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkGestionCobros" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="💰 Gestión de Cobros"
+                ToolTip="Gestión de Cobros"
+                OnClick="LinkGestionCobros_Click1" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkEstadisticaRenovacion" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📊 Estadística de Renovación"
+                ToolTip="Consulta de Estadística de Renovación"
+                OnClick="LinkEstadisticaRenovacion_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkSacarDataCoberturas" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📋 Sacar Data Coberturas"
+                ToolTip="Sacar Información de Coberturas"
+                OnClick="linkValidarCoberturas_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkGenerarReporteUAF" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="🕵️ Generar Reporte UAF"
+                ToolTip="Generar Reporte de Operaciones Sospechosas"
+                OnClick="linkGenerarReporteUAF_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkControlVisitas" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📅 Control de Visitas"
+                ToolTip="Control de Visitas"
+                OnClick="LinkControlVisitas_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkInformacionAsegurado" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="🧾 Información Asegura.do"
+                ToolTip="Información del proceso de Asegura.do"
+                OnClick="LinkConsultarInformacionAsegurado_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkRegistrosInconpletos" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="⚠️ Registros Incompletos"
+                ToolTip="Pantalla de Registros Incompletos"
+                OnClick="LinkCLientesSinPolizaPolizaSinMarbete_Click" />
+        </li>
+
+    </ul>
+</li>
+
+                        <!-- MÓDULO DE HOJAS -->
+<li id="DIVModuloHoja" runat="server" visible="true" class="mb-2">
+    <a href="#" class="text-white d-flex justify-content-between align-items-center px-2 py-2 rounded bg-gradient bg-opacity-75">
+        <span><i class="fa fa-file-alt me-2"></i> Hojas</span>
+        <i class="fa fa-chevron-down"></i>
+    </a>
+
+    <ul class="list-unstyled ms-3 mt-2">
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkCertificadoMaritimo" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📄 Certificado Marítimo"
+                ToolTip="Generar Hoja de Certificado Marítimo"
+                OnClick="LinkCertificadoMaritimo_Click" />
+        </li>
+    </ul>
+</li>
+
+<!-- MÓDULO DE TRÁNSITO -->
+<li id="DIvBloqueTransito" runat="server" visible="true" class="mb-2">
+    <a href="#" class="text-white d-flex justify-content-between align-items-center px-2 py-2 rounded bg-gradient bg-opacity-75">
+        <span><i class="fa fa-car me-2"></i> Tránsito</span>
+        <i class="fa fa-chevron-down"></i>
+    </a>
+
+    <ul class="list-unstyled ms-3 mt-2">
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkGenerarMarbete" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="🚗 Generar Marbetes"
+                ToolTip="Generación de Marbetes"
+                OnClick="LinkGenerarMarbete_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkEndososTransito" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📑 Endosos"
+                ToolTip="Generación de Marbetes"
+                OnClick="LinkEndososTransito_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkReportePolizasTransito" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📊 Reporte"
+                ToolTip="Generación de Marbetes"
+                OnClick="LinkReportePolizasTransito_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkPolizasPendientesPagos" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="💰 Pólizas Pendientes de Pago"
+                ToolTip="Pólizas con Pagos Pendientes"
+                OnClick="LinkPolizasPendientesPagos_Click" />
+        </li>
+
+    </ul>
+</li>
 
 
-             
-               </div>
-           </div>
+                        <!-- MÓDULO DE REPORTES -->
+<li id="DivModuloReportes" runat="server" visible="true" class="mb-2">
+    <a href="#" class="text-white d-flex justify-content-between align-items-center px-2 py-2 rounded bg-gradient bg-opacity-75">
+        <span><i class="fa fa-line-chart me-2"></i> Reportes</span>
+        <i class="fa fa-chevron-down"></i>
+    </a>
 
-           <div id="page-content-wrapper">
+    <ul class="list-unstyled ms-3 mt-2">
 
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
-        <button class="btn btn-outline-secondary" id="menu-toggle">...</button>
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkReporteProduccion" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📈 Reporte de Producción"
+                ToolTip="Generar Reporte de Producción"
+                OnClick="LinkProduccionIntermediarioSupervisor_Click" />
+        </li>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>  
-        </button>
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkReporteCobros" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="💰 Reporte de Cobros"
+                ToolTip="Generar Reporte de Cobros"
+                OnClick="LinkReporteCobrado_Click" />
+        </li>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-              <asp:Label ID="lbUsuarioConectado" runat="server" Text="Usuario Cnectado" ForeColor="White"  CssClass="list-group-item bg-dark list-group-item-action bg-light"></asp:Label>
-            </li>
-            <li class="nav-item">
-              <asp:Label ID="lbOficinaUsuairoPantalla" runat="server" Text="Oficina" ForeColor="White"  CssClass="list-group-item bg-dark list-group-item-action bg-light"></asp:Label>
-            </li>
-            
-          </ul>
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkReporteProduccionIntermediarioAlfredo" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="👤 Reporte de Intermediarios Alfredo"
+                ToolTip="Generar Reporte de Intermediarios Específicos"
+                OnClick="LinkReporteAlfredoIntermediarios_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkComisionesIntermediario" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📊 Comisiones de Intermediario"
+                ToolTip="Generar Reporte de Comisiones de Intermediarios"
+                OnClick="LiniComisionesIntermediarios_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkComisionesSupervisores" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📊 Comisiones de Supervisores"
+                ToolTip="Generar Reporte de Comisiones de Supervisores"
+                OnClick="LinkComisionesSupervisores_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkSobreComision" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="💹 Sobre Comisión"
+                ToolTip="Generar Reporte de Sobre Comisión"
+                OnClick="LinkSobreComision_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkProduccionDiaria" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📅 Producción Diaria Contabilidad"
+                ToolTip="Generar Reporte de Producción diaria de Contabilidad"
+                OnClick="LinkProduccionDiariaContabilidad_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkAntiguedadSaldoCXP" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="⏳ Antigüedad de Saldo CXP"
+                ToolTip="Generar Reporte de Antigüedad de Saldo CXP"
+                OnClick="LinkAntiguedadSaldoCXP_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkReporteCuentaProveedores" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📂 Reporte de Cuentas Proveedores"
+                ToolTip="Generar Reporte de Cuentas de Proveedores"
+                OnClick="LinkReporteCuuentasProveedores_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkDepositosPrima" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="🏦 Depósitos en Prima"
+                ToolTip="Generar Reporte de Depósitos En Prima"
+                OnClick="LinkReportePrimaDeposito_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkAntiguedadSaldo" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="⏳ Antigüedad de Saldo"
+                ToolTip="Generar Reporte de Antigüedad de Saldo"
+                OnClick="LinkAntiguedadSaldo_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkReporteREclmaciones" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📑 Reporte de Reclamaciones"
+                ToolTip="Generar Reporte de Reclamaciones"
+                OnClick="LinkReporteReclamaciones_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkReclamacionesPagadas" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="✅ Reclamaciones Pagadas"
+                ToolTip="Generar Reporte de Reclamaciones Pagadas"
+                OnClick="LinkReclamacionesPagadas_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkImpresionMarbetes" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="🖨️ Impresión de Marbetes"
+                ToolTip="Impresión de Marbetes"
+                OnClick="LinkReporteImpresionMarbetes_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkFichatecnica" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📋 Ficha Técnica"
+                ToolTip="Ficha técnica de Supervisores / Intermediarios"
+                OnClick="LinkFichatecnica_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkReportePolizasBalance" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📊 Pólizas con Balances"
+                ToolTip="Generar Reporte de Pólizas con Balance por antigüedad de saldo"
+                OnClick="LinkReportePolizasBalance_Click" />
+        </li>
+
+    </ul>
+</li>
+
+                        <!-- MÓDULO DE PROCESOS -->
+<li id="DivModuloProcesos" runat="server" visible="true" class="mb-2">
+    <a href="#" class="text-white d-flex justify-content-between align-items-center px-2 py-2 rounded bg-gradient bg-opacity-75">
+        <span><i class="fa fa-cogs me-2"></i> Procesos</span>
+        <i class="fa fa-chevron-down"></i>
+    </a>
+
+    <ul class="list-unstyled ms-3 mt-2">
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkGenerarBAckupBD" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="💾 Generar Backup BD"
+                ToolTip="Generar Backup de Base de Datos"
+                OnClick="LinkBakupBD_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkSolicitudesCheques" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📝 Solicitudes de Cheques"
+                ToolTip="Generar Solicitudes de Cheques"
+                OnClick="LinkGenerarSOlicitudChequeComisiones_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkImpresionCheques" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="🖨️ Impresión de Cheques"
+                ToolTip="Imprimir Cheques"
+                OnClick="LinkImpresionCheques_Click1" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkProcesarDataAsegurado" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📊 Procesar Data Asegura.do"
+                ToolTip="Procesar Data Asegura.do"
+                OnClick="LinkProcesarDataAsegurado_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkEndosos" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📑 Endosos"
+                ToolTip="Generar Endosos"
+                OnClick="LinkGenerarEndoso_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkProcesoEmision" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📄 Proceso de Emisión"
+                ToolTip="Proceso de Emisión de Pólizas"
+                OnClick="LinkProcesoEmision_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkVolantePagos" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="💰 Volantes de Pagos"
+                ToolTip="Generar Volantes de Pagos"
+                OnClick="LinkVolantePago_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkUtilidadesCobros" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="⚙️ Utilidades de Cobros"
+                ToolTip="Utilidades de Cobros"
+                OnClick="linkUtilidadesCobros_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkAgregarItemsReclamos" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="➕ Agregar Ítems Reclamos"
+                ToolTip="Agregar o Sacar Ítems de Reclamos"
+                OnClick="LinkAgregarDPAReclamos_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkReciboIngreso" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📥 Recibo de Ingreso"
+                ToolTip="Recibo de Ingresos"
+                OnClick="LinkReciboDigital_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkCartaCancelacion" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="✉️ Carta de Cancelación"
+                ToolTip="Generar Carta de Cancelación de Asegurados / Intermediarios"
+                OnClick="LinkCartaCancelacion_Click" />
+        </li>
+
+    </ul>
+</li>
+
+                        <!-- MÓDULO DE CORRECCIONES -->
+<li id="DivModuloCorrecciones" runat="server" visible="true" class="mb-2">
+    <a href="#" class="text-white d-flex justify-content-between align-items-center px-2 py-2 rounded bg-gradient bg-opacity-75">
+        <span><i class="fa fa-tools me-2"></i> Correcciones</span>
+        <i class="fa fa-chevron-down"></i>
+    </a>
+
+    <ul class="list-unstyled ms-3 mt-2">
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkDatoPoliza" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📄 Dato Póliza"
+                ToolTip="Dato Póliza"
+                OnClick="LinkCorregirValorDeclarativa_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkEliminarEndosos" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="❌ Eliminar Endoso"
+                ToolTip="Eliminar Endoso a Póliza"
+                OnClick="LinkEliminarEndosos_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkSumaAseguradaFianzas" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="💵 Monto Afianzar Fianzas"
+                ToolTip="Modificar el Monto Afianzada de las Fianzas"
+                OnClick="LinkSumaAseguradaFianzas_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkEquiposElectronicos" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="💻 Equipos Electrónicos"
+                ToolTip="Procesar Información de Equipos Electrónicos"
+                OnClick="LinkEquiposElectronicos_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkPolizaTransito" runat="server"
+                CssClass="nav-link text-danger ps-4 fw-bold"
+                Text="🚦 Póliza en Tránsito"
+                ToolTip="Corregir valor de Póliza colgada en Tránsito"
+                OnClick="LinkPolizaTransito_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkCambioIntermediario" runat="server"
+                CssClass="nav-link text-danger ps-4 fw-bold"
+                Text="🔄 Cambio de Intermediario"
+                ToolTip="Cambiar Intermediario a Póliza"
+                OnClick="LinkCambioIntermediario_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkCambioCliente" runat="server"
+                CssClass="nav-link text-danger ps-4 fw-bold"
+                Text="👤 Cambio de Cliente"
+                ToolTip="Cambiar Cliente a Póliza"
+                OnClick="LinkCambioCliente_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkModificarDatosCliente" runat="server"
+                CssClass="nav-link text-danger ps-4 fw-bold"
+                Text="✏️ Modificar Cliente"
+                ToolTip="Modificar Cliente"
+                OnClick="LinkModificarDatosCliente_Click" />
+        </li>
+
+    </ul>
+</li>
+
+
+                        <!-- MÓDULO DE MANTENIMIENTO -->
+<li id="DivModuloMantenimiento" runat="server" visible="true" class="mb-2">
+    <a href="#" class="text-white d-flex justify-content-between align-items-center px-2 py-2 rounded bg-gradient bg-opacity-75">
+        <span><i class="fa fa-wrench me-2"></i> Mantenimiento</span>
+        <i class="fa fa-chevron-down"></i>
+    </a>
+
+    <ul class="list-unstyled ms-3 mt-2">
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkClientes" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="👤 Clientes"
+                ToolTip="Mantenimiento de Clientes"
+                OnClick="LinkClientes_Click1" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkIntermediariosSupervisores" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="🤝 Intermediarios / Supervisores"
+                ToolTip="Mantenimiento de Intermediarios y Supervisores"
+                OnClick="LinkIntermediariosSupervisores_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkOficinas" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="🏢 Oficinas"
+                ToolTip="Mantenimiento de Oficinas"
+                OnClick="linkOficinas_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkDepartamentos" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📂 Departamentos"
+                ToolTip="Mantenimiento de Departamentos"
+                OnClick="linkDeprtamentos_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkEmpleados" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="👥 Empleados"
+                ToolTip="Mantenimiento de Empleados"
+                OnClick="linkEmpleados_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkInventario" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📦 Inventario"
+                ToolTip="Mantenimiento de Inventario"
+                OnClick="linkInventario_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkDependientes" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="👨‍👩‍👧 Dependientes"
+                ToolTip="Mantenimiento de Dependientes"
+                OnClick="LinkDependientes_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkPorcientoComision" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="💹 Porciento de Comisión"
+                ToolTip="Mantenimiento de Porciento de Comisiones por Defecto"
+                OnClick="LinkMantenimientoPorcientoComisionPorDefecto_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkMonedas" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="💱 Monedas"
+                ToolTip="Mantenimiento de Monedas"
+                OnClick="LinkMantenimientoMonedas_Click" />
+        </li>
+
+    </ul>
+</li>
+
+                        <!-- MÓDULO DE SEGURIDAD -->
+<li id="DivModuloSeguridad" runat="server" visible="true" class="mb-2">
+    <a href="#" class="text-white d-flex justify-content-between align-items-center px-2 py-2 rounded bg-gradient bg-opacity-75">
+        <span><i class="fa fa-unlock-alt me-2"></i> Seguridad</span>
+        <i class="fa fa-chevron-down"></i>
+    </a>
+
+    <ul class="list-unstyled ms-3 mt-2">
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkUsuarios" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="👤 Usuarios"
+                ToolTip="Mantenimiento de Usuarios"
+                OnClick="linkUsuarios_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkPerfilesUsuarios" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="🧩 Perfiles de Usuarios"
+                ToolTip="Mantenimiento de Perfiles de Usuarios"
+                OnClick="linkPerfilesUsuarios_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkClaveSeguridad" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="🔑 Clave de Seguridad"
+                ToolTip="Configurar Clave de Seguridad"
+                OnClick="linkClaveSeguridad_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkConfiguracionCorreos" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📧 Configuración de Correos"
+                ToolTip="Configuración de Correos"
+                OnClick="LinkCorreosEmisoresProcesos_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkMovimientoUsuarios" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="🔄 Movimiento de Usuario"
+                ToolTip="Movimientos de Usuarios"
+                OnClick="linkMovimientoUsuarios_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkTarjetaAcceso" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="💳 Tarjetas de Acceso"
+                ToolTip="Asignación de Tarjetas de Acceso"
+                OnClick="linkTarjetasAccesos_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkModulos" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="📂 Módulos"
+                ToolTip="Mantenimiento de Módulos"
+                OnClick="linkOpcionMenu_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkPantallas" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="🖥️ Pantallas"
+                ToolTip="Mantenimiento de Pantallas"
+                OnClick="linkOpcion_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkOpciones" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="⚙️ Opciones"
+                ToolTip="Mantenimiento de Opciones"
+                OnClick="linkBotones_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkPermisoUsuarios" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="🛡️ Permiso de Usuarios"
+                ToolTip="Mantenimiento de Permiso de Usuarios"
+                OnClick="linkPermisoUsuarios_Click" />
+        </li>
+
+        <li class="mb-1">
+            <asp:LinkButton ID="LinkCredencialesBD" runat="server"
+                CssClass="nav-link text-light ps-4"
+                Text="🔐 Credenciales de BD"
+                ToolTip="Credenciales de Bases de Datos"
+                OnClick="LinkCredencialesBD_Click" />
+        </li>
+
+    </ul>
+</li>
+
+                        <!-- Cerrar Sesión -->
+                       <asp:LinkButton ID="linkCerrarCesion" runat="server"
+    CssClass="btn btn-outline-danger w-100 text-start"
+    ToolTip="Cerrar Sesión"
+    OnClick="linkCerrarCesion_Click"
+    OnClientClick="return confirm('¿Quieres Cerrar Sesión?');">
+    <i class="fa fa-sign-out-alt me-2"></i> Cerrar Sesión
+</asp:LinkButton>
+
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CONTENIDO -->
+            <div id="page-content-wrapper">
+
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm px-3">
+                    <button class="btn btn-outline-light me-3" id="menu-toggle">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse">
+                        <ul class="navbar-nav ms-auto">
+
+                            <li class="nav-item d-flex align-items-center me-3">
+                                <img src="https://www.svgrepo.com/show/384670/account-avatar-profile-user.svg"
+                                     class="nav-user-img me-2" />
+                                <div class="d-flex flex-column">
+                                    <asp:Label ID="lbUsuarioConectado" runat="server"
+                                        CssClass="text-white fw-bold" />
+                                    <asp:Label ID="lbOficinaUsuairoPantalla" runat="server"
+                                        CssClass="text-white small" />
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </nav>
+
+                <div class="container-fluid py-4">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
+                </div>
+
+            </div>
+
         </div>
-      </nav>
 
-      <div class="container-fluid">
-         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        </asp:ContentPlaceHolder>
-       
-      </div>
-    </div>
-       </div>
-
-
-
-            <script>
-                $("#menu-toggle").click(function (e) {
-                    e.preventDefault();
-                    $("#wrapper").toggleClass("toggled");
-                });
-            </script>
-
+        <script>
+            $("#menu-toggle").click(function (e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+            });
+        </script>
 
     </form>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" type="text/javascript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" type="text/javascript"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" type="text/javascript"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
- 
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

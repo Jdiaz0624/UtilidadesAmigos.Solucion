@@ -105,16 +105,28 @@
                 <asp:ImageButton ID="btnNuevaSolicitud_ConsultaSolicitud" CssClass="BotonImagen" runat="server" ImageUrl="~/ImagenesBotones/Agregar_Nuevo.png" OnClick="btnNuevaSolicitud_ConsultaSolicitud_Click" />
             </div>
             <br />
-            <table class="table table-striped">
+            
+            <div class="card shadow-lg border-0 rounded-3 mb-4">
+    <!-- Encabezado -->
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">
+            <i class="fa fa-file-alt"></i> Solicitudes
+        </h5>
+    </div>
+
+    <!-- Tabla principal -->
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle mb-0">
                 <thead class="table-dark">
                     <tr>
-                        <th class="ContenidoCentro" scope="col"> Solicitud </th>
-                        <th class="ContenidoCentro" scope="col"> Fecha </th>
-                        <th class="ContenidoCentro" scope="col"> Hora </th>
-                        <th class="ContenidoCentro" scope="col"> Items </th>
-                        <th class="ContenidoCentro" scope="col"> Estatus </th>
-                        <th class="ContenidoDerecha" scope="col"> Cancelar </th>
-                        <th class="ContenidoDerecha" scope="col"> Detalle </th>
+                        <th class="ContenidoCentro">Solicitud</th>
+                        <th class="ContenidoCentro">Fecha</th>
+                        <th class="ContenidoCentro">Hora</th>
+                        <th class="ContenidoCentro">Items</th>
+                        <th class="ContenidoCentro">Estatus</th>
+                        <th class="ContenidoDerecha">Cancelar</th>
+                        <th class="ContenidoDerecha">Detalle</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -124,57 +136,79 @@
                                 <asp:HiddenField ID="hfNumeroSolicitud" runat="server" Value='<%# Eval("NumeroSolicitud") %>' />
                                 <asp:HiddenField ID="hfNumeroConector" runat="server" Value='<%# Eval("NumeroConector") %>' />
 
-                                <td class="ContenidoCentro"> <%# Eval("NumeroSolicitud") %> </td>
-                                <td class="ContenidoCentro"> <%# Eval("Fecha") %> </td>
-                                <td class="ContenidoCentro"> <%# Eval("Hora") %> </td>
-                                <td class="ContenidoCentro"> <%#string.Format("{0:N0}", Eval("CantidadItems")) %> </td>
-                                <td class="ContenidoCentro"> <%# Eval("Estatus") %> </td>
-                                <td class="ContenidoDerecha"> <asp:ImageButton ID="btnCancelarSolicitud" runat="server" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Cancelar_Nuevo.png" OnClientClick="return confirm('¿Quieres Cancelar Esta Solicitud?');" ToolTip="Cancelar Esta Solicitud" OnClick="btnCancelarSolicitud_Click" /> </td>
-                                <td class="ContenidoDerecha"> <asp:ImageButton ID="btnDetalleSolicitud" runat="server" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/hacer-clic.png" ToolTip="Ver el Detalle de la solicitud" OnClick="btnDetalleSolicitud_Click" /> </td>
+                                <td class="ContenidoCentro"><%# Eval("NumeroSolicitud") %></td>
+                                <td class="ContenidoCentro"><%# Eval("Fecha") %></td>
+                                <td class="ContenidoCentro"><%# Eval("Hora") %></td>
+                                <td class="ContenidoCentro"><%# string.Format("{0:N0}", Eval("CantidadItems")) %></td>
+                                <td class="ContenidoCentro"><%# Eval("Estatus") %></td>
+                                <td class="ContenidoDerecha">
+                                    <asp:ImageButton ID="btnCancelarSolicitud" runat="server"
+                                        CssClass="BotonImagen"
+                                        ImageUrl="~/ImagenesBotones/Cancelar_Nuevo.png"
+                                        ToolTip="Cancelar Esta Solicitud"
+                                        OnClientClick="return confirm('¿Quieres Cancelar Esta Solicitud?');"
+                                        OnClick="btnCancelarSolicitud_Click" />
+                                </td>
+                                <td class="ContenidoDerecha">
+                                    <asp:ImageButton ID="btnDetalleSolicitud" runat="server"
+                                        CssClass="BotonImagen"
+                                        ImageUrl="~/ImagenesBotones/hacer-clic.png"
+                                        ToolTip="Ver el Detalle de la solicitud"
+                                        OnClick="btnDetalleSolicitud_Click" />
+                                </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
                 </tbody>
             </table>
-              <table class="table">
-                <tfoot class="table-light">
-                    <tr>
-                        <td class="ContenidoDerecha">
-                            <b>Página </b> <asp:Label ID="lbCantidadPaginaVariable_ConsultaSolicitud" runat="server" Text="0" ></asp:Label> <b>de </b>  <asp:Label ID="lbPaginaActualVariable_ConsultaSolicitud" runat="server" Text=" 0 "></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="ContenidoIzquierda">
-                            <b>Total de Solicitudes: </b> <asp:Label ID="lbCantidadSolicitudes_ConsultaSolicitud" runat="server" Text="0"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="ContenidoIzquierda">
-                            <b>Solicitudes Activas: </b> <asp:Label ID="lbSolicitudesActivas_ConsultaSolicitud" runat="server" Text="0"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="ContenidoIzquierda">
-                             <b>Solicitudes Procesadas: </b> <asp:Label ID="lbSolicitudesProcesadas_ConsultaSolicitud" runat="server" Text="0"></asp:Label>
-                        </td>
-                    </tr>
-                     <tr>
-                        <td class="ContenidoIzquierda">
-                             <b>Solicitudes Pendientes: </b> <asp:Label ID="lbSolicitudesPendientes_ConsultaSolicitud" runat="server" Text="0"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="ContenidoIzquierda">
-                             <b>Solicitudes Canceladas: </b> <asp:Label ID="lbSolicitudesCanceladas_ConsultaSolicitud" runat="server" Text="0"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="ContenidoIzquierda">
-                             <b>Solicitudes Rechazadas: </b> <asp:Label ID="lbSolicitudesRechazadas_ConsultaSolicitud" runat="server" Text="0"></asp:Label>
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
+        </div>
+    </div>
+
+    <!-- Pie de tabla -->
+    <div class="card-footer bg-light border-top">
+        <div class="row">
+            <!-- Paginación -->
+            <div class="col-md-6 text-start">
+                <span class="fw-semibold">📄 Página </span>
+                <asp:Label ID="lbCantidadPaginaVariable_ConsultaSolicitud" runat="server" Text="0" CssClass="fw-bold text-primary"></asp:Label>
+                <span class="fw-semibold"> de </span>
+                <asp:Label ID="lbPaginaActualVariable_ConsultaSolicitud" runat="server" Text="0" CssClass="fw-bold text-primary"></asp:Label>
+            </div>
+
+            <!-- Totales -->
+            <div class="col-md-6 text-end">
+                <span class="fw-semibold">Total de Solicitudes: </span>
+                <asp:Label ID="lbCantidadSolicitudes_ConsultaSolicitud" runat="server" Text="0" CssClass="fw-bold text-primary"></asp:Label>
+            </div>
+        </div>
+
+        <hr />
+
+        <!-- Detalle de estados -->
+        <div class="row text-start">
+            <div class="col-md-4 mb-2">
+                <span class="fw-semibold">✔️ Activas: </span>
+                <asp:Label ID="lbSolicitudesActivas_ConsultaSolicitud" runat="server" Text="0" CssClass="fw-bold text-success"></asp:Label>
+            </div>
+            <div class="col-md-4 mb-2">
+                <span class="fw-semibold">📦 Procesadas: </span>
+                <asp:Label ID="lbSolicitudesProcesadas_ConsultaSolicitud" runat="server" Text="0" CssClass="fw-bold text-info"></asp:Label>
+            </div>
+            <div class="col-md-4 mb-2">
+                <span class="fw-semibold">⏳ Pendientes: </span>
+                <asp:Label ID="lbSolicitudesPendientes_ConsultaSolicitud" runat="server" Text="0" CssClass="fw-bold text-warning"></asp:Label>
+            </div>
+            <div class="col-md-4 mb-2">
+                <span class="fw-semibold">❌ Canceladas: </span>
+                <asp:Label ID="lbSolicitudesCanceladas_ConsultaSolicitud" runat="server" Text="0" CssClass="fw-bold text-danger"></asp:Label>
+            </div>
+            <div class="col-md-4 mb-2">
+                <span class="fw-semibold">🚫 Rechazadas: </span>
+                <asp:Label ID="lbSolicitudesRechazadas_ConsultaSolicitud" runat="server" Text="0" CssClass="fw-bold text-secondary"></asp:Label>
+            </div>
+        </div>
+    </div>
+</div>
               <div id="DivPaginacion_ConsultaSolicitud" runat="server" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">

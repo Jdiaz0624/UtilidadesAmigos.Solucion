@@ -149,81 +149,107 @@
              <asp:ImageButton ID="btnReporteSolicitudes" runat="server" ToolTip="Reporte de Solicitudes" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Reporte_Nuevo.png" OnClick="btnReporteSolicitudes_Click" />
          </div>
          <br />
-         <table class="table table-striped">
-             <thead class="table-dark">
-                 <tr>
-                      <th scope="col"> Sucursal </th>
-                      <th scope="col"> Oficina </th>
-                      <th scope="col"> Departamento </th>
-                      <th scope="col"> Nombre </th>
-                      <th class="ContenidoCentro" scope="col"> Fecha </th>
-                      <th class="ContenidoCentro" scope="col"> Items </th>
-                      <th class="ContenidoCentro" scope="col"> Estatus </th>
-                     <th class="ContenidoDerecha" scope="col"> Imprimir </th>
-                      <th class="ContenidoDerecha" scope="col"> Procesar </th>
-                 </tr>
-             </thead>
-             <tbody>
-                 <asp:Repeater ID="rpSolicitudesHeader" runat="server">
-                     <ItemTemplate>
-                         <tr>
+         <!-- Bloque Solicitudes -->
+<div class="card shadow-lg border-0 rounded-3 mb-4">
+    <!-- Encabezado -->
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">
+            <i class="fa fa-file-alt"></i> Solicitudes Registradas
+        </h5>
+    </div>
 
-                             <asp:HiddenField ID="hfNumeroSolicitudHeader" runat="server" Value='<%# Eval("NumeroSolicitud") %>' />
-                             <asp:HiddenField ID="hfNumeroConectorHeader" runat="server" Value='<%# Eval("NumeroConector") %>' />
+    <!-- Tabla principal -->
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Sucursal</th>
+                        <th scope="col">Oficina</th>
+                        <th scope="col">Departamento</th>
+                        <th scope="col">Nombre</th>
+                        <th class="ContenidoCentro" scope="col">Fecha</th>
+                        <th class="ContenidoCentro" scope="col">Items</th>
+                        <th class="ContenidoCentro" scope="col">Estatus</th>
+                        <th class="ContenidoDerecha" scope="col">Imprimir</th>
+                        <th class="ContenidoDerecha" scope="col">Procesar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <asp:Repeater ID="rpSolicitudesHeader" runat="server">
+                        <ItemTemplate>
+                            <tr>
+                                <asp:HiddenField ID="hfNumeroSolicitudHeader" runat="server" Value='<%# Eval("NumeroSolicitud") %>' />
+                                <asp:HiddenField ID="hfNumeroConectorHeader" runat="server" Value='<%# Eval("NumeroConector") %>' />
 
-                             <td> <%# Eval("Sucursal") %> </td>
-                             <td> <%# Eval("Oficina") %> </td>
-                             <td> <%# Eval("Departamento") %> </td>
-                             <td> <%# Eval("Persona") %> </td>
-                             <td class="ContenidoCentro"> <%# Eval("Fecha") %> </td>
-                             <td class="ContenidoCentro"> <%#string.Format("{0:N0}", Eval("CantidadItems")) %> </td>
-                             <td class="ContenidoCentro"> <%# Eval("Estatus") %> </td>
-                             <td class="ContenidoDerecha"> <asp:ImageButton ID="btnImprimir" runat="server" ToolTip="Imprimir Registro" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/impresora-de-papel.png" OnClick="btnImprimir_Click" /> </td>
-                             <td class="ContenidoDerecha"> <asp:ImageButton ID="btnVer" runat="server" ToolTip="Ver Detalle del registro" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/proceso.png" OnClick="btnVer_Click" /> </td>
-                         </tr>
-                     </ItemTemplate>
-                 </asp:Repeater>
-             </tbody>
-         </table>
-           <table class="table">
-                <tfoot class="table-light">
-                    <tr>
-                        <td class="ContenidoDerecha">
-                            <b>Página </b> <asp:Label ID="lbCantidadPaginaVariable" runat="server" Text="0" ></asp:Label> <b>de </b>  <asp:Label ID="lbPaginaActualVariable" runat="server" Text=" 0 "></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="ContenidoIzquierda">
-                            <b>Total de Solicitudes: </b> <asp:Label ID="lbCantidadSolicitudes" runat="server" Text="0"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="ContenidoIzquierda">
-                            <b>Solicitudes Activas: </b> <asp:Label ID="lbSolicitudesActivas" runat="server" Text="0"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="ContenidoIzquierda">
-                             <b>Solicitudes Procesadas: </b> <asp:Label ID="lbSolicitudesProcesadas" runat="server" Text="0"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="ContenidoIzquierda">
-                             <b>Solicitudes Pendientes: </b> <asp:Label ID="lbSolicitudesPendientes" runat="server" Text="0"></asp:Label>
-                        </td>
-                    </tr>
-                     <tr>
-                        <td class="ContenidoIzquierda">
-                             <b>Solicitudes Canceladas: </b> <asp:Label ID="lbSolicitudesCanceladas" runat="server" Text="0"></asp:Label>
-                        </td>
-                    </tr>
-                     <tr>
-                        <td class="ContenidoIzquierda">
-                             <b>Solicitudes Rechazadas: </b> <asp:Label ID="lbSolicitudesRechazadas" runat="server" Text="0"></asp:Label>
-                        </td>
-                    </tr>
-                </tfoot>
+                                <td><%# Eval("Sucursal") %></td>
+                                <td><%# Eval("Oficina") %></td>
+                                <td><%# Eval("Departamento") %></td>
+                                <td><%# Eval("Persona") %></td>
+                                <td class="ContenidoCentro"><%# Eval("Fecha") %></td>
+                                <td class="ContenidoCentro"><%# string.Format("{0:N0}", Eval("CantidadItems")) %></td>
+                                <td class="ContenidoCentro"><%# Eval("Estatus") %></td>
+                                <td class="ContenidoDerecha">
+                                    <asp:ImageButton ID="btnImprimir" runat="server" ToolTip="Imprimir Registro" CssClass="BotonImagen"
+                                        ImageUrl="~/ImagenesBotones/impresora-de-papel.png" OnClick="btnImprimir_Click" />
+                                </td>
+                                <td class="ContenidoDerecha">
+                                    <asp:ImageButton ID="btnVer" runat="server" ToolTip="Ver Detalle del registro" CssClass="BotonImagen"
+                                        ImageUrl="~/ImagenesBotones/proceso.png" OnClick="btnVer_Click" />
+                                </td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </tbody>
             </table>
+        </div>
+    </div>
+
+    <!-- Pie de tabla -->
+<div class="card-footer bg-light border-top">
+    <div class="row">
+        <!-- Paginación -->
+        <div class="col-md-6 text-start">
+            <span class="fw-semibold">📄 Página </span>
+            <asp:Label ID="lbPaginaActualVariable" runat="server" Text="0" CssClass="fw-bold text-primary"></asp:Label>
+            <span class="fw-semibold"> de </span>
+            <asp:Label ID="lbCantidadPaginaVariable" runat="server" Text="0" CssClass="fw-bold text-primary"></asp:Label>
+        </div>
+
+        <!-- Totales -->
+        <div class="col-md-6 text-end">
+            <span class="fw-semibold">Total de Solicitudes: </span>
+            <asp:Label ID="lbCantidadSolicitudes" runat="server" Text="0" CssClass="fw-bold text-primary"></asp:Label>
+        </div>
+    </div>
+
+    <hr />
+
+    <!-- Detalle de estados -->
+    <div class="row text-start">
+        <div class="col-md-4 mb-2">
+            <span class="fw-semibold">✔️ Activas: </span>
+            <asp:Label ID="lbSolicitudesActivas" runat="server" Text="0" CssClass="fw-bold text-success"></asp:Label>
+        </div>
+        <div class="col-md-4 mb-2">
+            <span class="fw-semibold">📦 Procesadas: </span>
+            <asp:Label ID="lbSolicitudesProcesadas" runat="server" Text="0" CssClass="fw-bold text-info"></asp:Label>
+        </div>
+        <div class="col-md-4 mb-2">
+            <span class="fw-semibold">⏳ Pendientes: </span>
+            <asp:Label ID="lbSolicitudesPendientes" runat="server" Text="0" CssClass="fw-bold text-warning"></asp:Label>
+        </div>
+        <div class="col-md-4 mb-2">
+            <span class="fw-semibold">❌ Canceladas: </span>
+            <asp:Label ID="lbSolicitudesCanceladas" runat="server" Text="0" CssClass="fw-bold text-danger"></asp:Label>
+        </div>
+        <div class="col-md-4 mb-2">
+            <span class="fw-semibold">🚫 Rechazadas: </span>
+            <asp:Label ID="lbSolicitudesRechazadas" runat="server" Text="0" CssClass="fw-bold text-secondary"></asp:Label>
+        </div>
+    </div>
+</div>
+</div>
               <div id="DivPaginacion" runat="server" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">
@@ -249,125 +275,128 @@
 
 
            <div id="DIvBloqueDetalleRegistro"  runat="server">
-               <br />
-               <asp:Label ID="lbNumeroConector_Detalle_Variable" runat="server" Visible="false" Text="Dato"></asp:Label>
-                 <asp:Label ID="lbIdUsuario_Detalle_variable" runat="server" Visible="false" Text="Dato"></asp:Label>
-                           <table class="table table-striped">
-                               <thead class="table-secondary">
-                                   <tr>
-                                       <th scope="col"> <b>NUMERO DE SOLICITUD</b> </th>
-                                       <th scope="col"> <asp:Label ID="lbNumeroSolicitud_Detalle_Variable" runat="server" Text="Dato"></asp:Label> </th>
-                                   </tr>
+              <br />
+<asp:Label ID="lbNumeroConector_Detalle_Variable" runat="server" Visible="false" Text="Dato"></asp:Label>
+<asp:Label ID="lbIdUsuario_Detalle_variable" runat="server" Visible="false" Text="Dato"></asp:Label>
 
-                                      <tr>
-                                       <th scope="col"> <b>FECHA</b> </th>
-                                       <th scope="col"> <asp:Label ID="lbFecha_Detalle_Variable" runat="server" Text="Dato"></asp:Label> </th>
-                                   </tr>
+<!-- Card de detalle de solicitud -->
+<div class="card shadow-lg border-0 rounded-3 mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0"><i class="fa fa-file-alt"></i> Detalle de Solicitud</h5>
+    </div>
+    <div class="card-body p-0">
+        <table class="table table-striped mb-0">
+            <tbody>
+                <tr>
+                    <th scope="row" class="fw-semibold">Número de Solicitud</th>
+                    <td><asp:Label ID="lbNumeroSolicitud_Detalle_Variable" runat="server" Text="Dato"></asp:Label></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="fw-semibold">Fecha</th>
+                    <td><asp:Label ID="lbFecha_Detalle_Variable" runat="server" Text="Dato"></asp:Label></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="fw-semibold">Hora</th>
+                    <td><asp:Label ID="lbHora_Detalle_Variable" runat="server" Text="Dato"></asp:Label></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="fw-semibold">Sucursal</th>
+                    <td><asp:Label ID="lbSucursal_Detalle_Variable" runat="server" Text="Dato"></asp:Label></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="fw-semibold">Oficina</th>
+                    <td><asp:Label ID="lbOficina_Detalle_Variable" runat="server" Text="Dato"></asp:Label></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="fw-semibold">Departamento</th>
+                    <td><asp:Label ID="lbDepartamento_Detalle_Variable" runat="server" Text="Dato"></asp:Label></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="fw-semibold">Usuario</th>
+                    <td><asp:Label ID="lbUsuario_Detalle_Variable" runat="server" Text="Dato"></asp:Label></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="fw-semibold">Cantidad de Artículos</th>
+                    <td><asp:Label ID="lbArticulos_Detalle_Variable" runat="server" Text="Dato"></asp:Label></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="fw-semibold">Estatus Actual</th>
+                    <td><asp:Label ID="lbEstatus_Detalle_Variable" runat="server" Text="Dato"></asp:Label></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
-                                      <tr>
-                                       <th scope="col"> <b>HORA</b> </th>
-                                       <th scope="col"> <asp:Label ID="lbHora_Detalle_Variable" runat="server" Text="Dato"></asp:Label> </th>
-                                   </tr>
+<asp:ScriptManager ID="ScripManagerGestionCobros" runat="server"></asp:ScriptManager>
 
-                                      <tr>
-                                       <th scope="col"> <b>SUCURSAL</b> </th>
-                                       <th scope="col"> <asp:Label ID="lbSucursal_Detalle_Variable" runat="server" Text="Dato"></asp:Label> </th>
-                                   </tr>
+<!-- Grid de artículos (siempre visible) -->
+<div class="card shadow-sm border-0 rounded-3 mb-4">
+    <div class="card-header bg-dark text-white">
+        <h6 class="mb-0"><i class="fa fa-list-ul"></i> Artículos solicitados</h6>
+    </div>
+    <div class="card-body p-0">
+        <asp:UpdatePanel ID="UpdatePanelRegistroSeleccionado" runat="server">
+            <ContentTemplate>
+                <table class="table table-striped table-hover align-middle mb-0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Artículo</th>
+                            <th>Categoría</th>
+                            <th>Medida</th>
+                            <th class="ContenidoCentro">Cant. Solicitada</th>
+                            <th class="ContenidoCentro">Cant. Disponible</th>
+                            <th class="ContenidoCentro">Estatus</th>
+                            <th class="ContenidoCentro">Despachada</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <asp:Repeater ID="rpSolicitudDetalle" runat="server">
+                            <ItemTemplate>
+                                <tr>
+                                    <td><%# Eval("Descripcion") %></td>
+                                    <td><%# Eval("Categoria") %></td>
+                                    <td><%# Eval("UnidadMedida") %></td>
+                                    <td class="ContenidoCentro"><%# string.Format("{0:N0}", Eval("Cantidad")) %></td>
+                                    <td class="ContenidoCentro"><%# string.Format("{0:N0}", Eval("Disponible")) %></td>
+                                    <td class="ContenidoCentro"><%# Eval("Estatus") %></td>
+                                    <td class="ContenidoCentro"><%# Eval("Despachado") %></td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </tbody>
+                </table>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </div>
+</div>
 
-                                      <tr>
-                                       <th scope="col"> <b>OFICINA</b> </th>
-                                       <th scope="col"> <asp:Label ID="lbOficina_Detalle_Variable" runat="server" Text="Dato"></asp:Label> </th>
-                                   </tr>
+<!-- Comentario y notificación -->
+<div class="row">
+    <div class="col-md-12">
+        <asp:Label ID="lbComentarioSolicitud" runat="server" Text="Comentario" CssClass="fw-bold"></asp:Label>
+        <asp:TextBox ID="txtComentarioSolicitud" runat="server" Placeholder="Este campo es opcional"
+                     CssClass="form-control" TextMode="MultiLine" MaxLength="100"></asp:TextBox>
+    </div>
+</div>
+<div class="form-check form-switch mt-3">
+    <input type="checkbox" id="cbNotificarViaCorreo" runat="server" class="form-check-input" />
+    <label class="form-check-label">Notificar estatus final al usuario vía correo.</label>
+</div>
 
-                                      <tr>
-                                       <th scope="col"> <b>DEPARTAMENTO</b> </th>
-                                       <th scope="col"> <asp:Label ID="lbDepartamento_Detalle_Variable" runat="server" Text="Dato"></asp:Label> </th>
-                                   </tr>
-
-                                      <tr>
-                                       <th scope="col"> <b>USUARIO</b> </th>
-                                       <th scope="col"> <asp:Label ID="lbUsuario_Detalle_Variable" runat="server" Text="Dato"></asp:Label> </th>
-                                   </tr>
-
-                                      <tr>
-                                       <th scope="col"> <b>CANTIDAD DE ARTICULOS</b> </th>
-                                       <th scope="col"> <asp:Label ID="lbArticulos_Detalle_Variable" runat="server" Text="Dato"></asp:Label> </th>
-                                   </tr>
-
-                                      <tr>
-                                       <th scope="col"> <b>ESTATUS ACTUAL</b> </th>
-                                       <th scope="col"> <asp:Label ID="lbEstatus_Detalle_Variable" runat="server" Text="Dato"></asp:Label> </th>
-                                   </tr>
-                               </thead>
-                           </table>
-              <asp:ScriptManager ID="ScripManagerGestionCobros" runat="server"></asp:ScriptManager> 
-             <button class=" btn-sm  btn-dark BotonEspecial" type="button" id="btnPolizasNoContastadas" data-toggle="collapse" data-target="#RegistroSeleccionado" aria-expanded="false" aria-controls="collapseExample">
-                  
-                  <asp:Label ID="lbRegistroSeleccionado" runat="server" Text="DETALLE DE LOS ARTICULOS SOLICITADOS" CssClass="Letranegrita"></asp:Label>
-                     </button><br />
-
-
-       <div class="collapse" id="RegistroSeleccionado">
-                <div class="card card-body">
-                   <asp:UpdatePanel ID="UpdatePanelRegistroSeleccionado" runat="server">
-                       <ContentTemplate>
-                           
-                           <br />
-                       <table class="table table-striped">
-                           <thead class="table-dark">
-                               <tr>
-                                   <th scope="col"> Articulo </th>
-                                   <th scope="col"> Categoria </th>
-                                   <th scope="col"> Medida </th>
-                                   <th class="ContenidoCentro" scope="col"> Cant. Solicitada </th>
-                                   <th class="ContenidoCentro" scope="col"> Cant. Disponible </th>
-                                   <th class="ContenidoCentro" scope="col"> Estatus </th>
-                                   <th class="ContenidoCentro" scope="col"> Despachada </th>
-                               </tr>
-                           </thead>
-                           <tbody>
-                               <asp:Repeater ID="rpSolicitudDetalle" runat="server">
-                                   <ItemTemplate>
-                                       <tr>
-                                            <td> <%# Eval("Descripcion") %> </td>
-                                            <td> <%# Eval("Categoria") %> </td>
-                                            <td> <%# Eval("UnidadMedida") %> </td>
-                                            <td class="ContenidoCentro"> <%#string.Format("{0:N0}", Eval("Cantidad")) %> </td>
-                                            <td class="ContenidoCentro"> <%#string.Format("{0:N0}", Eval("Disponible")) %> </td>
-                                            <td class="ContenidoCentro"> <%# Eval("Estatus") %> </td>
-                                            <td class="ContenidoCentro"> <%# Eval("Despachado") %> </td>
-                                       </tr>
-                                   </ItemTemplate>
-                               </asp:Repeater>
-                           </tbody>
-                       </table>
-                          
-                           
-                           <br />
-                    </ContentTemplate>
-                   </asp:UpdatePanel>
-                </div>
-            </div>
-           <br />
-               <div class="row">
-                   <div class="col-md-12">
-                       <asp:Label ID="lbComentarioSolicitud" runat="server" Text="Comentario" CssClass="Letranegrita"></asp:Label>
-                       <asp:TextBox ID="txtComentarioSolicitud" runat="server" Placeholder="Este campo es Opcional" CssClass="form-control" TextMode="MultiLine" MaxLength="100"></asp:TextBox>
-                   </div>
-               </div>
-               <br />
-               <div class="form-check form-switch">
-                   <input type="checkbox" id="cbNotificarViaCorreo" runat="server" class="form-check-input" />
-                   <label class="form-check-label">Notificar Estatus final al usuario via correo.</label>
-               </div>
-               <br />
-                           <div id="DivBloqueBotones" class="ContenidoCentro">
-                               <asp:ImageButton ID="btnProcesar" runat="server" ToolTip="Procesar Registro" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Completado.png" OnClick="btnProcesar_Click" />
-                               <asp:ImageButton ID="btnCancelarSolicitud" runat="server" ToolTip="Cancelar Solicitud" CssClass="BotonImagen " ImageUrl="~/ImagenesBotones/Cancelar_Nuevo.png" OnClick="btnCancelarSolicitud_Click" OnClientClick="return confirm('¿Quieres Cancelar Esta Solicitud?');" />
-                               <asp:ImageButton ID="btnRechazarSolicitud" runat="server" ToolTip="Rechazar Soicitud" CssClass="BotonImagen " ImageUrl="~/ImagenesBotones/rechazado.png" OnClick="btnRechazarSolicitud_Click" OnClientClick="return confirm('¿Quieres Rechazar Esta Solicitud?');" />
-                                <asp:ImageButton ID="btnVolverAtrasSolicitud" runat="server" ToolTip="Volver Atras" CssClass="BotonImagen " ImageUrl="~/ImagenesBotones/Volver_Nuevo.png" OnClick="btnVolverAtrasSolicitud_Click" />
-                           </div>
-                 <br />
+<!-- Botones -->
+<div id="DivBloqueBotones" class="ContenidoCentro mt-4">
+    <asp:ImageButton ID="btnProcesar" runat="server" ToolTip="Procesar Registro" CssClass="BotonImagen"
+        ImageUrl="~/ImagenesBotones/Completado.png" OnClick="btnProcesar_Click" />
+    <asp:ImageButton ID="btnCancelarSolicitud" runat="server" ToolTip="Cancelar Solicitud" CssClass="BotonImagen"
+        ImageUrl="~/ImagenesBotones/Cancelar_Nuevo.png" OnClick="btnCancelarSolicitud_Click"
+        OnClientClick="return confirm('¿Quieres Cancelar Esta Solicitud?');" />
+    <asp:ImageButton ID="btnRechazarSolicitud" runat="server" ToolTip="Rechazar Solicitud" CssClass="BotonImagen"
+        ImageUrl="~/ImagenesBotones/rechazado.png" OnClick="btnRechazarSolicitud_Click"
+        OnClientClick="return confirm('¿Quieres Rechazar Esta Solicitud?');" />
+    <asp:ImageButton ID="btnVolverAtrasSolicitud" runat="server" ToolTip="Volver Atrás" CssClass="BotonImagen"
+        ImageUrl="~/ImagenesBotones/Volver_Nuevo.png" OnClick="btnVolverAtrasSolicitud_Click" />
+</div>
         </div>
 
 

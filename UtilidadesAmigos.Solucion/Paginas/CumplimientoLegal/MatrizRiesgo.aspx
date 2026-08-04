@@ -96,51 +96,77 @@
                 <asp:ImageButton ID="btnPlantilla" runat="server" ToolTip="Generar una Plantilla de la matiz de Riezgo" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Reporte_Nuevo.png" OnClick="btnPlantilla_Click" />
             </div>
             <br />
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead class="table-dark">
-                        <tr>
-                            <th scope="col"> Nombre </th>
-                            <th scope="col"> Tipo </th>
-                            <th scope="col"> Identificacion </th>
-                            <th scope="col"> Fecha </th>
-                            <th scope="col"> Hora </th>
-                            <th scope="col"> Riesgo </th>
-                            <th scope="col" class="ContenidoDerecha"> Matriz </th>
-                            <th scope="col" class="ContenidoDerecha"> Editar </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <asp:Repeater ID="rpListado" runat="server">
-                            <ItemTemplate>
-                                <tr>
-                                     <asp:HiddenField ID="hfIdRegistro" runat="server" Value='<%# Eval("IdRegistro") %>' />
-                                    <asp:HiddenField ID="hfNombre" runat="server" Value='<%# Eval("Nombre") %>' />
+           <div class="card shadow-lg border-0 rounded-3 mb-4">
+    <!-- Encabezado -->
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">
+            <i class="fa fa-list"></i> Listado de Registros
+        </h5>
+    </div>
 
-                                    <td> <%# Eval("Nombre") %> </td>
-                                    <td> <%# Eval("TipoIdentificacion") %> </td>
-                                    <td> <%# Eval("NumeroIdentificacion") %> </td>
-                                    <td> <%# Eval("FechaCreado") %> </td>
-                                    <td> <%# Eval("HoraCreado") %> </td>
-                                    <td> <%# Eval("NivelRiesgoConsolidado") %> </td>
-                                     <td class="ContenidoDerecha">  <asp:ImageButton ID="btnReporte" runat="server" ToolTip="Mostrar Hoja de Matriz de Riezgo" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Reporte_Nuevo.png" OnClick="btnReporte_Click" /> </td>
-                                    <td class="ContenidoDerecha">  <asp:ImageButton ID="btnEditar" runat="server" ToolTip="Editar Registro" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Editar_Nuevo.png" OnClick="btnEditar_Click" /> </td>
-                                </tr>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </tbody>
-                </table>
-                <table class="table">
-                    <tfoot class="table-light">
-                        <tr>
-                            <td class="ContenidoDerecha">
-                                <label class="Letranegrita"> Pagina</label> <asp:Label ID="lbPaginaActual" runat="server" Text="0"></asp:Label>
-                                <label class="Letranegrita"> De</label> <asp:Label ID="lbCantidadPAgina" runat="server" Text="0"></asp:Label>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
+    <!-- Tabla principal -->
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Identificación</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Hora</th>
+                        <th scope="col">Riesgo</th>
+                        <th scope="col" class="ContenidoDerecha">Matriz</th>
+                        <th scope="col" class="ContenidoDerecha">Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <asp:Repeater ID="rpListado" runat="server">
+                        <ItemTemplate>
+                            <tr>
+                                <asp:HiddenField ID="hfIdRegistro" runat="server" Value='<%# Eval("IdRegistro") %>' />
+                                <asp:HiddenField ID="hfNombre" runat="server" Value='<%# Eval("Nombre") %>' />
+
+                                <td><%# Eval("Nombre") %></td>
+                                <td><%# Eval("TipoIdentificacion") %></td>
+                                <td><%# Eval("NumeroIdentificacion") %></td>
+                                <td><%# Eval("FechaCreado") %></td>
+                                <td><%# Eval("HoraCreado") %></td>
+                                <td><%# Eval("NivelRiesgoConsolidado") %></td>
+                                <td class="ContenidoDerecha">
+                                    <asp:ImageButton ID="btnReporte" runat="server"
+                                        CssClass="BotonImagen"
+                                        ImageUrl="~/ImagenesBotones/Reporte_Nuevo.png"
+                                        ToolTip="Mostrar Hoja de Matriz de Riesgo"
+                                        OnClick="btnReporte_Click" />
+                                </td>
+                                <td class="ContenidoDerecha">
+                                    <asp:ImageButton ID="btnEditar" runat="server"
+                                        CssClass="BotonImagen"
+                                        ImageUrl="~/ImagenesBotones/Editar_Nuevo.png"
+                                        ToolTip="Editar Registro"
+                                        OnClick="btnEditar_Click" />
+                                </td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Pie de tabla -->
+    <div class="card-footer bg-light border-top">
+        <div class="row">
+            <div class="col-md-12 text-end">
+                <label class="fw-bold">Página</label>
+                <asp:Label ID="lbPaginaActual" runat="server" Text="0" CssClass="fw-bold text-primary"></asp:Label>
+                <label class="fw-bold">de</label>
+                <asp:Label ID="lbCantidadPAgina" runat="server" Text="0" CssClass="fw-bold text-primary"></asp:Label>
             </div>
+        </div>
+    </div>
+</div>
             <div id="DivPaginacion" class="table-responsive" runat="server" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">

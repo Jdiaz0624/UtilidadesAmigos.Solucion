@@ -61,61 +61,81 @@
         </div>
         <br />
        
-            <table class="table table-striped">
+           <div class="card shadow-lg border-0 rounded-3 mb-4">
+    <!-- Encabezado -->
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">
+            <i class="fa fa-briefcase"></i> Cartera de Intermediario
+        </h5>
+    </div>
+
+    <!-- Tabla principal -->
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle mb-0">
                 <thead class="table-dark">
                     <tr>
-                        <th scope="col"> Poliza </th>
-                        <th scope="col"> Estatus </th>
-                        <th scope="col"> Cliente </th>
-                        <th class="ContenidoDerecha" scope="col"> Facturado </th>
-                        <th class="ContenidoDerecha" scope="col"> Cobrado </th>
-                        <th class="ContenidoDerecha" scope="col"> Balance </th>
+                        <th scope="col">Poliza</th>
+                        <th scope="col">Estatus</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col" class="ContenidoDerecha">Facturado</th>
+                        <th scope="col" class="ContenidoDerecha">Cobrado</th>
+                        <th scope="col" class="ContenidoDerecha">Balance</th>
                     </tr>
                 </thead>
                 <tbody>
                     <asp:Repeater ID="rpCarteraIntermediario" runat="server">
                         <ItemTemplate>
                             <tr>
-                                <td> <%# Eval("Poliza") %> </td>
-                                <td> <%# Eval("EstatusPoliza") %> </td>
-                                <td> <%# Eval("Cliente") %> </td>
-                                <td class="ContenidoDerecha"> <%#string.Format("{0:n2}", Eval("Facturado")) %> </td>
-                                <td class="ContenidoDerecha"><%#string.Format("{0:n2}", Eval("Cobrado")) %> </td>
-                                <td class="ContenidoDerecha"> <%#string.Format("{0:n2}", Eval("Balance")) %> </td>
+                                <td><%# Eval("Poliza") %></td>
+                                <td><%# Eval("EstatusPoliza") %></td>
+                                <td><%# Eval("Cliente") %></td>
+                                <td class="ContenidoDerecha"><%# string.Format("{0:n2}", Eval("Facturado")) %></td>
+                                <td class="ContenidoDerecha"><%# string.Format("{0:n2}", Eval("Cobrado")) %></td>
+                                <td class="ContenidoDerecha"><%# string.Format("{0:n2}", Eval("Balance")) %></td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
                 </tbody>
             </table>
-        <table class="table">
-            <thead class="table-light">
-                <tr>
-                    <th class="ContenidoDerecha">
-                        <b>Pagina </b> <asp:Label ID="lbPaginaActualVariableCarteraIntermediario" runat="server" Text=" 0 " ></asp:Label> <b> De </b>  <asp:Label ID="lbCantidadPaginaVAriableCarteraIntermediario" runat="server" Text="0"></asp:Label>
-                    </th>
-                </tr>
-                <tr>
-                    <th class="ContenidoIzquierda">
-                        <b>Polizas Activas :</b> <asp:Label ID="lbCantidadPolizasActivasVariable" runat="server" Text="0"></asp:Label>
-                    </th>
-                </tr>
-                <tr>
-                    <th class="ContenidoIzquierda">
-                        <b>Polizas Canceladas :</b> <asp:Label ID="lbCantidadPolizasCanceladasVariable" runat="server" Text="0"></asp:Label>
-                    </th>
-                </tr>
-                <tr>
-                    <th class="ContenidoIzquierda">
-                        <b>Polizas En Transito :</b> <asp:Label ID="lbCantidadPolizasTransitoVariable" runat="server" Text="0"></asp:Label>
-                    </th>
-                </tr>
-                <tr>
-                    <th class="ContenidoIzquierda">
-                        <b>Polizas En Exclusión :</b> <asp:Label ID="lbCantidadPolizasExcluidasVariable" runat="server" Text="0"></asp:Label>
-                    </th>
-                </tr>
-            </thead>
-        </table>
+        </div>
+    </div>
+
+    <!-- Pie de tabla -->
+    <div class="card-footer bg-light border-top">
+        <div class="row">
+            <!-- Paginación -->
+            <div class="col-md-12 text-end mb-2">
+                <b>Página </b>
+                <asp:Label ID="lbPaginaActualVariableCarteraIntermediario" runat="server" Text="0" CssClass="fw-bold text-primary"></asp:Label>
+                <b> de </b>
+                <asp:Label ID="lbCantidadPaginaVAriableCarteraIntermediario" runat="server" Text="0" CssClass="fw-bold text-primary"></asp:Label>
+            </div>
+        </div>
+
+        <hr />
+
+        <!-- Totales -->
+        <div class="row text-start">
+            <div class="col-md-6 mb-2">
+                <b>✔️ Polizas Activas: </b>
+                <asp:Label ID="lbCantidadPolizasActivasVariable" runat="server" Text="0" CssClass="fw-bold text-success"></asp:Label>
+            </div>
+            <div class="col-md-6 mb-2">
+                <b>❌ Polizas Canceladas: </b>
+                <asp:Label ID="lbCantidadPolizasCanceladasVariable" runat="server" Text="0" CssClass="fw-bold text-danger"></asp:Label>
+            </div>
+            <div class="col-md-6 mb-2">
+                <b>⏳ Polizas En Tránsito: </b>
+                <asp:Label ID="lbCantidadPolizasTransitoVariable" runat="server" Text="0" CssClass="fw-bold text-warning"></asp:Label>
+            </div>
+            <div class="col-md-6 mb-2">
+                <b>🚫 Polizas En Exclusión: </b>
+                <asp:Label ID="lbCantidadPolizasExcluidasVariable" runat="server" Text="0" CssClass="fw-bold text-secondary"></asp:Label>
+            </div>
+        </div>
+    </div>
+</div>
       
      
              <div id="divPaginacionCarteraIntermediario" runat="server" align="center">
